@@ -16,10 +16,10 @@
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope ="col">글번호 	</th>
-				<th scope ="col">제목 	</th>
-				<th scope ="col">조회수 	</th>
-				<th scope ="col">작성일 	</th>
+				<th scope ="col">글번호 </th>
+				<th scope ="col">제목 </th>
+				<th scope ="col">조회수 </th>
+				<th scope ="col">작성일 </th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,9 +31,7 @@
 	<a href = "#this" class = "btn" id="write">글쓰기</a>
 	
 	<%@ include file = "/WEB-INF/include/include-body.jspf" %>
-	
 	<script type="text/javascript">
-		
 		$(document).ready(function () {
 			fn_selectBoardList(1);
 			
@@ -62,7 +60,7 @@
 			comAjax.setUrl("<c:url value='/sample/selectBoardList.do'/>");
 			comAjax.setCallback("fn_selectBoardListCallback");
 			comAjax.addParam("PAGE_INDEX",pageNo);
-			comAjax.addParam("PAGE_ROW",10);
+			comAjax.addParam("PAGE_ROW",20);
 			comAjax.ajax();
 		}
 		

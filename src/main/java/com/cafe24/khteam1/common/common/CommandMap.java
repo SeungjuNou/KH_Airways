@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 import java.util.Set;
  
 public class CommandMap {
+	
     Map<String,Object> map = new HashMap<String,Object>();
      
     public Object get(String key){

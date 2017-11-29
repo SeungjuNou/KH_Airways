@@ -88,6 +88,8 @@ public class FileUtils {
                 multipartFile.transferTo(new File(filePath + storedFileName));
                  
                 listMap = new HashMap<String,Object>();
+
+                //수정인지 등록인지 구분하기 위한 맵값을 등록
                 listMap.put("IS_NEW", "Y");
                 listMap.put("BOARD_IDX", boardIdx);
                 listMap.put("ORIGINAL_FILE_NAME", originalFileName);

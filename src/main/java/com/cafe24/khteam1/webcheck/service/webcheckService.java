@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface webcheckService {
+public interface WebcheckService {
 
 		//체크인현황 리스트 
 		List<Map<String, Object>> checkinList(Map<String, Object> map) throws Exception;

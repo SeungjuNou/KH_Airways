@@ -7,7 +7,7 @@
 	<name>Airways</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	
+	 
 	<properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>4.0.4.RELEASE</org.springframework-version>
@@ -19,15 +19,14 @@
         <repository>
             <id>mvn2</id>
             <url>http://repo1.maven.org/maven2/</url>
-            <releases>
+            <releases> 
                 <enabled>true</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-	</repositories>
-	
+	</repositories> 
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -82,7 +81,7 @@
 			<version>${org.slf4j-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
+			<groupId>org.slf4j</groupId> 
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
 		</dependency>

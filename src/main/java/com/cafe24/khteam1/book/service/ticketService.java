@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface ticketService {
+public interface TicketService {
 
 	//항공권리스트
 	List<Map<String, Object>> ticketList(Map<String, Object> map) throws Exception;

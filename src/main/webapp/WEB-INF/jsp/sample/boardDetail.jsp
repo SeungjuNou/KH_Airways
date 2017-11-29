@@ -77,7 +77,6 @@
 	        function fn_openBoardUpdate(){
 	            var idx = "${map.IDX}";
 	            var comSubmit = new ComSubmit();
-	            alert("${map.IDX}");
 	            comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />");
 	            comSubmit.addParam("IDX", idx);
 	            comSubmit.submit();
