@@ -30,7 +30,7 @@ public class SampleController {
     }
 
     
-    @RequestMapping(value="/sample/selectBoardList.do")
+    @RequestMapping(value="/sample/selectBoardList.do") 
     public ModelAndView selectBoardList(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("jsonView");
          
