@@ -34,19 +34,18 @@ public class MemberController {
 		@SuppressWarnings("unused")
 		@RequestMapping(value = "/join/insertMember.do", method=RequestMethod.POST)
 		public ModelAndView insertMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			
 			ModelAndView view = new ModelAndView("redirect:/main.do");
-			System.out.println(commandMap.getMap());
 			Map<String, Object> map = new HashMap<String, Object>();
-			String milesNum = mileNo("F_MILES");
-			String milesText = mileText("F_MILES");
-			String birth = (String) commandMap.getMap().get("BIRTH");
-			System.out.println(birth);
-			commandMap.getMap().put("BIRTH", birth);
-			map.put("MILE_NO", milesNum);
-			map.put("MILES_TEXT", milesText);
-			commandMap.getMap().put("MILE_NO", milesNum);
+			
+			map.put("MILE_NO", mileNo("F_MILES"));
+			map.put("MILES_TEXT", mileText("F_MILES"));
+			
+			commandMap.getMap().put("MILE_NO", mileNo("F_MILES"));
+			
 			memberService.insertMember(commandMap.getMap(), request);
 			milesService.insertMiles(map, request);
+			
 			return view;
 		}
 		
@@ -55,16 +54,19 @@ public class MemberController {
 		@RequestMapping(value = "/login/loginCheck.do", method=RequestMethod.POST)
 		public ModelAndView loginCheck(CommandMap commandMap, HttpServletRequest request) throws Exception {
 			ModelAndView view = new ModelAndView("redirect:/main.do");
+			
 			Map<String, Object> result = memberService.loginCheck(commandMap.getMap());
 			Map<String, Object> map = (Map<String, Object>) result.get("map");
+			
 			String password = (String) map.get("PASSWORD");
-
+			
 			if (password.equals(commandMap.get("PASSWORD"))) {
 				request.getSession().setAttribute("ID", commandMap.get("ID"));
 				view.setViewName("main/main");
 			} else {
 				view.setViewName("main/main");
 			}
+			
 			return view;
 		}
 		
