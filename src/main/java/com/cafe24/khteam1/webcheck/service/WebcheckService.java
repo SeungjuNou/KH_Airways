@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface WebcheckService {
 
-		//ì²´í¬ì¸í˜„í™© ë¦¬ìŠ¤íŠ¸ 
+		//ì²´í¬?¸?˜„?™© ë¦¬ìŠ¤?Š¸ 
 		List<Map<String, Object>> checkinList(Map<String, Object> map) throws Exception;
 
-		//íŠ¹ì • íšŒì› í˜„í™© ë¦¬ìŠ¤íŠ¸ 
+		//?Š¹? • ?šŒ?› ?˜„?™© ë¦¬ìŠ¤?Š¸ 
 		List<Map<String, Object>> findCheckinList(Map<String, Object> map) throws Exception;
 		
-		//ì²´í¬ì¸ ë°ì´í„° ì…
+		//ì²´í¬?¸ ?°?´?„° ?…
 		void insertCheckin(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-		//ì²´í¬ì¸ ìƒì„¸ë³´ê¸° ì´ê±¸ë¡œ (pdf)ì‘ì„±í•´ë„ ê°€ëŠ¥í•©ë‹ˆë‹¤. 
+		//ì²´í¬?¸ ?ƒ?„¸ë³´ê¸° ?´ê±¸ë¡œ (pdf)?‘?„±?•´?„ ê°??Š¥?•©?‹ˆ?‹¤. 
 		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;
 		
-		//ì²´í¬ì¸ì •ë³´ ìˆ˜ì •.
+		//ì²´í¬?¸? •ë³? ?ˆ˜? •.
 		void updateCheckin(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-		//ì²´í¬ì¸ì •ë³´ ì‚­ì œ.
+		//ì²´í¬?¸? •ë³? ?‚­? œ.
 		void deleteCheckin(Map<String, Object> map) throws Exception;
 }

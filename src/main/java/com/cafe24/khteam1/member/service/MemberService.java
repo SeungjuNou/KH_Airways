@@ -9,22 +9,22 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface MemberService {
 
-	//íšŒì›ë¦¬ìŠ¤íŠ¸
+	//?šŒ?›ë¦¬ìŠ¤?Š¸
 	List<Map<String, Object>> memberList(Map<String, Object> map) throws Exception;
  
-	//ê²€ìƒ‰íšŒì›ë¦¬ìŠ¤íŠ¸ 
+	//ê²??ƒ‰?šŒ?›ë¦¬ìŠ¤?Š¸ 
 	List<Map<String, Object>> findMemberList(Map<String, Object> map) throws Exception;
 	
-	//íšŒì›ê°€ì…  
+	//?šŒ?›ê°??…  
 	void insertMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	//íšŒì›ì •ë³´ ë³´ê¸°
+	//?šŒ?›? •ë³? ë³´ê¸°
 	Map<String, Object> viewMember(Map<String, Object> map) throws Exception;
 	
-	//íšŒì›ì •ë³´ ìˆ˜ì • 
+	//?šŒ?›? •ë³? ?ˆ˜? • 
 	void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
  
-	//íšŒì›íƒˆí‡´
+	//?šŒ?›?ƒˆ?‡´
 	void deleteMember(Map<String, Object> map) throws Exception;
 
 }

@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface TicketService {
 
-	//í•­ê³µê¶Œë¦¬ìŠ¤íŠ¸
+	//?•­ê³µê¶Œë¦¬ìŠ¤?Š¸
 	List<Map<String, Object>> ticketList(Map<String, Object> map) throws Exception;
 
-	//ì˜ˆì•½ë³„ í•­ê³µê¶Œ ë¦¬ìŠ¤íŠ¸
+	//?˜ˆ?•½ë³? ?•­ê³µê¶Œ ë¦¬ìŠ¤?Š¸
 	List<Map<String, Object>> memberTicketList(Map<String, Object> map) throws Exception;
 	
-	//í•­ê³µê¶Œ ë°ì´í„° ì‚½ì… 
+	//?•­ê³µê¶Œ ?°?´?„° ?‚½?… 
 	void insertTicket(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	//í•­ê³µê¶Œ ìƒì„¸ë³´ê¸°
+	//?•­ê³µê¶Œ ?ƒ?„¸ë³´ê¸°
 	Map<String, Object> viewTicket(Map<String, Object> map) throws Exception;
 	
-	//í•­ê³µê¶Œ ìˆ˜ì • (í˜¹ì‹œëª°ë¼..)
+	//?•­ê³µê¶Œ ?ˆ˜? • (?˜¹?‹œëª°ë¼..)
 	void updateTicket(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	//í•­ê³µê¶Œ ì·¨ì†Œ (í˜¹ì‹œëª°ë¼..)
+	//?•­ê³µê¶Œ ì·¨ì†Œ (?˜¹?‹œëª°ë¼..)
 	void deleteTicket(Map<String, Object> map) throws Exception;
 }
