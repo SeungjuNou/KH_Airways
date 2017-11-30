@@ -261,12 +261,12 @@
 
 <div id="member_form">
 	<div id="login_form">
-		<form  action="#" autocomplete="on"> 
+		<form  action="/khteam1/login/loginCheck.do" autocomplete="on" method="post"> 
 			<p> 
-				<input id="username" name="username" required="required" type="text" placeholder="ID"/>
+				<input id="ID" name="ID" required="required" type="text" placeholder="ID"/>
 			</p>
 			<p> 
-				<input id="password" name="password" required="required" type="password" placeholder="Password" /> 
+				<input id="PASSWORD" name="PASSWORD" required="required" type="password" placeholder="Password" /> 
 			</p>
 			<p class="keeplogin"> 
 				<input id="login" type="submit" value="로그인" /> 
@@ -283,19 +283,19 @@
 <div id="join-wrap">
 
 	<div id="join-form">
-		<form action="#" id="join3">
+		<form action="/khteam1/join/insertMember.do" id="join3" method="post">
 			<h2>회원가입</h2>
-			<input type="text" placeholder="아이디 - ID" required="required"/>
-			<input type="password" placeholder="비밀번호 - PASSWORD" required="required"/>
+			<input type="text" id="ID" name="ID" placeholder="아이디 - ID" required="required"/>
+			<input type="password" id="PASSWORD" name="PASSWORD" placeholder="비밀번호 - PASSWORD" required="required"/>
 			<input type="password" placeholder="재입력 - PASSWORD2" required="required"/>
-			<input type="text"  placeholder="한글이름 - NAME" required="required"/>
+			<input type="text" id="NAME" name="NAME" placeholder="한글이름 - NAME" required="required"/>
 			<div id="join_line2">
-				<input type="text" placeholder="영문 성 - LAST NAME" required="required"/>
-				<input type="text" placeholder="영문 이름 - FIRST NAME" required="required"/>
+				<input type="text" id="E_FIRST" name="E_FIRST" placeholder="영문 성 - LAST NAME" required="required"/>
+				<input type="text" id="E_LAST" name="E_LAST" placeholder="영문 이름 - FIRST NAME" required="required"/>
 			</div>
-			<input type="date" placeholder="생년월일 - BIRTH" required="required"/>
-			<input type="text" placeholder="연락처 - PHONE"  required="required"/>
-			<input type="text" placeholder="이메일 - EMAIL"  required="required"/>
+			<input type="text" id="BIRTH" name="BIRTH" placeholder="생년월일 - BIRTH" required="required"/>
+			<input type="text" id="EMAIL" name="EMAIL" placeholder="연락처 - PHONE"  required="required"/>
+			<input type="text" id="PHONE" name="PHONE" placeholder="이메일 - EMAIL"  required="required"/>
 			<div id="join_line2">
 				<input type="reset" />
 				<input type="submit" />
