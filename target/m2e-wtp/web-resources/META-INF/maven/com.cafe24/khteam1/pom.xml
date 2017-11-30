@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cafe24</groupId>
 	<artifactId>khteam1</artifactId>
-	<name>Airways</name>
+	<name>KH_Airways</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="route">
+	
+
+	<select id="depRouteList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select distinct dep from test_route
+		]]>
+	</select>
+
+
+	<select id="arrRouteList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select distinct arr from test_route where dep = #{DEP}
+		]]>
+	</select>
+	
+	
+</mapper>
