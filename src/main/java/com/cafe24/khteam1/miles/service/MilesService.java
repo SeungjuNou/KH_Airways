@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-public interface milesService {
+public interface MilesService {
 	
 		//마일리지 리스트
 		List<Map<String, Object>> milesList(Map<String, Object> map) throws Exception;

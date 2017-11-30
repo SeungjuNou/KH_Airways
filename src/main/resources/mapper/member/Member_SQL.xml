@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT * FROM F_MEMBER
+        WHERE ID = #{ID}
+		]]>
+	</select>
+	
+	<insert id="insertMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO F_MEMBER
+			(
+				NO,
+			    ID,
+			    PASSWORD,
+			    NAME,
+			    E_FIRST,
+			    E_LAST,
+			    BIRTH,
+			    EMAIL,
+			    PHONE,
+			    MILE_NO
+			)
+			VALUES
+			(
+				SEQ_MEM_NO.NEXTVAL,
+			    #{ID}, 
+			    #{PASSWORD},
+			    #{NAME}, 
+			    #{E_FIRST}, 
+			    #{E_LAST},
+			    #{BIRTH},
+			    #{EMAIL},
+			    #{PHONE},
+			    #{MILE_NO}
+			)
+		]]>
+	</insert>
+
+	<!-- 회원목록 -->
+	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    NO,
+			    ID,
+			    PASSWORD,
+			    NAME,
+			    E_FIRST,
+			    E_LAST,
+			    BIRTH,
+			    EMAIL,
+			    PHONE,
+			    MILE_NO
+			FROM
+			    F_MEMBER    
+			ORDER BY NO DESC
+		]]>
+	</select>
+
+	<!-- 회원정보 -->
+	<select id="profile" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+				ID,
+				PASSWORD,
+				NAME,
+				E_FIRST,
+				E_LAST,				
+				BIRTH,
+				EMAIL,
+				PHONE,
+				MILE_NO
+			FROM
+				F_MEMBER
+			WHERE
+				NO = #{NO}		
+		]]>
+	</select>
+
+	<!-- 회원수정 -->
+	<update id="memberModify" parameterType="hashmap">
+		<![CDATA[
+			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}
+			WHERE NO = #{NO}	
+		]]>
+	</update>
+
+	<!-- 회원삭제 -->
+	<delete id="memberDelete" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM F_MEMBER
+			WHERE NO = #{NO}
+		]]>
+	</delete>
+
+</mapper>
