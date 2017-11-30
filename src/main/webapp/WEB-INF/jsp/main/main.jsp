@@ -33,46 +33,6 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
 
 
-<!-- <script type="text/javascript">
-		
-		$(".dep_area").keyup(function() { 
-				alert("asdf");
-				var are = "arr=" + $(this).val();
-				flight(are);
-				function flight(are) {
-				//페이지 열릴때 시작
-					$.ajax({
-							type: "POST",
-							url: "arrRouteList.do",
-							data: are,
-							success: function(data){
-
-								$("#dep_area2").empty();
-								$("#dep_area2").append(
-									"<ul>"
-								)
-								$.each(data.list, function(i, item) {
-									$(".ajaxBoard1").append(
-										"<li>" + item.ARR + "</li>"
-									);
-								});
-
-								$("#dep_area2").append(
-									"</ul>"
-								)
-								
-							}//success
-							
-							
-					});
-					
-					
-				}
-		});
-
-
-</script> -->
-
 </head>
 <body>
 
@@ -337,6 +297,39 @@ $(".dep_area").click(function() {
 						});
 						
 					}//success
+					
+					, beforeSend: function () {
+			              var width = 0;
+			              var height = 0;
+			              var left = 0;
+			              var top = 0;
+
+			 
+
+			              width = 50;
+			              height = 50;
+			              top = ( $(window).height() - height ) / 2 + $(window).scrollTop();
+			              left = ( $(window).width() - width ) / 2 + $(window).scrollLeft();
+
+			 
+
+			              if($("#div_ajax_load_image").length != 0) {
+			                     $("#div_ajax_load_image").css({
+			                            "top": top+"px",
+			                            "left": left+"px"
+			                     });
+			                     $("#div_ajax_load_image").show();
+			              }
+			              else {
+			                     $('body').append('<div id="div_ajax_load_image" style="position:absolute; top:' + top + 'px; left:' + left + 'px; width:' + width + 'px; height:' + height + 'px; z-index:9999; background:#f0f0f0; filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; background:none;"><img src="_assets/ajax_loader.gif" style="width:200px; height:200px;"></div>');
+			              }
+
+			       } //beforesend
+			       
+			       , complete: function () {
+	                     $("#div_ajax_load_image").hide();
+			       }
+
 					
 			
 			});
