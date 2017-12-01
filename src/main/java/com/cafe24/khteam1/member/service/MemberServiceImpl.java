@@ -62,4 +62,12 @@ public class MemberServiceImpl implements MemberService{
 		result.put("map", member);
 		return result;
 	}
+	
+	@Override
+	public Map<String, Object> milesList3(Map<String, Object> map) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> tempMap = memberDAO.milesList3(map);
+		resultMap.put("map2", tempMap);
+		return resultMap;
+	}
 }

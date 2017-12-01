@@ -17,4 +17,10 @@ public class MemberDAO extends AbstractDAO {
 	public Map<String, Object> loginCheck(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("member.loginCheck", map);
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> milesList3(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.milesList3", map);
+	}
 }

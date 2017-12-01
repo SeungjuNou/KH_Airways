@@ -62,7 +62,7 @@
 	</select>
 
 	<!-- 회원정보 -->
-	<select id="profile" parameterType="hashmap" resultType="hashmap">
+	<select id="viewMember" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				NO,
@@ -81,6 +81,28 @@
 				NO = #{NO}		
 		]]>
 	</select>
+	
+	<select id="milesList3" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+				ID,
+				PASSWORD,
+				NAME,
+				E_FIRST,
+				E_LAST,				
+				BIRTH,
+				EMAIL,
+				PHONE,
+				MILE_NO
+			FROM
+				F_MEMBER
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)		
+		]]>
+	</select>
+	
+	
 
 	<!-- 회원수정 -->
 	<update id="memberModify" parameterType="hashmap">

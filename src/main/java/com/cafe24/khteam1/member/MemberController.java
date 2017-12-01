@@ -70,6 +70,13 @@ public class MemberController {
 			return view;
 		}
 		
+		//마이페이지
+		@RequestMapping(value = "/myPage/myPage.do")
+		public ModelAndView myPage(CommandMap commandMap) throws Exception {
+			ModelAndView view = new ModelAndView("myPage/myPage");
+			return view;
+		}
+		
 		// 마일리지 번호(임시)
 		public String mileNo(String type) {
 			return "34757";
