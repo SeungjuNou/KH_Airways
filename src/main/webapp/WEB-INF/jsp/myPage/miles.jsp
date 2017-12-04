@@ -66,9 +66,9 @@
             <div id="inner2">
                 <ul>
                     <li id="select-inner">
-                        <div>마이 페이지</div>
+                        <div>마일리지</div>
                     </li>
-                    <li>마일리지</li>
+                    <li><a href="viewMember.do">회원 정보<a></li>
                     <li>나의 예약</li>
                     <li>웹 체크인</li>
                     <li id="empty">&nbsp;</li>
@@ -90,6 +90,7 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
+                                                <th>마일리지 내역(miles)</th>
                                                 <th>사용 마일리지(miles)</th>
                                                 <th>적립 마일리지(miles)</th>
                                                 <th>잔여 마일리지(miles)</th>
@@ -102,6 +103,7 @@
  									
                                             <tr>
                                                 <td>${status.count}</td>
+                                                <th>${list.MILES_TEXT}</th>
                                                 <td>${list.USE_MILES}</td>
                                                 <td>${list.SAVE_MILES}</td>
                                                 <td>${list.MILES}</td>

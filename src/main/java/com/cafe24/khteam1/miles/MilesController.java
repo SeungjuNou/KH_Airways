@@ -25,7 +25,7 @@ public class MilesController {
 	//마이 페이지(마일리지)
 		@RequestMapping(value = "/myPage/milesList.do")
 		public ModelAndView milesList(CommandMap commandMap) throws Exception {
-			ModelAndView view = new ModelAndView("myPage/myPage");
+			ModelAndView view = new ModelAndView("myPage/miles");
 			List<Map<String, Object>> list = milesService.milesList(commandMap.getMap());	//마일리지 현황을 보여주기 위한 map
 			Map<String, Object> map = milesService.milesList2(commandMap.getMap());		//마이페이지에 현재마일리지를 보여주기위한 map
 			Map<String, Object> map2 = memberService.milesList3(commandMap.getMap());	//마이페이지에 이름과 회원번호를 보여주기 위한  map
