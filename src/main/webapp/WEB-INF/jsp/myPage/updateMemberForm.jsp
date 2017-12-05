@@ -128,6 +128,11 @@
                                              		<th>&nbsp;<br>휴대폰 번호<br><input type="text" id="PHONE" name="PHONE"  value="${map.PHONE}" /><br>&nbsp;<br>&nbsp;<br></th>
                                          		</tr>
                                          	</thead>
+                                         	<thead>
+                                            <tr>
+                                                <th>&nbsp;<br>LEVEL<br>${map.GRADE}<br>&nbsp;<br></th>
+                                            </tr>
+                                        </thead>
                                          </table></h4>
 					 									<input type="submit" value="수정"/>
 								</form>

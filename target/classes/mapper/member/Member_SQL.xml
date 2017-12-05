@@ -23,7 +23,8 @@
 			    BIRTH,
 			    EMAIL,
 			    PHONE,
-			    MILE_NO
+			    MILE_NO,
+			    GRADE
 			)
 			VALUES
 			(
@@ -36,7 +37,8 @@
 			    #{BIRTH},
 			    #{EMAIL},
 			    #{PHONE},
-			    #{MILE_NO}
+			    #{MILE_NO},
+			    #{GRADE}
 			)
 		]]>
 	</insert>
@@ -54,7 +56,9 @@
 			    BIRTH,
 			    EMAIL,
 			    PHONE,
-			    MILE_NO
+			    MILE_NO,
+			    GRADE
+			    
 			FROM
 			    F_MEMBER    
 			ORDER BY NO DESC
@@ -72,7 +76,8 @@
 				E_LAST,				
 				BIRTH,
 				EMAIL,
-				PHONE
+				PHONE,
+				GRADE
 			FROM
 				F_MEMBER
 			WHERE
@@ -124,7 +129,8 @@
 				BIRTH,
 				EMAIL,
 				PHONE,
-				MILE_NO
+				MILE_NO,
+				GRADE
 			FROM
 				F_MEMBER
 			WHERE

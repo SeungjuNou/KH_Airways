@@ -31,7 +31,6 @@ public class MemberController {
 	private DateTrans dateTrans;
 	
 	// 회원 가입 & 마일리지 생성
-		@SuppressWarnings("unused")
 		@RequestMapping(value = "/join/insertMember.do", method=RequestMethod.POST)
 		public ModelAndView insertMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
 			
@@ -42,6 +41,8 @@ public class MemberController {
 			map.put("MILES_TEXT", mileText("F_MILES"));
 			
 			commandMap.getMap().put("MILE_NO", mileNo("F_MILES"));
+			commandMap.getMap().put("GRADE", grade(0));
+			
 			
 			memberService.insertMember(commandMap.getMap(), request);
 			milesService.insertMiles(map, request);
@@ -109,6 +110,15 @@ public class MemberController {
 			return view;
 		}
 		
+		/*// 회원 수정
+				@RequestMapping(value = "/myPage/updateMember.do")
+				public ModelAndView updateGrade(CommandMap commandMap, HttpServletRequest request) throws Exception {
+					ModelAndView view = new ModelAndView("redirect:/myPage/viewMember.do");
+					memberService.updateMember(commandMap.getMap(), request);
+					view.addObject("NO", commandMap.get("NO")); // 수정완료에 필요한 회원번호를 가져옴
+					return view;
+				}
+		*/
 		//회원 삭제
 		@RequestMapping(value = "/myPage/deleteMember.do")
 		public ModelAndView deleteMember(CommandMap commandMap) throws Exception {
@@ -126,4 +136,8 @@ public class MemberController {
 		public String mileText(String type) {
 			return "회원가입보너스";
 		}
+		// 초기 회원등급주기(임시)
+		public int grade(int type) {
+			return 0;
+				}
 }

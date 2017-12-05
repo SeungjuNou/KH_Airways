@@ -123,6 +123,11 @@
                                                 <th>&nbsp;<br>휴대폰 번호<br>${map.PHONE}<br>&nbsp;<br></th>
                                             </tr>
                                         </thead>
+                                        <thead>
+                                            <tr>
+                                                <th>&nbsp;<br>LEVEL<br>${map.GRADE}<br>&nbsp;<br></th>
+                                            </tr>
+                                        </thead>
                                     </table></h4>
                                 </div>
                                 <!-- /.table-responsive -->
