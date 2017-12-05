@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="miles">
+	
+	
+
+	<!-- 마일리지생성 -->
+	<insert id="insertMiles" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO F_MILES
+			(
+				NO,
+			    MILE_NO,
+			    MILES_TEXT,
+			    USE_MILES,
+			    SAVE_MILES,
+			    USE_DATE,
+			    MILES
+			)
+			VALUES
+			(
+				SEQ_MILE_NO.NEXTVAL,
+			    #{MILE_NO}, 
+			    #{MILES_TEXT},
+			    '0', 
+			    '0',
+			    SYSDATE,
+			    '150'
+			)
+		]]>
+	</insert>
+	
+	<!-- 나의마일리지 -->
+	<select id="milesList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    NO,
+			    MILE_NO,
+			    MILES_TEXT,
+			    USE_MILES,
+			    SAVE_MILES,
+			    USE_DATE,
+			    MILES
+			FROM
+			    F_MILES    
+			ORDER BY NO DESC
+		]]>
+	</select>
+
+	<!-- 사용마일리지 -->
+	<insert id="useMile" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO F_MILES
+	        (	
+	        	  NO,
+                  MILE_NO,	
+                  MILES_TEXT,
+                  SAVE_MILES,
+                  USE_MILES,
+                  USE_DATE,
+                  MILES
+                 )
+	        VALUES
+	        (	SEQ_MILE_NO.NEXTVAL,
+                  '34757',
+                  '사용',
+                  '0',
+                  '2000',
+                  SYSDATE,
+                  (SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1) - 2000
+          )
+		]]>
+	</insert>
+
+	<!-- 적립마일리지 -->
+	<insert id="saveMile" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO F_MILES
+	        (	NO,
+                  MILE_NO,	
+                  MILES_TEXT,
+                  SAVE_MILES,
+                  USE_MILES,
+                  USE_DATE,
+                  MILES	)
+	        VALUES
+	        (	SEQ_MILE_NO.NEXTVAL,
+                  '34757',
+                  '적립',
+                  '2000',
+                  '0',
+                  SYSDATE,
+                  (SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1) + 2000
+          )
+		]]>
+	</insert>
+
+	
+
+	<!-- 마일리지현황 -->
+	<select id="milesList2" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+			    MILE_NO,
+			    MILES_TEXT,
+			    USE_MILES,
+			    SAVE_MILES,
+			    USE_DATE,
+			    MILES
+			FROM
+				F_MILES
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MILES)	
+		]]>
+	</select>
+	
+</mapper>

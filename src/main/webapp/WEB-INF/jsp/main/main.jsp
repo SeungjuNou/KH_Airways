@@ -33,46 +33,6 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
 
 
-<!-- <script type="text/javascript">
-		
-		$(".dep_area").keyup(function() { 
-				alert("asdf");
-				var are = "arr=" + $(this).val();
-				flight(are);
-				function flight(are) {
-				//페이지 열릴때 시작
-					$.ajax({
-							type: "POST",
-							url: "arrRouteList.do",
-							data: are,
-							success: function(data){
-
-								$("#dep_area2").empty();
-								$("#dep_area2").append(
-									"<ul>"
-								)
-								$.each(data.list, function(i, item) {
-									$(".ajaxBoard1").append(
-										"<li>" + item.ARR + "</li>"
-									);
-								});
-
-								$("#dep_area2").append(
-									"</ul>"
-								)
-								
-							}//success
-							
-							
-					});
-					
-					
-				}
-		});
-
-
-</script> -->
-
 </head>
 <body>
 
@@ -242,7 +202,7 @@
 		<img src="_assets/2.JPG" alt="" />
 		
 		<div class="tab-headline">
-			<a href="#">
+			<a href="/khteam1/myPage/milesList.do">
 			<p>
 				마이페이지로 가기
 				<img src="_assets/arrow2.png" id="arrow" />
@@ -261,12 +221,12 @@
 
 <div id="member_form">
 	<div id="login_form">
-		<form  action="#" autocomplete="on"> 
+		<form  action="/khteam1/login/loginCheck.do" autocomplete="on" method="post"> 
 			<p> 
-				<input id="username" name="username" required="required" type="text" placeholder="ID"/>
+				<input id="ID" name="ID" required="required" type="text" placeholder="ID"/>
 			</p>
 			<p> 
-				<input id="password" name="password" required="required" type="password" placeholder="Password" /> 
+				<input id="PASSWORD" name="PASSWORD" required="required" type="password" placeholder="Password" /> 
 			</p>
 			<p class="keeplogin"> 
 				<input id="login" type="submit" value="로그인" /> 
@@ -283,19 +243,19 @@
 <div id="join-wrap">
 
 	<div id="join-form">
-		<form action="#" id="join3">
+		<form action="/khteam1/join/insertMember.do" id="join3" method="post">
 			<h2>회원가입</h2>
-			<input type="text" placeholder="아이디 - ID" required="required"/>
-			<input type="password" placeholder="비밀번호 - PASSWORD" required="required"/>
+			<input type="text" id="ID" name="ID" placeholder="아이디 - ID" required="required"/>
+			<input type="password" id="PASSWORD" name="PASSWORD" placeholder="비밀번호 - PASSWORD" required="required"/>
 			<input type="password" placeholder="재입력 - PASSWORD2" required="required"/>
-			<input type="text"  placeholder="한글이름 - NAME" required="required"/>
+			<input type="text" id="NAME" name="NAME" placeholder="한글이름 - NAME" required="required"/>
 			<div id="join_line2">
-				<input type="text" placeholder="영문 성 - LAST NAME" required="required"/>
-				<input type="text" placeholder="영문 이름 - FIRST NAME" required="required"/>
+				<input type="text" id="E_FIRST" name="E_FIRST" placeholder="영문 성 - LAST NAME" required="required"/>
+				<input type="text" id="E_LAST" name="E_LAST" placeholder="영문 이름 - FIRST NAME" required="required"/>
 			</div>
-			<input type="date" placeholder="생년월일 - BIRTH" required="required"/>
-			<input type="text" placeholder="연락처 - PHONE"  required="required"/>
-			<input type="text" placeholder="이메일 - EMAIL"  required="required"/>
+			<input type="text" id="BIRTH" name="BIRTH" placeholder="생년월일 - BIRTH" required="required"/>
+			<input type="text" id="EMAIL" name="EMAIL" placeholder="연락처 - PHONE"  required="required"/>
+			<input type="text" id="PHONE" name="PHONE" placeholder="이메일 - EMAIL"  required="required"/>
 			<div id="join_line2">
 				<input type="reset" />
 				<input type="submit" />
@@ -337,6 +297,39 @@ $(".dep_area").click(function() {
 						});
 						
 					}//success
+					
+					, beforeSend: function () {
+			              var width = 0;
+			              var height = 0;
+			              var left = 0;
+			              var top = 0;
+
+			 
+
+			              width = 50;
+			              height = 50;
+			              top = ( $(window).height() - height ) / 2 + $(window).scrollTop();
+			              left = ( $(window).width() - width ) / 2 + $(window).scrollLeft();
+
+			 
+
+			              if($("#div_ajax_load_image").length != 0) {
+			                     $("#div_ajax_load_image").css({
+			                            "top": top+"px",
+			                            "left": left+"px"
+			                     });
+			                     $("#div_ajax_load_image").show();
+			              }
+			              else {
+			                     $('body').append('<div id="div_ajax_load_image" style="position:absolute; top:' + top + 'px; left:' + left + 'px; width:' + width + 'px; height:' + height + 'px; z-index:9999; background:#f0f0f0; filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; background:none;"><img src="_assets/ajax_loader.gif" style="width:200px; height:200px;"></div>');
+			              }
+
+			       } //beforesend
+			       
+			       , complete: function () {
+	                     $("#div_ajax_load_image").hide();
+			       }
+
 					
 			
 			});
@@ -383,20 +376,7 @@ $(document).bind('ready ajaxComplete', function(){
         $("#login-form-close").click(function(){
             $("#member_form").fadeOut(450);
         });
-
-
-
-
-
     }); 
-     
-     
-    	 
-     
-
-
-
-
 </script>
 
 </body>

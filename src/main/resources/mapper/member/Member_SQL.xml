@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+
+	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT * FROM F_MEMBER
+        WHERE ID = #{ID}
+		]]>
+	</select>
+	
+	<insert id="insertMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO F_MEMBER
+			(
+				NO,
+			    ID,
+			    PASSWORD,
+			    NAME,
+			    E_FIRST,
+			    E_LAST,
+			    BIRTH,
+			    EMAIL,
+			    PHONE,
+			    MILE_NO,
+			    GRADE
+			)
+			VALUES
+			(
+				SEQ_MEM_NO.NEXTVAL,
+			    #{ID}, 
+			    #{PASSWORD},
+			    #{NAME}, 
+			    #{E_FIRST}, 
+			    #{E_LAST},
+			    #{BIRTH},
+			    #{EMAIL},
+			    #{PHONE},
+			    #{MILE_NO},
+			    #{GRADE}
+			)
+		]]>
+	</insert>
+
+	<!-- 회원목록 -->
+	<select id="selectList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			    NO,
+			    ID,
+			    PASSWORD,
+			    NAME,
+			    E_FIRST,
+			    E_LAST,
+			    BIRTH,
+			    EMAIL,
+			    PHONE,
+			    MILE_NO,
+			    GRADE
+			    
+			FROM
+			    F_MEMBER    
+			ORDER BY NO DESC
+		]]>
+	</select>
+
+	<!-- 회원정보 -->
+	<select id="viewMember" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+				ID,
+				NAME,
+				E_FIRST,
+				E_LAST,				
+				BIRTH,
+				EMAIL,
+				PHONE,
+				GRADE
+			FROM
+				F_MEMBER
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)		
+		]]>
+	</select>
+	
+	<update id="updateMember" parameterType="hashmap">
+		<![CDATA[
+			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}
+			WHERE NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)	
+		]]>
+	</update>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM F_MEMBER
+			WHERE NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)	
+		]]>
+	</delete>
+	
+	<select id="milesList2" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+			    MILE_NO,
+			    MILES_TEXT,
+			    USE_MILES,
+			    SAVE_MILES,
+			    USE_DATE,
+			    MILES
+			FROM
+				F_MILES
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MILES)	
+		]]>
+	</select>
+	
+	<select id="milesList3" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+				ID,
+				PASSWORD,
+				NAME,
+				E_FIRST,
+				E_LAST,				
+				BIRTH,
+				EMAIL,
+				PHONE,
+				MILE_NO,
+				GRADE
+			FROM
+				F_MEMBER
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)		
+		]]>
+	</select>
+	
+	
+
+	<!-- 회원수정 -->
+	<update id="memberModify" parameterType="hashmap">
+		<![CDATA[
+			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}
+			WHERE NO = #{NO}	
+		]]>
+	</update>
+
+	<!-- 회원삭제 -->
+	<delete id="memberDelete" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM F_MEMBER
+			WHERE NO = #{NO}
+		]]>
+	</delete>
+
+</mapper>
