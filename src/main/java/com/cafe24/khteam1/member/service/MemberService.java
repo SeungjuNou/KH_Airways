@@ -22,5 +22,9 @@ public interface MemberService {
 	void deleteMember(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> loginCheck(Map<String, Object> map) throws Exception;
+
+	Map<String, Object> milesList3(Map<String, Object> map) throws Exception;
+
+	Map<String, Object> milesList2(Map<String, Object> map) throws Exception;
 	
 }

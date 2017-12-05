@@ -31,7 +31,6 @@ public class MemberController {
 	private DateTrans dateTrans;
 	
 	// 회원 가입 & 마일리지 생성
-		@SuppressWarnings("unused")
 		@RequestMapping(value = "/join/insertMember.do", method=RequestMethod.POST)
 		public ModelAndView insertMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
 			
@@ -42,6 +41,8 @@ public class MemberController {
 			map.put("MILES_TEXT", mileText("F_MILES"));
 			
 			commandMap.getMap().put("MILE_NO", mileNo("F_MILES"));
+			commandMap.getMap().put("GRADE", grade(0));
+			
 			
 			memberService.insertMember(commandMap.getMap(), request);
 			milesService.insertMiles(map, request);
@@ -70,6 +71,62 @@ public class MemberController {
 			return view;
 		}
 		
+		//마이페이지
+		@RequestMapping(value = "/myPage/myPage.do")
+		public ModelAndView myPage(CommandMap commandMap) throws Exception {
+			ModelAndView view = new ModelAndView("myPage/myPage");
+			return view;
+		}
+		
+		@RequestMapping(value = "/myPage/viewMember.do")
+		public ModelAndView viewMember(CommandMap commandMap) throws Exception {
+			ModelAndView view = new ModelAndView("myPage/viewMember");
+			Map<String, Object> map = memberService.viewMember(commandMap.getMap());
+			Map<String, Object> map2 = memberService.milesList2(commandMap.getMap());
+			view.addObject("map2", map2.get("map2"));
+			view.addObject("map", map.get("map"));
+			view.addObject("list", map.get("list"));
+
+			return view;
+		}
+		
+		// 회원 수정 폼
+		@RequestMapping(value = "/myPage/updateMemberForm.do")
+		public ModelAndView updateMemberForm(CommandMap commandMap) throws Exception {
+			ModelAndView view = new ModelAndView("myPage/updateMemberForm");
+			log.debug("test");
+			Map<String, Object> map = memberService.viewMember(commandMap.getMap()); // 수정할때 필요한 회원정보를 가져옴
+			view.addObject("map", map.get("map")); // 수정 폼에 추가할 map을 가져옴
+			view.addObject("list", map.get("list")); // 수정 폼에 추가할 list를 가져옴
+			return view;
+		}
+
+		// 회원 수정
+		@RequestMapping(value = "/myPage/updateMember.do")
+		public ModelAndView updateMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView view = new ModelAndView("redirect:/myPage/viewMember.do");
+			memberService.updateMember(commandMap.getMap(), request);
+			view.addObject("NO", commandMap.get("NO")); // 수정완료에 필요한 회원번호를 가져옴
+			return view;
+		}
+		
+		/*// 회원 수정
+				@RequestMapping(value = "/myPage/updateMember.do")
+				public ModelAndView updateGrade(CommandMap commandMap, HttpServletRequest request) throws Exception {
+					ModelAndView view = new ModelAndView("redirect:/myPage/viewMember.do");
+					memberService.updateMember(commandMap.getMap(), request);
+					view.addObject("NO", commandMap.get("NO")); // 수정완료에 필요한 회원번호를 가져옴
+					return view;
+				}
+		*/
+		//회원 삭제
+		@RequestMapping(value = "/myPage/deleteMember.do")
+		public ModelAndView deleteMember(CommandMap commandMap) throws Exception {
+			ModelAndView view = new ModelAndView("redirect:/main.do");
+			memberService.deleteMember(commandMap.getMap());
+			return view;
+		}
+		
 		// 마일리지 번호(임시)
 		public String mileNo(String type) {
 			return "34757";
@@ -79,4 +136,8 @@ public class MemberController {
 		public String mileText(String type) {
 			return "회원가입보너스";
 		}
+		// 초기 회원등급주기(임시)
+		public int grade(int type) {
+			return 0;
+				}
 }
