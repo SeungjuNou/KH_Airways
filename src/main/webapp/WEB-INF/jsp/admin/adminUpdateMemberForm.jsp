@@ -38,7 +38,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">KH Airways</a>
+            <a class="navbar-brand" href="#">KH Airways</a> 
         </div>
 
 
