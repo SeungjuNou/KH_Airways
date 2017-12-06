@@ -97,7 +97,7 @@
                                 	<h4> <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>&nbsp;<br>${map.NAME}<br>${map.E_FIRST}&nbsp;/&nbsp;${map.E_LAST}<br>&nbsp;<br></th>
+                                            	<th>&nbsp;<br>${map.NAME}<br>${map.E_FIRST}&nbsp;/&nbsp;${map.E_LAST}<br>&nbsp;<br><input type="hidden" id="NO" name="NO"  value="${map.NO}" /></th>
                                             </tr>
                                         </thead>
                                         
@@ -128,6 +128,9 @@
                                                 <th>&nbsp;<br>LEVEL<br>${map.GRADE}<br>&nbsp;<br></th>
                                             </tr>
                                         </thead>
+                                        
+   	
+                                            
                                     </table></h4>
                                 </div>
                                 <!-- /.table-responsive -->

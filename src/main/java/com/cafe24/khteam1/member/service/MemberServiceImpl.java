@@ -22,8 +22,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public List<Map<String, Object>> memberList(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.memberList(map);
 	}
 
 	@Override
@@ -62,19 +61,5 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 	
-	@Override
-	public Map<String, Object> milesList3(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> tempMap = memberDAO.milesList3(map);
-		resultMap.put("map2", tempMap);
-		return resultMap;
-	}
-	
-	@Override
-	public Map<String, Object> milesList2(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> tempMap = memberDAO.milesList2(map);
-		resultMap.put("map2", tempMap);
-		return resultMap;
-	}
+
 }
