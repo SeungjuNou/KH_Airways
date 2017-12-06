@@ -18,6 +18,9 @@ public interface MilesService {
 		
 		//마일리지 내역 수정
 		void updateMiles(Map<String, Object> map, HttpServletRequest request) throws Exception;
+
+		Map<String, Object> milesList2(Map<String, Object> map) throws Exception;
+
 		
 		
 }

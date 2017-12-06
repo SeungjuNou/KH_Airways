@@ -30,7 +30,8 @@
 			    BIRTH,
 			    EMAIL,
 			    PHONE,
-			    MILE_NO
+			    MILE_NO,
+			    GRADE
 			)
 			VALUES
 			(
@@ -43,7 +44,8 @@
 			    #{BIRTH},
 			    #{EMAIL},
 			    #{PHONE},
-			    #{MILE_NO}
+			    #{MILE_NO},
+			    #{GRADE}
 			)
 		]]>
 	</insert>
@@ -61,7 +63,9 @@
 			    BIRTH,
 			    EMAIL,
 			    PHONE,
-			    MILE_NO
+			    MILE_NO,
+			    GRADE
+			    
 			FROM
 			    F_MEMBER    
 			ORDER BY NO DESC
@@ -69,7 +73,58 @@
 	</select>
 
 	<!-- 회원정보 -->
-	<select id="profile" parameterType="hashmap" resultType="hashmap">
+	<select id="viewMember" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+				ID,
+				NAME,
+				E_FIRST,
+				E_LAST,				
+				BIRTH,
+				EMAIL,
+				PHONE,
+				GRADE
+			FROM
+				F_MEMBER
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)		
+		]]>
+	</select>
+	
+	<update id="updateMember" parameterType="hashmap">
+		<![CDATA[
+			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}
+			WHERE NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)	
+		]]>
+	</update>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM F_MEMBER
+			WHERE NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)	
+		]]>
+	</delete>
+	
+	<select id="milesList2" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				NO,
+			    MILE_NO,
+			    MILES_TEXT,
+			    USE_MILES,
+			    SAVE_MILES,
+			    USE_DATE,
+			    MILES
+			FROM
+				F_MILES
+			WHERE
+				NO = (SELECT MAX(NO)AS NO FROM F_MILES)	
+		]]>
+	</select>
+	
+	<select id="milesList3" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
 				NO,
@@ -81,13 +136,16 @@
 				BIRTH,
 				EMAIL,
 				PHONE,
-				MILE_NO
+				MILE_NO,
+				GRADE
 			FROM
 				F_MEMBER
 			WHERE
-				NO = #{NO}		
+				NO = (SELECT MAX(NO)AS NO FROM F_MEMBER)		
 		]]>
 	</select>
+	
+	
 
 	<!-- 회원수정 -->
 	<update id="memberModify" parameterType="hashmap">

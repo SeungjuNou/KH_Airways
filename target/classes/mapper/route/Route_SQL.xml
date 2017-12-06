@@ -16,5 +16,93 @@
 		]]>
 	</select>
 	
+	<select id="selectRouteList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    TEST_ROUTE
+			WHERE
+				DEL_GB = 'N'        
+			ORDER BY ITI_NO DESC
+		]]>
+	</select>
+	
+	<select id="selectRouteDeactList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    TEST_ROUTE
+			WHERE
+				DEL_GB = 'Y'        
+			ORDER BY ITI_NO DESC
+		]]>
+	</select>
+	
+	<insert id="insertRoute" parameterType="hashmap" useGeneratedKeys="true" keyProperty="ITI_NO">
+		<selectKey keyProperty="ITI_NO" resultType="string" order="BEFORE">
+			SELECT ITI_NO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		<![CDATA[
+			
+			INSERT INTO TEST_ROUTE
+			(
+				ITI_NO,
+			    DEP, 
+			    ARR, 
+			    TI_DEP, 
+			    TI_ARR, 
+			    TI_FLY,
+			    SEAT_COUNT,
+			    PRICE,
+			    DEL_GB
+			)
+			VALUES
+			(
+				ITI_NO_SEQ.NEXTVAL, 
+			    #{DEP}, 
+			    #{ARR}, 
+			    #{TI_DEP},
+			    #{TI_ARR}, 
+			    #{TI_FLY},
+			    #{SEAT_COUNT},
+			    #{PRICE},
+			    'N'
+			)
+		]]>
+	</insert>
+	
+	<select id="selectRouteDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				TEST_ROUTE
+			WHERE
+				ITI_NO = #{ITI_NO}	
+		]]>
+	</select>
+	
+	<update id="updateRoute" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TEST_ROUTE 
+			SET
+				TI_DEP = #{TI_DEP},
+				TI_ARR = #{TI_ARR},
+				TI_FLY = #{TI_FLY},
+				SEAT_COUNT = #{SEAT_COUNT},
+				PRICE = #{PRICE}
+			WHERE
+				ITI_NO = #{ITI_NO}	
+		]]>
+	</update>
+	
+	<update id="deleteRoute" parameterType="hashmap">
+		<![CDATA[
+			UPDATE TEST_ROUTE
+			SET
+			DEL_GB = 'Y'
+			WHERE
+				ITI_NO = #{ITI_NO}
+		]]>
+	</update>
 	
 </mapper>

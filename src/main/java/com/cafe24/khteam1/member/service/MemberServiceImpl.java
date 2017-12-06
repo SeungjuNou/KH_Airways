@@ -38,20 +38,19 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Map<String, Object> viewMember(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> tempMap = memberDAO.viewMember(map);
+		resultMap.put("map", tempMap);
+		return resultMap;
 	}
 
 	@Override
 	public void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
-		
+		memberDAO.updateMember(map);
 	}
-
 	@Override
 	public void deleteMember(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		
+		memberDAO.deleteMember(map);
 	}
 
 	@Override
@@ -61,6 +60,7 @@ public class MemberServiceImpl implements MemberService{
 		result.put("map", member);
 		return result;
 	}
+<<<<<<< HEAD
 
 	@Override
 	public String checkId(Map<String, Object> map) throws Exception {
@@ -73,5 +73,22 @@ public class MemberServiceImpl implements MemberService{
 		}
 		log.debug(result);
 		return result;
+=======
+	
+	@Override
+	public Map<String, Object> milesList3(Map<String, Object> map) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> tempMap = memberDAO.milesList3(map);
+		resultMap.put("map2", tempMap);
+		return resultMap;
+	}
+	
+	@Override
+	public Map<String, Object> milesList2(Map<String, Object> map) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> tempMap = memberDAO.milesList2(map);
+		resultMap.put("map2", tempMap);
+		return resultMap;
+>>>>>>> 7d5063b6cd0b2d47c1c35bfd33cf06174a90255f
 	}
 }

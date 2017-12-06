@@ -194,7 +194,7 @@
 		<img src="_assets/2.JPG" alt="" />
 		
 		<div class="tab-headline">
-			<a href="#">
+			<a href="/khteam1/myPage/milesList.do">
 			<p>
 				마이페이지로 가기
 				<img src="_assets/arrow2.png" id="arrow" />
@@ -406,20 +406,7 @@ $(document).bind('ready ajaxComplete', function(){
         $("#login-form-close").click(function(){
             $("#member_form").fadeOut(450);
         });
-
-
-
-
-
     }); 
-     
-     
-    	 
-     
-
-
-
-
 </script>
 
 </body>
