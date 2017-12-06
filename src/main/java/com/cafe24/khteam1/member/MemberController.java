@@ -10,12 +10,13 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cafe24.khteam1.member.service.MemberService;
-import com.cafe24.khteam1.miles.service.MilesService;
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.common.util.DateTrans;
+import com.cafe24.khteam1.member.service.MemberService;
+import com.cafe24.khteam1.miles.service.MilesService;
 
 @Controller
 public class MemberController {
@@ -69,6 +70,19 @@ public class MemberController {
 			
 			return view;
 		}
+		
+		//ajax 아이디 중복체크 
+		@ResponseBody
+	    @RequestMapping(value="/member/checkId.do") 
+	    public String checkId(CommandMap commandMap) throws Exception{
+	        String result = memberService.checkId(commandMap.getMap());
+	        
+	        return result;
+	    
+	    }
+	    
+		
+		
 		
 		// 마일리지 번호(임시)
 		public String mileNo(String type) {

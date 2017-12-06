@@ -1,6 +1,5 @@
-package com.cafe24.khteam1.route;
+package com.cafe24.khteam1.main;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,17 +13,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.route.service.RouteService;
- 
+  
 @Controller
-public class RouteController {
+public class MainController {
     Logger log = Logger.getLogger(this.getClass());
       
     @Resource(name="routeService")
     private RouteService routeService;
 
 
-      
-    @RequestMapping(value="/main.do")
+     
+    @RequestMapping(value="/main2.do")
     public ModelAndView openMain(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/main/main");
         List<Map<String,Object>> list = routeService.depRouteList(commandMap.getMap());
@@ -34,7 +33,7 @@ public class RouteController {
 
     
     @ResponseBody
-    @RequestMapping(value="/arrRouteList.do") 
+    @RequestMapping(value="/arrRouteList2.do") 
     public List<Map<String,Object>> arrRouteList(CommandMap commandMap) throws Exception{
         
         List<Map<String,Object>> list = routeService.arrRouteList(commandMap.getMap());

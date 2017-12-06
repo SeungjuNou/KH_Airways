@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="flight">
+	
+
+	<select id="flightList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM TEST_FLIGHT
+			WHERE DEP = #{DEP} AND ARR = #{ARR} AND TI_DEP = #{TI_DEP1}
+		]]>
+	</select>
+	
+	<select id="flightList2" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				ITI_NO, 
+				DEP, 
+				ARR, 
+				TI_DEP, 
+				TI_ARR, 
+				TI_FLY, 
+				SEAT_COUNT, 
+				PRICE
+			FROM
+				TEST_ROUTE
+			WHERE
+				DEP = #{ARR} AND ARR = #{DEP} AND TI_DEP = #{TI_DEP2}
+		]]>
+	</select>
+	
+	
+</mapper>

@@ -20,7 +20,10 @@ public interface MemberService {
 	void updateMember(Map<String, Object> map, HttpServletRequest request) throws Exception;
  
 	void deleteMember(Map<String, Object> map) throws Exception;
+	
+	String checkId(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> loginCheck(Map<String, Object> map) throws Exception;
+	
 	
 }
