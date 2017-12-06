@@ -8,7 +8,12 @@
 			select distinct dep from test_route
 		]]>
 	</select>
-
+	
+	<select id="selectRouteNo" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			select * from TEST_ROUTE2 where DEP = #{DEP} AND ARR = #{ARR}
+		]]>
+	</select>
 
 	<select id="arrRouteList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[

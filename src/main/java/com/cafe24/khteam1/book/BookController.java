@@ -44,6 +44,7 @@ public class BookController {
     @RequestMapping(value="/book/flightSearch.do", method=RequestMethod.POST)
     public ModelAndView flightSearch(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap) {
         map.putAll(commandMap.getMap());
+        
         return new ModelAndView("/book/selectFlight");
     }
 
@@ -52,30 +53,44 @@ public class BookController {
     //항공 조회(왕복)
     @ResponseBody
     @RequestMapping(value="/book/flightList.do")
-    public Map<String, Object> flightList(@ModelAttribute("flightInfo") HashMap<String, Object> map, CommandMap commandMap) throws Exception {
+    public Map<String, Object> flightList(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap) throws Exception {
         
-        log.debug("test");    
-        Map<String, Object> map2 = new HashMap<String, Object>();
+    		Map<String, Object> map1 = new HashMap<String, Object>();
+        Map<String, Object> map2 = routeService.selectRouteNo(map);
+        Map<String, Object> map3 = map;
         
-        if(commandMap.get("TI_DEP1") != null) {
-            map2.put("TI_DEP1", commandMap.get("TI_DEP1"));
+        int itiNO = Integer.parseInt(map2.get("ITI_NO").toString());
+        itiNO++;
+        
+        map1.put("TI_DEP", map.get("TI_DEP1"));
+        map1.put("ITI_NO", map2.get("ITI_NO"));
+        List<Map<String, Object>> list1 = flightService.flightList(map1);
+        list1.add(map);
+        
+        map1.put("TI_DEP", map.get("TI_DEP2"));
+        map1.put("ITI_NO", itiNO);
+        List<Map<String, Object>> list2 = flightService.flightList(map1);
+        list2.add(map);
+       
+        if(commandMap.getMap().get("TI_DEP1") != null) {
+            map3.put("TI_DEP1", commandMap.getMap().get("TI_DEP1"));
         }
-        if(commandMap.get("TI_DEP2") != null) {
-            map2.put("TI_DEP2", commandMap.get("TI_DEP2"));
+        
+        if(commandMap.getMap().get("TI_DEP2") != null) {
+            map3.put("TI_DEP2", commandMap.getMap().get("TI_DEP2"));
         }
         
-        //항공편 조회 리스트(출국, 귀국)
-        List<Map<String, Object>> list1 = flightService.flightList(map2);
-        List<Map<String, Object>> list2 = flightService.flightList2(map2);
         
         //날짜 버튼 설정(출국, 귀국)
-        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) map2.get("TI_DEP1"));
-        Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse((String) map2.get("TI_DEP2"));
+        System.out.println(map3);
+        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) map3.get("TI_DEP1"));
+        Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse((String) map3.get("TI_DEP2"));
         
         List<String> dateButton1 = dateButton(date1);
         List<String> dateButton2 = dateButton(date2);
-        System.out.println(dateButton1);
-
+        log.debug(dateButton1);
+        
+        
         //항공편 조회 리스트, 날짜 버튼리스트 담아서 보내기
         Map<String, Object> flightList = new HashMap<String, Object>();
         flightList.put("list1", list1);

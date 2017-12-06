@@ -23,5 +23,7 @@ public interface RouteService {
 	void updateRoute(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
 	void deleteRoute(Map<String, Object> map) throws Exception;
+	
+	Map<String, Object> selectRouteNo(Map<String, Object> map) throws Exception;
 
 }

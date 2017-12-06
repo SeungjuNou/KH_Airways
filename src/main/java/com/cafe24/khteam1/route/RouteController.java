@@ -69,7 +69,6 @@ public class RouteController {
 	@RequestMapping(value = "/route/insertRoute.do", method = RequestMethod.POST) //노선등록하기
 	public ModelAndView insertRoute(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/route/openRouteList.do");
-
 		routeService.insertRoute(commandMap.getMap(), request);
 
 		return mv;
@@ -89,7 +88,6 @@ public class RouteController {
 	@RequestMapping(value = "/route/openRouteUpdate.do") //수정하기화면
 	public ModelAndView openRouteUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/route/routeUpdate");
-		log.debug("test");
 		Map<String, Object> map = routeService.selectRouteDetail(commandMap.getMap());
 
 		mv.addObject("map", map.get("map"));
