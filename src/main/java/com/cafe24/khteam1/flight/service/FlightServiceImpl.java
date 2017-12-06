@@ -1,6 +1,6 @@
 package com.cafe24.khteam1.flight.service;
 
- 
+  
 import java.util.List;
 import java.util.Map;
 
@@ -24,30 +24,37 @@ public class FlightServiceImpl implements FlightService{
     private FlightDAO flightDAO;
       
     @Override
-    public List<Map<String, Object>> flightList(Map<String, Object> map) throws Exception {
-       return flightDAO.filghtList(map);
+    public List<Map<String, Object>> flightList(Map<String, Object> map) {
+        return flightDAO.selectFlightList(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> flightList2(Map<String, Object> map) {
+        return flightDAO.selectFlightList2(map);
     }
 
     @Override
     public void insertFlight(Map<String, Object> map, HttpServletRequest request) throws Exception{
-        flightDAO.insertFlight(map);
+        
 
     }
 
     @Override
     public Map<String, Object> flightDetail(Map<String, Object> map) throws Exception{
-        return flightDAO.flightDetail(map);
+		return map;
+        
     }
 
 	@Override
 	public void updateFlight(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		flightDAO.updateFlight(map);
+		
 		
 	}
 
 	@Override
 	public void deleteFlight(Map<String, Object> map) throws Exception {
-		flightDAO.deleteFlight(map);
+		
 	}
+
 
 }
