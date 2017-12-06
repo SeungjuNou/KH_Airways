@@ -71,8 +71,6 @@ public class MemberController {
 			
 			return view;
 		}
-		
-<<<<<<< HEAD
 		//ajax 아이디 중복체크 
 		@ResponseBody
 	    @RequestMapping(value="/member/checkId.do") 
@@ -82,10 +80,7 @@ public class MemberController {
 	        return result;
 	    
 	    }
-	    
 		
-		
-=======
 		//마이페이지
 		@RequestMapping(value = "/myPage/myPage.do")
 		public ModelAndView myPage(CommandMap commandMap) throws Exception {
@@ -141,7 +136,7 @@ public class MemberController {
 			memberService.deleteMember(commandMap.getMap());
 			return view;
 		}
->>>>>>> 7d5063b6cd0b2d47c1c35bfd33cf06174a90255f
+
 		
 		// 마일리지 번호(임시)
 		public String mileNo(String type) {

@@ -1,10 +1,7 @@
 package com.cafe24.khteam1.route;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +18,6 @@ import com.cafe24.khteam1.route.service.RouteService;
 
 @Controller
 public class RouteController {
-<<<<<<< HEAD
     Logger log = Logger.getLogger(this.getClass());
       
     @Resource(name="routeService")
@@ -47,35 +43,7 @@ public class RouteController {
     
     }
     
-    
-
-
-} 
- 
-=======
-	Logger log = Logger.getLogger(this.getClass());
-
-	@Resource(name = "routeService")
-	private RouteService routeService;
-
-	@RequestMapping(value = "/main.do")
-	public ModelAndView openMain(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/main/main");
-		List<Map<String, Object>> list = routeService.depRouteList(commandMap.getMap());
-		mv.addObject("list", list);
-		return mv;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/arrRouteList.do")
-	public List<Map<String, Object>> arrRouteList(CommandMap commandMap) throws Exception {
-
-		List<Map<String, Object>> list = routeService.arrRouteList(commandMap.getMap());
-		return list;
-
-	}
-
-	@RequestMapping(value = "/route/openRouteList.do") // 노선등록 현황을 불러오는
+    @RequestMapping(value = "/route/openRouteList.do") // 노선등록 현황을 불러오는
 	public ModelAndView openRouteList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/route/routeList");
 		List<Map<String, Object>> list = routeService.selectRouteList(commandMap.getMap());
@@ -88,23 +56,6 @@ public class RouteController {
 		ModelAndView mv = new ModelAndView("/route/routeDeactList");
 		List<Map<String, Object>> list = routeService.selectRouteDeactList(commandMap.getMap());
 		mv.addObject("list", list);
-		return mv;
-	}
-
-	@RequestMapping(value = "/route/testMapArgumentResolver.do")
-	public ModelAndView testMapArgumentResolver(CommandMap commandMap) throws Exception {
-
-		ModelAndView mv = new ModelAndView("");
-
-		if (commandMap.isEmpty() == false) {
-			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
-			Entry<String, Object> entry = null;
-			while (iterator.hasNext()) {
-				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ", value : " + entry.getValue());
-			}
-		}
-
 		return mv;
 	}
 
@@ -166,6 +117,9 @@ public class RouteController {
 
 		return mv;
 	}
+    
+    
 
-}
->>>>>>> 7d5063b6cd0b2d47c1c35bfd33cf06174a90255f
+
+} 
+

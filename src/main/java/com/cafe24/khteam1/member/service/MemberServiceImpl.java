@@ -60,7 +60,6 @@ public class MemberServiceImpl implements MemberService{
 		result.put("map", member);
 		return result;
 	}
-<<<<<<< HEAD
 
 	@Override
 	public String checkId(Map<String, Object> map) throws Exception {
@@ -73,7 +72,7 @@ public class MemberServiceImpl implements MemberService{
 		}
 		log.debug(result);
 		return result;
-=======
+	}
 	
 	@Override
 	public Map<String, Object> milesList3(Map<String, Object> map) throws Exception {
@@ -89,6 +88,6 @@ public class MemberServiceImpl implements MemberService{
 		Map<String, Object> tempMap = memberDAO.milesList2(map);
 		resultMap.put("map2", tempMap);
 		return resultMap;
->>>>>>> 7d5063b6cd0b2d47c1c35bfd33cf06174a90255f
+
 	}
 }
