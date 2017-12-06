@@ -32,7 +32,6 @@ public class RouteServiceImpl implements RouteService {
 		return routeDAO.arrRouteList(map);
 
 	}
-
 	
 	@Override
 	public List<Map<String, Object>> selectRouteList(Map<String, Object> map) throws Exception {
@@ -55,9 +54,7 @@ public class RouteServiceImpl implements RouteService {
 		   
 		Map<String, Object> resultMap = new HashMap<String,Object>();
 		Map<String, Object> tempMap = routeDAO.selectRouteDetail(map);
-		resultMap.put("map", tempMap);
-		        
-		System.out.println(resultMap); 
+		resultMap.put("map", tempMap); 
 		return resultMap;
 	}
 	
@@ -70,6 +67,15 @@ public class RouteServiceImpl implements RouteService {
 	public void deleteRoute(Map<String, Object> map) throws Exception {
 		routeDAO.deleteRoute(map);
 	}
+
+	@Override
+	public Map<String, Object> selectRouteNo(Map<String, Object> map) throws Exception {
+		Map<String, Object> resultMap = routeDAO.selectRouteNo(map);
+		return resultMap;
+	}
+	
+	
+	
 
 
 }

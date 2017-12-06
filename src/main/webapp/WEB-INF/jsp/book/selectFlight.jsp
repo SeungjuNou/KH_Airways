@@ -7,22 +7,150 @@
 
 <title>KH - Airline</title>
 
-<link rel="stylesheet" type="text/css" href="_css/Icomoon/style.css" />
-<link rel="stylesheet" type="text/css" href="_css/animated-header.css?ver=0"/>
-<link rel="stylesheet" href="_css/flickity-docs.css" media="screen">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="<c:url value='../_scripts/jquery-2.0.2.min.js'/>"></script>
+<script src="<c:url value='../_scripts/jquery-ui-1.10.4.min.js'/>"></script>
+<script src="<c:url value='../_scripts/jquery.isotope.min.js'/>"></script>
+
+<script src="<c:url value='../_scripts/animated-header.js'/>"></script>
+<script src="<c:url value='../_scripts/flickity.pkgd.min.js'/>"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	flight();//페이지 열릴때 시작
+	
+	function flight(param) {
+		$.ajax({
+				type: "get",
+				url: "flightList.do",
+				data: param,
+				success: function(data){
+					//출국 리스트
+					if(data.list1 == "") {
+						$(".flight_title4").empty();
+						$(".flight_title4").append( 
+						"<tr>" +
+						"<td colspan='6'>조회된 결과가 없습니다.</td>" +
+						"</tr>");
+					} else {
+						$(".flight_title4").empty();
+						$.each(data.list1, function(i, item) {
+							$(".flight_title4").append(
+							
+							"<div class='line3'>" +
+								"<ul>"+
+									"<li id='line'>"+ item.ITI_NO + "</li>" +
+									"<li id='line2'>"+item.TI_DEP+" </li>" +
+									"<li id='line'>"+"15:30"+"</li>"+
+									"<li id='line2'>"+item.TI_ARR + "</li>" +
+									"<li id='line'>19:20</li>" +
+									"<li class='line_more'>" +
+									 "<img src='http://localhost:9090/khteam1/_assets/arrow.png' />" +
+								"</li>" +
+								"</ul>" +
+								"<ul class='hide' id='hide2'>" +
+									"<div>" +
+										"<li>소요시간 : " + item.TI_FLY +
+										" 항공료 :" + item.PRICE + "</li>" +
+										"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
+									"</div>" +
+								"</ul>"+
+							"</div>"
+
+							);
+						});
+					}
+					//귀국 리스트
+					if(data.list2 == "") {
+						$(".flight_title3").empty();
+						$(".flight_title3").append( 
+						"<tr>" +
+						"<td colspan='6'>조회된 결과가 없습니다.</td>" +
+						"</tr>");
+					} else {
+						$(".flight_title3").empty();
+						$.each(data.list2, function(i, item) {
+							$(".flight_title3").append(
+									"<div class='line3'>" +
+								"<ul>"+
+									"<li id='line'>"+ item.ITI_NO + "</li>" +
+									"<li id='line2'>"+item.TI_DEP+" </li>" +
+									"<li id='line'>15:30</li>" +
+									"<li id='line2'>"+item.TI_ARR + "</li>" +
+									"<li id='line'>19:20</li>" +
+									"<li class='line_more'>" +
+											 "<img src='localhost:9090/khteam1/_assets/arrow.png' />" +
+									"</li>" +
+								"</ul>" +
+								"<ul class='hide' id='hide2'>" +
+									"<div>" +
+										"<li>소요시간 : " + item.TI_FLY +
+										" 항공료 :" + item.PRICE + "</li>" +
+										"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
+									"</div>" +
+								"</ul>"+
+							"</div>"
+							
+							);
+						});
+					}			
+					
+					//날짜버튼
+					$.each(data.date1, function(i, item) {
+						$("button[id=date"+i+"]").val(item);
+						$("button[id=date"+i+"]").text(item);
+					});
+					
+					$.each(data.date2, function(i, item) {
+						$("button[id=date2"+i+"]").val(item);
+						$("button[id=date2"+i+"]").text(item);
+					});		
+				}//success	
+		});//ajax
+	}
+	
+	//날짜 버튼 클릭시
+	$("button[name=TI_DEP1]").on("click", function(){
+		var param = "TI_DEP1=" + $(this).val();
+		flight(param);
+	});
+	$("button[name=TI_DEP2]").on("click", function(){
+		var param = "TI_DEP2=" + $(this).val();
+		flight(param);
+	});
+	
+	//향공편 선택
+	$(document).bind('ready ajaxComplete', function(){
+		$(".c1").on("click",function(e){
+	     	//var row = $(this).parents("tr").children().eq(0).text();
+	     	//alert(row);
+	     	$("input[name=ITI_NO1]").val($(this).val());
+	     });
+		
+		$(".c2").on("click",function(e){
+	     	$("input[name=ITI_NO2]").val($(this).val());
+	     });
+	});
+	
+});
 
 
-<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"></script>
-<script type="text/javascript" src="_scripts/jquery-ui-1.10.4.min.js"></script>
-<script type="text/javascript" src="_scripts/jquery.isotope.min.js"></script>
 
 
-<script type="text/javascript" src="_scripts/animated-header.js"></script>
-<script type="text/javascript" src="_scripts/flickity.pkgd.min.js"></script>
 
+</script>
+
+<link rel="stylesheet" type="text/css" href="<c:url value='../_css/Icomoon/style.css?ver=1'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='../_css/animated-header.css?ver=1'/>"/>
+<link rel="stylesheet" type="text/css" href="<c:url value='../_css/flickity-docs.css?ver=1'/>" media="screen">
 
 </head>
 <body>
+
+
 
 <!--  top_header -->
 <div id="wrapper">
@@ -68,6 +196,12 @@
 		<div id="total_arr">
 			<button class="dep_reset">초기화</button>
 		</div>
+
+		<form action="./flightBookingForm.do" method="post">
+			<input type="hidden" name="ITI_NO1">
+			<input type="hidden" name="ITI_NO2">
+			<input type="submit" value="다음">
+		</form>
 		
 	</div>
 
@@ -75,7 +209,7 @@
 
 	<div class="tab" data-section="1">
 		
-		<img src="_assets/1.jpg" alt="" />
+		<img src="<c:url value='../_assets/1.JPG'/>" alt="" />
 	
 		
 		<div class="tab-headline">
@@ -90,12 +224,12 @@
 			<div id="search_dep">
 
 				<div id="date_list">
-					<ul id="date_choice">
-						<li>11월 20일</li>
-						<li>11월 21일</li>
-						<li>11월 22일</li>
-						<li>11월 23일</li>
-						<li>11월 24일</li>
+					<ul id="date_choice" class="ajaxButton1">
+						<button class="ajaxButton" id="date0" name="TI_DEP1"></button>
+						<button class="ajaxButton" id="date1" name="TI_DEP1"></button>
+						<button class="ajaxButton" id="date2" name="TI_DEP1"></button>
+						<button class="ajaxButton" id="date3" name="TI_DEP1"></button>
+						<button class="ajaxButton" id="date4" name="TI_DEP1"></button>
 					</ul>
 				</div>
 
@@ -116,55 +250,12 @@
 				</div>
 
 				<div id="flight_list">
-					<div id="flight_title2">
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<div>
-									<li>소요시간 : 10시간 15분 탑승가능인원 : 200명 </li>
-									<button class="choice" value="LH713">선택하기</button>
-								</div>
-							</ul>
-						</div><!--반복요소 -->
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<li>소요시간 : 10시간 15분         탑승가능인원 : 200명 </li>
-							</ul>
-						</div><!--반복요소 -->
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<li>소요시간 : 10시간 15분         탑승가능인원 : 200명 </li>
-							</ul>
-						</div><!--반복요소 -->
+					<div id="flight_title2" class="flight_title4">
+
+
+						
+
+
 					</div>
 				</div><!-- flight_list -->
 				
@@ -179,9 +270,7 @@
 
 
 	<div class="tab" data-section="2">
-		
-		<img src="_assets/1.jpg" alt="" />
-	
+		<img src="<c:url value='../_assets/1.jpg'/>" />
 		
 		<div class="tab-headline">
 			
@@ -196,11 +285,11 @@
 
 				<div id="date_list">
 					<ul id="date_choice">
-						<li>11월 20일</li>
-						<li>11월 21일</li>
-						<li>11월 22일</li>
-						<li>11월 23일</li>
-						<li>11월 24일</li>
+						<button class="ajaxButton" id="date20" name="TI_DEP2"></button>
+						<button class="ajaxButton" id="date21" name="TI_DEP2"></button>
+						<button class="ajaxButton" id="date22" name="TI_DEP2"></button>
+						<button class="ajaxButton" id="date23" name="TI_DEP2"></button>
+						<button class="ajaxButton" id="date24" name="TI_DEP2"></button>
 					</ul>
 				</div>
 
@@ -221,70 +310,8 @@
 				</div>
 
 				<div id="flight_list">
-					<div id="flight_title2">
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<li>소요시간 : 10시간 15분         탑승가능인원 : 200명 </li>
-							</ul>
-						</div><!--반복요소 -->
-
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<li>소요시간 : 10시간 15분         탑승가능인원 : 200명 </li>
-							</ul>
-						</div><!--반복요소 -->
-
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<li>소요시간 : 10시간 15분         탑승가능인원 : 200명 </li>
-							</ul>
-						</div><!--반복요소 -->
-
-						<div class="line3">
-							<ul>
-								<li id="line">LH713</li>
-								<li id="line2">인천국제공항(ICN)</li>
-								<li id="line">15:30</li>
-								<li id="line2">프랑크푸르트(FRA)</li>
-								<li id="line">19:20</li>
-								<li class="line_more">
-										<img src="_assets/arrow.png" />
-								</li>
-							</ul>
-							<ul class="hide" id="hide2">
-								<li>소요시간 : 10시간 15분         탑승가능인원 : 200명 </li>
-							</ul>
-						</div><!--반복요소 -->
+					<div id="flight_title2" class="flight_title3">
+						
 					</div>
 				</div>
 				
@@ -295,7 +322,7 @@
 	</div>
 
 
-
+	
 
 
 </div>
@@ -303,7 +330,8 @@
 
 <script>
 
-    $(document).ready(function(){
+$(document).bind('ready ajaxComplete', function(){
+       
         // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
         $(".line_more>img").click(function(){
             var submenu = $(this).closest("li").closest("ul").next("ul");

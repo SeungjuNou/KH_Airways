@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.khteam1.member.dao.MemberDAO;
-import com.cafe24.khteam1.member.service.MemberService;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -25,7 +24,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.memberList(map);
 	}
 
-	@Override
+	@Override 
 	public List<Map<String, Object>> findMemberList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
@@ -58,6 +57,19 @@ public class MemberServiceImpl implements MemberService{
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> member = memberDAO.loginCheck(map);
 		result.put("map", member);
+		return result;
+	}
+
+	@Override
+	public String checkId(Map<String, Object> map) throws Exception {
+		String count = memberDAO.checkId(map); 
+		String result = null;
+		if(count.equals("0") || count == null) {
+			result = "";
+		} else {
+			result = "n";
+		}
+		log.debug(result);
 		return result;
 	}
 	

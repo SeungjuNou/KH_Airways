@@ -11,26 +11,32 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
-<link rel="stylesheet" type="text/css" href="_css/Icomoon/style.css?ver=1" />
-<link rel="stylesheet" type="text/css" href="_css/main.css?ver=3"/>
-<link rel="stylesheet" href="_css/flickity-docs.css?ver=1" media="screen">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css?ver=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+	$( function() {
+		$("input[name=TI_DEP1]").datepicker(
+			{dateFormat: "yy-mm-dd"}
+		);
+		$("input[name=TI_DEP2]").datepicker(
+			{dateFormat: "yy-mm-dd"}
+		);
+	} );
+</script>
  
 
 <script type="text/javascript" src="_scripts/jquery-2.0.2.min.js?ver=1"></script>
 <script type="text/javascript" src="_scripts/jquery-ui-1.10.4.min.js?ver=1"></script>
-<!-- <script type="text/javascript" src="_scripts/jquery.isotope.min.js"></script> -->
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="_scripts/animated-header.js?ver=1"></script>
 <script type="text/javascript" src="_scripts/flickity.pkgd.min.js?ver=1"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js?ver=1"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
 
-
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <!-- <link rel="stylesheet" href="/resources/demos/style.css?ver=1"> -->
-  <script src="https://code.jquery.com/jquery-1.12.4.js?ver=1"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
+<link rel="stylesheet" type="text/css" href="_css/Icomoon/style.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="_css/main.css?ver=3"/>
+<link rel="stylesheet" href="_css/flickity-docs.css?ver=1" media="screen">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css?ver=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 </head>
@@ -79,26 +85,28 @@
 				<div id="sf_text">항공편 조회하기</div>
 
 				<div id="check_return">
-					<input type="checkbox" name="return" value="return" checked="checked" >왕복&nbsp;
-					<input type="checkbox" name="oneway" value="oneway">편도
+				
+				
 				</div>
+
+			<form action="/khteam1/book/flightSearch.do" method="post">
 
 				<div id="select_way">
 					
-					<input type="text" name="dep_area" id="dep_area1" class="dep_area" placeholder="출발지 선택" />
+					<input type="text" name="DEP" id="dep_area1" class="dep_area" placeholder="출발지 선택" />
 		
 					<div class="dep_area2">
 
 						<ul>
 							<c:forEach items="${list }" var="row">
-			                    <li><button class="rowDep" value="${row.DEP}">${row.DEP}</button></li>
+			                    <li><button type="button" class="rowDep" value="${row.DEP}">${row.DEP}</button></li>
 			                </c:forEach>
 						</ul>
 
 					</div>
 
 
-					<input type="text" name="dep_area"  id="dep_area0" class="dep_area" placeholder="도착지 선택" />
+					<input type="text" name="ARR"  id="dep_area0" class="dep_area" placeholder="도착지 선택" />
 		
 					<div class="dep_area2">
 					
@@ -111,45 +119,29 @@
 					
 					<div id="dep_date">
 						출국일
-						<input type="date" id="userdate" name="userdate" value="2017-11-13">
+						<input type="date" id="userdate" name="TI_DEP1" value="2017-11-13">
             		</div>
 
             		<div id="arr_date">
             			귀국일
-                		<input type="date" id="userdate" name="userdate" value="2017-11-13">
+                		<input type="date" id="userdate" name="TI_DEP2" value="2017-11-13">
             		</div>
 
 				</div>
 
 				<div id="people_count">
 					성인
-					<select name="adult_count" id="adult_count">
-					    <option value="">1명</option>
-					    <option value="">2명</option>
-					    <option value="">3명</option>
-					    <option value="">4명</option>
-					</select>
-					
-					소아
-					<select name="adult_count" id="child_count">
-					    <option value="">1명</option>
-					    <option value="">2명</option>
-					    <option value="">3명</option>
-					    <option value="">4명</option>
-					</select>
-
-					유아 
-					<select name="adult_count" id="baby_count">
-						
-					    <option value="">1명</option>
-					    <option value="">2명</option>
-					    <option value="">3명</option>
-					    <option value="">4명</option>
+					<select name="people" id="adult_count">
+					    <option value="1">1명</option>
+					    <option value="2">2명</option>
+					    <option value="3">3명</option>
+					    <option value="4">4명</option>
 					</select>
 
 					<div id="search_fl">
 						<button>조회</button>
 					</div>
+			</form>
 					
 				</div>
 			</div>
@@ -245,7 +237,7 @@
 	<div id="join-form">
 		<form action="/khteam1/join/insertMember.do" id="join3" method="post">
 			<h2>회원가입</h2>
-			<input type="text" id="ID" name="ID" placeholder="아이디 - ID" required="required"/>
+			<input type="text" id="ID" class="ID" name="ID" placeholder="아이디 - ID" required="required"/>
 			<input type="password" id="PASSWORD" name="PASSWORD" placeholder="비밀번호 - PASSWORD" required="required"/>
 			<input type="password" placeholder="재입력 - PASSWORD2" required="required"/>
 			<input type="text" id="NAME" name="NAME" placeholder="한글이름 - NAME" required="required"/>
@@ -257,8 +249,8 @@
 			<input type="text" id="EMAIL" name="EMAIL" placeholder="연락처 - PHONE"  required="required"/>
 			<input type="text" id="PHONE" name="PHONE" placeholder="이메일 - EMAIL"  required="required"/>
 			<div id="join_line2">
-				<input type="reset" />
-				<input type="submit" />
+				<input type="reset" value="다시작성"/>
+				<input id="joinSubmit" type="submit" value="회원가입" />
 			</div>
 		</form>
                    
@@ -288,7 +280,7 @@ $(".dep_area").click(function() {
 						
 						$.each(data, function(i, item) {
 							$("#arr2").append(
-									"<li><button class="
+									"<li><button type='button' class="
 									+ "rowDep2" + 
 									" value=" + item.ARR + ">" + 
 									item.ARR +
@@ -336,6 +328,44 @@ $(".dep_area").click(function() {
 	}
 	
 }); 
+
+
+
+$(".ID").keyup(function() { 
+	
+	var id = "ID=" + $(".ID").val();
+	
+	checkId(id);
+
+	function checkId(id) {
+		//페이지 열릴때 시작
+			$.ajax({
+					type: "get",
+					url: "member/checkId.do",
+					data: id,
+					success: function(data){
+						$(".ID").css('background', 'rgba(149, 234, 145, 0.6)');
+						$(".ID").css('color', 'white');
+						$("#joinSubmit").attr("disabled", false);
+						if (data == "n") {
+							$("#joinSubmit").attr("disabled", true);
+							$(".ID").css('background', 'rgba(255, 72, 50, 0.6)');
+						} else {
+							$("#joinSubmit").attr("disabled", false);
+							$(".ID").css('background', 'rgba(149, 234, 145, 0.6)');
+						}
+
+						
+					}//success
+			
+			});
+	}
+	
+}); 
+
+
+
+
 
 
 $(document).bind('ready ajaxComplete', function(){

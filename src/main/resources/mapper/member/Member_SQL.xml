@@ -19,6 +19,13 @@
 	</select>
 	
 	<!-- 회원 가입 -->
+	<select id="checkId" parameterType="hashmap" resultType="String">
+	<![CDATA[
+		SELECT COUNT(*) FROM F_MEMBER
+        WHERE ID = #{ID}
+		]]>
+	</select>
+
 	<insert id="insertMember" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO F_MEMBER
