@@ -18,6 +18,12 @@ public class RouteServiceImpl implements RouteService {
 
 	@Resource(name = "routeDAO")
 	private RouteDAO routeDAO;
+	
+	//PDF
+	@Override
+	public List<Map<String, Object>> pdfRouteList(Map<String, Object> map) throws Exception {
+		return routeDAO.pdfRouteList(map);
+	}
 
 	@Override
 	public List<Map<String, Object>> depRouteList(Map<String, Object> map) throws Exception {

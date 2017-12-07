@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface RouteService {
 
+	// PDF
+	List<Map<String, Object>> pdfRouteList(Map<String, Object> map) throws Exception;
+	
 	// 회원리스트
 	List<Map<String, Object>> depRouteList(Map<String, Object> map) throws Exception;
 
