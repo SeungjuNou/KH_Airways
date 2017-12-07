@@ -29,4 +29,6 @@ public interface RouteService {
 	
 	Map<String, Object> selectRouteNo(Map<String, Object> map) throws Exception;
 
+	//flight등록 페이지(select)에 들어갈 노선 정보
+	List<Map<String, Object>> selectRouteInfoList() throws Exception;
 }

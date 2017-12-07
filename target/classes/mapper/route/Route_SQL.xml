@@ -121,4 +121,13 @@
 		]]>
 	</update>
 	
+	<select id="selectRouteInfoList" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				*
+			FROM 
+				TEST_ROUTE2 ORDER BY ITI_NO
+		]]>
+	</select>
+	
 </mapper>
