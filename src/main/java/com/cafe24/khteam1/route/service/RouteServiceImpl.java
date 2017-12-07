@@ -79,6 +79,13 @@ public class RouteServiceImpl implements RouteService {
 		Map<String, Object> resultMap = routeDAO.selectRouteNo(map);
 		return resultMap;
 	}
+
+	
+	//flight등록 페이지(select)에 들어갈 노선 정보
+	@Override
+	public List<Map<String, Object>> selectRouteInfoList() throws Exception {
+		return routeDAO.selectRouteInfoList();
+	}
 	
 	
 	

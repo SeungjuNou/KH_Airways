@@ -21,6 +21,16 @@ public class FlightDAO extends AbstractDAO{
         return selectList("flight.flightList2", map);
     }
 
+    //flight등록
+  	public void insertFlight(Map<String, Object> map) {
+  		insert("flight.insertFlight", map);
+  	}
+  	
+  	//전체 flight 리스트 불러오기
+  	@SuppressWarnings("unchecked")
+  	public List<Map<String, Object>> flightAllList() {
+  		return (List<Map<String,Object>>) selectList("flight.flightAllList");
+  	}
 }
 
  

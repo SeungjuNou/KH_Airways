@@ -56,5 +56,17 @@ public class FlightServiceImpl implements FlightService{
 		
 	}
 
+	//flight 입력
+	@Override
+	public void insertFlight(Map<String, Object> map) throws Exception {
+		flightDAO.insertFlight(map);
+	}
+
+	//관리자 flight
+	@Override
+	public List<Map<String, Object>> flightAllList() throws Exception {
+		return flightDAO.flightAllList();
+	}
+
 
 }
