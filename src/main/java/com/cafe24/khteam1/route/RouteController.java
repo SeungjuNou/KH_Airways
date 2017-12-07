@@ -24,7 +24,19 @@ public class RouteController {
     private RouteService routeService;
 
 
-      
+    // routeToPdf.jsp 뷰로 넘어가서 피디엪 출력을 위한 값들을 담아서 보여주도록 해주는 컨트롤러
+    // routeToPdf.jsp => HtmlMaker.urlPath => RoutePdfController.htmlStr => PdfBuiler
+    @RequestMapping(value="/pdfRouteList.do")
+    public ModelAndView pdfRouteList(CommandMap commandMap) throws Exception {
+    	ModelAndView mv = new ModelAndView("/pdf/routeToPdf");
+    	List<Map<String, Object>> list = routeService.pdfRouteList(commandMap.getMap());
+    	mv.addObject("list", list);
+    	return mv;
+    }
+    
+    
+    
+    
     @RequestMapping(value="/main.do")
     public ModelAndView openMain(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/main/main");
@@ -50,6 +62,9 @@ public class RouteController {
 		mv.addObject("list", list);
 		return mv;
 	}
+    
+    
+    
 
 	@RequestMapping(value = "/route/openRouteDeactList.do") // 비활성화된 노선등록 현황을 불러오는
 	public ModelAndView openRouteDeactList(CommandMap commandMap) throws Exception {

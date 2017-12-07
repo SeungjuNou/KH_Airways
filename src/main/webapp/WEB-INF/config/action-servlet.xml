@@ -31,16 +31,24 @@
      
     <aop:aspectj-autoproxy/>
     <bean id="loggerAspect" class="com.cafe24.khteam1.common.logger.LoggerAspect" />
+ 
      
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+    
+    <!-- buildPdf라는 이름으로 클래스를 찾을 수 있게 해줌 -->
+   	<bean id="buildPdf" class="com.cafe24.khteam1.common.util.PdfBuilder" />
      
-    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
     
     <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" /> 
      
     <bean
-        class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
-        p:viewClass="org.springframework.web.servlet.view.JstlView"
-        p:prefix="/WEB-INF/jsp/" p:suffix=".jsp">
-    </bean>
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+    
+    
 </beans>

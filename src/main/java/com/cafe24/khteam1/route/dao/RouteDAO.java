@@ -9,6 +9,12 @@ import com.cafe24.khteam1.common.dao.AbstractDAO;
 
 @Repository
 public class RouteDAO extends AbstractDAO {
+	 
+	//PDF
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> pdfRouteList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("route.pdfRouteList", map);
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> depRouteList(Map<String, Object> map) throws Exception {

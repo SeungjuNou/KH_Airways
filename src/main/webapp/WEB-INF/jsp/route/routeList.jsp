@@ -112,7 +112,8 @@
 										button type="button" class="btn btn-primary">노선등록하기</a> 
 									<a href="<c:url value='/route/openRouteDeactList.do'/>" 
 										button type="button" class="btn btn-primary">비활성화된노선확인하기</a> 
-									<a href="<c:url value='#'/>" 
+									<!-- 클릭하면 현재 노선등록현황을 출력하는 컨트롤러 호출 => /route/RoutePdfController -->
+									<a href="<c:url value='/pagestat/rankreport.do' />" 
 										button type="button" class="btn btn-primary">출력하기</a>
 								</p>
 
