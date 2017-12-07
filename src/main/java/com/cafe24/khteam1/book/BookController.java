@@ -65,12 +65,10 @@ public class BookController {
         map1.put("TI_DEP", map.get("TI_DEP1"));
         map1.put("ITI_NO", map2.get("ITI_NO"));
         List<Map<String, Object>> list1 = flightService.flightList(map1);
-        list1.add(map);
         
         map1.put("TI_DEP", map.get("TI_DEP2"));
         map1.put("ITI_NO", itiNO);
         List<Map<String, Object>> list2 = flightService.flightList(map1);
-        list2.add(map);
        
         if(commandMap.getMap().get("TI_DEP1") != null) {
             map3.put("TI_DEP1", commandMap.getMap().get("TI_DEP1"));
@@ -88,13 +86,14 @@ public class BookController {
         
         List<String> dateButton1 = dateButton(date1);
         List<String> dateButton2 = dateButton(date2);
-        log.debug(dateButton1);
         
         
+        log.debug(list1);
         //항공편 조회 리스트, 날짜 버튼리스트 담아서 보내기
         Map<String, Object> flightList = new HashMap<String, Object>();
         flightList.put("list1", list1);
         flightList.put("list2", list2);
+        flightList.put("route", map2);
         flightList.put("date1", dateButton1);
         flightList.put("date2", dateButton2);
         

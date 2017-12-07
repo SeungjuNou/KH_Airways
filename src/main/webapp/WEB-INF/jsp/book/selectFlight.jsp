@@ -43,18 +43,18 @@ $(document).ready(function(){
 							"<div class='line3'>" +
 								"<ul>"+
 									"<li id='line'>"+ item.ITI_NO + "</li>" +
-									"<li id='line2'>"+item.TI_DEP+" </li>" +
-									"<li id='line'>"+"15:30"+"</li>"+
-									"<li id='line2'>"+item.TI_ARR + "</li>" +
-									"<li id='line'>19:20</li>" +
+									"<li id='line2'>"+data.route.DEP+" </li>" +
+									"<li id='line'>"+data.route.TI_DEP+"</li>"+
+									"<li id='line2'>"+data.route.ARR + "</li>" +
+									"<li id='line'>"+data.route.TI_DEP+"</li>" +
 									"<li class='line_more'>" +
 									 "<img src='http://localhost:9090/khteam1/_assets/arrow.png' />" +
 								"</li>" +
 								"</ul>" +
 								"<ul class='hide' id='hide2'>" +
 									"<div>" +
-										"<li>소요시간 : " + item.TI_FLY +
-										" 항공료 :" + item.PRICE + "</li>" +
+										"<li>소요시간 : " + data.route.TI_FLY +
+										" 항공료 :" + data.route.PRICE + "</li>" +
 										"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
 									"</div>" +
 								"</ul>"+
@@ -75,24 +75,24 @@ $(document).ready(function(){
 						$.each(data.list2, function(i, item) {
 							$(".flight_title3").append(
 									"<div class='line3'>" +
-								"<ul>"+
-									"<li id='line'>"+ item.ITI_NO + "</li>" +
-									"<li id='line2'>"+item.TI_DEP+" </li>" +
-									"<li id='line'>15:30</li>" +
-									"<li id='line2'>"+item.TI_ARR + "</li>" +
-									"<li id='line'>19:20</li>" +
-									"<li class='line_more'>" +
-											 "<img src='localhost:9090/khteam1/_assets/arrow.png' />" +
+									"<ul>"+
+										"<li id='line'>"+ item.ITI_NO + "</li>" +
+										"<li id='line2'>"+data.route.DEP+" </li>" +
+										"<li id='line'>"+data.route.TI_DEP+"</li>"+
+										"<li id='line2'>"+data.route.ARR + "</li>" +
+										"<li id='line'>"+data.route.TI_DEP+"</li>" +
+										"<li class='line_more'>" +
+										 "<img src='http://localhost:9090/khteam1/_assets/arrow.png' />" +
 									"</li>" +
-								"</ul>" +
-								"<ul class='hide' id='hide2'>" +
-									"<div>" +
-										"<li>소요시간 : " + item.TI_FLY +
-										" 항공료 :" + item.PRICE + "</li>" +
-										"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
-									"</div>" +
-								"</ul>"+
-							"</div>"
+									"</ul>" +
+									"<ul class='hide' id='hide2'>" +
+										"<div>" +
+											"<li>소요시간 : " + data.route.TI_FLY +
+											" 항공료 :" + data.route.PRICE + "</li>" +
+											"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
+										"</div>" +
+									"</ul>"+
+								"</div>"
 							
 							);
 						});
