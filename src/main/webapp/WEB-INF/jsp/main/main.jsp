@@ -85,8 +85,8 @@
 				<div id="sf_text">항공편 조회하기</div>
 
 				<div id="check_return">
-					<input type="checkbox" name="return" value="return" checked="checked" >왕복&nbsp;
-					<input type="checkbox" name="oneway" value="oneway">편도
+				
+				
 				</div>
 
 			<form action="/khteam1/book/flightSearch.do" method="post">

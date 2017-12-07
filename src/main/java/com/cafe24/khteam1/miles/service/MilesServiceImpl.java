@@ -16,14 +16,14 @@ public class MilesServiceImpl implements MilesService {
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "milesDAO")
-	private MilesDAO milesDAO; 
+	private MilesDAO milesDAO;
 
 	@Override
-	public List<Map<String, Object>> milesList(Map<String, Object> map)  throws Exception {
+	public List<Map<String, Object>> milesList(Map<String, Object> map) throws Exception {
 		return milesDAO.milesList(map);
 	}
 
-	@Override 
+	@Override
 	public List<Map<String, Object>> findMilesList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
@@ -31,9 +31,10 @@ public class MilesServiceImpl implements MilesService {
 
 	@Override
 	public void insertMiles(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		milesDAO.insertMiles(map);
+		// TODO Auto-generated method stub
+		
 	}
- 
+
 	@Override
 	public void updateMiles(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		// TODO Auto-generated method stub
@@ -41,10 +42,10 @@ public class MilesServiceImpl implements MilesService {
 	}
 
 	@Override
-	public Map<String, Object> milesList2(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> tempMap = milesDAO.milesList2(map);
-		resultMap.put("map", tempMap);
-		return resultMap;
-	}
+	public List<Map<String, Object>> milesManage(Map<String, Object> map) throws Exception {
+		return milesDAO.milesManage(map);
+	} 
+
+	
+
 }

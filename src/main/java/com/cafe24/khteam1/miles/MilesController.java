@@ -19,25 +19,27 @@ public class MilesController {
 
 	@Resource(name = "milesService")
 	private MilesService milesService;
+	
 	@Resource(name = "memberService")
 	private MemberService memberService;
 
-	//마이 페이지(마일리지)
-		@RequestMapping(value = "/myPage/milesList.do")
-		public ModelAndView milesList(CommandMap commandMap) throws Exception {
-			ModelAndView view = new ModelAndView("myPage/miles");
-			List<Map<String, Object>> list = milesService.milesList(commandMap.getMap());	//마일리지 현황을 보여주기 위한 map
-			Map<String, Object> map = milesService.milesList2(commandMap.getMap());		//마이페이지에 현재마일리지를 보여주기위한 map
-			Map<String, Object> map2 = memberService.milesList3(commandMap.getMap());	//마이페이지에 이름과 회원번호를 보여주기 위한  map
-			view.addObject("map2", map2.get("map2"));
-			view.addObject("map", map.get("map"));
-			view.addObject("list", map.get("list"));
+
+
+	//회원관리(마일리지사용내역)	
+	@RequestMapping(value = "/admin/milesList.do")
+	public ModelAndView adminMilesList(CommandMap commandMap) throws Exception {
+		ModelAndView view = new ModelAndView("admin/adminMilesList");
+		List<Map<String, Object>> list = milesService.milesList(commandMap.getMap());
+		view.addObject("list", list);	
+		return view;
+	}
+	
+	//회원관리(마일리지회원관리)
+		@RequestMapping(value = "/admin/milesManage.do")
+		public ModelAndView adminMilesManage(CommandMap commandMap) throws Exception {
+			ModelAndView view = new ModelAndView("admin/adminMilesManage");
+			List<Map<String, Object>> list = milesService.milesManage(commandMap.getMap());
 			view.addObject("list", list);
-			if (list.size() > 0) {
-				view.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-			} else {
-				view.addObject("TOTAL", 0);
-			}
 			return view;
 		}
 }

@@ -35,6 +35,11 @@ public class RouteDAO extends AbstractDAO {
 	public List<Map<String, Object>> selectRouteDeactList(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>) selectPagingList("route.selectRouteDeactList", map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectRouteNo(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("route.selectRouteNo",map);
+	}
 
 	public void insertRoute(Map<String, Object> map) throws Exception {
 		insert("route.insertRoute", map);

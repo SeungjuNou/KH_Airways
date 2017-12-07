@@ -3,6 +3,30 @@
 
 <mapper namespace="miles">
 	
+	<!-- 마일리지 리스트 -->
+	<select id="milesList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+			   	NO,
+			    MILE_NO,
+			    MILES_TEXT,
+			    USE_MILES,
+			    SAVE_MILES,
+			    USE_DATE,
+			    MILES
+			FROM
+			    F_MILES
+			    WHERE MILE_NO = #{MILE_NO}
+			ORDER BY NO DESC
+		]]>
+	</select>
+	
+	<select id="milesManage" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM F_MILES   
+			ORDER BY MILE_NO DESC
+		]]>
+	</select>
 	
 
 	<!-- 마일리지생성 -->
@@ -31,23 +55,6 @@
 		]]>
 	</insert>
 	
-	<!-- 나의마일리지 -->
-	<select id="milesList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-			    NO,
-			    MILE_NO,
-			    MILES_TEXT,
-			    USE_MILES,
-			    SAVE_MILES,
-			    USE_DATE,
-			    MILES
-			FROM
-			    F_MILES    
-			ORDER BY NO DESC
-		]]>
-	</select>
-
 	<!-- 사용마일리지 -->
 	<insert id="useMile" parameterType="hashmap">
 		<![CDATA[
@@ -98,22 +105,4 @@
 
 	
 
-	<!-- 마일리지현황 -->
-	<select id="milesList2" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-				NO,
-			    MILE_NO,
-			    MILES_TEXT,
-			    USE_MILES,
-			    SAVE_MILES,
-			    USE_DATE,
-			    MILES
-			FROM
-				F_MILES
-			WHERE
-				NO = (SELECT MAX(NO)AS NO FROM F_MILES)	
-		]]>
-	</select>
-	
 </mapper>

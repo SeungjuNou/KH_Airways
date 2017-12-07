@@ -5,28 +5,9 @@
 
 	<select id="flightList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT * FROM TEST_FLIGHT
-			WHERE DEP = #{DEP} AND ARR = #{ARR} AND TI_DEP = #{TI_DEP1}
+			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{TI_DEP} AND ITI_NO = #{ITI_NO}
 		]]>
 	</select>
 	
-	<select id="flightList2" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT
-				ITI_NO, 
-				DEP, 
-				ARR, 
-				TI_DEP, 
-				TI_ARR, 
-				TI_FLY, 
-				SEAT_COUNT, 
-				PRICE
-			FROM
-				TEST_ROUTE
-			WHERE
-				DEP = #{ARR} AND ARR = #{DEP} AND TI_DEP = #{TI_DEP2}
-		]]>
-	</select>
-	
-	
+
 </mapper>
