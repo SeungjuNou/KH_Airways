@@ -28,6 +28,11 @@ body {
 	z-index: 1;
 	color: rgba(40,43,52,1);
 }
+
+.dep_inform{
+	display: none;
+}
+
 #header-inner {
 	width: 950px;
 	height: 60px;

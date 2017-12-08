@@ -62,6 +62,8 @@ public class BookController {
         int itiNO = Integer.parseInt(map2.get("ITI_NO").toString());
         itiNO++;
         
+        map.put("ITI_NO1", map2.get("ITI_NO"));
+        map.put("ITI_NO2", itiNO);
         map1.put("TI_DEP", map.get("TI_DEP1"));
         map1.put("ITI_NO", map2.get("ITI_NO"));
         List<Map<String, Object>> list1 = flightService.flightList(map1);
@@ -80,15 +82,12 @@ public class BookController {
         
         
         //날짜 버튼 설정(출국, 귀국)
-        System.out.println(map3);
         Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) map3.get("TI_DEP1"));
         Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse((String) map3.get("TI_DEP2"));
         
         List<String> dateButton1 = dateButton(date1);
         List<String> dateButton2 = dateButton(date2);
         
-        
-        log.debug(list1);
         //항공편 조회 리스트, 날짜 버튼리스트 담아서 보내기
         Map<String, Object> flightList = new HashMap<String, Object>();
         flightList.put("list1", list1);
@@ -97,7 +96,21 @@ public class BookController {
         flightList.put("date1", dateButton1);
         flightList.put("date2", dateButton2);
         
+        
+        log.debug(map + "//////////////////////");
         return flightList;
+    }
+    
+    
+    //승객의 수만큼 탑승자 정보를 입력 받는 메서드.
+    @RequestMapping(value="/book/flightSearch2.do", method=RequestMethod.POST)
+    public ModelAndView psInfo(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap) {
+        
+    		
+    		
+    		
+        
+        return new ModelAndView("/book/pgInfo");
     }
 
 

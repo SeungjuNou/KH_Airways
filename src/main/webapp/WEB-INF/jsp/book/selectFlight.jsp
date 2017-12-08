@@ -15,7 +15,7 @@
 <script src="<c:url value='../_scripts/jquery-ui-1.10.4.min.js'/>"></script>
 <script src="<c:url value='../_scripts/jquery.isotope.min.js'/>"></script>
 
-<script src="<c:url value='../_scripts/animated-header.js'/>"></script>
+<script src="<c:url value='../_scripts/animated-header.js?ver=2'/>"></script>
 <script src="<c:url value='../_scripts/flickity.pkgd.min.js'/>"></script>
 
 <script type="text/javascript">
@@ -42,7 +42,7 @@ $(document).ready(function(){
 							
 							"<div class='line3'>" +
 								"<ul>"+
-									"<li id='line'>"+ item.ITI_NO + "</li>" +
+									"<li id='line'>"+ item.CODE + "</li>" +
 									"<li id='line2'>"+data.route.DEP+" </li>" +
 									"<li id='line'>"+data.route.TI_DEP+"</li>"+
 									"<li id='line2'>"+data.route.ARR + "</li>" +
@@ -58,7 +58,16 @@ $(document).ready(function(){
 										"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
 									"</div>" +
 								"</ul>"+
+							"</div>" +
+							
+							"<div class = 'dep_inform' style=' display:none;' >" +
+								"<h5>출국편</h5> " +
+								"노선번호 : " + item.CODE + "<br>" +
+								"출발지 : " + data.route.DEP + "<br>" +
+								"도착지 : " + data.route.ARR +"<br>" +
 							"</div>"
+							
+							
 
 							);
 						});
@@ -74,7 +83,7 @@ $(document).ready(function(){
 						$(".flight_title3").empty();
 						$.each(data.list2, function(i, item) {
 							$(".flight_title3").append(
-									"<div class='line3'>" +
+								"<div class='line3'>" +
 									"<ul>"+
 										"<li id='line'>"+ item.ITI_NO + "</li>" +
 										"<li id='line2'>"+data.route.DEP+" </li>" +
@@ -89,9 +98,16 @@ $(document).ready(function(){
 										"<div>" +
 											"<li>소요시간 : " + data.route.TI_FLY +
 											" 항공료 :" + data.route.PRICE + "</li>" +
-											"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
+											"<button class='choice2' id='c2' value='"+ item.ITI_NO +"'>선택하기</button>"+
 										"</div>" +
 									"</ul>"+
+								"</div>" +
+								
+								"<div class = 'dep_inform' style=' display:none;' >" +
+									"<h5>귀국편</h5> " +
+									"노선번호 : " + item.ITI_NO + "<br>" +
+									"출발지 : " + data.route.DEP + "<br>" +
+									"도착지 : " + data.route.ARR +"<br>" +
 								"</div>"
 							
 							);
@@ -109,6 +125,41 @@ $(document).ready(function(){
 						$("button[id=date2"+i+"]").text(item);
 					});		
 				}//success	
+				
+				
+				
+				, beforeSend: function () {
+		              var width = 0;
+		              var height = 0;
+		              var left = 0;
+		              var top = 0;
+
+		 
+
+		              width = 50;
+		              height = 50;
+		              top = ( $(window).height() - height ) / 2 + $(window).scrollTop();
+		              left = ( $(window).width() - width ) / 2 + $(window).scrollLeft();
+
+		 
+
+		              if($("#div_ajax_load_image").length != 0) {
+		                     $("#div_ajax_load_image").css({
+		                            "top": top+"px",
+		                            "left": left+"px"
+		                     });
+		                     $("#div_ajax_load_image").show();
+		              }
+		              else {
+		                     $('body').append('<div id="div_ajax_load_image" style="position:absolute; top:' + top + 'px; left:' + left + 'px; width:' + width + 'px; height:' + height + 'px; z-index:9999; background:#f0f0f0; filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; background:none;"><img src="../_assets/ajax_loader.gif" style="width:200px; height:200px;"></div>');
+		              }
+
+		       } //beforesend
+		       
+		       , complete: function () {
+                   $("#div_ajax_load_image").hide();
+		       }
+		       
 		});//ajax
 	}
 	
@@ -116,23 +167,13 @@ $(document).ready(function(){
 	$("button[name=TI_DEP1]").on("click", function(){
 		var param = "TI_DEP1=" + $(this).val();
 		flight(param);
-	});
-	$("button[name=TI_DEP2]").on("click", function(){
-		var param = "TI_DEP2=" + $(this).val();
 		flight(param);
 	});
 	
-	//향공편 선택
-	$(document).bind('ready ajaxComplete', function(){
-		$(".c1").on("click",function(e){
-	     	//var row = $(this).parents("tr").children().eq(0).text();
-	     	//alert(row);
-	     	$("input[name=ITI_NO1]").val($(this).val());
-	     });
-		
-		$(".c2").on("click",function(e){
-	     	$("input[name=ITI_NO2]").val($(this).val());
-	     });
+	$("button[name=TI_DEP2]").on("click", function(){
+		var param = "TI_DEP2=" + $(this).val();
+		flight(param);
+		flight(param);
 	});
 	
 });
@@ -159,7 +200,7 @@ $(document).ready(function(){
 			<div id="header-inner-logo">
 				<div id="header-inner-logo-icon">
 					
-					<img src="_assets/icon.png" id="main_icon"  />
+					<img src="../_assets/icon.png" id="main_icon"  />
 
 				</div>
 			</div>
@@ -189,18 +230,18 @@ $(document).ready(function(){
 	<div id="total_sum">
 
 		<div id="total_dep">
-			<h3>출발편<h3>
-			<ul class="total_sel_dep"></ul>
-		</div>
-
-		<div id="total_arr">
-			<button class="dep_reset">초기화</button>
+			<ul class="total_sel_dep">
+			</ul>
+			<ul class="total_sel_dep2">
+			</ul>
 		</div>
 
 		<form action="./flightBookingForm.do" method="post">
+		<div id="total_arr">
 			<input type="hidden" name="ITI_NO1">
 			<input type="hidden" name="ITI_NO2">
-			<input type="submit" value="다음">
+			<button type="submit">다음</button>
+		</div>
 		</form>
 		
 	</div>
@@ -225,11 +266,11 @@ $(document).ready(function(){
 
 				<div id="date_list">
 					<ul id="date_choice" class="ajaxButton1">
-						<button class="ajaxButton" id="date0" name="TI_DEP1"></button>
-						<button class="ajaxButton" id="date1" name="TI_DEP1"></button>
-						<button class="ajaxButton" id="date2" name="TI_DEP1"></button>
-						<button class="ajaxButton" id="date3" name="TI_DEP1"></button>
-						<button class="ajaxButton" id="date4" name="TI_DEP1"></button>
+						<button class="ajaxButton" id="date0" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date1" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date2" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date3" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date4" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
 					</ul>
 				</div>
 
@@ -270,7 +311,7 @@ $(document).ready(function(){
 
 
 	<div class="tab" data-section="2">
-		<img src="<c:url value='../_assets/1.jpg'/>" />
+		<img src="<c:url value='../_assets/1.JPG'/>" />
 		
 		<div class="tab-headline">
 			
@@ -345,11 +386,10 @@ $(document).bind('ready ajaxComplete', function(){
             }
         });
 
-        $(".choice").unbind("click").bind("click", function(){
+       /*  $(".choice").unbind("click").bind("click", function(){
             var dep = $(this).attr('value');
             $("<li>"+ dep +"</li>").appendTo(".total_sel_dep");
-            $("<li>icn - fra</li>").appendTo(".total_sel_dep");
-            $("<li>인천 - 프랑크푸르트</li>").appendTo(".total_sel_dep");
+            $("<li>"+ dep +"-"+arr+"</li>").appendTo(".total_sel_dep");
             $("<li></li>").appendTo(".total_sel_dep");
             $(".choice").attr('disabled',true);
         });
@@ -357,9 +397,40 @@ $(document).bind('ready ajaxComplete', function(){
         $(".dep_reset").unbind("click").bind("click", function(){
         	$(".total_sel_dep>li").remove();
             $(".choice").attr('disabled',false);
-        });
+        }); */
 
     });
+    
+    
+//향공편 선택
+$(document).bind('ready ajaxComplete', function(){
+	$(".choice").on("click",function(e){
+     	var row = ($(this).closest("div").closest("ul").closest("div").next("div")).html();     	
+		var row2 = $(".total_sel_dep").html();
+     	$("input[name=ITI_NO1]").val($(this).val());
+     	if(row2 == '') {
+     		$("<li>"+row+"</li>").appendTo(".total_sel_dep");
+     	} else {
+     		$(".total_sel_dep").empty();
+     		$("<li>"+row+"</li>").appendTo(".total_sel_dep");
+     	}
+        
+     });
+	
+	$(".choice2").on("click",function(e){
+		var row = ($(this).closest("div").closest("ul").closest("div").next("div")).html();     	
+		var row2 = $(".total_sel_dep2").html();
+     	$("input[name=ITI_NO1]").val($(this).val());
+     	if(row2 == '') {
+     		$("<li>"+row+"</li>").appendTo(".total_sel_dep2");
+     	} else {
+     		$(".total_sel_dep2").empty();
+     		$("<li>"+row+"</li>").appendTo(".total_sel_dep2");
+     	}
+        
+     });
+	
+});
 
 
 </script>
