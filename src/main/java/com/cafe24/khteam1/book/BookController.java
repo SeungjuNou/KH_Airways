@@ -105,9 +105,6 @@ public class BookController {
     //승객의 수만큼 탑승자 정보를 입력 받는 메서드.
     @RequestMapping(value="/book/flightSearch2.do", method=RequestMethod.POST)
     public ModelAndView psInfo(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap) {
-        
-    		
-    		
     		
         
         return new ModelAndView("/book/pgInfo");

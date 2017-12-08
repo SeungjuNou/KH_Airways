@@ -417,6 +417,14 @@ body {
 	overflow: scroll;
 }
 
+#middle-info-wrap {
+	width: 100%;
+	height: 80%;
+	margin: 0 auto;
+	padding-bottom: 5px;
+	overflow: scroll;
+}
+
 #flight_list {
 	width: 100%;
 	height: 80%;
@@ -573,6 +581,31 @@ body {
 }
 
 #last-info-inner ul li {
+	height: 20%;
+	padding-top: 8px;
+	display: inline-block;
+
+}
+
+
+#middle-info-inner {
+	width: 90%;
+	height: 60%;
+	margin: 0 auto;
+	border: 3px solid gray;
+	padding-top: 20px;
+	padding-bottom: 5px;
+	overflow: auto;
+}
+
+#middle-info-inner ul {
+	width: 100%;
+	margin-top: 0;
+	border-bottom: 1px solid black;
+	padding-bottom: 10px;
+}
+
+#middle-info-inner ul li {
 	height: 20%;
 	padding-top: 8px;
 	display: inline-block;
