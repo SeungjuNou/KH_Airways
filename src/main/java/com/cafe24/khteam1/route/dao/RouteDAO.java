@@ -58,4 +58,9 @@ public class RouteDAO extends AbstractDAO {
 		update("route.deleteRoute", map);
 	}
 
+	//flight등록 페이지(select)에 들어갈 노선 정보
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectRouteInfoList() throws Exception {
+		return selectList("route.selectRouteInfoList");
+	}
 }

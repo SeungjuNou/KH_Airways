@@ -19,5 +19,9 @@ public interface FlightService {
 
 	void deleteFlight(Map<String, Object> map) throws Exception;
 	
-	
+	//flight 등록
+	void insertFlight(Map<String, Object> map) throws Exception;
+		
+	//flight 리스트 전체 불러오기
+	public List<Map<String, Object>> flightAllList() throws Exception;
 }
