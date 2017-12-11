@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.AbstractView;
 
 import com.itextpdf.text.Document;
@@ -41,14 +40,14 @@ public class PdfBuilder extends AbstractView{
 		Document document = new Document(PageSize.A4, 50, 50, 50, 50); // 용지 및 여백 설정
 	     
 		// PdfWriter 생성
-		String filePath = request.getSession().getServletContext().getRealPath("/file/"); //서버경로 
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath + "test12.pdf")); // 서버에 저장
+		String fileName = (String) model.get("fileName"); // 파일명이 한글일 땐 인코딩 필요
+		String filePath = request.getSession().getServletContext().getRealPath(fileName); //서버경로 
+		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath + fileName)); // 서버에 저장
 		PdfWriter writer2 = PdfWriter.getInstance(document, response.getOutputStream()); //링크 클릭하면 바로 다운로드
 		writer.setInitialLeading(12.5f);
 		
 		// 파일 다운로드 설정 (리스폰영역)
 		response.setContentType("apllication/download; charset=utf-8"); //contentType pdf혹은 다운로드로 지정.
-		String fileName = (String) model.get("fileName"); // 파일명이 한글일 땐 인코딩 필요
 		response.setHeader("Content-Transper-Encoding", "binary");
 		response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
 		

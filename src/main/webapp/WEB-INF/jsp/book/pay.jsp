@@ -1,155 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html en="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<meta http-equiv="content-language" content="ko">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>KH - Airline</title>
 
-<link rel="stylesheet" type="text/css" href="_css/Icomoon/style.css" />
-<link rel="stylesheet" type="text/css" href="_css/animated-header.css?ver=0"/>
-<link rel="stylesheet" href="_css/flickity-docs.css" media="screen">
-<link rel="stylesheet" type="text/css" href="_css/card.css" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<link href="../_css/bootstrap.min.css" rel="stylesheet">
+<link href="../_css/metisMenu.min.css" rel="stylesheet">
+<link href="../_css/startmin.css" rel="stylesheet">
+<link href="../_css/morris.css" rel="stylesheet">
+<link href="../_css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+	
+<link rel="stylesheet" type="text/css" href="../_css/card.css" />
+<link rel="stylesheet" type="text/css" href="../_css/animated-header.css?ver=0"/>
+<link rel="stylesheet" type="text/css" href="../_css/mypage.css" />
 
-<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"></script>
-<script type="text/javascript" src="_scripts/jquery-ui-1.10.4.min.js"></script>
-<script type="text/javascript" src="_scripts/jquery.isotope.min.js"></script>
-
-
-<script type="text/javascript" src="_scripts/animated-header.js"></script>
-<script type="text/javascript" src="_scripts/card.js"></script>
-<script type="text/javascript" src="_scripts/flickity.pkgd.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="../_scripts/card.js"></script>
+<script type="text/javascript" src="../_scripts/flickity.pkgd.min.js"></script>
 
 </head>
 <body>
 
-<!--  top_header -->
-<div id="wrapper">
-   <div id="header">
-      <div id="header-inner">
-         <div id="header-inner-logo">
-            <div id="header-inner-logo-icon">
-               
-               <img src="_assets/icon.png" id="main_icon"  />
+	<!--  top_header -->
+	<div id="wrapper">
 
-            </div>
-         </div>
-         <div id="header-inner-nav">
-            <ul>
-               <li><p><b>항공권예매</b></p></li>
-               <li><p><b>마일리지</b></p></li>
-               <li><p><b>마이페이지</b></p></li>
-               <li id="member">
-                  <p><b>Seungju Nou</b></p>
-                  <ul>
-                     <li>로그아웃</li>
-                     <li>마이페이지</li>
-                  </ul>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </div>
+		<div id="top-1"></div>
 
+		<div id="top-2">
+			<div id="logo">
+				<img src="../_assets/icon.png" alt="" />
+			</div>
+			<ul>
+				<div id="menu">
+					<li id="empty2"></li>
+					<li>항공권 예매</li>
+					<li>웹 체크인</li>
+					<li>Seungju nou</li>
+				</div>
+			</ul>
+		</div>
 
+		<div id="body">
+			<div id="body-inner">
+				<div id="inner2">
+					<ul>
+						<li id="select-inner">
+							<div>마이 페이지</div>
+						</li>
+						<li>마일리지</li>
+						<li>나의 예약</li>
+						<li>웹 체크인</li>
+						<li id="empty">&nbsp;</li>
+					</ul>
+				</div>
 
+				<div id="inner3">
 
-   <div class="tab" data-section="1">
-      
-      <img src="_assets/1.jpg" alt="" />
-   
-      
-      <div class="tab-headline2">
+					<form action="/khteam1/book/bookPay.do" method="POST" onsubmit="if (handled) return false">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-default">
 
-         <div id="search_dep2">
+										<div class="panel-heading">
+											<h2>결제</h2>
+										</div>	
 
-            <div id="flight_choice">
-               
-               <div id="flight_title">
+										<input type="button" id="credit" value="신용카드 결제" />
+                                		<input type="button" value="마일리지 결제" />
+								</div>	
+							</div>
+							<!-- col 12 end -->
+						</div>
+						<!-- /.row -->
+					</form>
 
-               
-
-               </div>
-            </div>
-
-            <div id="last-info-wrap">
-               <div id="last-info-inner">
-                 
-                 <!--반복요소 시작-->
-                  <div class="line3_1">
-                     <ul id="line3_ul">
-                        <li id="line5">탑승자1</li>
-                        <li id="line6">예약정보를 확인 하시기 바랍니다.</li>
-                        <li class="line_more2">
-                              <img src="_assets/arrow.png" />
-                        </li>
-                     </ul>
-                     <ul class="hide" id="hide2">
-                        
-                        <li>
-                           탑승자 성명: 김준혁 수화물: 없음  
-                        </li>
-                        
-                        
-                     </ul>
-                  </div>
-                  <!--반복요소 종료-->
-
-               
-
-                  <!--반복요소 시작-->
-                  <div class="line3_1">
-                     <ul id="line3_ul">
-                        <li id="line5">탑승자1</li>
-                        <li id="line6">예약정보를 확인 하시기 바랍니다.</li>
-                        <li class="line_more2">
-                              <img src="_assets/arrow.png" />
-                        </li>
-                     </ul>
-                     <ul class="hide" id="hide2">
-                        
-                        <li>
-                           탑승자 성명: 김준혁 수화물: 없음  
-                        </li>
-                        
-                        
-                     </ul>
-                  </div>
-                  <!--반복요소 종료-->
-
-               </div>
-
-               <div id="total_last">
-                        <ul>
-                            <li>
-                                <h2>총 금액(마일리지)</h2>
-                            </li>
-                            <li>
-                                <h3>1,300,000 KRW</h3>
-                            </li>
-                            <li>
-                                <input type="button" id="credit" value="신용카드 결제" />
-                                <input type="button" value="마일리지 결제" />
-                            </li>
-
-                        </ul>
-                </div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-
-            </div><!-- flight_list -->
-            
-         </div>
-
-      </div> <!-- tab-headline -->
-
-   </div>
-
-
-    <div id="card_pay">
+	<div id="card_pay">
         <div class="demo-container">
             <h2>카드정보 입력</h2>
             <div class="card-wrapper"></div>
@@ -167,44 +109,48 @@
         </div>      
 
         <div id="close5">
-            <img src="_assets/close.png" alt="" />
+            <img src="../_assets/close.png" alt="" />
         </div>  
         
    </div>
 
 
 
+	<!-- jQuery -->
+	<script src="../_scripts/jquery.min.js"></script>
 
-  
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../_scripts/bootstrap.min.js"></script>
 
-
-
-
-
-</div>
-
-
-<script>
-
-    $(document).ready(function(){
-        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-        $("#credit").click(function(){
-            $("#card_pay").fadeIn(450);
-        });
-
-        $("#close5>img").click(function(){
-            $("#card_pay").fadeOut(450);
-        });
-
-    });
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="../_scripts/metisMenu.min.js"></script>
 
 
-     $('.active form').card({
-            container: $('.card-wrapper')
-    })
+	<!-- Custom Theme JavaScript -->
+	<script src="../_scripts/startmin.js"></script>
 
 
-</script>
+	<script>
+
+	    $(document).ready(function(){
+	        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+	        $("#credit").click(function(){
+	            $("#card_pay").fadeIn(450);
+	        });
+
+	        $("#close5>img").click(function(){
+	            $("#card_pay").fadeOut(450);
+	        });
+
+	    });
+
+
+	     $('.active form').card({
+	            container: $('.card-wrapper')
+	    })
+
+
+	</script>
 
 
 

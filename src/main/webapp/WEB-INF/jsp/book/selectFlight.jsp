@@ -46,9 +46,9 @@ $(document).ready(function(){
 									"<li id='line2'>"+data.route.DEP+" </li>" +
 									"<li id='line'>"+data.route.TI_DEP+"</li>"+
 									"<li id='line2'>"+data.route.ARR + "</li>" +
-									"<li id='line'>"+data.route.TI_DEP+"</li>" +
+									"<li id='line'>"+data.route.TI_ARR+"</li>" +
 									"<li class='line_more'>" +
-									 "<img src='http://localhost:9090/khteam1/_assets/arrow.png' />" +
+									 "<img src='../_assets/arrow.png' />" +
 								"</li>" +
 								"</ul>" +
 								"<ul class='hide' id='hide2'>" +
@@ -56,13 +56,14 @@ $(document).ready(function(){
 										"<li>소요시간 : " + data.route.TI_FLY +
 										" 항공료 :" + data.route.PRICE + "</li>" +
 										"<button class='choice' id='c1' value='"+ item.ITI_NO +"'>선택하기</button>"+
+										"<input type='hidden' value='"+ item.CODE +"'/>" +
 									"</div>" +
 								"</ul>"+
 							"</div>" +
 							
 							"<div class = 'dep_inform' style=' display:none;' >" +
-								"<h5>출국편</h5> " +
-								"노선번호 : " + item.CODE + "<br>" +
+								"<h3>출국편</h3> " +
+								"항공편명 : " + item.CODE + "<br>" +
 								"출발지 : " + data.route.DEP + "<br>" +
 								"도착지 : " + data.route.ARR +"<br>" +
 							"</div>"
@@ -85,29 +86,30 @@ $(document).ready(function(){
 							$(".flight_title3").append(
 								"<div class='line3'>" +
 									"<ul>"+
-										"<li id='line'>"+ item.ITI_NO + "</li>" +
-										"<li id='line2'>"+data.route.DEP+" </li>" +
-										"<li id='line'>"+data.route.TI_DEP+"</li>"+
-										"<li id='line2'>"+data.route.ARR + "</li>" +
-										"<li id='line'>"+data.route.TI_DEP+"</li>" +
+										"<li id='line'>"+ item.CODE + "</li>" +
+										"<li id='line2'>"+data.route2.DEP+" </li>" +
+										"<li id='line'>"+data.route2.TI_DEP+"</li>"+
+										"<li id='line2'>"+data.route2.ARR + "</li>" +
+										"<li id='line'>"+data.route2.TI_ARR+"</li>" +
 										"<li class='line_more'>" +
-										 "<img src='http://localhost:9090/khteam1/_assets/arrow.png' />" +
+										 "<img src='../_assets/arrow.png' />" +
 									"</li>" +
 									"</ul>" +
 									"<ul class='hide' id='hide2'>" +
 										"<div>" +
-											"<li>소요시간 : " + data.route.TI_FLY +
-											" 항공료 :" + data.route.PRICE + "</li>" +
+											"<li>소요시간 : " + data.route2.TI_FLY +
+											" 항공료 :" + data.route2.PRICE + "</li>" +
 											"<button class='choice2' id='c2' value='"+ item.ITI_NO +"'>선택하기</button>"+
+											"<input type='hidden' value='"+ item.CODE +"'/>" +
 										"</div>" +
 									"</ul>"+
 								"</div>" +
 								
 								"<div class = 'dep_inform' style=' display:none;' >" +
-									"<h5>귀국편</h5> " +
-									"노선번호 : " + item.ITI_NO + "<br>" +
-									"출발지 : " + data.route.DEP + "<br>" +
-									"도착지 : " + data.route.ARR +"<br>" +
+									"<h3>귀국편</h3> " +
+									"항공편명 : " + item.CODE + "<br>" +
+									"출발지 : " + data.route2.DEP + "<br>" +
+									"도착지 : " + data.route2.ARR +"<br>" +
 								"</div>"
 							
 							);
@@ -164,14 +166,14 @@ $(document).ready(function(){
 	}
 	
 	//날짜 버튼 클릭시
-	$("button[name=TI_DEP1]").on("click", function(){
-		var param = "TI_DEP1=" + $(this).val();
+	$("button[name=DEP_DATE1]").on("click", function(){
+		var param = "DEP_DATE1=" + $(this).val();
 		flight(param);
 		flight(param);
 	});
 	
-	$("button[name=TI_DEP2]").on("click", function(){
-		var param = "TI_DEP2=" + $(this).val();
+	$("button[name=DEP_DATE2]").on("click", function(){
+		var param = "DEP_DATE2=" + $(this).val();
 		flight(param);
 		flight(param);
 	});
@@ -236,11 +238,11 @@ $(document).ready(function(){
 			</ul>
 		</div>
 
-		<form action="./flightBookingForm.do" method="post">
+		<form action="/khteam1/book/pgInfo.do" method="post">
 		<div id="total_arr">
-			<input type="hidden" name="ITI_NO1">
-			<input type="hidden" name="ITI_NO2">
-			<button type="submit">다음</button>
+			<input type="hidden" name="DEP_CODE">
+			<input type="hidden" name="ARR_CODE">
+			<button class="nextButton" type="submit">다음</button>
 		</div>
 		</form>
 		
@@ -250,14 +252,14 @@ $(document).ready(function(){
 
 	<div class="tab" data-section="1">
 		
-		<img src="<c:url value='../_assets/1.JPG'/>" alt="" />
-	
+		<img src="../_assets/1.JPG" alt="" />
+	 
 		
 		<div class="tab-headline">
 			
 			<div id="tab_menu">
 				<ul>
-					<li data-button="1" id="select_li">출국편 선택</li>
+					<li data-button="1" class="button_select" id="select_li">출국편 선택</li>
 					<li data-button="2">귀국편 선택</li>
 				</ul>		
 			</div>
@@ -266,11 +268,11 @@ $(document).ready(function(){
 
 				<div id="date_list">
 					<ul id="date_choice" class="ajaxButton1">
-						<button class="ajaxButton" id="date0" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
-						<button class="ajaxButton" id="date1" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
-						<button class="ajaxButton" id="date2" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
-						<button class="ajaxButton" id="date3" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
-						<button class="ajaxButton" id="date4" name="TI_DEP1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date0" name="DEP_DATE1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date1" name="DEP_DATE1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date2" name="DEP_DATE1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date3" name="DEP_DATE1" onclick="javascript:this.onclick='';"></button>
+						<button class="ajaxButton" id="date4" name="DEP_DATE1" onclick="javascript:this.onclick='';"></button>
 					</ul>
 				</div>
 
@@ -317,8 +319,8 @@ $(document).ready(function(){
 			
 			<div id="tab_menu">
 				<ul>
-					<li data-button="1" id="select_li">출국편 선택</li>
-					<li data-button="2" id="select_li">귀국편 선택</li>
+					<li data-button="1" >출국편 선택</li>
+					<li data-button="2" class="button_select" id="select_li">귀국편 선택</li>
 				</ul>		
 			</div>
 
@@ -326,11 +328,11 @@ $(document).ready(function(){
 
 				<div id="date_list">
 					<ul id="date_choice">
-						<button class="ajaxButton" id="date20" name="TI_DEP2"></button>
-						<button class="ajaxButton" id="date21" name="TI_DEP2"></button>
-						<button class="ajaxButton" id="date22" name="TI_DEP2"></button>
-						<button class="ajaxButton" id="date23" name="TI_DEP2"></button>
-						<button class="ajaxButton" id="date24" name="TI_DEP2"></button>
+						<button class="ajaxButton" id="date20" name="DEP_DATE2"></button>
+						<button class="ajaxButton" id="date21" name="DEP_DATE2"></button>
+						<button class="ajaxButton" id="date22" name="DEP_DATE2"></button>
+						<button class="ajaxButton" id="date23" name="DEP_DATE2"></button>
+						<button class="ajaxButton" id="date24" name="DEP_DATE2"></button>
 					</ul>
 				</div>
 
@@ -404,15 +406,16 @@ $(document).bind('ready ajaxComplete', function(){
     
 //향공편 선택
 $(document).bind('ready ajaxComplete', function(){
+	
 	$(".choice").on("click",function(e){
      	var row = ($(this).closest("div").closest("ul").closest("div").next("div")).html();     	
 		var row2 = $(".total_sel_dep").html();
-     	$("input[name=ITI_NO1]").val($(this).val());
+     	$("input[name=DEP_CODE]").val(($(this).next("input")).val());
      	if(row2 == '') {
-     		$("<li>"+row+"</li>").appendTo(".total_sel_dep");
+     		$("<li>"+ row +"</li>").appendTo(".total_sel_dep");
      	} else {
      		$(".total_sel_dep").empty();
-     		$("<li>"+row+"</li>").appendTo(".total_sel_dep");
+     		$("<li>"+ row +"</li>").appendTo(".total_sel_dep");
      	}
         
      });
@@ -420,13 +423,15 @@ $(document).bind('ready ajaxComplete', function(){
 	$(".choice2").on("click",function(e){
 		var row = ($(this).closest("div").closest("ul").closest("div").next("div")).html();     	
 		var row2 = $(".total_sel_dep2").html();
-     	$("input[name=ITI_NO1]").val($(this).val());
+     	$("input[name=ARR_CODE]").val(($(this).next("input")).val());
      	if(row2 == '') {
-     		$("<li>"+row+"</li>").appendTo(".total_sel_dep2");
+     		$("<li>"+ row +"</li>").appendTo(".total_sel_dep2");
      	} else {
      		$(".total_sel_dep2").empty();
-     		$("<li>"+row+"</li>").appendTo(".total_sel_dep2");
+     		$("<li>"+ row +"</li>").appendTo(".total_sel_dep2");
      	}
+     	
+     	$(".nextButton").css("display", "block");
         
      });
 	
