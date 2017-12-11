@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="route">
-	
-	
-	<select id="pdfRouteList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT *  
-			FROM
-			    TEST_ROUTE
-			WHERE
-				DEL_GB = 'N'        
-			ORDER BY ITI_NO DESC
-		]]>
-	</select>
 
 	<select id="depRouteList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -22,7 +10,7 @@
 	
 	<select id="selectRouteNo" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select * from TEST_ROUTE2 where DEP = #{DEP} AND ARR = #{ARR}
+			select * from TEST_ROUTE where DEP = #{DEP} AND ARR = #{ARR}
 		]]>
 	</select>
 
@@ -32,7 +20,7 @@
 		]]>
 	</select>
 	
-	<select id="selectRouteList" parameterType="hashmap" resultType="hashmap">
+	<select id="selectRouteList" resultType="hashmap">
 		<![CDATA[
 			SELECT *  
 			FROM
@@ -121,13 +109,5 @@
 		]]>
 	</update>
 	
-	<select id="selectRouteInfoList" resultType="hashmap">
-		<![CDATA[
-			SELECT 
-				*
-			FROM 
-				TEST_ROUTE2 ORDER BY ITI_NO
-		]]>
-	</select>
 	
 </mapper>

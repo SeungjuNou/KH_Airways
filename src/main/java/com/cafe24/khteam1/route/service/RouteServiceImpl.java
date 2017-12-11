@@ -1,6 +1,5 @@
 package com.cafe24.khteam1.route.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +17,6 @@ public class RouteServiceImpl implements RouteService {
 
 	@Resource(name = "routeDAO")
 	private RouteDAO routeDAO;
-	
-	//PDF
-	@Override
-	public List<Map<String, Object>> pdfRouteList(Map<String, Object> map) throws Exception {
-		return routeDAO.pdfRouteList(map);
-	}
 
 	@Override
 	public List<Map<String, Object>> depRouteList(Map<String, Object> map) throws Exception {
@@ -40,8 +33,8 @@ public class RouteServiceImpl implements RouteService {
 	}
 	
 	@Override
-	public List<Map<String, Object>> selectRouteList(Map<String, Object> map) throws Exception {
-	    return routeDAO.selectRouteList(map);
+	public List<Map<String, Object>> selectRouteList() throws Exception {
+	    return routeDAO.selectRouteList();
 	}
 	
 	@Override
@@ -58,9 +51,7 @@ public class RouteServiceImpl implements RouteService {
 	@Override
 	public Map<String, Object> selectRouteDetail(Map<String, Object> map) throws Exception {
 		   
-		Map<String, Object> resultMap = new HashMap<String,Object>();
-		Map<String, Object> tempMap = routeDAO.selectRouteDetail(map);
-		resultMap.put("map", tempMap); 
+		Map<String, Object> resultMap = routeDAO.selectRouteDetail(map);
 		return resultMap;
 	}
 	
@@ -81,11 +72,6 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	
-	//flight등록 페이지(select)에 들어갈 노선 정보
-	@Override
-	public List<Map<String, Object>> selectRouteInfoList() throws Exception {
-		return routeDAO.selectRouteInfoList();
-	}
 	
 	
 	

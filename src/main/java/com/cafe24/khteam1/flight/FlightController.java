@@ -42,10 +42,10 @@ Logger log = Logger.getLogger(this.getClass());
 
 	
 	//flight 등록 페이지 이동
-	@RequestMapping(value="flightRegFrom.do")
+	@RequestMapping(value="/admin/flightRegFrom.do")
 	public ModelAndView flightRegFrom() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<Map<String, Object>> rourte = routeService.selectRouteInfoList();
+		List<Map<String, Object>> rourte = routeService.selectRouteList();
 		
 		mv.addObject("rourte", rourte);
 		mv.setViewName("/admin/adminFlightReg");
@@ -53,7 +53,7 @@ Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	//flight 입력
-	@RequestMapping(value="flightReg.do",  method=RequestMethod.POST)
+	@RequestMapping(value="/admin/flightReg.do",  method=RequestMethod.POST)
 	public ModelAndView flightReg(CommandMap commandMap) throws Exception {
 		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) commandMap.get("DEP_DATE1"));
 		Date date2 = new SimpleDateFormat("yyyy-MM-dd").parse((String) commandMap.get("DEP_DATE2"));
@@ -68,11 +68,11 @@ Logger log = Logger.getLogger(this.getClass());
 			System.out.println(commandMap.getMap());
 		}
 		
-		return new ModelAndView("redirect:/flightRegFrom.do");
+		return new ModelAndView("redirect:/admin/flightRegFrom.do");
 	}
 	
 	//관리자 FlightList
-	@RequestMapping(value="flightAdminList.do")
+	@RequestMapping(value="/admin/flightAdminList.do")
 	public ModelAndView flightAdminList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
