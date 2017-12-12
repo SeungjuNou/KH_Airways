@@ -22,4 +22,9 @@ public interface MilesService {
 		//마일리지회원관리
 		List<Map<String, Object>> milesManage(Map<String, Object> map) throws Exception;
 		
+		//현재 마일리지
+		Map<String, Object> milesNow(Map<String, Object> map) throws Exception;
+		
+		//사용 마일리지
+		Map<String, Object> useMile(Map<String, Object> map) throws Exception;
 }

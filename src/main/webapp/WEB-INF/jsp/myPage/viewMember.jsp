@@ -30,6 +30,7 @@
 
 </head>
 <body>
+
 <fmt:parseDate value="${map.BIRTH}" var="dateFmt" pattern="yyMMdd"/>
 <fmt:formatDate value="${dateFmt}" var="dateFm" pattern="yy-MM-dd"/>
 
@@ -67,7 +68,7 @@
                         ${map.NAME} 
                     </li>
                     <li>회원번호 : ${map.NO}</li>
-                    <li>마일리지 : ${map2.MILES} miles</li> 
+                    <li>마일리지 : ${map2.MILES}miles</li> 
                 </ul>
             </div>
             

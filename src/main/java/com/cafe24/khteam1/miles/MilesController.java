@@ -1,9 +1,12 @@
 package com.cafe24.khteam1.miles;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,4 +45,32 @@ public class MilesController {
 			view.addObject("list", list);
 			return view;
 		}
+		
+		//마이페이지(마일리지사용)	
+				@RequestMapping(value = "/myPage/useMile.do")
+				public ModelAndView useMile(CommandMap commandMap) throws Exception {
+					ModelAndView view = new ModelAndView("myPage/milesList");
+					Map<String, Object> map = milesService.useMile(commandMap.getMap());
+					view.addObject("map", map);
+					return view;
+				}
+		
+		//마이페이지(마일리지사용내역)	
+		@RequestMapping(value = "/myPage/milesList.do")
+		public ModelAndView milesList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView view = new ModelAndView("myPage/milesList");
+			commandMap.getMap().put("ID", (String) request.getSession().getAttribute("ID")); //커맨드맵에 ID란 이름의 로그인체크에서 설정한 세션ID(DB데이터)값을 넣음
+			Map<String, Object> map = memberService.viewMember(commandMap.getMap());	// 회원정보에 세션ID(DB데이터)값을 설정하고 map에 담음
+
+			commandMap.getMap().put("MILE_NO", map.get("MILE_NO"));	//커맨드맵에 세션ID(DB데이터)중의 MILE_NO란 이름의 마일리지번호값을 넣음
+			Map<String, Object> map2 = milesService.milesNow(commandMap.getMap()); //마일리지목록을 띄워줄 commandMap(MILE_NO)
+			commandMap.getMap().put("MILES", map2.get("MILES"));
+			List<Map<String, Object>> list = milesService.milesList(commandMap.getMap()); //마일리지목록을 띄워줄 commandMap(MILE_NO)
+			view.addObject("list", list);
+			view.addObject("map" , map);
+			view.addObject("map2" , map2);
+			return view;
+		}
+		
+		
 }

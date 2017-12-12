@@ -90,7 +90,7 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="table-responsive">
-								<form action="/khteam1/myPage/updateMember.do" id="update" method="post"> <form action="/khteam1/myPage/deleteMember.do" id="delete" method="post">
+								<form action="/khteam1/myPage/updateMember.do" id="update" method="post">
 									<h4><table class="table table-striped table-bordered table-hover">
 											<thead>
 												<tr>
@@ -112,7 +112,7 @@
 											
 											<thead>
                                             	<tr>
-                                             		<th>&nbsp;<br>비밀번호<br><input type="password" id="PASSWORD" name="PASSWORD"  value="" /><br>&nbsp;<br>&nbsp;<br></th>
+                                             		<th>&nbsp;<br>비밀번호<br><input type="password" id="PASSWORD" name="PASSWORD"  value="${map.PASSWORD}" /><br>&nbsp;<br>&nbsp;<br></th>
                                             	</tr>
                                          	</thead>
                                         
@@ -135,7 +135,6 @@
                                         </thead>
                                          </table></h4>
 					 									<input type="submit" id="update" value="수정"/>
-					 									<input type="submit" id="delete" value="삭제"/>
 								</form>
 								</div>
                                     
