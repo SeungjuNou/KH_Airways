@@ -5,9 +5,25 @@
 
 	<select id="flightList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{TI_DEP} AND ITI_NO = #{ITI_NO}
+			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{DEP_DATE} AND ITI_NO = #{ITI_NO}
 		]]>
 	</select>
 	
+	<!-- flight 등록 -->
+	<insert id="insertFlight" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO TEST_FLIGHT
+			SELECT #{ITI_NO}, TEST_CODE_SEQ.nextval, (SELECT SEAT_COUNT FROM TEST_ROUTE2 WHERE ITI_NO=#{ITI_NO}), 0, #{DEP_DATE1}
+		FROM DUAL
+		WHERE NOT EXISTS (SELECT * FROM TEST_FLIGHT WHERE ITI_NO=#{ITI_NO} AND DEP_DATE=#{DEP_DATE1})
+		]]>
+	</insert>
+	
+	<!-- flight 전체 불러오기 -->
+	<select id="flightAllList" resultType="hashmap">
+		SELECT * FROM 
+		TEST_FLIGHT 
+		ORDER BY DEP_DATE, ITI_NO
+	</select>
 
 </mapper>

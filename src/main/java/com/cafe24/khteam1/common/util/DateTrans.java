@@ -32,4 +32,31 @@ public class DateTrans {
       
       return result; 
    }
+   
+   //날짜 차이 구하기
+   public int DateCount(Date date1, Date date2) {
+	   DateFormat fm = new SimpleDateFormat("yyyyMMdd");
+	   Calendar cal1 = Calendar.getInstance();
+	   Calendar cal2 = Calendar.getInstance();
+ 		
+	   cal1.setTime(date1);
+	   cal2.setTime(date2);
+
+	   long time = cal2.getTimeInMillis() - cal1.getTimeInMillis();
+	   int result = (int) (time / (24 * 60 * 60 * 1000));
+ 		
+	   return result; 
+   }
+ 	
+   //날짜 더하기
+   public String DateAdd(Date date1, int count) {
+	   DateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+	   Calendar cal = Calendar.getInstance();
+ 		
+	   cal.setTime(date1);
+	   cal.add(Calendar.DATE, count);
+	   String date = fm.format(cal.getTime());
+ 		
+	   return date; 
+   }
 }

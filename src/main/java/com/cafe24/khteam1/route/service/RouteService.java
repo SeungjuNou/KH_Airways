@@ -6,16 +6,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public interface RouteService {
-
-	// PDF
-	List<Map<String, Object>> pdfRouteList(Map<String, Object> map) throws Exception;
 	
 	// 회원리스트
 	List<Map<String, Object>> depRouteList(Map<String, Object> map) throws Exception;
 
 	List<Map<String, Object>> arrRouteList(Map<String, Object> map) throws Exception;
 
-	List<Map<String, Object>> selectRouteList(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> selectRouteList() throws Exception;
 
 	List<Map<String, Object>> selectRouteDeactList(Map<String, Object> map) throws Exception;
 
@@ -29,4 +26,5 @@ public interface RouteService {
 	
 	Map<String, Object> selectRouteNo(Map<String, Object> map) throws Exception;
 
+	
 }

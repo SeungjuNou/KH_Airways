@@ -13,10 +13,10 @@
 
 <script type="text/javascript">
 	$( function() {
-		$("input[name=TI_DEP1]").datepicker(
+		$("input[name=DEP_DATE1]").datepicker(
 			{dateFormat: "yy-mm-dd"}
 		);
-		$("input[name=TI_DEP2]").datepicker(
+		$("input[name=DEP_DATE2]").datepicker(
 			{dateFormat: "yy-mm-dd"}
 		);
 	} );
@@ -119,12 +119,12 @@
 					
 					<div id="dep_date">
 						출국일
-						<input type="date" id="userdate" name="TI_DEP1" value="2017-11-13">
+						<input type="date" id="userdate" name="DEP_DATE1" value="2017-12-04">
             		</div>
 
             		<div id="arr_date">
             			귀국일
-                		<input type="date" id="userdate" name="TI_DEP2" value="2017-11-13">
+                		<input type="date" id="userdate" name="DEP_DATE2" value="2017-12-04">
             		</div>
 
 				</div>
@@ -142,7 +142,7 @@
 						<button>조회</button>
 					</div>
 			</form>
-					
+				
 				</div>
 			</div>
 		</div>
