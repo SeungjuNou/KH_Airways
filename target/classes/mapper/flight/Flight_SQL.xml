@@ -5,7 +5,7 @@
 
 	<select id="flightList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{TI_DEP} AND ITI_NO = #{ITI_NO}
+			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{DEP_DATE} AND ITI_NO = #{ITI_NO}
 		]]>
 	</select>
 	

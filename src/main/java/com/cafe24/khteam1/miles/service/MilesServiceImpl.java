@@ -31,7 +31,7 @@ public class MilesServiceImpl implements MilesService {
 
 	@Override
 	public void insertMiles(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		// TODO Auto-generated method stub
+		milesDAO.insertMiles(map);
 		
 	}
 
@@ -44,7 +44,18 @@ public class MilesServiceImpl implements MilesService {
 	@Override
 	public List<Map<String, Object>> milesManage(Map<String, Object> map) throws Exception {
 		return milesDAO.milesManage(map);
-	} 
+	}
+
+	@Override
+	public Map<String, Object> milesNow(Map<String, Object> map) throws Exception {
+		return milesDAO.milesNow(map);
+	}
+
+	@Override
+	public Map<String, Object> useMile(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 

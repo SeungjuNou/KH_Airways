@@ -21,6 +21,7 @@
 		]]>
 	</select>
 	
+	
 	<select id="milesManage" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT * FROM F_MILES   
@@ -70,7 +71,7 @@
                  )
 	        VALUES
 	        (	SEQ_MILE_NO.NEXTVAL,
-                  '34757',
+                  '#{MILE_NO}',
                   '사용',
                   '0',
                   '2000',
@@ -93,7 +94,7 @@
                   MILES	)
 	        VALUES
 	        (	SEQ_MILE_NO.NEXTVAL,
-                  '34757',
+                  '#{MILE_NO}',
                   '적립',
                   '2000',
                   '0',

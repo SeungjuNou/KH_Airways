@@ -1,426 +1,255 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<meta http-equiv="content-language" content="ko">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
 <title>KH - Airline</title>
 
-<link rel="stylesheet" type="text/css" href="_css/Icomoon/style.css" />
-<link rel="stylesheet" type="text/css" href="_css/animated-header.css?ver=0"/>
-<link rel="stylesheet" href="_css/flickity-docs.css" media="screen">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+<link href="../_css/bootstrap.min.css" rel="stylesheet">
+<link href="../_css/metisMenu.min.css" rel="stylesheet">
+<link href="../_css/startmin.css" rel="stylesheet">
+<link href="../_css/morris.css" rel="stylesheet">
+<link href="../_css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
 
-<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"></script>
-<script type="text/javascript" src="_scripts/jquery-ui-1.10.4.min.js"></script>
-<script type="text/javascript" src="_scripts/jquery.isotope.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../_css/mypage.css" />
 
+<script type="text/javascript">
+	var handled = flase;
+	function Upper(e,r) {
+		r.value = r.value.toUpperCase();
+	}
 
-<script type="text/javascript" src="_scripts/animated-header.js"></script>
-<script type="text/javascript" src="_scripts/flickity.pkgd.min.js"></script>
-
-<script>
-   var handled = false;
-   function Upper(e, r) {
-      r.value = r.value.toUpperCase();
-   }
+	$(document).ready(function(){
+		location.reload();
+	});
 </script>
-
 
 </head>
 <body>
 
-<!--  top_header -->
-<div id="wrapper">
-   <div id="header">
-      <div id="header-inner">
-         <div id="header-inner-logo">
-            <div id="header-inner-logo-icon">
-               
-               <img src="_assets/icon.png" id="main_icon"  />
-
-            </div>
-         </div>
-         <div id="header-inner-nav">
-            <ul>
-               <li><p><b>항공권예매</b></p></li>
-               <li><p><b>마일리지</b></p></li>
-               <li><p><b>마이페이지</b></p></li>
-               <li id="member">
-                  <p><b>Seungju Nou</b></p>
-                  <ul>
-                     <li>로그아웃</li>
-                     <li>마이페이지</li>
-                  </ul>
-               </li>
-            </ul>
-         </div>
-      </div>
-   </div>
-
-
-
-
-
-
-
-   <div id="total_sum">
-
-      <div id="total_dep">
-         <h3>출발편<h3>
-         <ul class="total_sel_dep"></ul>
-      </div>
-
-      <div id="total_arr">
-         <button class="dep_reset">초기화</button>
-      </div>
-      
-   </div>
-
-
-
-   <div class="tab" data-section="1">
-      
-      <img src="_assets/1.jpg" alt="" />
-   
-      
-      <div class="tab-headline">
-         
-         <div id="tab_menu">
-            <ul>
-               <li data-button="1" id="select_li" class="select_li2">탑승자입력</li>
-               <li data-button="2">부가서비스</li>
-            </ul>      
-         </div>
-
-         <div id="search_dep">
-
-            <div id="flight_choice">
-               
-               <div id="flight_title">
-
-                  <ul>
-                     <li id="line">탑승자 입력</li>
-                  </ul>
-
-               </div>
-            </div>
-
-            <div id="flight_list">
-               <div id="flight_title2">
-                 
-                 <!--반복요소 시작-->
-                  <div class="line3">
-                     <ul>
-                        <li id="line">탑승자1</li>
-                        <li id="line2">인천국제공항(ICN)</li>
-                        <li id="line">15:30</li>
-                        <li id="line2">프랑크푸르트(FRA)</li>
-                        <li id="line">19:20</li>
-                        <li class="line_more">
-                              <img src="_assets/arrow.png" />
-                        </li>
-                     </ul>
-                     <ul class="hide" id="hide2">
-                        
-                        <div id="per_line1">
-                           <div>한글이름</div>
-                           <div>영문 성</div>
-                           <div>영문 이름</div>
-                        </div>
-
-                        <div id="per_line2">
-                           <div><input type="text" /></div>
-                           <div><input type="text" id="last" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false"/></div>
-                           <div><input type="text" id="first" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false" /></div>
-                        </div>
-
-                        <div id="per_line1">
-                           <div>성별</div>
-                           <div>연락처</div>
-                           <div>이메일</div>
-                        </div>
-
-                        <div id="per_line3">
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                        </div>
-   
-                        <div id="per_line4">
-                           <div>&nbsp;</div>
-                           <div class="choice">
-                              <button value="LH713">저장</button>
-                           </div>
-                           <div>&nbsp;</div>
-                        </div>
-                        
-                     </ul>
-                  </div>
-                  <!--반복요소 종료-->
-
-               
-
-                  <!--반복요소 시작-->
-                  <div class="line3">
-                     <ul>
-                        <li id="line">탑승자1</li>
-                        <li id="line2">인천국제공항(ICN)</li>
-                        <li id="line">15:30</li>
-                        <li id="line2">프랑크푸르트(FRA)</li>
-                        <li id="line">19:20</li>
-                        <li class="line_more">
-                              <img src="_assets/arrow.png" />
-                        </li>
-                     </ul>
-                     <ul class="hide" id="hide2">
-                        
-                        <div id="per_line1">
-                           <div>한글이름</div>
-                           <div>영문 성</div>
-                           <div>영문 이름</div>
-                        </div>
-
-                        <div id="per_line2">
-                           <div><input type="text" /></div>
-                           <div><input type="text" id="last" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false"/></div>
-                           <div><input type="text" id="first" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false" /></div>
-                        </div>
-
-                        <div id="per_line1">
-                           <div>성별</div>
-                           <div>연락처</div>
-                           <div>이메일</div>
-                        </div>
-
-                        <div id="per_line3">
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                        </div>
-   
-                        <div id="per_line4">
-                           <div>&nbsp;</div>
-                           <div class="choice">
-                              <button value="LH713">저장</button>
-                           </div>
-                           <div>&nbsp;</div>
-                        </div>
-                        
-                     </ul>
-                  </div>
-                  <!--반복요소 종료-->
-
-
-               </div>
-            </div><!-- flight_list -->
-            
-         </div>
-
-      </div> <!-- tab-headline -->
-
-   </div>
-
-
-
-    
-    <div class="tab" data-section="2">
-      
-      <img src="_assets/1.jpg" alt="" />
-   
-      
-      <div class="tab-headline">
-         
-         <div id="tab_menu">
-            <ul>
-               <li data-button="1" id="select_li">탑승자입력</li>
-               <li data-button="2" id="select_li" class="select_li2">부가서비스</li>
-            </ul>      
-         </div>
-
-         <div id="search_dep">
-
-            <div id="flight_choice">
-               
-               <div id="flight_title">
-
-                  <ul>
-                     <li id="line">탑승자 입력</li>
-                  </ul>
-
-               </div>
-            </div>
-
-            <div id="flight_list">
-               <div id="flight_title2">
-                 
-                 <!--반복요소 시작-->
-                  <div class="line3">
-                     <ul>
-                        <li id="line">탑승자1</li>
-                        <li id="line2">인천국제공항(ICN)</li>
-                        <li id="line">15:30</li>
-                        <li id="line2">프랑크푸르트(FRA)</li>
-                        <li id="line">19:20</li>
-                        <li class="line_more">
-                              <img src="_assets/arrow.png" />
-                        </li>
-                     </ul>
-                     <ul class="hide" id="hide2">
-                        
-                        <div id="per_line1">
-                           <div>한글이름</div>
-                           <div>영문 성</div>
-                           <div>영문 이름</div>
-                        </div>
-
-                        <div id="per_line2">
-                           <div><input type="text" /></div>
-                           <div><input type="text" id="last" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false"/></div>
-                           <div><input type="text" id="first" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false" /></div>
-                        </div>
-
-                        <div id="per_line1">
-                           <div>성별</div>
-                           <div>연락처</div>
-                           <div>이메일</div>
-                        </div>
-
-                        <div id="per_line3">
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                        </div>
-   
-                        <div id="per_line4">
-                           <div>&nbsp;</div>
-                           <div class="choice">
-                              <button value="LH713">저장하기</button>
-                           </div>
-                           <div>&nbsp;</div>
-                        </div>
-                        
-                     </ul>
-                  </div>
-                  <!--반복요소 종료-->
-
-               
-
-                  <!--반복요소 시작-->
-                  <div class="line3">
-                     <ul>
-                        <li id="line">탑승자1</li>
-                        <li id="line2">인천국제공항(ICN)</li>
-                        <li id="line">15:30</li>
-                        <li id="line2">프랑크푸르트(FRA)</li>
-                        <li id="line">19:20</li>
-                        <li class="line_more">
-                              <img src="_assets/arrow.png" />
-                        </li>
-                     </ul>
-                     <ul class="hide" id="hide2">
-                        
-                        <div id="per_line1">
-                           <div>한글이름</div>
-                           <div>영문 성</div>
-                           <div>영문 이름</div>
-                        </div>
-
-                        <div id="per_line2">
-                           <div><input type="text" /></div>
-                           <div><input type="text" id="last" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false"/></div>
-                           <div><input type="text" id="first" onkeyup="Upper(event,this)" 
-                           onkeydown="if (event.ketCode == 13) handled = true" onblur="handled = false" /></div>
-                        </div>
-
-                        <div id="per_line1">
-                           <div>성별</div>
-                           <div>연락처</div>
-                           <div>이메일</div>
-                        </div>
-
-                        <div id="per_line3">
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                           <div><input type="text" /></div>
-                        </div>
-   
-                        <div id="per_line4">
-                           <div>&nbsp;</div>
-                           <div class="choice">
-                              <button value="LH713">저장하기</button>
-                           </div>
-                           <div>&nbsp;</div>
-                        </div>
-                        
-                     </ul>
-                  </div>
-                  <!--반복요소 종료-->
-
-
-               </div>
-            </div><!-- flight_list -->
-            
-         </div>
-
-      </div> <!-- tab-headline -->
-
-   </div>
-
-
-
-  
-
-
-
-
-
-</div>
-
-
-<script>
-
-    $(document).ready(function(){
-        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
-        $(".line_more>img").click(function(){
-            var submenu = $(this).closest("li").closest("ul").next("ul");
-            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
-            if( submenu.is(":visible") ){
-               $(this).css('transform','rotate(0deg)');
-                submenu.slideUp();
-            }else{
-               $(this).css('transform','rotate(180deg)');
-                submenu.slideDown();
-            }
-        });
-
-
-        $(".choice>button").click(function(){
-            var dep = $(this).attr('value');
-            var last = $(this).parent().parent().prevAll("#per_line2").find("#last").val();
-            var first = $(this).parent().parent().prevAll("#per_line2").find("#first").val();
-            $("<li>"+ dep +"</li>").appendTo(".total_sel_dep");
-            $("<li>"+first + "&nbsp;" + last+ "</li>").appendTo(".total_sel_dep");
-            $(this).attr('disabled',true);
-        });
-
-        $(".dep_reset").unbind("click").bind("click", function(){
-           $(".total_sel_dep>li").remove();
-            $("button").attr('disabled',false);
-        });
-
-    });
-
-
-</script>
+	<!--  top_header -->
+	<div id="wrapper">
+
+		<div id="top-1"></div>
+
+		<div id="top-2">
+			<div id="logo">
+				<img src="../_assets/icon.png" alt="" />
+			</div>
+			<ul>
+				<div id="menu">
+					<li id="empty2"></li>
+					<li>항공권 예매</li>
+					<li>웹 체크인</li>
+					<li>Seungju nou</li>
+				</div>
+			</ul>
+		</div>
+
+		<div id="body">
+			<div id="body-inner">
+				<div id="inner2">
+					<ul>
+						<li id="select-inner">
+							<div>마이 페이지</div>
+						</li>
+						<li>마일리지</li>
+						<li>나의 예약</li>
+						<li>웹 체크인</li>
+						<li id="empty">&nbsp;</li>
+					</ul>
+				</div>
+
+				<div id="inner3">
+
+					<form action="/khteam1/book/bookSuccess.do" method="POST" onsubmit="if (handled) return false">
+						<div class="row">
+							<div class="col-lg-12">
+
+								<div class="col-lg-9 left_fix">
+									<div class="panel panel-default">
+
+										<div class="panel-heading">
+											<h2>탑승자 정보 입력</h2>
+										</div>
+										<!-- .panel-heading -->
+
+										<div class="panel-body">
+											<!-- 반복요소 시작 -->
+											<c:forEach items="${list}" var="row" varStatus="status">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<c:set var="collName" value="${row}"></c:set>
+															<c:set var="tag2" value="#" />
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="<c:out value='${tag2}${collName}'/>">
+																<h3>
+																	탑승자 ${status.count}
+																	<c:if test="${(status.count) eq '1'}">(예약 대표자)</c:if>
+																</h3>
+															</a>
+														</h4>
+													</div>
+
+													<div id="${row}"
+														class="panel-collapse collapse <c:if test="${(status.count) eq '1'}">in</c:if>">
+														<div class="panel-body">
+															<div class="form-group col-lg-12">
+																<label>
+																	성별<text class="text-danger">*</text>
+																</label> 
+																<select name="sex${status.count}" class="form-control">
+																	<option value="male">남성</option>
+																	<option value="female">여성</option>
+																</select>
+															</div>
+
+															<div class="form-group col-lg-6">
+																<label>
+																	<h4>
+																		성
+																		<text class="text-danger">*</text>
+																	</h4>
+																</label> <input name="fmName${status.count}" class="form-control" placeholder="예 : HONG"
+																	onkeyup="Upper(event,this)"
+																	onkeydown="if (event.ketCode == 13) handled = true"
+																	onblur="handled = false" />
+															</div>
+
+															<div class="form-group col-lg-6">
+																<label>
+																	<h4>
+																		이름
+																		<text class="text-danger">*</text>
+																	</h4>
+																</label> <input name="lastName${status.count}" class="form-control"
+																	placeholder="예 : GUILDONG" onkeyup="Upper(event,this)"
+																	onkeydown="if (event.ketCode == 13) handled = true"
+																	onblur="handled = false" />
+															</div>
+
+															<c:if test="${(status.count) eq '1'}">
+																<div class="form-group col-lg-6">
+																	<label>
+																		<h4>
+																			연락처
+																			<c:if test="${(status.count) eq '1'}">
+																				<text class="text-danger">*</text>
+																			</c:if>
+																		</h4>
+																	</label>
+																	<div class="form-group input-group">
+																		<span class="input-group-addon">+82</span> 
+																		<input name="phone" value="${map.phone}" 
+																			class="form-control" placeholder="예 : 1098765432">
+																	</div>
+																	<p class="help-block">"-"를 제외한 숫자로만 작성하시기 바랍니다.</p>
+																</div>
+
+																<div class="form-group col-lg-6">
+																	<label>
+																		<h4>
+																			이메일
+																			<text class="text-danger">*</text>
+																		</h4>
+																	</label>
+																	<div class="form-group input-group">
+																		<span class="input-group-addon">@</span> 
+																		<input name="email" value="${map.email}" 
+																			class="form-control"
+																			placeholder="예 : 1234@khairways.com">
+																	</div>
+																</div>
+															</c:if>
+
+
+														</div>
+													</div>
+												</div>
+											</c:forEach>
+											<!-- 반복요소 종료 -->
+										</div>
+									</div>
+								</div>
+								<!-- .left contents -->
+
+
+								<!-- /.col-lg-4 -->
+								<div class="col-lg-3 total_next">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h3>전체 예약 정보</h3>
+										</div>
+										<div class="panel-body">
+
+											<h4>${map.DEP} -> ${map.ARR}</h4>
+											<p>${map.DEP_DATE1}</p>
+											<p></p>
+											<h4>${map.ARR} -> ${map.DEP}</h4>
+											<p>${map.DEP_DATE2}</p>
+											<p></p>
+											<h3>항공운임 등 총계</h3>
+											<h4>
+												<p class="text-right text-info">${map.PRICE}&nbsp;</p>
+											</h4>
+
+											<blockquote>
+												<p>유류할증료와 세금을 포함한 총 운임으로 구매 시점과 환율에 따라 변동 될 수 있습니다.</p>
+											</blockquote>
+										</div>
+										<div class="panel-footer">
+											<p class="text-right text-info">
+												<button type="submit" name="pay" value="pay" 
+													class="btn btn-outline btn-primary btn-lg btn-block">
+													구매하기</button>
+												<button type="submit" name="pay" value="miles" 
+													class="btn btn-outline btn-primary btn-lg btn-block">
+													마일리지 구매</button>
+											</p>
+										</div>
+										<!-- footer end -->
+									</div>
+								</div>
+								<!-- col3 end -->
+
+							</div>
+							<!-- col 12 end -->
+						</div>
+						<!-- /.row -->
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- jQuery -->
+	<script src="../_scripts/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../_scripts/bootstrap.min.js"></script>
+
+	<!-- Metis Menu Plugin JavaScript -->
+	<script src="../_scripts/metisMenu.min.js"></script>
+
+
+	<!-- Custom Theme JavaScript -->
+	<script src="../_scripts/startmin.js"></script>
+
+
 
 
 
