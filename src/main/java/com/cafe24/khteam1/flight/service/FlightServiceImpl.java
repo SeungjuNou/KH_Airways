@@ -68,5 +68,10 @@ public class FlightServiceImpl implements FlightService{
 		return flightDAO.flightAllList();
 	}
 
+	//flight 리스트 검색
+	@Override
+	public List<Map<String, Object>> flightSearchList(Map<String, Object> map) {
+		return flightDAO.flightSearchList(map);
+	}
 
 }

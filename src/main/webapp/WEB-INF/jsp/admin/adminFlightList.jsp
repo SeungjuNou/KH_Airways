@@ -159,6 +159,21 @@
                 				</h3>
                             </div>
                             <!-- /.panel-heading -->
+                            <div class="panel-body" align="center">
+                            	<form action="flightAdminSearch.do">
+                            	<label>검색</label>
+                            	<select class="form-control" style="width: 15%; display: inline;" name="type">
+                            		<option value="1">노선번호</option>
+                            		<option value="2">코드번호</option>
+                            	</select>
+                            	<input class="form-control" style="width: 15%; display: inline;" name="search">
+                            	<label>기간</label>
+                            	<input class="form-control" style="width: 15%; display: inline;" type="date" name="DEP_DATE1">
+                            	~
+                            	<input class="form-control" style="width: 15%; display: inline;" type="date" name="DEP_DATE2">
+                            	<button type="submit" class="btn btn-primary">조회</button>
+                            	</form>
+                            </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped" >

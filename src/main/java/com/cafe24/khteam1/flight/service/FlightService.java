@@ -24,4 +24,7 @@ public interface FlightService {
 		
 	//flight 리스트 전체 불러오기
 	public List<Map<String, Object>> flightAllList() throws Exception;
+	
+	//flight 리스트 검색
+	List<Map<String, Object>> flightSearchList(Map<String, Object> map);
 }
