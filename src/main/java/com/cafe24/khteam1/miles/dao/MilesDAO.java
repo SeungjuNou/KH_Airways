@@ -23,6 +23,12 @@ public class MilesDAO extends AbstractDAO {
 	public List<Map<String, Object>> milesManage(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>) selectList("miles.milesManage", map);
 	}
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> milesNow(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("miles.milesNow", map);
+	}
+	
 	
 	
 	

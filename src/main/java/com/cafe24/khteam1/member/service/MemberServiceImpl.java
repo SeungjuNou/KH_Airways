@@ -37,10 +37,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public Map<String, Object> viewMember(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-		Map<String, Object> tempMap = memberDAO.viewMember(map);
-		resultMap.put("map", tempMap);
-		return resultMap;
+		return memberDAO.viewMember(map);
 	}
 
 	@Override
@@ -59,7 +56,7 @@ public class MemberServiceImpl implements MemberService{
 		result.put("map", member);
 		return result;
 	}
-
+	
 	@Override
 	public String checkId(Map<String, Object> map) throws Exception {
 		String count = memberDAO.checkId(map); 
