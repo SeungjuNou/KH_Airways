@@ -1,6 +1,7 @@
 package com.cafe24.khteam1.flight;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -79,6 +80,44 @@ Logger log = Logger.getLogger(this.getClass());
 		List<Map<String, Object>> flightList = flightService.flightAllList();
 		mv.addObject("flightList", flightList);
 		mv.setViewName("/admin/adminFlightList");
+		return mv;
+	}
+	
+	//관리자 FlightList 검색
+	@RequestMapping(value="flightAdminSearch.do")
+	public ModelAndView flightSearchList(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<Map<String, Object>> flightList = new ArrayList<Map<String,Object>>(); 	
+		
+		//검색 타입 설정
+		if(commandMap.get("type").equals("1")) {
+			commandMap.put("ITI_NO", commandMap.get("search"));
+		} else {
+			commandMap.put("CODE", commandMap.get("search"));
+		}		
+		
+		//날짜 검색시 변경
+		Date date1 = null;
+		Date date2 = null;
+		if(commandMap.get("DEP_DATE1") != "")
+			date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) commandMap.get("DEP_DATE1"));
+		if(commandMap.get("DEP_DATE2") != "")
+			date2 = new SimpleDateFormat("yyyy-MM-dd").parse((String) commandMap.get("DEP_DATE2"));
+		
+		//날짜 차이 구하기
+		int count = 0;
+		if(date2 != null)
+			count = dateTrans.DateCount(date1, date2);
+		
+		for(int i=0; i<=count; i++) {
+			if(date1 != null) {
+				commandMap.put("DEP_DATE1", dateTrans.DateAdd(date1, i));//날짜 변경(더하기)	
+			}
+			flightList.addAll(flightService.flightSearchList(commandMap.getMap()));//검색
+		}
+		
+		mv.setViewName("/admin/adminFlightList");
+		mv.addObject("flightList", flightList);
 		return mv;
 	}
 }

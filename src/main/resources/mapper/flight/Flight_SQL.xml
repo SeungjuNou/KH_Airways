@@ -25,5 +25,27 @@
 		TEST_FLIGHT 
 		ORDER BY DEP_DATE, ITI_NO
 	</select>
+	
+	<!-- flight 검색 -->
+	<select id="flightSearchList" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM
+			TEST_FLIGHT
+			
+		<choose>
+			<when test="ITI_NO != null and ITI_NO != ''">
+				WHERE ITI_NO = #{ITI_NO}
+			</when>
+			<when test="CODE != null">
+				WHERE CODE = #{CODE}
+			</when>
+			<otherwise>
+				WHERE DEP_DATE = #{DEP_DATE1}
+			</otherwise>
+		</choose>
 
+		<if test='DEP_DATE1 != ""'>
+			AND DEP_DATE = #{DEP_DATE1}
+		</if>
+	</select>
+	
 </mapper>

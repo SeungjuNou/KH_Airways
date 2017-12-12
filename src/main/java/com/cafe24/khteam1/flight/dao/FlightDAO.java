@@ -31,6 +31,12 @@ public class FlightDAO extends AbstractDAO{
   	public List<Map<String, Object>> flightAllList() {
   		return (List<Map<String,Object>>) selectList("flight.flightAllList");
   	}
+  	
+  	//flight 검색 리스트
+  	@SuppressWarnings("unchecked")
+  	public List<Map<String, Object>> flightSearchList(Map<String, Object> map) {
+  		return (List<Map<String, Object>>) selectList("flight.flightSearchList", map);
+  	}
 }
 
  
