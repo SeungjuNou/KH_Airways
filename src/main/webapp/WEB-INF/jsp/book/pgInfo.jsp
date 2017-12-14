@@ -170,8 +170,33 @@
 																			class="form-control"
 																			placeholder="예 : 1234@khairways.com">
 																	</div>
+																	<p class="help-block">&nbsp;</p>
 																</div>
+															
 															</c:if>
+															
+															<div class="form-group col-lg-6">
+																<label>
+																	추가 수하물 <text class="text-danger">*</text>
+																</label> 
+																<select name="ck_bag${status.count}" class="form-control">
+																	<option value="0" selected="selected">추가 수하물 없음</option>
+																	<option value="1">24kg 1개 + 130,000</option>
+																	<option value="2">24kg 2개 + 260,000</option>
+																</select>
+															</div>
+															
+															<div class="form-group col-lg-6">
+																<label>
+																	기내식 <text class="text-danger">*</text>
+																</label> 
+																<select name="meal${status.count}" class="form-control">
+																	<option value="1" selected="selected" >일반 기내식</option>
+																	<option value="2">차일드밀 선택(아동식)</option>
+																	<option value="3">채식주의 식사</option>
+																	<option value="4">글루텐 프리</option>
+																</select>
+															</div>
 
 
 														</div>
