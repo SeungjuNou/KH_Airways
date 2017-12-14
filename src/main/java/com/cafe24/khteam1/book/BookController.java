@@ -125,25 +125,30 @@ public class BookController {
 		int price1 =  Integer.parseInt(map2.get("PRICE").toString());
 		int price2 =  Integer.parseInt(map3.get("PRICE").toString());
 		int total_price = price1 + price2;
-		map.put("PRICE", toNumFormat(total_price));
-		
-		map.put("TIME1_1", map2.get("TI_DEP"));
-        map.put("TIME1_2", map2.get("TI_ARR"));
-		map.put("TIME2_1", map3.get("TI_DEP"));
-        map.put("TIME2_2", map3.get("TI_ARR"));
-		
-		map.put("DEP_CODE", commandMap.getMap().get("DEP_CODE"));
-		map.put("ARR_CODE", commandMap.getMap().get("ARR_CODE"));
-		
 		List<String> list = new ArrayList<String>();
-		int people = Integer.parseInt((String) (map.get("people")));
-		for(int i=0; i < people; i++) {
+		int adult = Integer.parseInt((String) (map.get("adult_count")));
+		int child = Integer.parseInt((String) (map.get("child_count")));
+		
+		for(int i=0; i < adult+child; i++) {
 			if(i==0) list.add("collapseOne");
 			if(i==1) list.add("collapseTwo");
 			if(i==2) list.add("collapseThree");
 			if(i==3) list.add("collapseFour");
 			if(i==4) list.add("collapseFive");
+			if(i==5) list.add("collapseSix");
+			if(i==6) list.add("collapseSeven");
+			if(i==7) list.add("collapseEight");
+			if(i==8) list.add("collapseNine");
 		}
+		
+		map.put("people", adult+child);
+		map.put("PRICE", toNumFormat(total_price));
+		map.put("TIME1_1", map2.get("TI_DEP"));
+        map.put("TIME1_2", map2.get("TI_ARR"));
+		map.put("TIME2_1", map3.get("TI_DEP"));
+        map.put("TIME2_2", map3.get("TI_ARR"));
+		map.put("DEP_CODE", commandMap.getMap().get("DEP_CODE"));
+		map.put("ARR_CODE", commandMap.getMap().get("ARR_CODE"));
 
 		mv.addObject("listSize", list.size());
         mv.addObject("map", map);
