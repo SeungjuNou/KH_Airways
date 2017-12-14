@@ -28,8 +28,6 @@
         <a class="navbar-brand" href="#">KH Airways</a>
       </div>
 
-
-
       <!-- Top Navigation: Left Menu -->
       <ul class="nav navbar-nav navbar-left navbar-top-links">
         <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
