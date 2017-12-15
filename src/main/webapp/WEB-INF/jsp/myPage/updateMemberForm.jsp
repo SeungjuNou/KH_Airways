@@ -37,24 +37,23 @@
         <div id="logo">
             <img src="<c:url value='../_assets/icon.png'/>" alt="" />
         </div>
-       
+       		<ul>
             <div id="menu">
-            <ul>
                 <li id="empty2"></li>
                 <li>항공권 예매</li>
                 <li>웹 체크인</li>
                 <li>Seungju nou</li>
-            </ul>
             </div>
-       
+            </ul>
     </div>
 
     <div id="body">
         <div id="body-inner">
             <div id="inner1">
+            
                 <ul>
                     <li>
-                        <h1>마이 페이지</h1>
+                        <h2>마이 페이지</h2>
                     </li>
 
                     <li>

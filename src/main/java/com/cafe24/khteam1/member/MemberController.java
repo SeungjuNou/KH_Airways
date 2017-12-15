@@ -102,7 +102,7 @@ public class MemberController {
 	}
 
 	// 회원 수정
-	@RequestMapping(value = "/myPage/updateMember.do")
+	@RequestMapping(value = "/myPage/updateMember.do" , method=RequestMethod.POST)
 	public ModelAndView updateMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("redirect:/myPage/viewMember.do");
 		memberService.updateMember(commandMap.getMap(), request);
