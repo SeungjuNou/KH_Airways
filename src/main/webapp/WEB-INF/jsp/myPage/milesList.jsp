@@ -37,16 +37,14 @@
         <div id="logo">
             <img src="<c:url value='../_assets/icon.png'/>" alt="" />
         </div>
-       
-            <div id="menu">
             <ul>
+            <div id="menu">
                 <li id="empty2"></li>
                 <li>항공권 예매</li>
                 <li>웹 체크인</li>
                 <li>Seungju nou</li>
-            </ul>
             </div>
-       
+            </ul>
     </div>
 
     <div id="body">
@@ -70,7 +68,7 @@
                     <li id="select-inner">
                         <div>마일리지</div>
                     </li>
-                    <li><a href="viewMember.do">회원 정보<a></li>
+                    <li><a href="<c:url value='/myPage/viewMember.do'/>">회원 정보</a></li>
                     <li>나의 예약</li>
                     <li>웹 체크인</li>
                     <li id="empty">&nbsp;</li>
