@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cafe24.khteam1.common.dao.AbstractDAO;
 
 @Repository
-public class BookDAO extends AbstractDAO {
+public class BookDAO extends AbstractDAO { 
 	
 	public void insertBook(Map<String, Object> map) throws Exception {
 		insert("book.insertBook", map);
