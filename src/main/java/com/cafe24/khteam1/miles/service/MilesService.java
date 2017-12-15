@@ -9,9 +9,6 @@ public interface MilesService {
 	
 		//마일리지 리스트
 		List<Map<String, Object>> milesList(Map<String, Object> map) throws Exception;
-
-		//검색마일리지 리스트 
-		List<Map<String, Object>> findMilesList(Map<String, Object> map) throws Exception;
 		
 		//마일리지 내역 등록 
 		void insertMiles(Map<String, Object> map, HttpServletRequest request) throws Exception;
@@ -23,7 +20,7 @@ public interface MilesService {
 		List<Map<String, Object>> milesManage(Map<String, Object> map) throws Exception;
 		
 		//현재 마일리지
-		Map<String, Object> milesNow(Map<String, Object> map) throws Exception;
+		Map<String, Object> nowMile(Map<String, Object> map) throws Exception;
 		
 		//사용 마일리지
 		Map<String, Object> useMile(Map<String, Object> map) throws Exception;

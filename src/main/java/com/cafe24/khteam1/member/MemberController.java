@@ -1,13 +1,9 @@
 package com.cafe24.khteam1.member;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -43,16 +39,16 @@ public class MemberController {
 
 		ModelAndView view = new ModelAndView("redirect:/main.do");
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		String mileNo = mileNo("F_MILSE");
-		
+
 		map.put("MILE_NO", mileNo);
-		map.put("MILES_TEXT", "F_MILES");
+		map.put("MILES_TEXT", "회원가입보너스");
 
 		log.debug(map);
 		commandMap.getMap().put("MILE_NO", mileNo);
 		commandMap.getMap().put("GRADE", 0);
-		
+
 		memberService.insertMember(commandMap.getMap(), request);
 		milesService.insertMiles(map, request);
 
@@ -94,15 +90,17 @@ public class MemberController {
 	@RequestMapping(value = "/myPage/viewMember.do")
 	public ModelAndView viewMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("myPage/viewMember");
-		commandMap.getMap().put("ID", (String) request.getSession().getAttribute("ID")); //커맨드맵에 ID란 이름의 로그인체크에서 설정한 세션ID(DB데이터)값을 넣음\
-		Map<String, Object> map = memberService.viewMember(commandMap.getMap());	// 회원정보에 세션ID(DB데이터)값을 설정하고 map에 담음
-		Map<String, Object> map2 = milesService.milesNow(commandMap.getMap()); //마일리지목록을 띄워줄 commandMap(MILE_NO)
+		commandMap.getMap().put("ID", (String) request.getSession().getAttribute("ID")); // 커맨드맵에 ID란 이름의 로그인체크에서 설정한
+																							// 세션ID(DB데이터)값을 넣음\
+		Map<String, Object> map = memberService.viewMember(commandMap.getMap()); // 회원정보에 세션ID(DB데이터)값을 설정하고 map에 담음
+		commandMap.getMap().put("MILE_NO", map.get("MILE_NO")); // 커맨드맵에 세션ID(DB데이터)중의 MILE_NO란 이름의 마일리지번호값을 넣음
+		Map<String, Object> map2 = milesService.nowMile(commandMap.getMap()); // 마일리지목록을 띄워줄 commandMap(MILE_NO)
 		commandMap.getMap().put("MILES", map2.get("MILES"));
 		view.addObject("map", map);
-		view.addObject("map2" , map2);
+		view.addObject("map2", map2);
 		return view;
 	}
-	
+
 	// 회원 수정
 	@RequestMapping(value = "/myPage/updateMember.do")
 	public ModelAndView updateMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -118,7 +116,11 @@ public class MemberController {
 		ModelAndView view = new ModelAndView("myPage/updateMemberForm");
 		commandMap.getMap().put("ID", (String) request.getSession().getAttribute("ID"));
 		Map<String, Object> map = memberService.viewMember(commandMap.getMap());
+		commandMap.getMap().put("MILE_NO", map.get("MILE_NO"));
+		Map<String, Object> map2 = milesService.nowMile(commandMap.getMap()); // 마일리지목록을 띄워줄 commandMap(MILE_NO)
+		commandMap.getMap().put("MILES", map2.get("MILES"));
 		view.addObject("map", map);
+		view.addObject("map2", map2);
 		return view;
 	}
 
@@ -145,12 +147,22 @@ public class MemberController {
 		return view;
 	}
 
+	// 관리자 회원검색
+	@RequestMapping(value = "/admin/findMemberList.do")
+	public ModelAndView findMemberList(CommandMap commandMap) throws Exception {	
+		ModelAndView view = new ModelAndView("admin/adminMemberList");
+		List<Map<String, Object>> list = memberService.findMemberList(commandMap.getMap());
+		view.addObject("list", list);
+		return view;
+	}
+
 	// 관리자 회원수정폼
 	@RequestMapping(value = "/admin/updateMemberForm.do")
 	public ModelAndView adminUpdateMemberForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("admin/adminUpdateMemberForm");
+		commandMap.getMap().put("NO", commandMap.get("NO"));
 		Map<String, Object> map = memberService.viewMember(commandMap.getMap());
-		view.addObject("map", map.get("map"));
+		view.addObject("map", map);
 		return view;
 	}
 
@@ -171,15 +183,12 @@ public class MemberController {
 		return view;
 	}
 
-	// 마일리지 번호(임시)
+	// 마일리지 번호
 	public String mileNo(String type) {
-			double no =  Math.random();
-			int result = (int)(no * 90000) +10000;
-			String resultNo = String.valueOf(result);
-			return resultNo;
-		}
-	
-
-
+		double no = Math.random();
+		int result = (int) (no * 90000) + 10000;
+		String resultNo = String.valueOf(result);
+		return resultNo;
+	}
 
 }

@@ -25,11 +25,7 @@ public class MilesDAO extends AbstractDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> milesNow(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("miles.milesNow", map);
+	public Map<String, Object> nowMile(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("miles.nowMile", map);
 	}
-	
-	
-	
-	
 }

@@ -26,10 +26,9 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override 
 	public List<Map<String, Object>> findMemberList(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return memberDAO.findMemberList(map);
 	}
-
+	
 	@Override
 	public void insertMember(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		memberDAO.insertMember(map);
@@ -68,7 +67,5 @@ public class MemberServiceImpl implements MemberService{
 		}
 		log.debug(result);
 		return result;
-	}
-	
-
+	}	
 }

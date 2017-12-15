@@ -195,19 +195,25 @@
 												
                                         </tbody>
                                     </table>
+                                   <form action="/khteam1/admin/milesList.do" method="post">
+                           					<input type="text" name="MILE_NO" />
+                           					<input type="submit" value="검색" />
+                           			</form>
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
                             <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel -->
+                          
                     </div>
+                     
                 <!-- /.row -->
                 </div>
             </div>
 		</div>
 	</div>
 </div>
+       
 
 <!-- jQuery -->
 <script type="text/javascript" src="<c:url value='../_scripts/jquery.min.js'/>"></script>

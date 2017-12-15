@@ -197,26 +197,46 @@
                                                 <td>${list.PHONE}</td>
                                                 <td>${list.GRADE}</td>
                                                 <td><a href="milesList.do?MILE_NO=${list.MILE_NO}">${list.MILE_NO}</a></td>
-												<td><a href="updateMemberForm.do?NO=${list.NO}">수정</a>	<p>	<a href="deleteMember.do?NO=${list.NO}">삭제</a></td>
+												<td><a href="updateMemberForm.do?ID=${list.ID}">수정</a>	<p>	<a href="deleteMember.do?ID=${list.ID}">삭제</a></td>
                                             </tr>
                                         </c:forEach>
+                                        
+                                        
 												
                                         </tbody>
+                                       
                                     </table>
+                                     
                                 </div>
                                 <!-- /.table-responsive -->
                             </div>
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
-                    </div>
+                         </div>
+                       <div class="col-lg-3">
+                           				<form action="/khteam1/admin/findMemberList.do" method="post">
+                           				<div class="input-group custom-search-form">
+                                    <input type="text" name="keyword" class="form-control" placeholder="회원이름을 입력하세요">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit" >
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                         </span>
+                                        </div>
+                                        </form>
+                               
+                               
+                                </div>
+                          
+                                    
+                   
                 <!-- /.row -->
                 </div>
             </div>
 		</div>
 	</div>
-</div>
-
+                                        
 <!-- jQuery -->
 <script type="text/javascript" src="<c:url value='../_scripts/jquery.min.js'/>"></script>
 <!-- Bootstrap Core JavaScript -->
