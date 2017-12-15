@@ -12,7 +12,7 @@ public class MemberDAO extends AbstractDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> memberList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectPagingList("member.memberList", map);
+		return (List<Map<String, Object>>) selectList("member.memberList", map);
 	}
 	
 	public void insertMember(Map<String, Object> map) throws Exception {
@@ -41,6 +41,8 @@ public class MemberDAO extends AbstractDAO {
 		delete("member.deleteMember", map);
 	}
 
-	
-	
-}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> findMemberList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("member.findMemberList", map);
+		}
+	}

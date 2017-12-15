@@ -21,6 +21,13 @@
 		]]>
 	</select>
 	
+	<!-- 현재 마일리지 --> 
+	<select id="nowMile" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			    SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1
+		]]>
+	</select>
+	
 	
 	<select id="milesManage" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -94,7 +101,7 @@
                   MILES	)
 	        VALUES
 	        (	SEQ_MILE_NO.NEXTVAL,
-                  '#{MILE_NO}',
+                  #{MILE_NO},
                   '적립',
                   '2000',
                   '0',

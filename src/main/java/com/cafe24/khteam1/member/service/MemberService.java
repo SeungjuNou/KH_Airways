@@ -12,7 +12,7 @@ public interface MemberService {
 	//회원목록
 	List<Map<String, Object>> memberList(Map<String, Object> map) throws Exception;
 	
-	
+	//회원검색목록
 	List<Map<String, Object>> findMemberList(Map<String, Object> map) throws Exception;
 	
 	//회원가입
@@ -32,7 +32,5 @@ public interface MemberService {
 	
 	//로그인체크
 	Map<String, Object> loginCheck(Map<String, Object> map) throws Exception;
-
-	
 	
 }

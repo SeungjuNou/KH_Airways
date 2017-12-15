@@ -84,5 +84,11 @@
 			WHERE ID = #{ID}
 		]]>
 	</delete>
+	
+	<select id="findMemberList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	 SELECT * FROM F_MEMBER WHERE NAME LIKE '%'||#{keyword}||'%'
+	 ]]>
+	</select>
 
 </mapper>

@@ -1,6 +1,5 @@
 package com.cafe24.khteam1.miles.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,12 +23,6 @@ public class MilesServiceImpl implements MilesService {
 	}
 
 	@Override
-	public List<Map<String, Object>> findMilesList(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void insertMiles(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		milesDAO.insertMiles(map);
 		
@@ -47,8 +40,8 @@ public class MilesServiceImpl implements MilesService {
 	}
 
 	@Override
-	public Map<String, Object> milesNow(Map<String, Object> map) throws Exception {
-		return milesDAO.milesNow(map);
+	public Map<String, Object> nowMile(Map<String, Object> map) throws Exception {
+		return milesDAO.nowMile(map);
 	}
 
 	@Override
