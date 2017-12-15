@@ -2,6 +2,7 @@ package com.cafe24.khteam1.book;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,12 +26,20 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.flight.service.FlightService;
 import com.cafe24.khteam1.route.service.RouteService;
- 
+import com.cafe24.khteam1.book.service.BookService;
+/*import com.cafe24.khteam1.book.service.TicketService;
+*/ 
 @Controller
 @SessionAttributes("flightInfo") 
 public class BookController {
     Logger log = Logger.getLogger(this.getClass());
       
+    @Resource(name="bookService")
+    private BookService bookService;
+    
+    /*@Resource(name="ticketService")
+    private TicketService ticketService;*/
+    
     @Resource(name="routeService")
     private RouteService routeService;
 
@@ -128,6 +138,7 @@ public class BookController {
 		List<String> list = new ArrayList<String>();
 		int adult = Integer.parseInt((String) (map.get("adult_count")));
 		int child = Integer.parseInt((String) (map.get("child_count")));
+		int price_sum = (int) ((total_price * adult) + (total_price * child * 0.7));
 		
 		for(int i=0; i < adult+child; i++) {
 			if(i==0) list.add("collapseOne");
@@ -142,7 +153,7 @@ public class BookController {
 		}
 		
 		map.put("people", adult+child);
-		map.put("PRICE", toNumFormat(total_price));
+		map.put("PRICE", toPriceFormat(price_sum));
 		map.put("TIME1_1", map2.get("TI_DEP"));
         map.put("TIME1_2", map2.get("TI_ARR"));
 		map.put("TIME2_1", map3.get("TI_DEP"));
@@ -160,13 +171,61 @@ public class BookController {
     
     //승객의 수만큼 탑승자 정보를 입력 받는 메서드.
     @RequestMapping(value="/book/bookSuccess.do", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap) {
-    		ModelAndView mv =new ModelAndView("/book/pay");
-    		map.putAll(commandMap.getMap());
-        
+    public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap, HttpServletRequest request) throws Exception{
+    	ModelAndView mv =new ModelAndView("book/pay");
+
+    	log.debug(map);
+    	log.debug(commandMap.getMap() + "commandMap ////////////////////////");
+    	
+    	Map<String, Object> map2Book = new HashMap<String, Object>();	
+    	
+    	String sysDate = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+    	int random = (int)(Math.random()*10000);
+    	String BookNum = "B"+sysDate+random;
+    	
+    	String price = (String) (map.get("PRICE"));
+    	price = price.replaceAll("\\,", "");
+    	
+    	String name = ((String) commandMap.getMap().get("fmName1"))+((String) commandMap.getMap().get("lastName1"));
+    	String email = (String) commandMap.getMap().get("email");
+    	String phone = (String) commandMap.getMap().get("phone");
+    	
+		String mem_id = "id";
+				//(String) request.getSession().getAttribute("ID");
+		String day = "MON";
+		
+		
+		map2Book.put("BOOK_NO", BookNum);
+    	map2Book.put("COUNT", map.get("people"));
+    	map2Book.put("DEP_CODE", map.get("DEP_CODE"));
+    	map2Book.put("ARR_CODE", map.get("ARR_CODE"));
+    	map2Book.put("PAY", map.get("pay"));
+    	map2Book.put("PRICE", price);
+    	map2Book.put("NAME", name);
+    	map2Book.put("EMAIL", email);
+    	map2Book.put("PHONE", phone);
+    	map2Book.put("DAY", day);
+    	map2Book.put("MEM_NO", mem_id);
+    	
+    	mv.addObject("map", map2Book);
+    	
+    	log.debug(map2Book);
+    	
+    	bookService.insertBook(map2Book);
+    	
+    	log.debug(commandMap);
+    	
         return mv;
     }
     
+    /*@RequestMapping(value="/book/createBookNo.do", method = RequestMethod.POST)
+    public ModelAndView createBookNo(@ModelAttribute("filghtInfo") CommandMap commandMap, HttpServletRequest request) throws Exception {
+    	ModelAndView mv = new ModelAndView("book/pay");
+    	log.debug(commandMap);
+    	bookService.insertBook(commandMap.getMap(), request);
+    	log.debug(commandMap);
+    	return mv;
+    }*/
     
 
 
@@ -187,10 +246,15 @@ public class BookController {
     }
     
     //int를 가격으로 변환 
-    public static String toNumFormat(int num) {
+    public static String toPriceFormat(int num) {
     	  DecimalFormat df = new DecimalFormat("#,###");
     	  return df.format(num);
     	 }
+    
+    public static String toNumFormat(int num) {
+  	  DecimalFormat df = new DecimalFormat("####");
+  	  return df.format(num);
+  	 }
 
 
 } 
