@@ -16,7 +16,7 @@ import com.cafe24.khteam1.book.dao.BookDAO;
 public class BookServiceImpl implements BookService{
 	Logger log = Logger.getLogger(this.getClass());
 
-	@Resource(name = "bookDAO")
+	@Resource(name = "bookDAO") 
 	private BookDAO bookDAO;
 	
 	@Override

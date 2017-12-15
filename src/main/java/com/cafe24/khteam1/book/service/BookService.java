@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public interface BookService {
-
+ 
 	/*//예약리스트
 	List<Map<String, Object>> bookList(Map<String, Object> map) throws Exception;
 

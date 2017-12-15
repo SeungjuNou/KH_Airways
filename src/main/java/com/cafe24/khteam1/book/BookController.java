@@ -31,7 +31,7 @@ import com.cafe24.khteam1.book.service.BookService;
 */ 
 @Controller
 @SessionAttributes("flightInfo") 
-public class BookController {
+public class BookController { 
     Logger log = Logger.getLogger(this.getClass());
       
     @Resource(name="bookService")
