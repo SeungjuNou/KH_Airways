@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 
 
 public interface MemberService {
-	
 	//회원목록
 	List<Map<String, Object>> memberList(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> memberGradeList(Map<String, Object> map) throws Exception;
 	
 	//회원검색목록
 	List<Map<String, Object>> findMemberList(Map<String, Object> map) throws Exception;
@@ -32,5 +33,7 @@ public interface MemberService {
 	
 	//로그인체크
 	Map<String, Object> loginCheck(Map<String, Object> map) throws Exception;
+
+	void updateGrade(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 }

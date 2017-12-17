@@ -15,6 +15,11 @@ public class MemberDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("member.memberList", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> memberGradeList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("member.memberGradeList", map);
+	}
+	
 	public void insertMember(Map<String, Object> map) throws Exception {
 		insert("member.insertMember", map);
 	}
@@ -45,4 +50,8 @@ public class MemberDAO extends AbstractDAO {
 	public List<Map<String, Object>> findMemberList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("member.findMemberList", map);
 		}
+
+	public void updateGrade(Map<String, Object> map) throws Exception {
+		update("member.updateGrade", map);
+	}
 	}
