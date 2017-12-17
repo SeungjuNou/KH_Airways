@@ -67,5 +67,15 @@ public class MemberServiceImpl implements MemberService{
 		}
 		log.debug(result);
 		return result;
+	}
+
+	@Override
+	public List<Map<String, Object>> memberGradeList(Map<String, Object> map) throws Exception {
+		return memberDAO.memberGradeList(map);
+	}
+
+	@Override
+	public void updateGrade(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		memberDAO.updateGrade(map);
 	}	
 }

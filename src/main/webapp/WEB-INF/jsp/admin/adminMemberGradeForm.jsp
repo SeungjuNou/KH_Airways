@@ -195,7 +195,7 @@
 											<td>마일리지번호 : ${map.MILE_NO}</td>
 										</tr>
 										<tr>
-											<td>회원등급 : ${map.GRADE}<input type="hidden" name="GRADE" value="${map.GRADE}"/></td>
+											<td>회원등급 : ${map.GRADE}<input type="text" name="GRADE" value="${map.GRADE}"/></td>
 										</tr>	
                                     </table>
 					 				<input type="submit" id="update" value="수정"/>

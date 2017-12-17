@@ -11,10 +11,17 @@
 		]]>
 	</select>
 	
-	<!-- 관리자 회원목록 -->
+	<!-- 관리자 전체 회원목록 -->
 	<select id="memberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT * FROM F_MEMBER   
+			ORDER BY NO DESC
+		]]>
+	</select>
+	
+	<select id="memberGradeList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM F_MEMBER WHERE GRADE = #{GRADE}
 			ORDER BY NO DESC
 		]]>
 	</select>
@@ -72,7 +79,7 @@
 	<!-- 회원정보 수정 -->
 	<update id="updateMember" parameterType="hashmap">
 		<![CDATA[
-			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}
+			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}, GRADE = #{GRADE}
 			WHERE NO = #{NO}
 		]]>
 	</update>

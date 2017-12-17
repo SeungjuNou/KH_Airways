@@ -1,5 +1,6 @@
 package com.cafe24.khteam1.member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,25 +143,26 @@ public class MemberController {
 	@RequestMapping(value = "/admin/memberList.do")
 	public ModelAndView memberList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("admin/adminMemberList");
-		List<Map<String, Object>> list = memberService.memberList(commandMap.getMap());
-		view.addObject("list", list);
+		String grade = (String) commandMap.get("GRADE");
+		String keyword = (String) commandMap.get("keyword");
+		List<Map<String,Object>> list = null;
+		if (grade==null || grade.equals("")){
+			if (keyword == null || keyword.equals("")) {
+				list = memberService.memberList(commandMap.getMap());
+			}else {
+				list = memberService.findMemberList(commandMap.getMap());
+			}
+			}else {
+				list = memberService.memberGradeList(commandMap.getMap());
+		}
+		view.addObject("list",list);
 		return view;
 	}
-
-	// 관리자 회원검색
-	@RequestMapping(value = "/admin/findMemberList.do")
-	public ModelAndView findMemberList(CommandMap commandMap) throws Exception {	
-		ModelAndView view = new ModelAndView("admin/adminMemberList");
-		List<Map<String, Object>> list = memberService.findMemberList(commandMap.getMap());
-		view.addObject("list", list);
-		return view;
-	}
-
+	
 	// 관리자 회원수정폼
 	@RequestMapping(value = "/admin/updateMemberForm.do")
 	public ModelAndView adminUpdateMemberForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("admin/adminUpdateMemberForm");
-		commandMap.getMap().put("NO", commandMap.get("NO"));
 		Map<String, Object> map = memberService.viewMember(commandMap.getMap());
 		view.addObject("map", map);
 		return view;
@@ -171,10 +173,9 @@ public class MemberController {
 	public ModelAndView adminUpdateMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("redirect:/admin/memberList.do");
 		memberService.updateMember(commandMap.getMap(), request);
-		view.addObject("NO", commandMap.get("NO"));
 		return view;
 	}
-
+	
 	// 관리자 회원삭제
 	@RequestMapping(value = "/admin/deleteMember.do")
 	public ModelAndView adminDeleteMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -190,5 +191,4 @@ public class MemberController {
 		String resultNo = String.valueOf(result);
 		return resultNo;
 	}
-
 }
