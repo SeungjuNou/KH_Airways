@@ -69,9 +69,7 @@ public class MemberController {
 
 		if (password.equals(commandMap.get("PASSWORD"))) {
 			request.getSession().setAttribute("ID", commandMap.get("ID"));
-			view.setViewName("main/main");
 		} else {
-			view.setViewName("main/main");
 		}
 
 		return view;
@@ -159,6 +157,26 @@ public class MemberController {
 		return view;
 	}
 	
+	//회원등급 변경 목록
+	@RequestMapping(value = "/admin/memberGradeList.do")
+	public ModelAndView memberGradeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView view = new ModelAndView("admin/adminMemberGradeList");
+		String grade = (String) commandMap.get("GRADE");
+		String keyword = (String) commandMap.get("keyword");
+		List<Map<String,Object>> list = null;
+		if (grade==null || grade.equals("")){
+			if (keyword == null || keyword.equals("")) {
+				list = memberService.memberList(commandMap.getMap());
+			}else {
+				list = memberService.findMemberList(commandMap.getMap());
+			}
+			}else {
+				list = memberService.memberGradeList(commandMap.getMap());
+		}
+		view.addObject("list",list);
+		return view;
+	}
+	
 	// 관리자 회원수정폼
 	@RequestMapping(value = "/admin/updateMemberForm.do")
 	public ModelAndView adminUpdateMemberForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -167,6 +185,15 @@ public class MemberController {
 		view.addObject("map", map);
 		return view;
 	}
+	
+	// 관리자 회원수정폼
+		@RequestMapping(value = "/admin/memberGradeForm.do")
+		public ModelAndView adminMemberGradeForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView view = new ModelAndView("admin/adminMemberGradeForm");
+			Map<String, Object> map = memberService.viewMember(commandMap.getMap());
+			view.addObject("map", map);
+			return view;
+		}
 
 	// 관리자 회원수정
 	@RequestMapping(value = "/admin/updateMember.do")
@@ -175,6 +202,14 @@ public class MemberController {
 		memberService.updateMember(commandMap.getMap(), request);
 		return view;
 	}
+	
+	// 관리자 회원등급수정
+		@RequestMapping(value = "/admin/updateGrade.do")
+		public ModelAndView adminUpdateGrade(CommandMap commandMap, HttpServletRequest request) throws Exception {
+			ModelAndView view = new ModelAndView("redirect:/admin/memberGradeList.do");
+			memberService.updateMember(commandMap.getMap(), request);
+			return view;
+		}
 	
 	// 관리자 회원삭제
 	@RequestMapping(value = "/admin/deleteMember.do")
