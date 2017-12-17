@@ -3,7 +3,6 @@ package com.cafe24.khteam1.flight;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,10 +10,8 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.khteam1.common.common.CommandMap;
@@ -23,7 +20,6 @@ import com.cafe24.khteam1.flight.service.FlightService;
 import com.cafe24.khteam1.route.service.RouteService;
 
 @Controller
-@SessionAttributes("info")
 public class FlightController {
 Logger log = Logger.getLogger(this.getClass());
 	
@@ -35,11 +31,6 @@ Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="dateTrans")
 	private DateTrans dateTrans;
-	
-	@ModelAttribute("info")
-	private Map<String, Object> map() {
-		return new HashMap<String, Object>();
-	}
 
 	
 	//flight 등록 페이지 이동
