@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("htmlMaker")
 public class HtmlMaker {
-	// PdfRouteController와 PdfBuilder클래스의 중간과정으로 피디엪파일을 만들기 위한 정보를 넣은 값을 스트링으로 묶어서 RoutePdfController에서 값을 불러옴
+	// PdfController와 PdfBuilder클래스의 중간과정으로 피디엪파일을 만들기 위한 정보를 넣은 값을 스트링으로 묶어서 RouteController에서 값을 불러옴
 	
 	public String pageMakeHtml(String conUrl) {
 	 	

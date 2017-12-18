@@ -3,7 +3,6 @@ package com.cafe24.khteam1.book.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 public interface BookService {
  
