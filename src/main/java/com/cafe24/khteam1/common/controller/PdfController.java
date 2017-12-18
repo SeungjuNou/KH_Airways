@@ -1,4 +1,4 @@
-package com.cafe24.khteam1.route;
+package com.cafe24.khteam1.common.controller;
 
 import javax.annotation.Resource;
 
@@ -10,12 +10,12 @@ import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.common.util.HtmlMaker;
 
 @Controller
-public class RoutePdfController {
+public class PdfController {
 	
 	@Resource(name="htmlMaker")
     private HtmlMaker htmlMaker;
 	
-	// routeList.jsp 에서 '출력하기' 클릭 => 현재 컨트롤러 => /util/PdfBuilder 클래스로 이동
+	// .jsp 에서 '출력하기' 클릭 => 현재 컨트롤러 => /util/PdfBuilder 클래스로 이동
 	@RequestMapping("/pdfMake.do")
 	public String pageRankReport(Model model, CommandMap commandMap) {
 		// HtmlMaker 클래스에서 pageMakeHtml을 불러와서 htmlStr에 넣고 이와 함께, fileName을 각각의 이름값을 정해서 model에 넣어서 buildPdf로 리턴.
