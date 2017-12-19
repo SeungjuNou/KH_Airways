@@ -57,12 +57,12 @@ public class PdfBuilder extends AbstractView{
 		     
 		// CSS
 		CSSResolver cssResolver = new StyleAttrCSSResolver();
-		CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream("C:\\Java\\KH_Airways\\src\\main\\webapp\\_css\\morris.css"));
+		CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream("/_css/morris.css"));
 		cssResolver.addCss(cssFile);
 		     
 		// HTML, 폰트 설정
 		XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
-		fontProvider.register("C:\\Java\\KH_Airways\\src\\main\\webapp\\fonts\\malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
+		fontProvider.register("/fonts/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
 		CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 		 
 		HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
@@ -78,7 +78,7 @@ public class PdfBuilder extends AbstractView{
 		 
 		// 폰트 설정에서 별칭으로 줬던 "MalgunGothic"을 html 안에 폰트로 지정한다.
 		String htmlStr = "" + model.get("bodyString") + "";
-		htmlStr = htmlStr.replaceAll("logo", "<img src=\"/C:\\Java\\KH_Airways\\src\\main\\webapp\\image\\KHicon.jpg\"/>");
+		htmlStr = htmlStr.replaceAll("logo", "<img src=\"//image/KHicon.jpg\"/>");
 		 
 		StringReader strReader = new StringReader(htmlStr);
 		xmlParser.parse(strReader);

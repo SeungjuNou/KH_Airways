@@ -1,7 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=da829d3ce7feb3a49d5dad16c775d52daba918f6
 eclipse.preferences.version=1
-<<<<<<< HEAD
-encoding//src/main/java/com/cafe24/khteam1/route/RoutePdfController.java=utf-8
-=======
 encoding//src/main/webapp/WEB-INF/jsp/admin/adminMemberList.jsp=UTF-8
->>>>>>> da829d3ce7feb3a49d5dad16c775d52daba918f6
 encoding/<project>=UTF-8

@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+Complete
 
+<a href="<c:url value='/pdfMake.do?reqName=ticket2pdf' />" 
+button type="button" class="btn btn-primary">출력하기</a>
 </body>
 </html>

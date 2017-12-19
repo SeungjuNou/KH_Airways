@@ -105,13 +105,24 @@
 													<div id="${row}"
 														class="panel-collapse collapse <c:if test="${(status.count) eq '1'}">in</c:if>">
 														<div class="panel-body">
-															<div class="form-group col-lg-12">
+															<div class="form-group col-lg-6">
 																<label>
 																	성별<text class="text-danger">*</text>
 																</label> 
 																<select name="sex${status.count}" class="form-control">
-																	<option value="male">남성</option>
-																	<option value="female">여성</option>
+																	<option value="M" selected="selected">남성</option>
+																	<option value="F">여성</option>
+																</select>
+															</div>
+															
+															<div class="form-group col-lg-6">
+																<label>
+																	나이구분<text class="text-danger">*</text>
+																</label> 
+																<select name="age${status.count}" class="form-control">
+																	<option value="A" selected="selected">성인</option>
+																	<option value="C">유아</option>
+																	<option value="C">소아</option>
 																</select>
 															</div>
 

@@ -27,8 +27,8 @@ import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.flight.service.FlightService;
 import com.cafe24.khteam1.route.service.RouteService;
 import com.cafe24.khteam1.book.service.BookService;
-/*import com.cafe24.khteam1.book.service.TicketService;
-*/ 
+import com.cafe24.khteam1.ticket.service.TicketService;
+
 @Controller
 @SessionAttributes("flightInfo") 
 public class BookController { 
@@ -37,8 +37,8 @@ public class BookController {
     @Resource(name="bookService")
     private BookService bookService;
     
-    /*@Resource(name="ticketService")
-    private TicketService ticketService;*/
+    @Resource(name="ticketService")
+    private TicketService ticketService;
     
     @Resource(name="routeService")
     private RouteService routeService;
@@ -169,65 +169,89 @@ public class BookController {
         return mv;
     }
     
-    //승객의 수만큼 탑승자 정보를 입력 받는 메서드.
+    //탑승자 정보 입력 받은 것 + 예약번호 생성 => 예약테이블에 넣는 메서드
     @RequestMapping(value="/book/bookSuccess.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap, HttpServletRequest request) throws Exception{
-    	ModelAndView mv =new ModelAndView("book/pay");
+    	ModelAndView mv =new ModelAndView("book/bookComplete");
 
     	log.debug(map);
     	log.debug(commandMap.getMap() + "commandMap ////////////////////////");
     	
-    	Map<String, Object> map2Book = new HashMap<String, Object>();	
-    	
-    	String sysDate = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
-    	int random = (int)(Math.random()*10000);
-    	String BookNum = "B"+sysDate+random;
+    	Map<String, Object> map2book = new HashMap<String, Object>();	
+    	String regDate = new SimpleDateFormat("yyMMdd").format(new java.util.Date());
     	
     	String price = (String) (map.get("PRICE"));
     	price = price.replaceAll("\\,", "");
     	
-    	String name = ((String) commandMap.getMap().get("fmName1"))+((String) commandMap.getMap().get("lastName1"));
+    	String bName = ((String) commandMap.getMap().get("fmName1"))+((String) commandMap.getMap().get("lastName1"));
     	String email = (String) commandMap.getMap().get("email");
     	String phone = (String) commandMap.getMap().get("phone");
+    	String pay = (String) commandMap.getMap().get("pay");
     	
 		String mem_id = "id";
 				//(String) request.getSession().getAttribute("ID");
-		String day = "MON";
 		
-		
-		map2Book.put("BOOK_NO", BookNum);
-    	map2Book.put("COUNT", map.get("people"));
-    	map2Book.put("DEP_CODE", map.get("DEP_CODE"));
-    	map2Book.put("ARR_CODE", map.get("ARR_CODE"));
-    	map2Book.put("PAY", map.get("pay"));
-    	map2Book.put("PRICE", price);
-    	map2Book.put("NAME", name);
-    	map2Book.put("EMAIL", email);
-    	map2Book.put("PHONE", phone);
-    	map2Book.put("DAY", day);
-    	map2Book.put("MEM_NO", mem_id);
+		map2book.put("BOOK_NO", "B"+dateRandom());
+    	map2book.put("COUNT", map.get("people"));
+    	map2book.put("DEP_CODE", map.get("DEP_CODE"));
+    	map2book.put("ARR_CODE", map.get("ARR_CODE"));
+    	map2book.put("PAY", pay);
+    	map2book.put("PRICE", price);
+    	map2book.put("NAME", bName);
+    	map2book.put("EMAIL", email);
+    	map2book.put("PHONE", phone);
+    	map2book.put("DAY", regDate);
+    	map2book.put("MEM_NO", mem_id);
     	
-    	mv.addObject("map", map2Book);
+    	mv.addObject("map", map2book);
     	
-    	log.debug(map2Book);
+    	log.debug(map2book);
     	
-    	bookService.insertBook(map2Book);
+    	bookService.insertBook(map2book);
     	
     	log.debug(commandMap);
+    	
+    	
+    	//티켓번호 생성해서 티켓테이블에 넣는 메서드
+    	///////////////////////////////////////////////////////////////////////////
+    	
+    	
+    	log.debug(map);
+    	log.debug(commandMap.getMap() + "commandMap ////////////////////////");
+    	
+    	Map<String, Object> map2ticket = new HashMap<String, Object>();
+    	
+    	int round = (Integer) map2book.get("COUNT");
+    	for(int i= 1; i <= round; i++) {
+    	
+    	String name4TK = ((String) commandMap.getMap().get("fmName"+i))+((String) commandMap.getMap().get("lastName"+i));
+    	String ch_bag = (String) commandMap.getMap().get("ck_bag"+i);
+    	String meal = (String) commandMap.getMap().get("meal"+i);
+    	String sex = (String) commandMap.getMap().get("sex"+i);
+    	String age = (String) commandMap.getMap().get("age"+i);
+    	
+    	map2ticket.put("TK_NO", "T"+dateRandom());
+    	map2ticket.put("BOOK_NO", map2book.get("BOOK_NO"));
+    	map2ticket.put("NAME", name4TK);
+    	map2ticket.put("CARE", "Y");
+    	map2ticket.put("CARE_KD", "A");
+    	map2ticket.put("CH_BAG", ch_bag);
+    	map2ticket.put("MEAL", meal);
+    	map2ticket.put("ADULT", age);
+    	map2ticket.put("GENDER", sex);
+    	
+    	mv.addObject("map", map2ticket);
+    	
+    	log.debug(map2ticket);
+    	
+    	ticketService.insertTicket(map2ticket);
+    	
+    	log.debug(commandMap);
+    	
+    	}
     	
         return mv;
     }
-    
-    /*@RequestMapping(value="/book/createBookNo.do", method = RequestMethod.POST)
-    public ModelAndView createBookNo(@ModelAttribute("filghtInfo") CommandMap commandMap, HttpServletRequest request) throws Exception {
-    	ModelAndView mv = new ModelAndView("book/pay");
-    	log.debug(commandMap);
-    	bookService.insertBook(commandMap.getMap(), request);
-    	log.debug(commandMap);
-    	return mv;
-    }*/
-    
-
 
     //dateButton 리스트 메소드
     public List<String> dateButton(Date date) {
@@ -251,11 +275,10 @@ public class BookController {
     	  return df.format(num);
     	 }
     
-    public static String toNumFormat(int num) {
-  	  DecimalFormat df = new DecimalFormat("####");
-  	  return df.format(num);
-  	 }
-
-
+    public static String dateRandom() {
+    	String sysDate = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+    	int random = (int)(Math.random()*10000);
+    	return sysDate+random;
+    }
 } 
  

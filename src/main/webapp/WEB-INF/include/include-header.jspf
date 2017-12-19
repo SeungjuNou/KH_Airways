@@ -114,10 +114,10 @@
                                 <a href="memberList.do">회원목록</a>
                             </li>
                             <li>
-                                <a href="#">예약관리 <span class="fa arrow"> </a>
+                                <a href="#">예약관리(미완) <span class="fa arrow"> </a>
 								<ul class="nav nav-third-level">
 									<li>
-                                        <a href="#">출발일별 예약현황</a>
+                                        <a href="#">출발일별 예약현황(미완)</a>
                                     </li>
 								</ul>
                             </li>
@@ -129,10 +129,10 @@
 
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">접근권한 관리</a>
+                                <a href="memberGradeList.do">접근권한 관리</a>
                             </li>
                             <li>
-                                <a href="#">메인페이지 관리</a>
+                                <a href="#">메인페이지 관리(미완)</a>
                             </li>
 
                         </ul>
