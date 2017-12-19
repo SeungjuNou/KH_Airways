@@ -5,23 +5,27 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cafe24.khteam1.common.common.CommandMap;
+
 public interface WebcheckService {
 
-		//ì²´í¬?¸?˜„?™© ë¦¬ìŠ¤?Š¸ 
 		List<Map<String, Object>> checkinList(Map<String, Object> map) throws Exception;
 
-		//?Š¹? • ?šŒ?› ?˜„?™© ë¦¬ìŠ¤?Š¸ 
-		List<Map<String, Object>> findCheckinList(Map<String, Object> map) throws Exception;
-		
-		//ì²´í¬?¸ ?°?´?„° ?…
-		void insertCheckin(Map<String, Object> map, HttpServletRequest request) throws Exception;
+		//ì²´í¬?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¦¬ìŠ¤?ï¿½
+		/*List<Map<String, Object>> checkinList(Map<String, Object> map) throws Exception;*/
 
-		//ì²´í¬?¸ ?ƒ?„¸ë³´ê¸° ?´ê±¸ë¡œ (pdf)?‘?„±?•´?„ ê°??Š¥?•©?‹ˆ?‹¤. 
+		/*//?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ë¦¬ìŠ¤?ï¿½ï¿½ 
+		List<Map<String, Object>> findCheckinList(Map<String, Object> map) throws Exception;*/
+		
+		//ì²´í¬ì¸ ë‚´ì—­ ì €ì¥
+		/*void insertCheckin(Map<String, Object> map, HttpServletRequest request) throws Exception;*/
+
+		/*//ì²´í¬?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ë³´ê¸° ?ï¿½ï¿½ê±¸ë¡œ (pdf)?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½. 
 		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;
 		
-		//ì²´í¬?¸? •ë³? ?ˆ˜? •.
+		//ì²´í¬?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½.
 		void updateCheckin(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-		//ì²´í¬?¸? •ë³? ?‚­? œ.
-		void deleteCheckin(Map<String, Object> map) throws Exception;
+		//ì²´í¬?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½.
+		void deleteCheckin(Map<String, Object> map) throws Exception;*/
 }

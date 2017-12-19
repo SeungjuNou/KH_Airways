@@ -32,7 +32,7 @@
 
     <div id="top-2">
       <div id="logo">
-        <img src="_assets/icon.png" alt="" />
+        <img src="../_assets/icon.png" alt="" />
       </div>
       <ul>
         <div id="menu">
@@ -65,14 +65,14 @@
                         <form role="form" action="/khteam1/webcheck/openCheckin.do" method="post">
                           <div class="form-group has-success">
                             <label class="control-label" for="inputSuccess">예약번호</label>
-                            <input type="text" class="form-control" id="inputSuccess" placeholder="예) 1234-5678 또는 12345678">
+                            <input type="text" class="form-control" id="inputSuccess" placeholder="예)123456">
                           </div>
 
-                          <div class="form-group has-success">
+                          <!-- <div class="form-group has-success">
                             <label class="control-label" for="inputSuccess">탑승일</label>
                             <input type="text" class="form-control" id="inputSuccess" placeholder="2017/12/7">
                           </div>
-
+ -->
                           <div class="col-lg-12">
                             <div class="well">
                               <h4>웹 체크인 대상 및 이용시간</h4>
@@ -89,7 +89,7 @@
 
                       <div class="panel-footer">
                         <p align="right">
-                          <a href="<c:url value='/webCheck/webCheckStep2.do'/>" button type="button" class="btn btn-primary">계속</a>
+                          <a href="<c:url value='/webCheck/webCheckStep1.do'/>" button type="button" class="btn btn-primary">계속</a>
                         </p>
                       </div>
               </form>
