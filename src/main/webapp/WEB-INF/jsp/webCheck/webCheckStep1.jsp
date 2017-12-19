@@ -33,7 +33,7 @@
 
     <div id="top-2">
       <div id="logo">
-        <img src="_assets/icon.png" alt="" />
+        <img src="../_assets/icon.png" alt="" />
       </div>
       <ul>
         <div id="menu">
