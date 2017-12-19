@@ -33,7 +33,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js?ver=1"></script>
 
 <link rel="stylesheet" type="text/css" href="_css/Icomoon/style.css?ver=1" />
-<link rel="stylesheet" type="text/css" href="_css/main.css?ver=3"/>
+<link rel="stylesheet" type="text/css" href="_css/main.css?ver=1"/>
 <link rel="stylesheet" href="_css/flickity-docs.css?ver=1" media="screen">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css?ver=1">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -228,9 +228,11 @@
 			<p> 
 				<input id="PASSWORD" name="PASSWORD" required="required" type="password" placeholder="Password" /> 
 			</p>
-			<p class="keeplogin"> 
-				<input id="login" type="submit" value="로그인" /> 
+			<p class="keeplogin">  
+				<input id="login" type="submit" value="로그인" />
+				<button id="login" onclick="location.href='findId.do'">아이디 찾기</button> 
 			</p>
+			
 		</form>
 	</div>
 

@@ -55,7 +55,18 @@ public class MemberController {
 
 		return view;
 	}
+	
+	
+	//id찾기 컨트롤러  
+	@RequestMapping(value = "/findId.do")
+	public ModelAndView findId(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView view = new ModelAndView("myPage/findId");
+		return view;
+	}
 
+	
+	
+	
 	// 로그인체크
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/login/loginCheck.do", method = RequestMethod.POST)

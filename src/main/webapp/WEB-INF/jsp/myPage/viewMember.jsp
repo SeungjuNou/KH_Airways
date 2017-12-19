@@ -12,13 +12,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/mypage.css?ver=1'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/bootstrap.min.css?ver=1'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/metisMenu.min.css?ver=1'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/timeline.css?ver=1'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/startmin.css?ver=1'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/morris.css?ver=1'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='../_css/font-awesome.min.css?ver=1'/>" />
+<link href="../_css/bootstrap.min.css" rel="stylesheet">
+<link href="../_css/metisMenu.min.css" rel="stylesheet">
+<link href="../_css/startmin.css" rel="stylesheet">
+<link href="../_css/morris.css" rel="stylesheet">
+<link href="../_css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+
+<link rel="stylesheet" type="text/css" href="../_css/mypage.css" />
 
 <script type="text/javascript" src="<c:url value='../_scripts/jquery-2.0.2.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='../_scripts/jquery-ui-1.10.4.min.js'/>"></script>
