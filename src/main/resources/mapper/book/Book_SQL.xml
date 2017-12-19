@@ -2,51 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="book">
 
-	<!-- <select id="bookList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			select * from BOOK
-		]]>
-	</select>
-	
-	<select id="memberBookList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT *  
-			FROM
-			    BOOK
-			WHERE
-				DEL_GB = 'N'        
-			ORDER BY ITI_NO DESC
-		]]>
-	</select>
-
-	<select id="arrRouteList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			select distinct arr from test_route where dep = #{DEP}
-		]]>
-	</select>
-	
-	<select id="selectRouteList" resultType="hashmap">
-		<![CDATA[
-			SELECT *  
-			FROM
-			    TEST_ROUTE
-			WHERE
-				DEL_GB = 'N'        
-			ORDER BY ITI_NO DESC
-		]]>
-	</select>
-	
-	<select id="selectRouteDeactList" parameterType="hashmap" resultType="hashmap">
-		<![CDATA[
-			SELECT *  
-			FROM
-			    TEST_ROUTE
-			WHERE
-				DEL_GB = 'Y'        
-			ORDER BY ITI_NO DESC
-		]]>
-	</select> -->
-	
 	<insert id="insertBook" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO BOOK
@@ -79,39 +34,60 @@
 		]]>
 	</insert>
 	
-	<!-- <select id="selectRouteDetail" parameterType="hashmap" resultType="hashmap">
+	<select id="bookList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT * 
-			FROM
-				TEST_ROUTE
-			WHERE
-				ITI_NO = #{ITI_NO}	
+			SELECT * FROM BOOK
+			ORDER BY DAY DESC
 		]]>
 	</select>
 	
-	<update id="updateRoute" parameterType="hashmap">
+	<!-- <select id="memberBookList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			UPDATE TEST_ROUTE 
-			SET
-				TI_DEP = #{TI_DEP},
-				TI_ARR = #{TI_ARR},
-				TI_FLY = #{TI_FLY},
-				SEAT_COUNT = #{SEAT_COUNT},
-				PRICE = #{PRICE}
+			SELECT *  
+			FROM
+			    BOOK
+			/*WHERE MEM_NO = #{MEM_NO}*/      
+			ORDER BY DAY DESC
+		]]>
+	</select> -->
+	
+	<select id="bookDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				BOOK
 			WHERE
-				ITI_NO = #{ITI_NO}	
+				BOOK_NO = #{BOOK_NO}	
+		]]>
+	</select>
+	
+	<update id="updateBook" parameterType="hashmap">
+		<![CDATA[
+			UPDATE BOOK 
+			SET
+				COUNT = #{COUNT},
+				DEP_CODE = #{DEP_CODE},
+				ARR_CODE = #{ARR_CODE},
+				PAY = #{PAY},
+				PRICE = #{PRICE},
+				NAME = #{NAME},
+				EMAIL = #{EMAIL},
+				PHONE = #{PHONE},
+				DAY = #{DAY},
+				MEM_NO = #{MEM_NO}
+			WHERE
+				BOOK_NO = #{BOOK_NO}
 		]]>
 	</update>
 	
-	<update id="deleteRoute" parameterType="hashmap">
+	<update id="deleteBook" parameterType="hashmap">
 		<![CDATA[
-			UPDATE TEST_ROUTE
-			SET
-			DEL_GB = 'Y'
+			DELETE 
+				FROM BOOK
 			WHERE
-				ITI_NO = #{ITI_NO}
+				BOOK_NO = #{BOOK_NO}
 		]]>
-	</update> -->
+	</update>
 	
 	
 </mapper>
