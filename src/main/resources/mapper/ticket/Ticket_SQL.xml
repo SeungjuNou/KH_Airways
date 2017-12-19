@@ -30,4 +30,14 @@
 		]]>
 	</insert>
 	
+	<select id="TKlistByBKno" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				TICKET
+			WHERE
+				BOOK_NO = #{BOOK_NO}	
+		]]>
+	</select>
+	
 </mapper>

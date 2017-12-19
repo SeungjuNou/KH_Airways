@@ -214,16 +214,16 @@ public class BookController {
 
 		mv.addObject("map", map2book);
 
-		log.debug(map2book);
+		log.debug("map2book=> " + map2book);
 
 		bookService.insertBook(map2book);
 
-		log.debug(commandMap);
+		log.debug("commandMap=> " + commandMap.getMap());
 
 		// 티켓번호 생성해서 티켓테이블에 넣는 메서드
 		///////////////////////////////////////////////////////////////////////////
 
-		log.debug(map);
+		log.debug("map=> " + map);
 		log.debug(commandMap.getMap() + "commandMap ////////////////////////");
 
 		Map<String, Object> map2ticket = new HashMap<String, Object>();
@@ -250,11 +250,11 @@ public class BookController {
 
 			mv.addObject("map", map2ticket);
 
-			log.debug(map2ticket);
+			log.debug("map2ticket=> " + map2ticket);
 
 			ticketService.insertTicket(map2ticket);
 
-			log.debug(commandMap);
+			log.debug("commandMap=> " + commandMap.getMap());
 
 		}
 		
@@ -271,7 +271,90 @@ public class BookController {
     	mv.addObject("list", list);
     	return mv;
     }
+    
+    //관리자 페이지 시작 ----------------------------------------------------------------------
+    
+    //예약현황 목록 호출하는 메서드
+    @RequestMapping(value="/admin/bookList.do")
+    public ModelAndView bookList(CommandMap commandMap) throws Exception {
+    	ModelAndView mv = new ModelAndView("/book/adminBookList");
+    	List<Map<String, Object>> list = bookService.bookList();
+    	mv.addObject("list", list);
+    	
+    	log.debug("list=> " + list);
+    	log.debug("commandMap=> " + commandMap.getMap());
+    	return mv;
+    }
+    
+    //예약번호 클릭하면 번호에 따른 티켓번호 출력해주는 메서드
+    @RequestMapping(value="/admin/TKlistByBKno.do")
+    public ModelAndView TKlistByBKno(CommandMap commandMap) throws Exception {
+    	ModelAndView mv = new ModelAndView("/ticket/TKlistByBKno");
+    	List<Map<String, Object>> list = ticketService.TKlistByBKno(commandMap.getMap());
+    	mv.addObject("list", list);
+    	
+    	log.debug("list=> " + list);
+    	log.debug("commandMap=> " + commandMap.getMap());
+    	return mv;
+    }
+    
+    //예약번호 수동으로 등록하기 화면
+    @RequestMapping(value="/admin/openBoardWrite.do")
+    public ModelAndView openBookWrite(CommandMap commandMap) throws Exception {
+    	ModelAndView mv = new ModelAndView("/book/adminBookWrite");
+    	
+    	log.debug("commandMap=> " + commandMap.getMap());
+    	return mv;
+    }
 
+    //예약번호 수동으로 등록하기
+	@RequestMapping(value = "/admin/bookWrite.do", method = RequestMethod.POST)
+	public ModelAndView bookWrite(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		
+    	log.debug("commandMap=> " + commandMap.getMap());
+    	
+		bookService.insertBook(commandMap.getMap());
+		
+    	log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+	
+	//예약번호 수정하기 화면
+	@RequestMapping(value="/admin/openBookUpdate.do")
+	public ModelAndView openBookUpdate(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/book/adminBookUpdate");
+		Map<String, Object> map = bookService.bookDetail(commandMap.getMap());
+		mv.addObject("map", map);
+		
+		log.debug("map=> " + map);
+    	log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+	
+	//예약번호 수정사항 입력
+	@RequestMapping(value="/admin/bookUpdate.do", method = RequestMethod.POST)
+	public ModelAndView bookUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		System.out.println(commandMap.getMap());
+		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		bookService.bookUpdate(commandMap.getMap(), request);
+		mv.addObject("BOOK_NO", commandMap.get("BOOK_NO"));
+		
+		log.debug("mv=> " + mv);
+    	log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	@RequestMapping(value = "/admin/bookDelete.do", method = RequestMethod.POST)
+	public ModelAndView bookDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		bookService.bookDelete(commandMap.getMap(), request);
+		mv.addObject("BOOK_NO", commandMap.get("BOOK_NO"));
+		
+		log.debug("mv=> " + mv);
+    	log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
 
 	// dateButton 리스트 메소드
 	public List<String> dateButton(Date date) {
