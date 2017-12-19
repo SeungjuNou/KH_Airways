@@ -23,6 +23,16 @@ public class CommonServiceImpl implements CommonService{
     public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
         return commonDAO.selectFileInfo(map);
     }
+    
+    @Override
+    public Map<String, Object> selectFile(Map<String, Object> map) throws Exception {
+        return commonDAO.selectFile(map);
+    }
+    
+    @Override
+    public void insertFile(Map<String, Object> map) throws Exception {
+        commonDAO.insertFile(map);
+    }
 
 }
 

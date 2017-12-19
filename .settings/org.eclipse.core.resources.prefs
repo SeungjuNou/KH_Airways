@@ -2,5 +2,5 @@
 <<<<<<<=HEAD
 >>>>>>>=da829d3ce7feb3a49d5dad16c775d52daba918f6
 eclipse.preferences.version=1
-encoding//src/main/webapp/WEB-INF/jsp/admin/adminMemberList.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/member/adminMemberList.jsp=UTF-8
 encoding/<project>=UTF-8

@@ -32,11 +32,7 @@
 								
 								<div class="row">
 									<div class="col-lg-12" align="right">
-										<a href="/khteam1/admin/memberList.do">전체회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=1">1번회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=2">2번회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=3">3번회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=4">4번회원</a>
+										<a href="/khteam1/admin/memberList.do">일반회원</a>
 									</div>
 								</div>
 

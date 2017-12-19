@@ -28,7 +28,7 @@ public class RouteController {
     // routeToPdf.jsp => HtmlMaker.urlPath => RoutePdfController.htmlStr => PdfBuiler
     @RequestMapping(value="/admin/pdfRouteList.do")
     public ModelAndView pdfRouteList(CommandMap commandMap) throws Exception {
-    	ModelAndView mv = new ModelAndView("/pdf/routeToPdf");
+    	ModelAndView mv = new ModelAndView("pdf/route2pdf");
     	List<Map<String, Object>> list = routeService.selectRouteList();
     	mv.addObject("list", list);
     	return mv;

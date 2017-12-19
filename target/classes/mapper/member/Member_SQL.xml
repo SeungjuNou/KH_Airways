@@ -14,7 +14,7 @@
 	<!-- 관리자 전체 회원목록 -->
 	<select id="memberList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT * FROM F_MEMBER   
+			SELECT * FROM F_MEMBER WHERE GRADE = '0'
 			ORDER BY NO DESC
 		]]>
 	</select>

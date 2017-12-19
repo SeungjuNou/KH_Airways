@@ -40,7 +40,7 @@ Logger log = Logger.getLogger(this.getClass());
 		List<Map<String, Object>> rourte = routeService.selectRouteList();
 		
 		mv.addObject("rourte", rourte);
-		mv.setViewName("/admin/adminFlightReg");
+		mv.setViewName("/flight/adminFlightReg");
 		return mv;
 	}
 	
@@ -70,7 +70,7 @@ Logger log = Logger.getLogger(this.getClass());
 		
 		List<Map<String, Object>> flightList = flightService.flightAllList();
 		mv.addObject("flightList", flightList);
-		mv.setViewName("/admin/adminFlightList");
+		mv.setViewName("/flight/adminFlightList");
 		return mv;
 	}
 	
@@ -107,7 +107,7 @@ Logger log = Logger.getLogger(this.getClass());
 			flightList.addAll(flightService.flightSearchList(commandMap.getMap()));//검색
 		}
 		
-		mv.setViewName("/admin/adminFlightList");
+		mv.setViewName("/flight/adminFlightList");
 		mv.addObject("flightList", flightList);
 		return mv;
 	}

@@ -5,6 +5,34 @@
 	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[SELECT STORED_FILE_NAME, ORIGINAL_FILE_NAME FROM TB_FILE WHERE IDX = #{IDX}]]>
 	</select>
+	
+	<select id="selectFile" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[SELECT * FROM AIR_FILE WHERE NAME = #{name}]]>
+	</select>
+	
+	
+	<select id="insertFile" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		INSERT INTO AIR_FILE
+			(
+				NO,
+			    NAME,
+			    F_NAME
+			)
+			VALUES
+			(
+				AIR_FILE_SEQ.NEXTVAL,
+			    #{name},
+			    #{fname}
+			)
+		]]>
+	</select>
+	
+	
+	
+	
+	
+	
 	<sql id="pagingPre">
 		<![CDATA[
 		SELECT

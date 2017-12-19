@@ -27,7 +27,7 @@
 									<a href="<c:url value='/admin/openRouteDeactList.do'/>" 
 										button type="button" class="btn btn-primary">비활성화된노선확인하기</a> 
 									<!-- 클릭하면 현재 노선등록현황을 출력하는 컨트롤러 호출 => /route/RoutePdfController -->
-									<a href="<c:url value='/pdfMake.do?reqName=pdfRouteList' />" 
+									<a href="<c:url value='/pdfMake.do?reqName=admin/pdfRouteList&name=route&fname=file_ST' />" 
 										button type="button" class="btn btn-primary">출력하기</a>
 								</p>
 

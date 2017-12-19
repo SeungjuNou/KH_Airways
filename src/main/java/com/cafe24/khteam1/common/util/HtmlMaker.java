@@ -25,7 +25,7 @@ public class HtmlMaker {
 	
 	public String pageMakeHtml(String conUrl) {
 	 	
-		String urlPath = "http://localhost:8080/khteam1/"+conUrl+".do";
+		String urlPath = "http://localhost:9090/khteam1/"+conUrl+".do"; 
         String pageContents = "";
         StringBuilder contents = new StringBuilder();
  

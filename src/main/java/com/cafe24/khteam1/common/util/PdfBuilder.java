@@ -40,8 +40,10 @@ public class PdfBuilder extends AbstractView{
 		Document document = new Document(PageSize.A4, 50, 50, 50, 50); // 용지 및 여백 설정
 	     
 		// PdfWriter 생성
-		String fileName = (String) model.get("fileName"); // 파일명이 한글일 땐 인코딩 필요
-		String filePath = request.getSession().getServletContext().getRealPath(fileName); //서버경로 
+		String fileName = ((String) model.get("fileName") + ".pdf"); // 파일명이 한글일 땐 인코딩 필요
+		String folderName = (String) model.get("folderName"); //폴더명 
+		String filePath = request.getSession().getServletContext().getRealPath("/"+folderName+"/"); //서버경로 
+		String serverPath = request.getSession().getServletContext().getRealPath("/");
 		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath + fileName)); // 서버에 저장
 		PdfWriter writer2 = PdfWriter.getInstance(document, response.getOutputStream()); //링크 클릭하면 바로 다운로드
 		writer.setInitialLeading(12.5f);
@@ -57,12 +59,13 @@ public class PdfBuilder extends AbstractView{
 		     
 		// CSS
 		CSSResolver cssResolver = new StyleAttrCSSResolver();
-		CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream("/_css/morris.css"));
+		CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream(serverPath + "_css/morris.css"));
 		cssResolver.addCss(cssFile);
-		     
+		    
 		// HTML, 폰트 설정
+		String fontPath = serverPath + "fonts/malgun.ttf";
 		XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
-		fontProvider.register("/fonts/malgun.ttf", "MalgunGothic"); // MalgunGothic은 alias,
+		fontProvider.register(fontPath, "MalgunGothic"); // MalgunGothic은 alias,
 		CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 		 
 		HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);

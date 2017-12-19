@@ -31,11 +31,11 @@
 								
 								<div class="row">
 									<div class="col-lg-12" align="right">
-										<a href="/khteam1/admin/memberList.do">전체회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=1">1번회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=2">2번회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=3">3번회원</a>
-										<a href="/khteam1/admin/memberList.do?GRADE=4">4번회원</a>
+										<a href="/khteam1/admin/memberGradeList.do">일반회원</a>
+										<a href="/khteam1/admin/memberGradeList.do?GRADE=1">1번회원</a>
+										<a href="/khteam1/admin/memberGradeList.do?GRADE=2">2번회원</a>
+										<a href="/khteam1/admin/memberGradeList.do?GRADE=3">3번회원</a>
+										<a href="/khteam1/admin/memberGradeList.do?GRADE=4">4번회원</a>
 									</div>
 								</div>
 
@@ -48,7 +48,6 @@
 												<tr>
 													<th>회원번호</th>
 													<th>아이디</th>
-													<th>비밀번호</th>
 													<th>이름</th>
 													<th>영문성</th>
 													<th>영문이름</th>
@@ -65,7 +64,6 @@
 													<tr>
 														<td>${list.NO}</td>
 														<td>${list.ID}</td>
-														<td>${list.PASSWORD}</td>
 														<td>${list.NAME}</td>
 														<td>${list.E_FIRST}</td>
 														<td>${list.E_LAST}</td>

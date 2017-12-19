@@ -140,19 +140,16 @@ public class MemberController {
 	// 관리자 회원목록
 	@RequestMapping(value = "/admin/memberList.do")
 	public ModelAndView memberList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView view = new ModelAndView("admin/adminMemberList");
-		String grade = (String) commandMap.get("GRADE");
+		ModelAndView view = new ModelAndView("member/adminMemberList");	
 		String keyword = (String) commandMap.get("keyword");
 		List<Map<String,Object>> list = null;
-		if (grade==null || grade.equals("")){
+		
 			if (keyword == null || keyword.equals("")) {
 				list = memberService.memberList(commandMap.getMap());
 			}else {
 				list = memberService.findMemberList(commandMap.getMap());
 			}
-			}else {
-				list = memberService.memberGradeList(commandMap.getMap());
-		}
+		
 		view.addObject("list",list);
 		return view;
 	}
@@ -160,7 +157,7 @@ public class MemberController {
 	//회원등급 변경 목록
 	@RequestMapping(value = "/admin/memberGradeList.do")
 	public ModelAndView memberGradeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView view = new ModelAndView("admin/adminMemberGradeList");
+		ModelAndView view = new ModelAndView("member/adminMemberGradeList");
 		String grade = (String) commandMap.get("GRADE");
 		String keyword = (String) commandMap.get("keyword");
 		List<Map<String,Object>> list = null;
@@ -180,7 +177,7 @@ public class MemberController {
 	// 관리자 회원수정폼
 	@RequestMapping(value = "/admin/updateMemberForm.do")
 	public ModelAndView adminUpdateMemberForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView view = new ModelAndView("admin/adminUpdateMemberForm");
+		ModelAndView view = new ModelAndView("member/adminUpdateMemberForm");
 		Map<String, Object> map = memberService.viewMember(commandMap.getMap());
 		view.addObject("map", map);
 		return view;
@@ -189,7 +186,7 @@ public class MemberController {
 	// 관리자 회원수정폼
 		@RequestMapping(value = "/admin/memberGradeForm.do")
 		public ModelAndView adminMemberGradeForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
-			ModelAndView view = new ModelAndView("admin/adminMemberGradeForm");
+			ModelAndView view = new ModelAndView("member/adminMemberGradeForm");
 			Map<String, Object> map = memberService.viewMember(commandMap.getMap());
 			view.addObject("map", map);
 			return view;
