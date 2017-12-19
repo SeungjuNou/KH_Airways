@@ -21,16 +21,6 @@ public class MainController {
     @Resource(name="routeService")
     private RouteService routeService;
 
-
-     
-    @RequestMapping(value="/main2.do")
-    public ModelAndView openMain(CommandMap commandMap) throws Exception{
-        ModelAndView mv = new ModelAndView("/main/main");
-        List<Map<String,Object>> list = routeService.depRouteList(commandMap.getMap());
-        mv.addObject("list", list);
-        return mv;
-    }
-
     
     @ResponseBody
     @RequestMapping(value="/arrRouteList2.do") 
@@ -41,6 +31,14 @@ public class MainController {
     
     }
     
+    
+    @RequestMapping(value="/main.do")
+    public ModelAndView openMain(CommandMap commandMap) throws Exception{
+        ModelAndView mv = new ModelAndView("/main/main");
+        List<Map<String,Object>> list = routeService.depRouteList(commandMap.getMap());
+        mv.addObject("list", list);
+        return mv;
+    }
     
 
 

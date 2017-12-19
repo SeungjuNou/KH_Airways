@@ -29,7 +29,13 @@ public class RoutePdfController {
 		model.addAttribute("bodyString", htmlStr);
 		model.addAttribute("fileName", fileName);
 		model.addAttribute("folderName", fileName);
-		return "buildPdf";
+		
+		if(null == null ) {
+			return "buildPdf";
+		} else {
+			return "downloadPdf";
+		}
+		
 	}
 	
 }

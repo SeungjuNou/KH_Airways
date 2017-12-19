@@ -95,13 +95,13 @@
 		<div class="container-fluid">
 
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-10">
 					<h2 class="page-header">노선정보수정하기</h2>
 
 				</div>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col-lg-10">
 				<div class="panel panel-default">
 					<div class="panel-body">
 
@@ -112,18 +112,18 @@
 
 								<h3>노선정보 수정하기</h3>
 								<div class="panel-heading">
-								<form role="form" action="/khteam1/route/updateRoute.do" method="post">
+								<form role="form" action="/khteam1/admin/updateRoute.do" method="post">
 									<div class="form-group has-success">
 										<label class="control-label" for="inputSuccess">노선번호</label>
-										${map.ITI_NO}<input type="hidden" class="form-control" id="ITI_NO" name="ITI_NO" value="${map.ITI_NO}" />
+										${map.ITI_NO}
 									</div>
 									<div class="form-group has-success">
 										<label class="control-label" for="inputSuccess">DEPARTURE</label>
-										${map.DEP}<input type="hidden" class="form-control" id="DEP" name="DEP" value="${map.DEP }" />
+										${map.DEP}
 									</div>
 									<div class="form-group has-success">
 										<label class="control-label" for="inputSuccess">ARRIVAL</label>
-										${map.ARR }<input type="hidden" class="form-control" id="ARR" name="ARR" value="${map.ARR }" />
+										${map.ARR }
 									</div>
 									<div class="form-group has-success">
 										<label class="control-label" for="inputSuccess">출발일시</label> 
@@ -149,9 +149,9 @@
 									<p align="right">
 										<input type="submit" value="수정하기" class="btn btn-primary"></input>
 
-										<a href="<c:url value='/route/openRouteList.do'/>" 
+										<a href="<c:url value='/admin/openRouteList.do'/>" 
 										button type="button" class="btn btn-primary">목록으로</a> 
-										<a href="<c:url value='/route/deleteRoute.do?ITI_NO=${map.ITI_NO}'/>"
+										<a href="<c:url value='/admin/deleteRoute.do?ITI_NO=${map.ITI_NO}'/>"
 										button type="button" class="btn btn-primary">노선삭제</a> 
 										<input type='hidden' id='ITI_NO' value='${map.ITI_NO}'>
 									</p>

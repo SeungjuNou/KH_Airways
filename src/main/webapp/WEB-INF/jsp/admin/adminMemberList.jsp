@@ -49,7 +49,6 @@
 												<tr>
 													<th>회원번호</th>
 													<th>아이디</th>
-													<th>비밀번호</th>
 													<th>이름</th>
 													<th>영문성</th>
 													<th>영문이름</th>
@@ -66,7 +65,6 @@
 													<tr>
 														<td>${list.NO}</td>
 														<td>${list.ID}</td>
-														<td>${list.PASSWORD}</td>
 														<td>${list.NAME}</td>
 														<td>${list.E_FIRST}</td>
 														<td>${list.E_LAST}</td>

@@ -11,4 +11,10 @@
 	</select>
 	
 	
-</mapper>
+	<select id="selectSales" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM(SELECT DAY , SUM(PRICE) AS "total" FROM BOOK GROUP BY ROLLUP(DAY)) WHERE DAY LIKE #{DAY}
+		]]>
+	</select> 
+	
+</mapper> 

@@ -46,14 +46,14 @@
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">KH Airways</a>
+            <a class="navbar-brand" href="admin.do">KH Airways</a>
         </div>
 
 
 
         <!-- Top Navigation: Left Menu -->
         <ul class="nav navbar-nav navbar-left navbar-top-links">
-            <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+            <li><a href="../main.do"><i class="fa fa-home fa-fw"></i> Website</a></li>
         </ul>
 
         <!-- Sidebar -->
@@ -62,49 +62,44 @@
 
                 <ul class="nav" id="side-menu">
                     <li>
-                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                    </li>
-
-
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> 항공 관리 <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> 운영 관리 <span class="fa arrow"></span></a>
 
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">노선등록</a>
-                            </li>
-                            <li>
-                                <a href="#">항공편관리</a>
-                            </li>
-							<li>
-                                <a href="#">운항정보 <span class="fa arrow" > </a>
-                                <ul class="nav nav-second-level">
+                                <a href="#">노선 관리<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">날짜별 운항리스트<span class="fa arrow"></span></a>
-										<ul class="nav nav-third-level">
-											<li>
-												<a href="#">항공편별 운항통계</a>
-											</li>
-										</ul>
+                                        <a href="openRouteWrite.do">노선등록</a>
                                     </li>
                                     <li>
-                                        <a href="morris.html">오늘의 운항현황</a>
+                                        <a href="openRouteList.do">활성화 노선</a>
+                                    </li>
+                                    <li>
+                                        <a href="openRouteDeactList.do">비 활성화 노선</a>
                                     </li>
                                 </ul>
                             </li>
+                            
                             <li>
-                            		<a href="#">매출정보 <span class="fa arrow" ></a>
-                            		<ul class="nav nav-second-level">
+                                <a href="#">항공편 관리<span class="fa arrow"></span></a>
+								<ul class="nav nav-second-level">
                                     <li>
-                                        <a href="#">월 매출 현황<span class="fa arrow"></span></a>
-										<ul class="nav nav-third-level">
-											<li>
-												<a href="#">항공편별 운항통계</a>
-											</li>
-										</ul>
+                                        <a href="flightRegFrom.do">항공편 등록</a>
                                     </li>
                                     <li>
-                                        <a href="morris.html">오늘의 운항현황</a>
+                                        <a href="flightAdminList.do">항공편 현황</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+							<li>
+                                <a href="#">운항정보 <span class="fa arrow" ></span> </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="selectToday.do">일간 리포트</a>
+                                    </li>
+                                    <li>
+                                        <a href="selectMonth.do">월간 리포트</a> 
                                     </li>
                                 </ul>
                             </li>
@@ -116,30 +111,13 @@
 
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="#">회원목록</a>
-                            </li>
-                            <li>
-                                <a href="#">여권정보수정 <span class="fa arrow"> </a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#">미승인</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">승인</a>
-                                    </li>
-                                </ul>
-                            </li>
-							<li>
-                                <a href="#">마일리지회원관리</a>
+                                <a href="memberList.do">회원목록</a>
                             </li>
                             <li>
                                 <a href="#">예약관리 <span class="fa arrow"> </a>
 								<ul class="nav nav-third-level">
 									<li>
                                         <a href="#">출발일별 예약현황</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">오늘날짜 예약현황</a>
                                     </li>
 								</ul>
                             </li>
