@@ -19,11 +19,10 @@
 
 					<div class="col-lg-11">
 						<div class="panel panel-default">
-							<div class="panel-heading" items="${list}" var="row">
-								<h3> ${BOOK_NO} &nbsp;의 항공권목록</h3>
+							<div class="panel-heading">
+								<h3> ${list[1].BOOK_NO} &nbsp;의 항공권목록</h3>
 								<p align="right">
-									<a href="<c:url value=''/>" 
-										button type="button" class="btn btn-primary">항공권번호수동생성</a> 
+									<a href="<c:url value=''/>" type="button" class="btn btn-primary">항공권번호수동생성</a> 
 									
 								</p>
 
@@ -37,13 +36,14 @@
 												<th>예약번호</th>
 												<th>항공권번호</th>
 												<th>승객성명</th>
-												<th>케어여부</th>
-												<th>케어종류</th>
-												<th>추가수하물</th>
-												<th>기내식종류</th>
-												<th>나이분류</th>
-												<th>승객성별</th>
-												<th></th>
+												<th>케어</th>
+												<th>bag</th>
+												<th>기내식</th>
+												<th>나이</th>
+												<th>성별</th>
+												<th>&nbsp;</th>
+												<th>&nbsp;</th>
+												<th>&nbsp;</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -53,8 +53,7 @@
 													<td>${row.BOOK_NO}<input type='hidden' id='BOOK_NO' value='${row.BOOK_NO}' /></td>
 													<td>${row.TK_NO}</td>
 													<td>${row.NAME}</td>
-													<td>${row.CARE}</td>
-													<td>${row.CARE_KD}</td>
+													<td>${row.CARE}&nbsp;/&nbsp;${row.CARE_KD}</td>
 													<td>${row.CH_BAG}</td> 
 													<td>${row.MEAL}</td>
 													<td>${row.ADULT}</td>
@@ -63,10 +62,10 @@
 														href=<c:url value='.do?/pdfMake.do?reqName=admin/pdfTicket&name=route&fname=file_ST'/>>항공권출력</a>
 														<input type='hidden' id='TK_NO' value='${row.TK_NO}' /></td>
 													<td><a
-														href=<c:url value='.do?TK_NO=${row.TK_NO}'/>>항공권수정</a>
+														href=<c:url value='.do?TK_NO=${row.TK_NO}'/>>수정</a>
 														<input type='hidden' id='TK_NO' value='${row.TK_NO}' /></td>
 													<td><a
-														href=<c:url value='.do?TK_NO=${row.TK_NO}'/>>항공권삭제</a>
+														href=<c:url value='.do?TK_NO=${row.TK_NO}'/>>삭제</a>
 														<input type='hidden' id='TK_NO' value='${row.TK_NO}' /></td>	
 												</tr>
 											</c:forEach>

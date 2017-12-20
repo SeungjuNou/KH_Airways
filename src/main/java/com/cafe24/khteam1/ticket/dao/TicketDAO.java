@@ -18,5 +18,10 @@ public class TicketDAO extends AbstractDAO {
 	public List<Map<String, Object>> TKlistByBKno(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>) selectList("ticket.TKlistByBKno", map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> ticketDetail(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("ticket.ticketDetail", map);
+	}
 
 }

@@ -81,9 +81,9 @@
                   '#{MILE_NO}',
                   '사용',
                   '0',
-                  '2000',
+                  '#{USE_MILE}',
                   SYSDATE,
-                  (SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1) - 2000
+                  (SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1) - #{USE_MILE}
           )
 		]]>
 	</insert>
@@ -103,10 +103,10 @@
 	        (	SEQ_MILE_NO.NEXTVAL,
                   #{MILE_NO},
                   '적립',
-                  '2000',
+                  #{SAVE_MILE},
                   '0',
                   SYSDATE,
-                  (SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1) + 2000
+                  (SELECT MILES FROM (SELECT MILES FROM F_MILES WHERE MILE_NO = #{MILE_NO} ORDER BY NO DESC) WHERE ROWNUM = 1) + #{SAVE_MILE}
           )
 		]]>
 	</insert>

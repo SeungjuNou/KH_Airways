@@ -40,7 +40,7 @@ public class PdfBuilder extends AbstractView{
 		Document document = new Document(PageSize.A4, 50, 50, 50, 50); // 용지 및 여백 설정
 	     
 		// PdfWriter 생성
-		String fileName = ((String) model.get("fileName") + ".pdf"); // 파일명이 한글일 땐 인코딩 필요
+		String fileName = ((String) model.get("fileName")); // 파일명이 한글일 땐 인코딩 필요
 		String folderName = (String) model.get("folderName"); //폴더명 
 		String filePath = request.getSession().getServletContext().getRealPath("/"+folderName+"/"); //서버경로 
 		String serverPath = request.getSession().getServletContext().getRealPath("/");

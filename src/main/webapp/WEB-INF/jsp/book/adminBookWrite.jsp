@@ -25,7 +25,7 @@
 								<form role="form" action="/khteam1/admin/bookWrite.do" method="post">
 										<div class="form-group has-success">
 											<label class="control-label" for="inputSuccess">예약번호</label>
-											<input type="text" class="form-control" id="BOOK_NO" name="BOOK_NO">
+											<p>예약번호는 자동 생성 됩니다.</p>
 										</div>
 										<div class="form-group has-success">
 											<label class="control-label" for="inputSuccess">예약인원</label>
