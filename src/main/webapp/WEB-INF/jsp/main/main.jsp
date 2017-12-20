@@ -124,7 +124,7 @@
 
             		<div id="arr_date">
             			귀국일
-                		<input type="date" id="userdate" name="DEP_DATE2" value="2017-12-04">
+                		<input type="date" id="userdate" name="DEP_DATE2" value="2017-12-13">
             		</div>
 
 				</div>
@@ -140,6 +140,7 @@
 					
 					유아
 					<select name="child_count" id="child_count">
+						<option value="0">0명</option>
 					    <option value="1">1명</option>
 					    <option value="2">2명</option>
 					    <option value="3">3명</option>
@@ -396,7 +397,6 @@ $(document).bind('ready ajaxComplete', function(){
         });
         
         $(".rowDep2").click(function(){
-        		alert($(this).val());
             $("#dep_area0").val($(this).val());
         });
         

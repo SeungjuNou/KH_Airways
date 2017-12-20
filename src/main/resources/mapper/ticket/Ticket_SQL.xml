@@ -40,4 +40,14 @@
 		]]>
 	</select>
 	
+	<select id="ticketDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				TICKET
+			WHERE
+				TK_NO = #{name}
+		]]>
+	</select>
+	
 </mapper>

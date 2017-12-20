@@ -19,7 +19,7 @@ public interface TicketService {
 	//항공권 생성
 	void insertTicket(Map<String, Object> map) throws Exception;
 	/*
-	//항공권 상세보기
+	
 	Map<String, Object> viewTicket(Map<String, Object> map) throws Exception;
 	
 	//항공권 수정(혹시 몰라..)
@@ -27,4 +27,8 @@ public interface TicketService {
 
 	//항공권 취소(혹시 몰라..)
 	void deleteTicket(Map<String, Object> map) throws Exception;*/
+	
+	//항공권 상세보기
+	public Map<String, Object> ticketDetail(Map<String, Object> map) throws Exception;
+	
 }

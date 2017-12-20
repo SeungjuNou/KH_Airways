@@ -45,11 +45,15 @@ public class MilesServiceImpl implements MilesService {
 	}
 
 	@Override
-	public Map<String, Object> useMile(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public void useMile(Map<String, Object> map) throws Exception {
+		milesDAO.useMile(map);
 	}
-
+	
+	@Override
+	public void saveMile(Map<String, Object> map) throws Exception {
+		milesDAO.saveMile(map);
+	}
+	
 	
 
 }

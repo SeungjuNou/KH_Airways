@@ -237,19 +237,21 @@
 											<p></p>
 											<h3>항공운임 등 총계</h3>
 											<h4>
-												<p class="text-right text-info">${map.PRICE}&nbsp;</p>
+												<p class="text-right text-info comma"></p>
 											</h4>
 
 											<blockquote>
 												<p>유류할증료와 세금을 포함한 총 운임으로 구매 시점과 환율에 따라 변동 될 수 있습니다.</p>
 											</blockquote>
+											<ul id ="alert2">
+											</ul>
 										</div>
 										<div class="panel-footer">
 											<p class="text-right text-info">
 												<button type="submit" name="pay" value="pay" 
 													class="btn btn-outline btn-primary btn-lg btn-block">
 													구매하기</button>
-												<button type="submit" name="pay" value="miles" 
+												<button type="submit" name="pay" value="miles" id="mileButton"
 													class="btn btn-outline btn-primary btn-lg btn-block">
 													마일리지 구매</button>
 											</p>
@@ -286,8 +288,42 @@
 	<script src="../_scripts/startmin.js"></script>
 
 
+<script>
+$(document).ready(function(){
+	
+		
+	
+	var miles = parseInt("<c:out value="${miles.MILES}" />");
+	var price = parseInt("<c:out value="${map.PRICE}" />");
+	
+	
+	
+	if(miles < price) {
+		$("#mileButton").attr('disabled',true);
+		$("<li>"+ "잔여 마일리지가 부족합니다." +"</li>").appendTo("#alert2");
+		$("<li>"+ "현재 마일리지 : " + miles +"</li>").appendTo("#alert2");
+	}
+	
+});
+</script>
 
 
+<script>
+	$(document).ready(
+
+	function() {
+
+		var price = parseInt("<c:out value="${map.PRICE}" />");
+
+		var result = numberWithCommas(price);
+		$("<h4>" + result + "</h4>").appendTo(".comma");
+
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+	});
+	
+</script>
 
 
 </body>

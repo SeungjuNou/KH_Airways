@@ -33,12 +33,20 @@ public class PdfController {
 	public String pageRankReport(Model model, CommandMap commandMap, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		// HtmlMaker 클래스에서 pageMakeHtml을 불러와서 htmlStr에 넣고 이와 함께, fileName을 각각의 이름값을 정해서 model에 넣어서 buildPdf로 리턴.
 		// buildPdf는 bean id 로서 action-servlet.xml파일에서 확인.
-		String htmlStr = htmlMaker.pageMakeHtml((commandMap.getMap().get("reqName")).toString());
-		log.debug(commandMap.getMap());
+		
 		String name = (commandMap.getMap().get("name")).toString(); //파일이름 
 		String fname = (commandMap.getMap().get("fname")).toString(); //폴더이름 
+		String reqName = (commandMap.getMap().get("reqName")).toString(); //요청이름
+		String urlPath = null;
+		if(reqName.equals("book/pdfEticket")) {
+			String book_no = "&BOOK_NO="+(commandMap.getMap().get("BOOK_NO")).toString(); //예약번호
+			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname + book_no;
+		} else {
+			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname;
+		}
 		
-		  
+		String htmlStr = htmlMaker.pageMakeHtml(urlPath);
+		
 		Map<String, Object> count = commonService.selectFile(commandMap.getMap());
 		
 		model.addAttribute("bodyString", htmlStr);

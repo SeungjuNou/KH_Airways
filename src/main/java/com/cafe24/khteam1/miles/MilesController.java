@@ -34,7 +34,7 @@ public class MilesController {
 	// 회원관리(마일리지사용내역) //회원별 
 	@RequestMapping(value = "/admin/milesList.do" ,method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView adminMilesList(CommandMap commandMap) throws Exception {
-		ModelAndView view = new ModelAndView("admin/adminMilesManage");
+		ModelAndView view = new ModelAndView("member/adminMilesManage");
 		List<Map<String, Object>> list = milesService.milesList(commandMap.getMap());
 		view.addObject("list", list);
 		return view;
@@ -45,7 +45,7 @@ public class MilesController {
 	// 회원관리(마일리지회원관리) //전부 
 	@RequestMapping(value = "/admin/milesManage.do")
 	public ModelAndView adminMilesManage(CommandMap commandMap) throws Exception {
-		ModelAndView view = new ModelAndView("admin/adminMilesManage");
+		ModelAndView view = new ModelAndView("member/adminMilesManage");
 		List<Map<String, Object>> list = milesService.milesManage(commandMap.getMap());
 		view.addObject("list", list);
 		return view;
@@ -53,14 +53,14 @@ public class MilesController {
 	
 	/////////회원/////////
 	
-	// 마이페이지(마일리지사용)
+	/*// 마이페이지(마일리지사용)
 	@RequestMapping(value = "/myPage/useMile.do")
 	public ModelAndView useMile(CommandMap commandMap) throws Exception {
 		ModelAndView view = new ModelAndView("myPage/milesList");
 		Map<String, Object> map = milesService.useMile(commandMap.getMap());
 		view.addObject("map", map);
 		return view;
-	}
+	}*/
 
 	// 마이페이지(마일리지사용내역)
 	@RequestMapping(value = "/myPage/milesList.do")

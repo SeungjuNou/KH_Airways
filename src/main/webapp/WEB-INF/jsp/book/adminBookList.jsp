@@ -22,8 +22,7 @@
 							<div class="panel-heading">
 								<h3>예약목록</h3>
 								<p align="right">
-									<a href="<c:url value='/admin/openbookWrite.do'/>" 
-										button type="button" class="btn btn-primary">예약번호등록하기</a> 
+									<a href="<c:url value='openBookWrite.do'/>" type="button" class="btn btn-primary">예약번호등록하기</a> 
 								</p>
 
 							</div>
@@ -35,8 +34,6 @@
 											<tr>
 												<th>예약번호</th>
 												<th>예약인원</th>
-												<th>출발편코드</th>
-												<th>도착편코드</th>
 												<th>결제수단</th>
 												<th>총산출금액</th>
 												<th>예약자이름</th>
@@ -56,8 +53,6 @@
 														href="<c:url value='/admin/TKlistByBKno.do?BOOK_NO=${row.BOOK_NO}'/>">${row.BOOK_NO}</a>
 														<input type='hidden' id='BOOK_NO' value='${row.BOOK_NO}' /></td>
 													<td>${row.COUNT}</td>
-													<td>${row.DEP_CODE}</td>
-													<td>${row.ARR_CODE}</td>
 													<td>${row.PAY}</td> 
 													<td>${row.PRICE}</td>
 													<td>${row.NAME}</td>

@@ -30,4 +30,10 @@ public class TicketServiceImpl implements TicketService{
 		
 	    return ticketDAO.TKlistByBKno(map);
 	}
+	
+	@Override
+	public Map<String, Object> ticketDetail(Map<String, Object> map) throws Exception {
+		Map<String, Object> resultMap = ticketDAO.ticketDetail(map);
+		return resultMap;
+	}
 }
