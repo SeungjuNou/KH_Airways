@@ -62,10 +62,10 @@
 							예약번호조회
                       </div>
                       <div class="panel-body">
-                        <form role="form" action="/khteam1/webcheck/openCheckin.do" method="post">
+                        <form role="form" action="/khteam1/webcheck/webCheckStep1.do" method="post">
                           <div class="form-group has-success">
                             <label class="control-label" for="inputSuccess">예약번호</label>
-                            <input type="text" class="form-control" id="inputSuccess" placeholder="예)123456">
+                            <input type="text" name="BOOK_NO" class="form-control" id="inputSuccess" placeholder="예)123456">
                           </div>
 
                           <!-- <div class="form-group has-success">
@@ -89,7 +89,9 @@
 
                       <div class="panel-footer">
                         <p align="right">
-                          <a href="<c:url value='/webCheck/webCheckStep1.do'/>" button type="button" class="btn btn-primary">계속</a>
+                          
+                          <input type="submit" value="계속" class="btn btn-primary"/>
+                          
                         </p>
                       </div>
               </form>

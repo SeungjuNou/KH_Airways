@@ -196,7 +196,7 @@ public class BookController {
 		Map<String, Object> map2book = new HashMap<String, Object>();
 		String regDate = new SimpleDateFormat("yyMMdd").format(new java.util.Date());
 
-		int price = Integer.parseInt((String) map.get("PRICE"));
+		int price = (Integer) map.get("PRICE");
 		int miles = (int) (price * 0.1) ;
 		
 
