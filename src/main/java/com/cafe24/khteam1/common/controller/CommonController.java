@@ -44,6 +44,13 @@ public class CommonController {
         response.getOutputStream().flush();
         response.getOutputStream().close();
     }
+    
+    
+    
+    @RequestMapping(value="index.do")
+    public void index(CommandMap commandMap) throws Exception{
+        
+    }
 
 }
 
