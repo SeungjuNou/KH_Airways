@@ -77,5 +77,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void updateGrade(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		memberDAO.updateGrade(map);
+	}
+
+	@Override
+	public Map<String, Object> findId(Map<String, Object> map) throws Exception {
+		return memberDAO.findId(map);
 	}	
 }
