@@ -27,4 +27,6 @@ public interface FlightService {
 	
 	//flight 리스트 검색
 	List<Map<String, Object>> flightSearchList(Map<String, Object> map);
+	
+	void seatUpdate(Map<String, Object> map, HttpServletRequest request) throws Exception;
 }

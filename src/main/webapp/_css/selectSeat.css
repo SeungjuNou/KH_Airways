@@ -1,0 +1,67 @@
+#seatTable {
+	text-align: center;
+	width: 40%;
+	height: 300px;
+	margin: 0 auto;
+	background: none;
+} 
+
+
+.seat2 {
+	background-image: url(/khteam1/_assets/plane.jpg);
+	background-size: 100%;
+
+}
+#seatTable tr {
+	margin-bottom: 15px; 
+	height: 30px;      
+	width:  120px;    
+	border: solid none;       
+}
+  
+
+#seatTable tr td {
+	margin-bottom: 15px; 
+	border: solid white;  
+	height: 30px;   
+	width:  120px;
+	margin-left: 5px;
+}
+
+
+ 
+.seat { 
+	background-color: white;    
+}
+ 
+.qls { 
+
+}  
+
+.seatButton { 
+	width: 100%;
+	height: 100%;
+	background: url(/khteam1/_assets/able.jpg) no-repeat;   
+	background-size: 100%;
+	border: none;     
+}
+
+.reserve {
+    background: url(/khteam1/_assets/selectSeat.jpg) no-repeat;
+    background-size: 100%;
+    border: none;
+}
+
+.selected {
+    background-color: orange;
+}
+
+.dabc {
+	background-color: red;
+}
+
+
+
+
+
+
