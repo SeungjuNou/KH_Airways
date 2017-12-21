@@ -54,4 +54,9 @@ public class MemberDAO extends AbstractDAO {
 	public void updateGrade(Map<String, Object> map) throws Exception {
 		update("member.updateGrade", map);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> findId(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("member.findId", map);
+	}
 	}

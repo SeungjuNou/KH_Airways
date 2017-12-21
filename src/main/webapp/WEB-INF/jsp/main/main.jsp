@@ -231,7 +231,7 @@
 			</p>
 			<p class="keeplogin">  
 				<input id="login" type="submit" value="로그인" />
-				<button id="login" onclick="location.href='findId.do'">아이디 찾기</button> 
+				<button id="login" class="findId">아이디 찾기</button> 
 			</p>
 			
 		</form>
@@ -415,6 +415,20 @@ $(document).bind('ready ajaxComplete', function(){
 
         $("#login-form-close").click(function(){
             $("#member_form").fadeOut(450);
+        });
+        
+        //ID찾기
+        $(".findId").click(function(){
+        	var url = "findId.do";
+        	var name = "ID찾기";
+        	var width=500, height=300;
+        	var left = (screen.availWidth - width)/2;
+        	var top = (screen.availHeight - height)/2;
+        	var specs = "width=" + width;
+        	specs += ",height=" + height;
+        	specs += ",left=" + left;
+        	specs += ",top=" + top;
+        	window.open(url,name,specs);
         });
     }); 
 </script>

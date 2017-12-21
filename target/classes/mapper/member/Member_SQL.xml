@@ -97,5 +97,15 @@
 	 SELECT * FROM F_MEMBER WHERE NAME LIKE '%'||#{keyword}||'%'
 	 ]]>
 	</select>
+	
+	<select id="findId" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT ID
+		FROM
+			F_MEMBER
+		WHERE
+			NAME = #{NAME} AND EMAIL = #{EMAIL}
+	]]>
+	</select>
 
 </mapper>
