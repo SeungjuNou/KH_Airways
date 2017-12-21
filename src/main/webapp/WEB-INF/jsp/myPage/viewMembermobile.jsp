@@ -8,22 +8,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KH - Airline</title>
+<title>Mobile_viewMember</title>
 
 
 
-<link href="../_css/bootstrap.min.css" rel="stylesheet">
-<link href="../_css/metisMenu.min.css" rel="stylesheet">
-<link href="../_css/startmin.css" rel="stylesheet">
-<link href="../_css/morris.css" rel="stylesheet">
-<link href="../_css/font-awesome.min.css" rel="stylesheet"
-	type="text/css">
+<link href="_css/bootstrap.min.css" rel="stylesheet">
+<link href="_css/metisMenu.min.css" rel="stylesheet">
+<link href="_css/startmin.css" rel="stylesheet">
+<link href="_css/morris.css" rel="stylesheet">
+<link href="_css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" type="text/css" href="../_css/mypage.css" />
+<link rel="stylesheet" type="text/css" href="_css/mypage.css" />
 
-<script type="text/javascript" src="<c:url value='../_scripts/jquery-2.0.2.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='../_scripts/jquery-ui-1.10.4.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='../_scripts/jquery-2.0.2.min.js'/>"></script>
+<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"/></script>
+<script type="text/javascript" src="_scripts/jquery-ui-1.10.4.min.js"/></script>
+<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"/></script>
 
 </head>
 <body>

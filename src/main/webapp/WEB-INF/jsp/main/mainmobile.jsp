@@ -13,25 +13,25 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Mobile_myPage</title>
+    <title>Mobile_main</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<c:url value='../_css/bootstrap.min.css?ver=1'/>" rel="stylesheet">
+    <link href="_css/bootstrap.min.css?ver=1" rel="stylesheet" />
 
     <!-- MetisMenu CSS -->
-    <link href="<c:url value='../_css/metisMenu.min.css?ver=1'/>" rel="stylesheet">
+    <link href="_css/metisMenu.min.css?ver=1" rel="stylesheet"/>
 
     <!-- Timeline CSS -->
-    <link href="<c:url value='../_css/timeline.css?ver=1'/>" rel="stylesheet">
+    <link href="_css/timeline.css?ver=1" rel="stylesheet"/>
 
     <!-- Custom CSS -->
-    <link href="<c:url value='../_css/startmin.css?ver=1'/>" rel="stylesheet">
+    <link href="_css/startmin.css?ver=1" rel="stylesheet"/>
 
     <!-- Morris Charts CSS -->
-    <link href="<c:url value='../_css/morris.css?ver=1'/>" rel="stylesheet">
+    <link href="_css/morris.css?ver=1" rel="stylesheet"/>
 
     <!-- Custom Fonts -->
-    <link href="<c:url value='../_css/font-awesome.min.css?ver=1'/>" rel="stylesheet" type="text/css">
+    <link href="_css/font-awesome.min.css?ver=1" rel="stylesheet" type="text/css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -110,7 +110,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <img src="../../image/Mobile_main.jpg" style="max-width: 100%; height:auto;" alt="">
+                    <img src="_assets/mobile_main.JPG" style="max-width: 100%; height:auto;" alt="">
                 </div>
             </div>
 
