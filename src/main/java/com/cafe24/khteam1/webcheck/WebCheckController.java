@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -57,9 +58,11 @@ public class WebCheckController {
 
 	// 체크인 창(체크인 main form) 띄우는 메소드
 	@RequestMapping(value = "/webcheck/openCheckin.do")
-	public ModelAndView openCheckin(@ModelAttribute("webcheckInfo") Map<String, Object> map,CommandMap commandMap) throws Exception {
+	public ModelAndView openCheckin(@ModelAttribute("webcheckInfo") Map<String, Object> map,CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/webCheck/openWebCheck");
-		map.put("MEM_NO", "id");
+		
+		String MEM_ID = (String) request.getSession().getAttribute("ID"); 
+		map.put("MEM_ID", MEM_ID);
 		List<Map<String,Object>> result = bookService.memberWbBookList(map);
 		
 		mv.addObject("result", result);
@@ -70,7 +73,7 @@ public class WebCheckController {
 	public ModelAndView webCheckStep1(@ModelAttribute("webcheckInfo") Map<String, Object> map, CommandMap commandMap)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("/webCheck/webCheckStep1");
-		log.debug(commandMap.getMap() + "////////////////step1 commandMap");
+		
 		Map<String, Object> book = bookService.bookDetail(commandMap.getMap());
 		List<Map<String, Object>> ticket = ticketService.TKlistByBKno(commandMap.getMap());
 		map.putAll(bookService.bookDetail(commandMap.getMap()));
@@ -78,7 +81,7 @@ public class WebCheckController {
 		mv.addObject("book", book);
 		mv.addObject("ticket", ticket);
 		mv.addObject("map", map);
-		log.debug(map + "////////////////step1 map");
+		
 		return mv;
 	}
 
@@ -124,7 +127,6 @@ public class WebCheckController {
 			result.put("SEAT", map2[i]);
 			webcheckService.insertWebcheck(result);
 			resultList.add(result);
-			log.debug(resultList);
 		}
 		
 		map.put("WB_CHECK", "Y");

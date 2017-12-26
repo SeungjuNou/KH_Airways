@@ -30,6 +30,10 @@ public class FlightDAO extends AbstractDAO{
   		update("flight.seatUpdate", map);
   	}
   	
+  	public void seatMin(Map<String, Object> map) {
+  		update("flight.seatMin", map);
+  	} 
+  	
   	
   	//전체 flight 리스트 불러오기
   	@SuppressWarnings("unchecked")
@@ -45,7 +49,7 @@ public class FlightDAO extends AbstractDAO{
   	
   	
   //flight 검색 리스트
-  	@SuppressWarnings("unchecked")
+  	@SuppressWarnings("unchecked") 
   	public Map<String, Object> flightDetail(Map<String, Object> map) {
   		return (Map<String, Object>) selectOne("flight.flightDetail", map);
   	}

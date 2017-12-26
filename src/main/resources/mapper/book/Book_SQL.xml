@@ -16,7 +16,7 @@
 				EMAIL, 
 				PHONE, 
 				DAY, 
-				MEM_NO,
+				MEM_ID,
 				WB_CHECK
 				)
 			VALUES
@@ -31,7 +31,7 @@
 				#{EMAIL},
 				#{PHONE},
 				#{DAY},
-				#{MEM_NO},
+				#{MEM_ID},
 				'N'
 			)
 		]]>
@@ -49,7 +49,7 @@
 			SELECT *  
 			FROM
 			    BOOK
-			WHERE MEM_NO = #{MEM_NO}  
+			WHERE MEM_ID = #{MEM_ID}  
 			ORDER BY DAY DESC
 		]]>
 	</select>
@@ -59,7 +59,7 @@
 			SELECT *  
 			FROM
 			    BOOK
-			WHERE MEM_NO = #{MEM_NO} AND WB_CHECK = 'N'
+			WHERE MEM_ID = #{MEM_ID} AND WB_CHECK = 'N'
 			ORDER BY DAY DESC
 		]]>
 	</select>
@@ -69,7 +69,7 @@
 			SELECT *  
 			FROM
 			    BOOK
-			WHERE MEM_NO = #{MEM_NO} AND WB_CHECK = 'Y'
+			WHERE MEM_ID = #{MEM_ID} AND WB_CHECK = 'Y'
 			ORDER BY DAY DESC
 		]]>
 	</select>
@@ -97,7 +97,7 @@
 				EMAIL = #{EMAIL},
 				PHONE = #{PHONE},
 				DAY = #{DAY},
-				MEM_NO = #{MEM_NO}
+				MEM_ID = #{MEM_ID}
 			WHERE
 				BOOK_NO = #{BOOK_NO}
 		]]>

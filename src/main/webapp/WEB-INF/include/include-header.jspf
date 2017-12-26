@@ -81,7 +81,7 @@
                             </li>
                             
                             <li>
-                                <a href="#">항공편 관리<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> 항공편 관리<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
                                     <li>
                                         <a href="flightRegFrom.do">항공편 등록</a>

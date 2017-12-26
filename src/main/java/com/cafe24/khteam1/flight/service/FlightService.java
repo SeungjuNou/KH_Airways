@@ -16,6 +16,8 @@ public interface FlightService {
 	Map<String, Object> flightDetail(Map<String, Object> map) throws Exception;
 	
 	void updateFlight(Map<String, Object> map, HttpServletRequest request) throws Exception;
+	
+	void seatMin(Map<String, Object> map) throws Exception; //항공편 좌석 --
 
 	void deleteFlight(Map<String, Object> map) throws Exception;
 	
