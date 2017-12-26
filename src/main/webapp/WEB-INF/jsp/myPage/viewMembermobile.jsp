@@ -1,28 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
 <title>Mobile_viewMember</title>
 
+    <!-- Bootstrap Core CSS -->
+    <link href="../_css/bootstrap.min.css?ver=1" rel="stylesheet" />
 
+    <!-- MetisMenu CSS -->
+    <link href="../_css/metisMenu.min.css?ver=1" rel="stylesheet"/>
 
-<link href="_css/bootstrap.min.css" rel="stylesheet">
-<link href="_css/metisMenu.min.css" rel="stylesheet">
-<link href="_css/startmin.css" rel="stylesheet">
-<link href="_css/morris.css" rel="stylesheet">
-<link href="_css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Timeline CSS -->
+    <link href="../_css/timeline.css?ver=1" rel="stylesheet"/>
 
-<link rel="stylesheet" type="text/css" href="_css/mypage.css" />
+    <!-- Custom CSS -->
+    <link href="../_css/startmin.css?ver=1" rel="stylesheet"/>
 
-<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"/></script>
+    <!-- Morris Charts CSS -->
+    <link href="../_css/morris.css?ver=1" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="../_css/font-awesome.min.css?ver=1" rel="stylesheet" type="text/css"/>
+
+	<link href="../_css/mypage.css?ver=1" rel="stylesheet" type="text/css"  />
+
+<!-- <script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"/></script>
 <script type="text/javascript" src="_scripts/jquery-ui-1.10.4.min.js"/></script>
-<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"/></script>
+<script type="text/javascript" src="_scripts/jquery-2.0.2.min.js"/></script> -->
 
 </head>
 <body>
@@ -42,20 +57,20 @@
 
     <!-- Top Navigation: Left Menu -->
     <ul class="nav navbar-nav navbar-left navbar-top-links">
-      <li><a href="#"><i class="fa fa-home fa-fw"></i> Website</a></li>
+      <li><a href="/khteam1/main.do"><i class="fa fa-home fa-fw"></i> Website</a></li>
     </ul>
 
     <!-- Top Navigation: Right Menu -->
     <ul class="nav navbar-right navbar-top-links">
-      <c:if test="${empty session.Id}">
+      <c:if test="${empty sessionScope.ID}">
         <li>
           <a href="#"><i class="fa fa-sign-out fa-fw"></i> Login</a>
         </li>
       </c:if>
-      <c:if test="${not empty session.Id}">
+      <c:if test="${not empty sessionScope.ID}">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                      <i class="fa fa-user fa-fw"></i> ${map.Name} <b class="caret"></b>
+                      <i class="fa fa-user fa-fw"></i> ${map.NAME} <b class="caret"></b>
                   </a>
           <ul class="dropdown-menu dropdown-user">
             <li><a href="/khteam1/myPage/viewMemberMobile.do"><i class="fa fa-user fa-fw"></i> 회원정보보기</a>
@@ -99,7 +114,7 @@
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3>${map.Name}의 회원정보보기</h3>
+              <h3>${map.NAME}의 회원정보보기</h3>
               <div class="panel-body">
                 <div class="table-responsive">
                   <div class="col-lg-12">
@@ -132,7 +147,7 @@
                   </div>
                 </div>
                 <!-- /.table-responsive -->
-                회원정보의 수정은 웹 사이트에서만 가능합니다.
+				회원정보수정은 웹 사이트에서만 가능합니다.
               </div>
               <!-- /.panel-body -->
             </div>
@@ -149,35 +164,19 @@
 
 
   <!-- jQuery -->
-  <script src="_scripts/jquery.min.js"></script>
+  <script src="../_scripts/jquery.min.js"></script>
 
   <!-- Bootstrap Core JavaScript -->
-  <script src="_scripts/bootstrap.min.js"></script>
+  <script src="../_scripts/bootstrap.min.js"></script>
 
   <!-- Metis Menu Plugin JavaScript -->
-  <script src="_scripts/metisMenu.min.js"></script>
+  <script src="../_scripts/metisMenu.min.js"></script>
 
   <!-- Custom Theme JavaScript -->
-  <script src="_scripts/startmin.js"></script>
+  <script src="../_scripts/startmin.js"></script>
 
 
-  <!-- jQuery -->
-  <script type="text/javascript" src="<c:url value='_scripts/jquery.min.js'/>"></script>
-  <!-- Bootstrap Core JavaScript -->
-  <script type="text/javascript" src="<c:url value='_scripts/bootstrap.min.js'/>"></script>
-  <!-- Metis Menu Plugin JavaScript -->
-  <script type="text/javascript" src="<c:url value='_scripts/metisMenu.min.js'/>"></script>
-  <!-- Flot Charts JavaScript -->
-  <script src="_scripts/flot/excanvas.min.js"></script>
-  <script src="_scripts/flot/jquery.flot.js"></script>
-  <script src="_scripts/flot/jquery.flot.pie.js"></script>
-  <script src="_scripts/flot/jquery.flot.resize.js"></script>
-  <script src="_scripts/flot/jquery.flot.time.js"></script>
-  <script src="_scripts/flot/jquery.flot.tooltip.min.js"></script>
-  <script src="_scripts/flot-data.js"></script>
-
-  <!-- Custom Theme JavaScript -->
-  <script type="text/javascript" src="<c:url value='_scripts/startmin.js'/>"></script>
+ 
 
 
 </body>
