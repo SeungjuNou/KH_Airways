@@ -18,7 +18,7 @@ public interface WebcheckService {
 		List<Map<String, Object>> findCheckinList(Map<String, Object> map) throws Exception;*/
 		
 		//체크인 내역 저장
-		/*void insertCheckin(Map<String, Object> map, HttpServletRequest request) throws Exception;*/
+		void insertWebcheck(Map<String, Object> map) throws Exception;
 
 		/*//체크?�� ?��?��보기 ?��걸로 (pdf)?��?��?��?�� �??��?��?��?��. 
 		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;

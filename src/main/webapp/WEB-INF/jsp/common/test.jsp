@@ -13,6 +13,13 @@
 
 </head>
 <body>
-	<jsp:forward page="${nextUrl}" />
+
+<c:url var= "url" value = "${nextUrl}">
+        <c:param name= "tid" value = "${tid}"/>
+</c:url>
+
+<c:redirect url = "${url}" />
+
+
 </body>
 </html>

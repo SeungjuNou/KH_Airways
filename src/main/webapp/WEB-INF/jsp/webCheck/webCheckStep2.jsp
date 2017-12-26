@@ -80,15 +80,16 @@
 													<h3>인원수 만큼 좌석을 선택하세요.</h3>
 													<form action="webCheckStep3.do" method="POST">
 														<div id="dndhkd2"></div>
-														<button  type="button" id="re" value="7" class="seatReset btn btn-primary" >좌석
-														다시선택</button>
-														<button type="submit" id="next" class="pg1 btn btn-primary">계속</button>
+														<button type="button" id="re" value="7"
+															class="seatReset btn btn-primary">좌석 다시선택</button>
+														<button type="submit" id="next"
+															class="pg1 btn btn-primary">계속</button>
 													</form>
-													
-												</div>     
+
+												</div>
 											</div>
-										</div>         
-   
+										</div>
+
 
 										<div class="col-lg-8">
 											<div class="panel panel-default">
@@ -850,7 +851,7 @@
 		var arr2 = []; //유저가 선택한 좌석
 
 		var people = 1;
-		var peopleCount = 3;
+		var peopleCount = ${map.COUNT};
 		var num;
 
 		$(document)
@@ -926,12 +927,11 @@
 												})
 
 												var str = arr2.join(",");
-
+												str = str + ",";
 												$(
 														"<input type='hidden' id='seat' name=seat value='"+str+"' />")
 														.appendTo('#dndhkd2');
-												$("<p>" + str + "</p>")
-														.appendTo('#dndhkd2');
+												$("<p>" + str + "</p>").appendTo('#dndhkd2');
 
 											});
 

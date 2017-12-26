@@ -104,7 +104,7 @@
 
 													<div id="${row}"
 														class="panel-collapse collapse <c:if test="${(status.count) eq '1'}">in</c:if>">
-														<div class="panel-body">
+														<div class="panel-body"> 
 															<div class="form-group col-lg-6">
 																<label>
 																	성별<text class="text-danger">*</text>

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.khteam1.common.common.CommandMap;
+import com.cafe24.khteam1.common.util.KakaoRestApiHelper;
 import com.cafe24.khteam1.flight.service.FlightService;
 import com.cafe24.khteam1.miles.service.MilesService;
 import com.cafe24.khteam1.route.service.RouteService;
@@ -35,6 +36,8 @@ import com.cafe24.khteam1.ticket.service.TicketService;
 public class BookController {
 	Logger log = Logger.getLogger(this.getClass());
 
+	private static KakaoRestApiHelper apiHelper = new KakaoRestApiHelper();
+	
 	@Resource(name = "bookService")
 	private BookService bookService;
 
@@ -191,7 +194,10 @@ public class BookController {
 	@RequestMapping(value = "/book/bookSuccess.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("book/bookComplete");
+		ModelAndView mv = new ModelAndView("redirect:/test/api.do");
+		
+		log.debug(map + "mapppppppppppp");
+		log.debug(commandMap.getMap() + "commandMapppppppppppp");
 
 		Map<String, Object> map2book = new HashMap<String, Object>();
 		String regDate = new SimpleDateFormat("yyMMdd").format(new java.util.Date());
@@ -280,8 +286,77 @@ public class BookController {
 			log.debug(mile + "2222222222");
 			milesService.useMile(mile);
 		}
+		
+		
+		
 		return mv;
 	}
+	
+	@RequestMapping(value = "/book/pay.do")
+	public ModelAndView pay(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/book/complete.do");
+		
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("cid", "TC0ONETIME");
+		paramMap.put("tid", request.getSession().getAttribute("tid").toString());
+		paramMap.put("partner_order_id", "1234");
+		paramMap.put("partner_user_id", "1234");
+		paramMap.put("pg_token", commandMap.getMap().get("pg_token").toString());
+		apiHelper.successPay(paramMap);
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/test/api.do")
+	public ModelAndView api(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("common/test");
+		Map<String, String> paramMap = new HashMap<String, String>();
+		
+		paramMap.put("cid", "TC0ONETIME");
+		paramMap.put("partner_order_id", "1234");
+		paramMap.put("partner_user_id", "1234");
+		paramMap.put("item_name", "Khair - 항공권");
+		paramMap.put("quantity", "1");
+		paramMap.put("total_amount", "100000");
+		paramMap.put("vat_amount", "10000");
+		paramMap.put("tax_free_amount", "0");
+		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/pay.do");
+		paramMap.put("fail_url", "http://localhost:9090/khteam1/main.do");
+		paramMap.put("cancel_url", "http://localhost:9090/khteam1/main.do");
+
+		String str = apiHelper.readyPay(paramMap);
+
+		String[] map2 = str.split("\"");
+
+		for (int i = 0; i < map2.length; i++) {
+			System.out.println(map2[i]);
+		}
+		String tid = map2[3];
+
+		map.put("tid", tid);
+		log.debug(map);
+		mv.addObject("nextUrl", map2[17]);
+		mv.addObject("tid", map2[3]);
+		request.getSession().setAttribute("tid", map2[3]);
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/book/complete.do")
+	public ModelAndView complete(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/book/bookComplete");
+		//완료페이지 화면 띄우는용
+		List<Map<String, Object>> successList = ticketService.TKlistByBKno(map);
+		mv.addObject("successList", successList);
+		
+		return mv;
+	}
+	
 
 	// routeToPdf.jsp 뷰로 넘어가서 피디엪 출력을 위한 값들을 담아서 보여주도록 해주는 컨트롤러
 	// routeToPdf.jsp => HtmlMaker.urlPath => RoutePdfController.htmlStr =>

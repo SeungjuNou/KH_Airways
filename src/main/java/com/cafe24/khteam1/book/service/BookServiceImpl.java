@@ -29,11 +29,11 @@ public class BookServiceImpl implements BookService{
 		 return bookDAO.bookList();
 	} 
 		
-	/*@Override
+	@Override
 	public Map<String, Object> memberBookList(Map<String, Object> map) throws Exception {
 		Map<String, Object> resultMap = bookDAO.memberBookList(map);
 	    return resultMap;
-	}*/
+	}
 	
 	@Override
 	public Map<String, Object> bookDetail(Map<String, Object> map) throws Exception {
@@ -56,5 +56,20 @@ public class BookServiceImpl implements BookService{
 		bookDAO.bookDelete(map, request);
 	}
 
+	@Override
+	public void updateWbCheck(Map<String, Object> map) throws Exception {
+		bookDAO.updateWbCheck(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> memberWbBookList(Map<String, Object> map) throws Exception {
+		return bookDAO.memberWbBookList(map);
+	}
+
+	
+	@Override
+	public List<Map<String, Object>> memberNoWbBookList(Map<String, Object> map) throws Exception {
+		return bookDAO.memberNoWbBookList(map);
+	}
 
 }
