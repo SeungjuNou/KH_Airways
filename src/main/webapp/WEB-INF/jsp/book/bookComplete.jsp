@@ -59,24 +59,19 @@
 				<div id="inner1">
 					<ul>
 						<li>
-							<h1>마이 페이지</h1>
+							<h1>예약 확인 페이지</h1>
 						</li>
 
-						<li>${map.NAME}</li>
-						<li>회원번호 : ${map.NO}</li>
-						<li>마일리지 : ${map2.MILES} miles</li>
+					
 					</ul>
 				</div>
 
 				<div id="inner2">
 					<ul>
 						<li id="select-inner">
-							<div>마일리지</div>
+							
 						</li>
-						<li><a href="<c:url value='/myPage/viewMember.do'/>">회원
-								정보</a></li>
-						<li>나의 예약</li>
-						<li>웹 체크인</li>
+
 						<li id="empty">&nbsp;</li>
 					</ul>
 				</div>

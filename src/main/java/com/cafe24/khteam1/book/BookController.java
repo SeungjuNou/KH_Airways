@@ -195,9 +195,6 @@ public class BookController {
 	public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/test/api.do");
-		
-		log.debug(map + "mapppppppppppp");
-		log.debug(commandMap.getMap() + "commandMapppppppppppp");
 
 		Map<String, Object> map2book = new HashMap<String, Object>();
 		String regDate = new SimpleDateFormat("yyMMdd").format(new java.util.Date());
@@ -211,8 +208,7 @@ public class BookController {
 		String phone = (String) commandMap.getMap().get("phone");
 		String pay = (String) commandMap.getMap().get("pay");
 
-		String mem_id = "id";
-		// (String) request.getSession().getAttribute("ID");
+		String mem_id = (String) request.getSession().getAttribute("ID");
 
 		map2book.put("BOOK_NO", "B" + dateRandom());
 		map2book.put("COUNT", map.get("people"));
@@ -224,7 +220,7 @@ public class BookController {
 		map2book.put("EMAIL", email);
 		map2book.put("PHONE", phone);
 		map2book.put("DAY", regDate);
-		map2book.put("MEM_NO", mem_id);
+		map2book.put("MEM_ID", mem_id);
 
 		mv.addObject("map", map2book);
 
@@ -272,18 +268,15 @@ public class BookController {
 		
 		//마일리지 결제 혹은 적립 
 		Map<String, Object> mile = new HashMap<String, Object>();
-		String mileNo = "17991";
-		/*String mileNo = (String) request.getSession().getAttribute("mileNo");*/
+		String mileNo = (String) request.getSession().getAttribute("MILE_NO");
 		
 		if(pay.equals("pay")) { //적립 
 			mile.put("SAVE_MILE", miles);
 			mile.put("MILE_NO", mileNo);
-			log.debug(mile + "1111111111");
 			milesService.saveMile(mile);
 		} else { //결제 
 			mile.put("USE_MILE", miles);
 			mile.put("MILE_NO", mileNo);
-			log.debug(mile + "2222222222");
 			milesService.useMile(mile);
 		}
 		
@@ -354,6 +347,11 @@ public class BookController {
 		List<Map<String, Object>> successList = ticketService.TKlistByBKno(map);
 		mv.addObject("successList", successList);
 		
+		
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		flightService.seatMin(map);
+		map2.put("DEP_CODE", map.get("ARR_CODE"));
+		flightService.seatMin(map2);
 		return mv;
 	}
 	

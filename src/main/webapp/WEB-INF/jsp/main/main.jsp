@@ -55,18 +55,26 @@
 			</div>
 			<div id="header-inner-nav">
 				<ul>
+					<li><p data-button="6"></p></li>
+					<li><p data-button="6"></p></li>
 					<li><p data-button="1"><b>항공권예매</b></p></li>
-					<li><p data-button="2"><b>마일리지</b></p></li>
-					<li><p data-button="3"><b>마이페이지</b></p></li>
 					<li id="member">
-						<p data-button="4"><b>Seungju Nou</b></p>
+						<c:if test="${empty sessionScope.ID}">
+						<p data-button="4"><b>member</b></p>
 						<ul>
 							<li data-button="4" id="login2">로그인</li>
 							<li data-button="4" id="join2">회원가입</li>
-							<li>mypage</li>
-							<li>예약조회</li>
-							<li>관리자페이지</li>
 						</ul>
+						</c:if>
+						
+						<c:if test="${!empty sessionScope.ID}">
+						<p data-button="4"><b>${sessionScope.MEM_NAME}</b></p>
+						<ul>
+							<li><a href="/login/logOut.do">로그아웃</a></li>
+							<li><a href="/khteam1/myPage/viewMember.do">마이페이지</a></li>
+						</ul>
+						</c:if>
+						
 					</li>
 				</ul>
 			</div>
@@ -157,60 +165,7 @@
 		</div>
 	</div>
 
-	<div class="tab" data-section="2">
 	
-		<img src="_assets/1.JPG"/>
-
-		<div id="tab-headline3">
-			<div id="line3_inner">
-
-				<div class="hero-gallery js-flickity" data-js-module="hero-gallery">
-					
-					<div class="hero-gallery__cell hero-gallery__cell--1">
-						<div class="hero-gallery__cell__content">
-							<h1>&nbsp;&nbsp;마일리지 적립</h1>
-							<div id="mi_text">
-								<p class="tagline">
-								&nbsp;&nbsp;항공편에 탑승시마다 일정 마일리지를 적립할 수 있습니다. <br />
-								&nbsp;&nbsp;탑승 마일리지를 를 모아보세요.
-								</p>	
-							</div>
-							
-						</div>
-					</div>
-
-					<div class="hero-gallery__cell hero-gallery__cell--1">
-						<div class="hero-gallery__cell__content">
-							<h1>&nbsp;&nbsp;보너스 항공권</h1>
-							<div id="mi_text">
-								<p class="tagline">
-								&nbsp;&nbsp;마일리지를 사용해서 놀라운 경험을 만끽하세요 <br />
-								&nbsp;&nbsp;탑승 마일리지를 이용한 보너스항공편을 조회할 수 있습니다.	
-								</p>	
-							</div>
-						</div>
-					</div>
-					
-					    
-				</div>
-				
-			</div>
-		</div>
-	</div>
-
-	<div class="tab" data-section="3">
-		
-		<img src="_assets/2.JPG" alt="" />
-		
-		<div class="tab-headline">
-			<a href="/khteam1/myPage/milesList.do">
-			<p>
-				마이페이지로 가기
-				<img src="_assets/arrow2.png" id="arrow" />
-			</p>
-			</a>
-		</div>
-	</div>
 
 </div>
 

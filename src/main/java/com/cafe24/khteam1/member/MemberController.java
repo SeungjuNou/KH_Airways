@@ -141,24 +141,39 @@ public class MemberController {
 		Map<String, Object> map = (Map<String, Object>) result.get("map");
 
 		String password = (String) map.get("PASSWORD");
-
+		String MILE_NO =  String.valueOf(map.get("MILE_NO"));
+		String MEM_NO = String.valueOf(map.get("NO"));
 		
 		if (password.equals(commandMap.get("PASSWORD"))) {
 			request.getSession().setAttribute("ID", commandMap.get("ID"));
+			request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
+			request.getSession().setAttribute("MILE_NO", MILE_NO);
+			request.getSession().setAttribute("MEM_NO", MEM_NO);
 		} else {
 			
 		}
 
 		return view;
-	}
+	} 
+	
+	
+	// 로그아
+	@RequestMapping(value = "/login/logOut.do", method = RequestMethod.GET)
+	public ModelAndView logOut(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView view = new ModelAndView("redirect:/main.do");
 
+		request.getSession().invalidate(); 
+
+		return view;
+	} 
+ 
 	// ajax 아이디 중복체크
 	@ResponseBody
 	@RequestMapping(value = "/member/checkId.do")
 	public String checkId(CommandMap commandMap) throws Exception {
 		String result = memberService.checkId(commandMap.getMap());
 
-		return result;
+		return result; 
 
 	}
 

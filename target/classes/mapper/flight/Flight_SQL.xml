@@ -5,7 +5,7 @@
 
 	<select id="flightList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{DEP_DATE} AND ITI_NO = #{ITI_NO}
+			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{DEP_DATE} AND ITI_NO = #{ITI_NO} AND SEAT_COUNT > 1
 		]]>
 	</select>
 	
@@ -34,7 +34,18 @@
 	<![CDATA[
 		UPDATE TEST_FLIGHT
 			SET
-				BOOK_SET = #{result}
+				BOOK_SEAT = #{result}
+			WHERE
+				CODE = #{DEP_CODE}
+		]]>	
+	</select>
+	
+	
+	<select id="seatMin">
+	<![CDATA[
+		UPDATE TEST_FLIGHT
+			SET
+				SEAT_COUNT = SEAT_COUNT - 1
 			WHERE
 				CODE = #{DEP_CODE}
 		]]>	
