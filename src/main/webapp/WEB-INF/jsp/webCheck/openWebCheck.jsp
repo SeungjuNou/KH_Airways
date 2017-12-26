@@ -65,7 +65,11 @@
                         <form role="form" action="/khteam1/webcheck/webCheckStep1.do" method="post">
                           <div class="form-group has-success">
                             <label class="control-label" for="inputSuccess">예약번호</label>
-                            <input type="text" name="BOOK_NO" class="form-control" id="inputSuccess" placeholder="예)123456">
+                            <select class="form-control" name="BOOK_NO" id="inputSuccess">
+                            		<c:forEach items="${result}" var="row">
+                                <option>${row.BOOK_NO}</option>
+                                </c:forEach>
+                            </select>
                           </div>
 
                           <!-- <div class="form-group has-success">

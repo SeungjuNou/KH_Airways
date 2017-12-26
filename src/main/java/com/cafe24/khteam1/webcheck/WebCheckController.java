@@ -2,6 +2,7 @@ package com.cafe24.khteam1.webcheck;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,8 +57,12 @@ public class WebCheckController {
 
 	// 체크인 창(체크인 main form) 띄우는 메소드
 	@RequestMapping(value = "/webcheck/openCheckin.do")
-	public ModelAndView openCheckin(CommandMap commandMap) throws Exception {
+	public ModelAndView openCheckin(@ModelAttribute("webcheckInfo") Map<String, Object> map,CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/webCheck/openWebCheck");
+		map.put("MEM_NO", "id");
+		List<Map<String,Object>> result = bookService.memberWbBookList(map);
+		
+		mv.addObject("result", result);
 		return mv;
 	}
 
@@ -81,12 +86,7 @@ public class WebCheckController {
 	public ModelAndView webCheckStep2(@ModelAttribute("webcheckInfo") Map<String, Object> map, CommandMap commandMap)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("/webCheck/webCheckStep2");
-		log.debug(commandMap.getMap() + "////////////////step2 commandMap");
 		map.putAll(commandMap.getMap());
-		
-		
-		log.debug(map + "////////////////step2 map");
-		
 		mv.addObject("map", map);
 		return mv;
 	}
@@ -96,7 +96,7 @@ public class WebCheckController {
 	public ModelAndView webCheckStep3(@ModelAttribute("webcheckInfo") Map<String, Object> map, CommandMap commandMap)
 			throws Exception { 
 		ModelAndView mv = new ModelAndView("/webCheck/webCheckStep3");
-		log.debug(commandMap.getMap() + "////////////////step2 commandMap");
+		
 		map.putAll(commandMap.getMap());
 		
 		Map<String, Object> flight = flightService.flightDetail(map);
@@ -106,14 +106,34 @@ public class WebCheckController {
 		map.put("result", strResult);
 		flightService.seatUpdate(map, null);
 		
+		int round =  Integer.parseInt((String) map.get("COUNT"));
 		
+		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
 		
+		String[] map2 = seat2.split(",");
 		
-		log.debug(map + "////////////////step2 map");
+		for (int i = 0; i < round; i++) {
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("BP_NO", "BP"+ dateRandom());
+			result.put("BOOK_NO", map.get("BOOK_NO"));
+			result.put("TICKET_NO", (String) map.get("TK_NO"+i));
+			result.put("EN_NAME", (String)map.get("EN_NAME"+i));
+			result.put("PP_NO", (String)map.get("PP_NO"+i));
+			result.put("PP_EXP", (String)map.get("PP_EXP"+i));
+			result.put("PP_BIRTH", (String)map.get("PP_BIRTH"+i));
+			result.put("SEAT", map2[i]);
+			webcheckService.insertWebcheck(result);
+			resultList.add(result);
+			log.debug(resultList);
+		}
 		
+		map.put("WB_CHECK", "Y");
+		bookService.updateWbCheck(map);
+		
+		mv.addObject("result", resultList);
 		mv.addObject("map", map);
 		return mv;
-	}
+	} 
 	
 	
 	
@@ -127,23 +147,24 @@ public class WebCheckController {
 		Map<String, Object> flight = flightService.flightDetail(map);
 		
 		String str = (String) flight.get("BOOK_SET");
-		
-		log.debug(flight.get("BOOK_SET") + "     sdaffasdfasfasdfdas");
+	
 		String arr[] = str.split(",");
 		List<String> list = new ArrayList<String>();
 		
-		log.debug(arr); 
 		
 		for(String str2 : arr) {
 			list.add(str2);
 		}
 		
-		log.debug(map + "////////////////step2 map");
 		return list;
 	}
 	
 	
-	
+	public static String dateRandom() {
+		String sysDate = new SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+		int random = (int) (Math.random() * 10000);
+		return sysDate + random;
+	}
 	
 
 }

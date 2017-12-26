@@ -16,7 +16,9 @@
 				EMAIL, 
 				PHONE, 
 				DAY, 
-				MEM_NO)
+				MEM_NO,
+				WB_CHECK
+				)
 			VALUES
 			(
 				#{BOOK_NO},
@@ -29,7 +31,8 @@
 				#{EMAIL},
 				#{PHONE},
 				#{DAY},
-				#{MEM_NO}
+				#{MEM_NO},
+				'N'
 			)
 		]]>
 	</insert>
@@ -41,15 +44,35 @@
 		]]>
 	</select>
 	
-	<!-- <select id="memberBookList" parameterType="hashmap" resultType="hashmap">
+	<select id="memberBookList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT *  
 			FROM
 			    BOOK
-			/*WHERE MEM_NO = #{MEM_NO}*/      
+			WHERE MEM_NO = #{MEM_NO}  
 			ORDER BY DAY DESC
 		]]>
-	</select> -->
+	</select>
+	
+	<select id="memberWbBookList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_NO = #{MEM_NO} AND WB_CHECK = 'N'
+			ORDER BY DAY DESC
+		]]>
+	</select>
+	
+	<select id="memberNoWbBookList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_NO = #{MEM_NO} AND WB_CHECK = 'Y'
+			ORDER BY DAY DESC
+		]]>
+	</select>
 	
 	<select id="bookDetail" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
@@ -75,6 +98,16 @@
 				PHONE = #{PHONE},
 				DAY = #{DAY},
 				MEM_NO = #{MEM_NO}
+			WHERE
+				BOOK_NO = #{BOOK_NO}
+		]]>
+	</update>
+	
+	<update id="updateWbCheck" parameterType="hashmap">
+		<![CDATA[
+			UPDATE BOOK 
+			SET
+				WB_CHECK = #{WB_CHECK}
 			WHERE
 				BOOK_NO = #{BOOK_NO}
 		]]>

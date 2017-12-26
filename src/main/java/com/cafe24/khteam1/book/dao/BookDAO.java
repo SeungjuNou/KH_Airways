@@ -21,10 +21,21 @@ public class BookDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("book.bookList");
 	}
 	
-	/*@SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> memberBookList(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("book.memberBookList", map);
-	}*/
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> memberWbBookList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("book.memberWbBookList", map);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> memberNoWbBookList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("book.memberNoWbBookList", map);
+	}
+
 
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> bookDetail(Map<String, Object> map) throws Exception {
@@ -41,6 +52,10 @@ public class BookDAO extends AbstractDAO {
 
 	public void bookDelete(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		update("book.bookDelete", map);
+	}
+	
+	public void updateWbCheck(Map<String, Object> map) throws Exception {
+		update("book.updateWbCheck", map);
 	}
 
 }

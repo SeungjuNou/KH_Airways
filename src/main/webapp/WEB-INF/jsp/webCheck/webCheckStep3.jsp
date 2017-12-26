@@ -81,19 +81,19 @@
                   <thead>
                     <tr>
                       <th>탑승객 성명</th> 
-                      <th>항공편명</th>
-                      <th>웹체크인 상태</th>
+                      <th>항공편명 (가는편/오는편)</th>
+                      <th>선택좌석</th>
                       <th>탑승권</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach items="${list }" var="row">
+                    <c:forEach items="${result}" var="row">
                       <tr>
-                        <td>${lastName} ${firstName}</td>
-                        <td>${flightNo}</td>
-                        <td>${statue}</td>
-                        <td><a href="<c:url value='/route/openRouteList.do'/>" button type="button" class="btn btn-primary">다운로드</a>
-                        <a href="<c:url value='/route/openRouteList.do'/>" button type="button" class="btn btn-primary">이메일로 전송</a></td>
+                        <td>${row.EN_NAME}</td>
+                        <td>${map.DEP_CODE} / ${map.ARR_CODE}</td>
+                        <td>${row.SEAT}</td>
+                        <td><a href="<c:url value='/route/openRouteList.do'/>"  type="button" class="btn btn-primary">다운로드</a>
+                        <a href="<c:url value='/route/openRouteList.do'/>"  type="button" class="btn btn-primary">이메일로 전송</a></td>
                       </tr>
                     </c:forEach>
                   </tbody>

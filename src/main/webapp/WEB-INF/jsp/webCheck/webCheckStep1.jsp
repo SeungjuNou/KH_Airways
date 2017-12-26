@@ -95,35 +95,31 @@
 
 								<div class="panel-body">
 									<form role="form" action="/khteam1/webcheck/webCheckStep2.do" method="POST">
-										<c:forEach items="${ticket}" var="row">
+										<c:forEach items="${ticket}" var="row" varStatus="status">
 											<div class="row">
 												<div class="col-lg-12">
 													<div class="panel panel-success">
 														<div class="panel-heading">${row.NAME}/${row.TK_NO}</div>
 														<div class="panel-body">
 
-
-
+	
+				
 															<div class="row">
-																<div class="col-lg-12">
-
-																	<input type="hidden" name="BOOOK_NO" value="${book.BOOK_NO}" /> 
-																	<input type="hidden" name="TICKET_NO" value="${book.TK_NO}" /> 
-																	<input type="hidden" name="DEP_CODE" value="${map.DEP_CODE}" />
-																	<input type="hidden" name="ARR_CODE" value="${map.ARR_CODE}" /> 
-																	<input type="hidden" name="EN_NAME" value="${row.NAME}" />
-																	
+																<div class="col-lg-12">  
+																	<input type="hidden" name="TK_NO${status.index}" value="${row.TK_NO}" />
+																	<input type="hidden" name="EN_NAME${status.index}" value="${row.NAME}" />
+																	 
 																	<div class="form-group col-lg-6">
 																		<label>여권 번호</label> <input class="form-control"
-																			name="PP_NO" placeholder="여권번호 앞 문자를 포함해서 입력하세요.">
+																			name="PP_NO${status.index}" placeholder="여권번호 앞 문자를 포함해서 입력하세요.">
 																	</div>
 																	<div class="form-group col-lg-6">
 																		<label>여권 만료일</label> <input class="form-control"
-																			name="PP_EXP" placeholder="여권 만료일을 - 없이 입력하세요.">
+																			name="PP_EXP${status.index}" placeholder="여권 만료일을 - 없이 입력하세요.">
 																	</div>
 																	<div class="form-group col-lg-6">
 																		<label>생년월일</label> <input class="form-control"
-																			name="PP_BIRTH" placeholder="6자리의 숫자로 입력하세요.">
+																			name="PP_BIRTH${status.index}" placeholder="6자리의 숫자로 입력하세요.">
 																	</div>
 																</div>
 															</div>
