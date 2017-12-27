@@ -81,7 +81,7 @@
                             </li>
                             
                             <li>
-                                <a href="#">항공편 관리<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> 항공편 관리<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
                                     <li>
                                         <a href="flightRegFrom.do">항공편 등록</a>
@@ -114,12 +114,7 @@
                                 <a href="memberList.do">회원목록</a>
                             </li>
                             <li>
-                                <a href="#">예약관리(미완) <span class="fa arrow"> </a>
-								<ul class="nav nav-third-level">
-									<li>
-                                        <a href="#">출발일별 예약현황(미완)</a>
-                                    </li>
-								</ul>
+                                <a href="bookList.do">예약관리</a>
                             </li>
                         </ul>
                     </li>

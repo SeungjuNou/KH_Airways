@@ -11,10 +11,7 @@
 		]]>
 	</select>
 
-	<!-- <insert id="insertWebcheck" parameterType="hashmap" useGeneratedKeys="true" keyProperty="BP_NO">
-		<selectKey keyProperty="BP_NO" resultType="string" order="BEFORE">
-			SELECT SEQ_BP_NO.NEXTVAL FROM DUAL
-		</selectKey>
+	<insert id="insertWebcheck" parameterType="hashmap" >
 		<![CDATA[
 			
 			INSERT INTO WEBCHECK
@@ -22,29 +19,25 @@
 				BP_NO,
 			    BOOK_NO, 
 			    TICKET_NO, 
-			    DEP_CODE, 
-			    ARR_CODE, 
-			    KO_NAME,
 			    EN_NAME,
 			    PP_NO,
 			    PP_EXP,
-			    PP_BIRTH
+			    PP_BIRTH,
+			    SEAT
 			)
 			VALUES
 			(
-				SEQ_BP_NO.NEXTVAL, 
-			    #{BOO_NO}, 
+				#{BP_NO}, 
+			    #{BOOK_NO}, 
 			    #{TICKET_NO}, 
-			    #{DEP_CODE},
-			    #{ARR_CODE}, 
-			    #{KO_NAME},
 			    #{EN_NAME},
 			    #{PP_NO},
 			    #{PP_EXP},
-			    #{PP_BIRTH}
+			    #{PP_BIRTH},
+			    #{SEAT}
 			)
 		]]>
-	</insert> -->
+	</insert>
 	
 	<!-- Book_SQL.XML	
 	<select id="viewBook" parameterType="hashmap" resultType="hashmap">

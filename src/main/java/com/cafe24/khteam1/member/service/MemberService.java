@@ -36,4 +36,6 @@ public interface MemberService {
 
 	void updateGrade(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
+	//ID찾기
+	Map<String, Object> findId(Map<String, Object> map) throws Exception;
 }

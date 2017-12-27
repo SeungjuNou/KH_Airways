@@ -27,6 +27,12 @@ public class WebcheckServiceImpl implements WebcheckService{
 		return webcheckDAO.checkinList(map);
 	}
 
+
+	@Override
+	public void insertWebcheck(Map<String, Object> map) throws Exception {
+		webcheckDAO.insertWebcheck(map);
+	}
+
 	
 	/*BookServiceImpl
 	public Map<String, Object> viewBook(Map<String, Object> map) throws Exception {

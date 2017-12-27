@@ -55,18 +55,26 @@
 			</div>
 			<div id="header-inner-nav">
 				<ul>
+					<li><p data-button="6"></p></li>
+					<li><p data-button="6"></p></li>
 					<li><p data-button="1"><b>항공권예매</b></p></li>
-					<li><p data-button="2"><b>마일리지</b></p></li>
-					<li><p data-button="3"><b>마이페이지</b></p></li>
 					<li id="member">
-						<p data-button="4"><b>Seungju Nou</b></p>
+						<c:if test="${empty sessionScope.ID}">
+						<p data-button="4"><b>member</b></p>
 						<ul>
 							<li data-button="4" id="login2">로그인</li>
 							<li data-button="4" id="join2">회원가입</li>
-							<li>mypage</li>
-							<li>예약조회</li>
-							<li>관리자페이지</li>
 						</ul>
+						</c:if>
+						
+						<c:if test="${!empty sessionScope.ID}">
+						<p data-button="4"><b>${sessionScope.MEM_NAME}</b></p>
+						<ul>
+							<li><a href="/khteam1/login/logOut.do">로그아웃</a></li>
+							<li><a href="/khteam1/myPage/viewMember.do">마이페이지</a></li>
+						</ul>
+						</c:if>
+						
 					</li>
 				</ul>
 			</div>
@@ -124,7 +132,7 @@
 
             		<div id="arr_date">
             			귀국일
-                		<input type="date" id="userdate" name="DEP_DATE2" value="2017-12-04">
+                		<input type="date" id="userdate" name="DEP_DATE2" value="2017-12-13">
             		</div>
 
 				</div>
@@ -140,6 +148,7 @@
 					
 					유아
 					<select name="child_count" id="child_count">
+						<option value="0">0명</option>
 					    <option value="1">1명</option>
 					    <option value="2">2명</option>
 					    <option value="3">3명</option>
@@ -156,60 +165,7 @@
 		</div>
 	</div>
 
-	<div class="tab" data-section="2">
 	
-		<img src="_assets/1.JPG"/>
-
-		<div id="tab-headline3">
-			<div id="line3_inner">
-
-				<div class="hero-gallery js-flickity" data-js-module="hero-gallery">
-					
-					<div class="hero-gallery__cell hero-gallery__cell--1">
-						<div class="hero-gallery__cell__content">
-							<h1>&nbsp;&nbsp;마일리지 적립</h1>
-							<div id="mi_text">
-								<p class="tagline">
-								&nbsp;&nbsp;항공편에 탑승시마다 일정 마일리지를 적립할 수 있습니다. <br />
-								&nbsp;&nbsp;탑승 마일리지를 를 모아보세요.
-								</p>	
-							</div>
-							
-						</div>
-					</div>
-
-					<div class="hero-gallery__cell hero-gallery__cell--1">
-						<div class="hero-gallery__cell__content">
-							<h1>&nbsp;&nbsp;보너스 항공권</h1>
-							<div id="mi_text">
-								<p class="tagline">
-								&nbsp;&nbsp;마일리지를 사용해서 놀라운 경험을 만끽하세요 <br />
-								&nbsp;&nbsp;탑승 마일리지를 이용한 보너스항공편을 조회할 수 있습니다.	
-								</p>	
-							</div>
-						</div>
-					</div>
-					
-					    
-				</div>
-				
-			</div>
-		</div>
-	</div>
-
-	<div class="tab" data-section="3">
-		
-		<img src="_assets/2.JPG" alt="" />
-		
-		<div class="tab-headline">
-			<a href="/khteam1/myPage/milesList.do">
-			<p>
-				마이페이지로 가기
-				<img src="_assets/arrow2.png" id="arrow" />
-			</p>
-			</a>
-		</div>
-	</div>
 
 </div>
 
@@ -230,7 +186,7 @@
 			</p>
 			<p class="keeplogin">  
 				<input id="login" type="submit" value="로그인" />
-				<button id="login" onclick="location.href='findId.do'">아이디 찾기</button> 
+				<button id="login" class="findId">아이디 찾기</button> 
 			</p>
 			
 		</form>
@@ -396,7 +352,6 @@ $(document).bind('ready ajaxComplete', function(){
         });
         
         $(".rowDep2").click(function(){
-        		alert($(this).val());
             $("#dep_area0").val($(this).val());
         });
         
@@ -415,6 +370,20 @@ $(document).bind('ready ajaxComplete', function(){
 
         $("#login-form-close").click(function(){
             $("#member_form").fadeOut(450);
+        });
+        
+        //ID찾기
+        $(".findId").click(function(){
+        	var url = "findId.do";
+        	var name = "ID찾기";
+        	var width=500, height=300;
+        	var left = (screen.availWidth - width)/2;
+        	var top = (screen.availHeight - height)/2;
+        	var specs = "width=" + width;
+        	specs += ",height=" + height;
+        	specs += ",left=" + left;
+        	specs += ",top=" + top;
+        	window.open(url,name,specs);
         });
     }); 
 </script>

@@ -28,4 +28,12 @@ public class MilesDAO extends AbstractDAO {
 	public Map<String, Object> nowMile(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("miles.nowMile", map);
 	}
+	
+	public void useMile(Map<String, Object> map) throws Exception {
+		insert("miles.useMile", map);
+	}
+	
+	public void saveMile(Map<String, Object> map) throws Exception {
+		insert("miles.saveMile", map);
+	}
 }

@@ -1,13 +1,13 @@
 package com.cafe24.khteam1.member;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -18,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.common.util.DateTrans;
+import com.cafe24.khteam1.common.util.MailSend;
 import com.cafe24.khteam1.member.service.MemberService;
 import com.cafe24.khteam1.miles.service.MilesService;
+
 
 @Controller
 public class MemberController {
@@ -30,6 +32,9 @@ public class MemberController {
 
 	@Resource(name = "milesService")
 	private MilesService milesService;
+	
+	@Resource(name="mailSend")
+	private MailSend mailSend;
 
 	@Resource(name = "dateTrans")
 	private DateTrans dateTrans;
@@ -63,7 +68,66 @@ public class MemberController {
 		ModelAndView view = new ModelAndView("myPage/findId");
 		return view;
 	}
-
+	
+	//id찾기 인증번호 보내기
+	@ResponseBody
+	@RequestMapping(value="/findId.do", method=RequestMethod.POST)
+	public boolean findId(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception {
+		//ID찾기
+		Map<String, Object> info = memberService.findId(commandMap.getMap());
+		
+		if(info==null) {
+			return false;
+		} else {
+			//인증번호 생성
+			StringBuffer accessNo = new StringBuffer();
+			Random rnd = new Random();
+			for (int i = 0; i < 10; i++) {
+			    int rIndex = rnd.nextInt(2);
+			    switch (rIndex) {
+			    case 0:
+			        // A-Z
+			    	accessNo.append((char) ((int) (rnd.nextInt(26)) + 65));
+			        break;
+			    case 1:
+			        // 0-9
+			    	accessNo.append((rnd.nextInt(10)));
+			        break;
+			    }
+			}
+			
+			session.setAttribute("ID", info.get("ID"));
+			session.setAttribute("accessNo", accessNo.toString());
+			
+			commandMap.put("subject", "인증번호 TEST");
+			commandMap.put("text", "인증번호 : " + accessNo);
+			commandMap.put("to", commandMap.get("EMAIL"));
+			mailSend.send(commandMap.getMap());
+			return true;
+		}
+	}
+	
+	//ID찾기 인증하기 폼
+	@RequestMapping(value="/accessForm.do")
+	public ModelAndView accessCheckForm() {
+		return new ModelAndView("myPage/accessForm");
+	}
+	
+	//ID찾기 인증확인
+	@ResponseBody
+	@RequestMapping(value="/accessCheck.do", method=RequestMethod.POST)
+	public String accessCheck(CommandMap commandMap, HttpSession session) {
+		String sessionNo = (String) session.getAttribute("accessNo");
+		String accessNo = (String) commandMap.get("accessNo");
+		String result = "false";
+		
+		if(sessionNo.equals(accessNo)) {
+			result = (String) session.getAttribute("ID");
+			session.invalidate();
+			return result;
+		} else
+			return result;
+	}
 	
 	
 	
@@ -77,22 +141,39 @@ public class MemberController {
 		Map<String, Object> map = (Map<String, Object>) result.get("map");
 
 		String password = (String) map.get("PASSWORD");
-
+		String MILE_NO =  String.valueOf(map.get("MILE_NO"));
+		String MEM_NO = String.valueOf(map.get("NO"));
+		
 		if (password.equals(commandMap.get("PASSWORD"))) {
 			request.getSession().setAttribute("ID", commandMap.get("ID"));
+			request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
+			request.getSession().setAttribute("MILE_NO", MILE_NO);
+			request.getSession().setAttribute("MEM_NO", MEM_NO);
 		} else {
+			
 		}
 
 		return view;
-	}
+	} 
+	
+	
+	// 로그아
+	@RequestMapping(value = "/login/logOut.do", method = RequestMethod.GET)
+	public ModelAndView logOut(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView view = new ModelAndView("redirect:/main.do");
 
+		request.getSession().invalidate(); 
+
+		return view;
+	} 
+ 
 	// ajax 아이디 중복체크
 	@ResponseBody
 	@RequestMapping(value = "/member/checkId.do")
 	public String checkId(CommandMap commandMap) throws Exception {
 		String result = memberService.checkId(commandMap.getMap());
 
-		return result;
+		return result; 
 
 	}
 

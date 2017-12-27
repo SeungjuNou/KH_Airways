@@ -24,4 +24,16 @@ public class TicketServiceImpl implements TicketService{
 	       
 		ticketDAO.insertTicket(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> TKlistByBKno(Map<String, Object> map) throws Exception {
+		
+	    return ticketDAO.TKlistByBKno(map);
+	}
+	
+	@Override
+	public Map<String, Object> ticketDetail(Map<String, Object> map) throws Exception {
+		Map<String, Object> resultMap = ticketDAO.ticketDetail(map);
+		return resultMap;
+	}
 }

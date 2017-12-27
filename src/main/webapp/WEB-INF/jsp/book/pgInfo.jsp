@@ -44,14 +44,13 @@
 
 		<div id="top-2">
 			<div id="logo">
-				<img src="../_assets/icon.png" alt="" />
+			<a href="../main.do"><img src="../_assets/icon.png" alt="" /></a>
 			</div>
 			<ul>
 				<div id="menu">
 					<li id="empty2"></li>
-					<li>항공권 예매</li>
-					<li>웹 체크인</li>
-					<li>Seungju nou</li>
+					<a href="../main.do"><li>항공권 예매</li></a>
+					<li>${sessionScope.MEM_NAME}</li>
 				</div>
 			</ul>
 		</div>
@@ -60,13 +59,6 @@
 			<div id="body-inner">
 				<div id="inner2">
 					<ul>
-						<li id="select-inner">
-							<div>마이 페이지</div>
-						</li>
-						<li>마일리지</li>
-						<li>나의 예약</li>
-						<li>웹 체크인</li>
-						<li id="empty">&nbsp;</li>
 					</ul>
 				</div>
 
@@ -104,7 +96,7 @@
 
 													<div id="${row}"
 														class="panel-collapse collapse <c:if test="${(status.count) eq '1'}">in</c:if>">
-														<div class="panel-body">
+														<div class="panel-body"> 
 															<div class="form-group col-lg-6">
 																<label>
 																	성별<text class="text-danger">*</text>
@@ -237,19 +229,21 @@
 											<p></p>
 											<h3>항공운임 등 총계</h3>
 											<h4>
-												<p class="text-right text-info">${map.PRICE}&nbsp;</p>
+												<p class="text-right text-info comma"></p>
 											</h4>
 
 											<blockquote>
 												<p>유류할증료와 세금을 포함한 총 운임으로 구매 시점과 환율에 따라 변동 될 수 있습니다.</p>
 											</blockquote>
+											<ul id ="alert2">
+											</ul>
 										</div>
 										<div class="panel-footer">
 											<p class="text-right text-info">
 												<button type="submit" name="pay" value="pay" 
 													class="btn btn-outline btn-primary btn-lg btn-block">
 													구매하기</button>
-												<button type="submit" name="pay" value="miles" 
+												<button type="submit" name="pay" value="miles" id="mileButton"
 													class="btn btn-outline btn-primary btn-lg btn-block">
 													마일리지 구매</button>
 											</p>
@@ -286,8 +280,42 @@
 	<script src="../_scripts/startmin.js"></script>
 
 
+<script>
+$(document).ready(function(){
+	
+		
+	
+	var miles = parseInt("<c:out value="${miles.MILES}" />");
+	var price = parseInt("<c:out value="${map.PRICE}" />");
+	
+	
+	
+	if(miles < price) {
+		$("#mileButton").attr('disabled',true);
+		$("<li>"+ "잔여 마일리지가 부족합니다." +"</li>").appendTo("#alert2");
+		$("<li>"+ "현재 마일리지 : " + miles +"</li>").appendTo("#alert2");
+	}
+	
+});
+</script>
 
 
+<script>
+	$(document).ready(
+
+	function() {
+
+		var price = parseInt("<c:out value="${map.PRICE}" />");
+
+		var result = numberWithCommas(price);
+		$("<h4>" + result + "</h4>").appendTo(".comma");
+
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+	});
+	
+</script>
 
 
 </body>

@@ -23,5 +23,7 @@ public interface MilesService {
 		Map<String, Object> nowMile(Map<String, Object> map) throws Exception;
 		
 		//사용 마일리지
-		Map<String, Object> useMile(Map<String, Object> map) throws Exception;
+		void useMile(Map<String, Object> map) throws Exception;
+		
+		void saveMile(Map<String, Object> map) throws Exception;
 }

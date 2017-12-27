@@ -40,7 +40,7 @@ public class PdfBuilder extends AbstractView{
 		Document document = new Document(PageSize.A4, 50, 50, 50, 50); // 용지 및 여백 설정
 	     
 		// PdfWriter 생성
-		String fileName = ((String) model.get("fileName") + ".pdf"); // 파일명이 한글일 땐 인코딩 필요
+		String fileName = ((String) model.get("fileName")); // 파일명이 한글일 땐 인코딩 필요
 		String folderName = (String) model.get("folderName"); //폴더명 
 		String filePath = request.getSession().getServletContext().getRealPath("/"+folderName+"/"); //서버경로 
 		String serverPath = request.getSession().getServletContext().getRealPath("/");
@@ -59,13 +59,17 @@ public class PdfBuilder extends AbstractView{
 		     
 		// CSS
 		CSSResolver cssResolver = new StyleAttrCSSResolver();
-		CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream(serverPath + "_css/morris.css"));
+		
+		CssFile cssFile = XMLWorkerHelper.getCSS(new FileInputStream("/Users/seungjunou/Documents/workspace-sts-3.9.1.RELEASE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/KH_Airways/_css/pdfCss.css"));
 		cssResolver.addCss(cssFile);
+		 
 		    
 		// HTML, 폰트 설정
-		String fontPath = serverPath + "fonts/malgun.ttf";
+		String fontPath = serverPath + "fonts/malgun.ttf"; 
+		String fontPath2 = serverPath + "fonts/3OF9_NEW.TTF";
 		XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
 		fontProvider.register(fontPath, "MalgunGothic"); // MalgunGothic은 alias,
+		fontProvider.register(fontPath2, "barcode"); // MalgunGothic은 alias,
 		CssAppliers cssAppliers = new CssAppliersImpl(fontProvider);
 		 
 		HtmlPipelineContext htmlContext = new HtmlPipelineContext(cssAppliers);
@@ -81,7 +85,8 @@ public class PdfBuilder extends AbstractView{
 		 
 		// 폰트 설정에서 별칭으로 줬던 "MalgunGothic"을 html 안에 폰트로 지정한다.
 		String htmlStr = "" + model.get("bodyString") + "";
-		htmlStr = htmlStr.replaceAll("logo", "<img src=\"//image/KHicon.jpg\"/>");
+		String logoPath = "<img src=\""+serverPath+"_assets/icon.png\" width=\"180px\"/>";
+		htmlStr = htmlStr.replaceAll("logo", logoPath);
 		 
 		StringReader strReader = new StringReader(htmlStr);
 		xmlParser.parse(strReader);

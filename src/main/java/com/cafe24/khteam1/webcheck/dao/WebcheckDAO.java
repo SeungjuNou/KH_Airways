@@ -18,9 +18,9 @@ public class WebcheckDAO extends AbstractDAO{
 	
 	
 	
-	/*public void insertWebcheck(Map<String, Object> map) throws Exception {
-		insert("book.insertWebcheck", map);
-	}*/
+	public void insertWebcheck(Map<String, Object> map) throws Exception {
+		insert("webcheck.insertWebcheck", map);
+	}
 	
 	
 	/*bookDAO

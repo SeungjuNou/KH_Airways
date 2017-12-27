@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.khteam1.common.common.CommandMap;
+import com.cafe24.khteam1.common.util.KakaoRestApiHelper;
 import com.cafe24.khteam1.flight.service.FlightService;
+import com.cafe24.khteam1.miles.service.MilesService;
 import com.cafe24.khteam1.route.service.RouteService;
 import com.cafe24.khteam1.book.service.BookService;
 import com.cafe24.khteam1.ticket.service.TicketService;
@@ -34,10 +36,12 @@ import com.cafe24.khteam1.ticket.service.TicketService;
 public class BookController {
 	Logger log = Logger.getLogger(this.getClass());
 
+	private static KakaoRestApiHelper apiHelper = new KakaoRestApiHelper();
+	
 	@Resource(name = "bookService")
 	private BookService bookService;
 
-	@Resource(name = "ticketService")
+	@Resource(name = "ticketService") 
 	private TicketService ticketService;
 
 	@Resource(name = "routeService")
@@ -45,6 +49,9 @@ public class BookController {
 
 	@Resource(name = "flightService")
 	private FlightService flightService;
+	
+	@Resource(name = "milesService")
+	private MilesService milesService;
 
 	@ModelAttribute("flightInfo")
 	private Map<String, Object> map() {
@@ -161,14 +168,20 @@ public class BookController {
 		}
 
 		map.put("people", adult + child);
-		map.put("PRICE", toPriceFormat(price_sum));
+		map.put("PRICE", price_sum);
 		map.put("TIME1_1", map2.get("TI_DEP"));
 		map.put("TIME1_2", map2.get("TI_ARR"));
 		map.put("TIME2_1", map3.get("TI_DEP"));
 		map.put("TIME2_2", map3.get("TI_ARR"));
 		map.put("DEP_CODE", commandMap.getMap().get("DEP_CODE"));
 		map.put("ARR_CODE", commandMap.getMap().get("ARR_CODE"));
-
+		
+		
+		Map<String, Object> mile = new HashMap<String, Object>();
+		String mileNo = "17991";
+		mile.put("MILE_NO", mileNo);
+		
+		mv.addObject("miles", milesService.nowMile(mile));
 		mv.addObject("listSize", list.size());
 		mv.addObject("map", map);
 		mv.addObject("list", list);
@@ -181,24 +194,21 @@ public class BookController {
 	@RequestMapping(value = "/book/bookSuccess.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("book/bookComplete");
-
-		log.debug(map);
-		log.debug(commandMap.getMap() + "commandMap ////////////////////////");
+		ModelAndView mv = new ModelAndView("redirect:/test/api.do");
 
 		Map<String, Object> map2book = new HashMap<String, Object>();
 		String regDate = new SimpleDateFormat("yyMMdd").format(new java.util.Date());
 
-		String price = (String) (map.get("PRICE"));
-		price = price.replaceAll("\\,", "");
+		int price = (Integer) map.get("PRICE");
+		int miles = (int) (price * 0.1) ;
+		
 
 		String bName = ((String) commandMap.getMap().get("fmName1")) + ((String) commandMap.getMap().get("lastName1"));
 		String email = (String) commandMap.getMap().get("email");
 		String phone = (String) commandMap.getMap().get("phone");
 		String pay = (String) commandMap.getMap().get("pay");
 
-		String mem_id = "id";
-		// (String) request.getSession().getAttribute("ID");
+		String mem_id = (String) request.getSession().getAttribute("ID");
 
 		map2book.put("BOOK_NO", "B" + dateRandom());
 		map2book.put("COUNT", map.get("people"));
@@ -210,25 +220,22 @@ public class BookController {
 		map2book.put("EMAIL", email);
 		map2book.put("PHONE", phone);
 		map2book.put("DAY", regDate);
-		map2book.put("MEM_NO", mem_id);
+		map2book.put("MEM_ID", mem_id);
 
 		mv.addObject("map", map2book);
 
-		log.debug(map2book);
-
 		bookService.insertBook(map2book);
 
-		log.debug(commandMap);
+		map.put("BOOK_NO", map2book.get("BOOK_NO"));
 
 		// 티켓번호 생성해서 티켓테이블에 넣는 메서드
 		///////////////////////////////////////////////////////////////////////////
 
-		log.debug(map);
-		log.debug(commandMap.getMap() + "commandMap ////////////////////////");
 
 		Map<String, Object> map2ticket = new HashMap<String, Object>();
 
 		int round = (Integer) map2book.get("COUNT");
+		
 		for (int i = 1; i <= round; i++) {
 
 			String name4TK = ((String) commandMap.getMap().get("fmName" + i))
@@ -250,28 +257,221 @@ public class BookController {
 
 			mv.addObject("map", map2ticket);
 
-			log.debug(map2ticket);
-
 			ticketService.insertTicket(map2ticket);
 
-			log.debug(commandMap);
-
 		}
+
+		//완료페이지 화면 띄우는용
+		List<Map<String, Object>> successList = ticketService.TKlistByBKno(map2book);
+		mv.addObject("successList", successList);
+		
+		
+		//마일리지 결제 혹은 적립 
+		Map<String, Object> mile = new HashMap<String, Object>();
+		String mileNo = (String) request.getSession().getAttribute("MILE_NO");
+		
+		if(pay.equals("pay")) { //적립 
+			mile.put("SAVE_MILE", miles);
+			mile.put("MILE_NO", mileNo);
+			milesService.saveMile(mile);
+		} else { //결제 
+			mile.put("USE_MILE", miles);
+			mile.put("MILE_NO", mileNo);
+			milesService.useMile(mile);
+		}
+		
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/book/pay.do")
+	public ModelAndView pay(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/book/complete.do");
+		
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("cid", "TC0ONETIME");
+		paramMap.put("tid", request.getSession().getAttribute("tid").toString());
+		paramMap.put("partner_order_id", "1234");
+		paramMap.put("partner_user_id", "1234");
+		paramMap.put("pg_token", commandMap.getMap().get("pg_token").toString());
+		apiHelper.successPay(paramMap);
 		
 		return mv;
 	}
 	
 	
-	// routeToPdf.jsp 뷰로 넘어가서 피디엪 출력을 위한 값들을 담아서 보여주도록 해주는 컨트롤러
-    // routeToPdf.jsp => HtmlMaker.urlPath => RoutePdfController.htmlStr => PdfBuiler
-    @RequestMapping(value="/book/pdfEticket.do")
-    public ModelAndView pdfEticket(CommandMap commandMap) throws Exception {
-    	ModelAndView mv = new ModelAndView("pdf/route2pdf");
-    	List<Map<String, Object>> list = routeService.selectRouteList();
-    	mv.addObject("list", list);
-    	return mv;
-    }
+	@RequestMapping(value = "/test/api.do")
+	public ModelAndView api(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("common/test");
+		Map<String, String> paramMap = new HashMap<String, String>();
+		
+		paramMap.put("cid", "TC0ONETIME");
+		paramMap.put("partner_order_id", "1234");
+		paramMap.put("partner_user_id", "1234");
+		paramMap.put("item_name", "Khair - 항공권");
+		paramMap.put("quantity", "1");
+		paramMap.put("total_amount", "100000");
+		paramMap.put("vat_amount", "10000");
+		paramMap.put("tax_free_amount", "0");
+		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/pay.do");
+		paramMap.put("fail_url", "http://localhost:9090/khteam1/main.do");
+		paramMap.put("cancel_url", "http://localhost:9090/khteam1/main.do");
 
+		String str = apiHelper.readyPay(paramMap);
+
+		String[] map2 = str.split("\"");
+
+		for (int i = 0; i < map2.length; i++) {
+			System.out.println(map2[i]);
+		}
+		String tid = map2[3];
+
+		map.put("tid", tid);
+		log.debug(map);
+		mv.addObject("nextUrl", map2[17]);
+		mv.addObject("tid", map2[3]);
+		request.getSession().setAttribute("tid", map2[3]);
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value = "/book/complete.do")
+	public ModelAndView complete(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
+			HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/book/bookComplete");
+		//완료페이지 화면 띄우는용
+		List<Map<String, Object>> successList = ticketService.TKlistByBKno(map);
+		mv.addObject("successList", successList);
+		mv.addObject("map", map);
+		
+		
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		flightService.seatMin(map);
+		map2.put("DEP_CODE", map.get("ARR_CODE"));
+		flightService.seatMin(map2);
+		return mv;
+	}
+	
+
+	// routeToPdf.jsp 뷰로 넘어가서 피디엪 출력을 위한 값들을 담아서 보여주도록 해주는 컨트롤러
+	// routeToPdf.jsp => HtmlMaker.urlPath => RoutePdfController.htmlStr =>
+	// PdfBuiler
+	@RequestMapping(value = "/book/pdfEticket.do")
+	public ModelAndView pdfEticket(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("pdf/bookPdf");
+
+		
+		Map<String, Object> bookMap = bookService.bookDetail(commandMap.getMap());
+		Map<String, Object> ticketMap = ticketService.ticketDetail(commandMap.getMap());
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		
+		map2.put("DEP_CODE", bookMap.get("DEP_CODE"));
+		Map<String, Object> flightMap = flightService.flightDetail(map2);
+		Map<String, Object> depMap = routeService.selectRouteDetail(flightMap);
+		
+		map2.put("DEP_CODE", bookMap.get("ARR_CODE"));
+		flightMap = flightService.flightDetail(map2);
+		Map<String, Object> arrMap = routeService.selectRouteDetail(flightMap);
+		
+		log.debug(bookMap);
+		log.debug(ticketMap); 
+		
+		mv.addObject("depMap", depMap);
+		mv.addObject("arrMap", arrMap);
+		mv.addObject("ticketMap", ticketMap);
+		mv.addObject("bookMap",bookMap); 
+		return mv; 
+	}
+
+	// 관리자 페이지 시작
+	// ----------------------------------------------------------------------
+
+	// 예약현황 목록 호출하는 메서드
+	@RequestMapping(value = "/admin/bookList.do")
+	public ModelAndView bookList(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/book/adminBookList");
+		List<Map<String, Object>> list = bookService.bookList();
+		mv.addObject("list", list);
+
+		log.debug("list=> " + list);
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	// 예약번호 클릭하면 번호에 따른 티켓번호 출력해주는 메서드
+	@RequestMapping(value = "/admin/TKlistByBKno.do")
+	public ModelAndView TKlistByBKno(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/ticket/TKlistByBKno");
+		List<Map<String, Object>> list = ticketService.TKlistByBKno(commandMap.getMap());
+		mv.addObject("list", list);
+
+		log.debug("list=> " + list);
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	// 예약번호 수동으로 등록하기 화면
+	@RequestMapping(value = "/admin/openBookWrite.do")
+	public ModelAndView openBookWrite(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/book/adminBookWrite");
+
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	// 예약번호 수동으로 등록하기
+	@RequestMapping(value = "/admin/bookWrite.do", method = RequestMethod.POST)
+	public ModelAndView bookWrite(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+
+		log.debug("commandMap=> " + commandMap.getMap());
+
+		commandMap.getMap().put("BOOK_NO", "B" + dateRandom());
+		bookService.insertBook(commandMap.getMap());
+
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	// 예약번호 수정하기 화면
+	@RequestMapping(value = "/admin/openBookUpdate.do")
+	public ModelAndView openBookUpdate(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/book/adminBookUpdate");
+		Map<String, Object> map = bookService.bookDetail(commandMap.getMap());
+		mv.addObject("map", map);
+
+		log.debug("map=> " + map);
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	// 예약번호 수정사항 입력
+	@RequestMapping(value = "/admin/bookUpdate.do", method = RequestMethod.POST)
+	public ModelAndView bookUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		System.out.println(commandMap.getMap());
+		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		bookService.bookUpdate(commandMap.getMap(), request);
+		mv.addObject("BOOK_NO", commandMap.get("BOOK_NO"));
+
+		log.debug("mv=> " + mv);
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
+
+	@RequestMapping(value = "/admin/bookDelete.do", method = RequestMethod.POST)
+	public ModelAndView bookDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		bookService.bookDelete(commandMap.getMap(), request);
+		mv.addObject("BOOK_NO", commandMap.get("BOOK_NO"));
+
+		log.debug("mv=> " + mv);
+		log.debug("commandMap=> " + commandMap.getMap());
+		return mv;
+	}
 
 	// dateButton 리스트 메소드
 	public List<String> dateButton(Date date) {

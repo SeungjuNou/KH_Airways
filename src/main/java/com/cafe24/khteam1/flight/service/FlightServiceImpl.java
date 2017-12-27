@@ -36,19 +36,16 @@ public class FlightServiceImpl implements FlightService{
     @Override
     public void insertFlight(Map<String, Object> map, HttpServletRequest request) throws Exception{
         
-
     }
 
     @Override
     public Map<String, Object> flightDetail(Map<String, Object> map) throws Exception{
-		return map;
-        
+		return flightDAO.flightDetail(map);
     }
 
-	@Override
-	public void updateFlight(Map<String, Object> map, HttpServletRequest request) throws Exception {
-		
-		
+	@Override 
+	public void seatUpdate(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		flightDAO.seatUpdate(map); 
 	}
 
 	@Override
@@ -72,6 +69,17 @@ public class FlightServiceImpl implements FlightService{
 	@Override
 	public List<Map<String, Object>> flightSearchList(Map<String, Object> map) {
 		return flightDAO.flightSearchList(map);
+	}
+
+	@Override
+	public void updateFlight(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		// TODO Auto-generated method stub 
+		
+	}
+
+	@Override
+	public void seatMin(Map<String, Object> map) throws Exception {
+		flightDAO.seatMin(map);
 	}
 
 }
