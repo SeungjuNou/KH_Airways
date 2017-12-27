@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

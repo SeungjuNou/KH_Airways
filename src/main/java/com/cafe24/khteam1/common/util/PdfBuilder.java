@@ -4,8 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.StringReader;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,6 +34,9 @@ import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
 
 // 마지막 과정으로, 겉으로 보이는 PDF 외형을 만들어서 이름.PDF로 바로 다운하도록 해 주는 클래스
 public class PdfBuilder extends AbstractView{
+	
+	@Resource(name="mailSend")
+	private MailSend mailSend;
 
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response)
@@ -40,18 +45,34 @@ public class PdfBuilder extends AbstractView{
 		Document document = new Document(PageSize.A4, 50, 50, 50, 50); // 용지 및 여백 설정
 	     
 		// PdfWriter 생성
+		String email = (String) model.get("email");
 		String fileName = ((String) model.get("fileName")); // 파일명이 한글일 땐 인코딩 필요
 		String folderName = (String) model.get("folderName"); //폴더명 
 		String filePath = request.getSession().getServletContext().getRealPath("/"+folderName+"/"); //서버경로 
 		String serverPath = request.getSession().getServletContext().getRealPath("/");
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath + fileName)); // 서버에 저장
-		PdfWriter writer2 = PdfWriter.getInstance(document, response.getOutputStream()); //링크 클릭하면 바로 다운로드
+		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath + fileName + ".pdf")); // 서버에 저장
+		if(email == null || email.equals("")) {
+			PdfWriter writer2 = PdfWriter.getInstance(document, response.getOutputStream()); //링크 클릭하면 바로 다운로드
+			// 파일 다운로드 설정 (리스폰영역)
+			response.setContentType("apllication/download; charset=utf-8"); //contentType pdf혹은 다운로드로 지정.
+			response.setHeader("Content-Transper-Encoding", "binary");
+			response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf"); 
+		} else {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("subject", "KhAirways 에서 발송한 메일입니다.");
+			map.put("text", "본 이메일은 발신전용으로 수신은 불가능함을 알려드립니다. 더불어 파일첨부 이외의 내용은 없습니다.");
+			map.put("to", "teamproj1@gmail.com");
+			map.put("file", (filePath + fileName + ".pdf"));
+			mailSend.send(map); 
+		}
+		
+		//PdfWriter writer2 = PdfWriter.getInstance(document, response.getOutputStream()); //링크 클릭하면 바로 다운로드
 		writer.setInitialLeading(12.5f);
 		
 		// 파일 다운로드 설정 (리스폰영역)
-		response.setContentType("apllication/download; charset=utf-8"); //contentType pdf혹은 다운로드로 지정.
+		/*response.setContentType("apllication/download; charset=utf-8"); //contentType pdf혹은 다운로드로 지정.
 		response.setHeader("Content-Transper-Encoding", "binary");
-		response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf");
+		response.setHeader("Content-Disposition", "inline; filename=" + fileName + ".pdf"); */
 		
 		// Document 오픈
 		document.open();
@@ -94,7 +115,10 @@ public class PdfBuilder extends AbstractView{
         
 		document.close();
 		writer.close();
-		writer2.close();
+
+		
+		
+		
 		
 	}
 }

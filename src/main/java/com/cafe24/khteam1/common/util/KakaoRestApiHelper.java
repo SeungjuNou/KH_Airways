@@ -26,7 +26,7 @@ public class KakaoRestApiHelper {
     private static final String PUSH_REGISTER_PATH = "/v1/push/register";
     private static final String PUSH_TOKENS_PATH = "/v1/push/tokens";
     private static final String PUSH_DEREGISTER_PATH = "/v1/push/deregister";
-    private static final String PUSH_SEND_PATH = "/v1/push/send"; 
+    private static final String PUSH_SEND_PATH = "/v1/push/send";  
     
 
     private static final ObjectMapper JACKSON_OBJECT_MAPPER = new ObjectMapper();
