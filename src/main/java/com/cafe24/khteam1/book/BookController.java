@@ -316,7 +316,7 @@ public class BookController {
 		paramMap.put("total_amount", "100000");
 		paramMap.put("vat_amount", "10000");
 		paramMap.put("tax_free_amount", "0");
-		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/pay.do");
+		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/complete.do");
 		paramMap.put("fail_url", "http://localhost:9090/khteam1/main.do");
 		paramMap.put("cancel_url", "http://localhost:9090/khteam1/main.do");
 
@@ -343,6 +343,16 @@ public class BookController {
 	public ModelAndView complete(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/book/bookComplete");
+		
+		Map<String, String> paramMap = new HashMap<String, String>();
+		paramMap.put("cid", "TC0ONETIME");
+		paramMap.put("tid", request.getSession().getAttribute("tid").toString());
+		paramMap.put("partner_order_id", "1234");
+		paramMap.put("partner_user_id", "1234");
+		paramMap.put("pg_token", commandMap.getMap().get("pg_token").toString());
+		apiHelper.successPay(paramMap);
+		
+		
 		//완료페이지 화면 띄우는용
 		List<Map<String, Object>> successList = ticketService.TKlistByBKno(map);
 		mv.addObject("successList", successList);
