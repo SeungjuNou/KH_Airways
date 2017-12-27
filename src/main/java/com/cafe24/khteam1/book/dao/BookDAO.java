@@ -22,8 +22,8 @@ public class BookDAO extends AbstractDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> memberBookList(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("book.memberBookList", map);
+	public List<Map<String, Object>> memberBookList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("book.memberBookList", map);
 	}
 	
 	@SuppressWarnings("unchecked")

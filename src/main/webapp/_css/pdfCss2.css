@@ -1,0 +1,69 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.mainTable {
+	width: 600px;
+	height: 200px;
+	background-color: white;
+}
+
+.mainTable tr td {
+	height: 10px;
+}
+
+.named2 {
+	text-align:left;
+	font-size: 1.3em;
+	padding-left: 10px;
+	background-color: white;
+}
+
+.named3 {
+	text-align:left;
+	font-weight: bold;
+	font-size: 2.0em;
+	padding-left: 10px;
+	background-color: white;
+}
+
+#plane {
+	text-align:center;
+}
+
+.line {
+	height: 1px;
+}
+
+.bold {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.title {
+	font-size: 1.6em;
+	font-weight: bold;
+	background-color: #173463;
+	color: white;
+	height: 60px;
+	padding-left: 10px;
+}
+
+.title2 {
+	font-size: 1.6em;
+	font-weight: bold;
+	background-color: #9aa5af;
+	color: white;
+	height: 60px;
+}
+
+#barcode {
+	font-size: 15px; 
+}
+
+#barcode2 {
+	height: 15px;
+	text-align:right;
+	background-color: white;
+}

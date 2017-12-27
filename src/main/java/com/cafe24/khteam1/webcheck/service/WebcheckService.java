@@ -20,6 +20,9 @@ public interface WebcheckService {
 		//체크인 내역 저장
 		void insertWebcheck(Map<String, Object> map) throws Exception;
 
+		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;
+		
+		
 		/*//체크?�� ?��?��보기 ?��걸로 (pdf)?��?��?��?�� �??��?��?��?��. 
 		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;
 		

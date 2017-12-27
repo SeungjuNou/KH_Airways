@@ -26,13 +26,12 @@ public class BookServiceImpl implements BookService{
 	
 	@Override
 	public List<Map<String, Object>> bookList() throws Exception { 
-		 return bookDAO.bookList();
+		 return bookDAO.bookList(); 
 	} 
 		
 	@Override
-	public Map<String, Object> memberBookList(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = bookDAO.memberBookList(map);
-	    return resultMap;
+	public List<Map<String, Object>> memberBookList(Map<String, Object> map) throws Exception {
+	    return bookDAO.memberBookList(map);
 	}
 	
 	@Override

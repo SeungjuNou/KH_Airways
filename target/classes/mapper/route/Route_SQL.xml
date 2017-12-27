@@ -4,7 +4,7 @@
 
 	<select id="depRouteList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select distinct dep from test_route
+			select distinct dep from test_route where DEL_GB = 'N' order by DEP asc    
 		]]>
 	</select>
 	
@@ -16,7 +16,7 @@
 
 	<select id="arrRouteList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			select distinct arr from test_route where dep = #{DEP}
+			select distinct arr from test_route where dep = #{DEP} AND DEL_GB = 'N' order by DEP asc
 		]]>
 	</select>
 	

@@ -22,13 +22,11 @@ public class WebcheckDAO extends AbstractDAO{
 		insert("webcheck.insertWebcheck", map);
 	}
 	
-	
-	/*bookDAO
-	public Map<String, Object> viewBook(Map<String, Object> map) throws Exception {
-		
-		Map<String, Object> resultMap = bookDAO.viewBook(map);
-		return resultMap;
-	}*/
+
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("webcheck.viewCheckin", map);
+	}
 	
 	
 }

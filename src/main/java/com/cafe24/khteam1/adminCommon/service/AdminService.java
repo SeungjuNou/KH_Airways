@@ -10,6 +10,8 @@ public interface AdminService {
 	List<Map<String, Object>> selectWeek(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> selectMonth(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectMoney(Map<String, Object> map) throws Exception;
 
 }
 

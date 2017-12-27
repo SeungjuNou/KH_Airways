@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe24.khteam1.book.service.BookService;
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.common.util.DateTrans;
 import com.cafe24.khteam1.common.util.MailSend;
@@ -32,6 +33,9 @@ public class MemberController {
 
 	@Resource(name = "milesService")
 	private MilesService milesService;
+	
+	@Resource(name = "bookService")
+	private BookService bookService;
 	
 	@Resource(name="mailSend")
 	private MailSend mailSend;
@@ -230,6 +234,18 @@ public class MemberController {
 		memberService.deleteMember(commandMap.getMap());
 		view.addObject("ID", commandMap.get("ID"));
 		return view;
+	}
+	
+	@RequestMapping(value = "/myPage/mybookList.do")
+	public ModelAndView mybookList(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("myPage/memberBookList");
+		List<Map<String,Object>> list = null;
+		String id = (String) request.getSession().getAttribute("ID");
+		commandMap.getMap().put("MEM_ID", id);
+		list = bookService.memberBookList(commandMap.getMap());
+		
+		mv.addObject("list", list);
+		return mv;
 	}
 
 	//////////////////////////////////////////////////////

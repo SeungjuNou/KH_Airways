@@ -43,17 +43,19 @@ public class PdfController {
 		String fname = (commandMap.getMap().get("fname")).toString(); //폴더이름 
 		String reqName = (commandMap.getMap().get("reqName")).toString(); //요청이름
 		String email = null;
+		String tk_no = null;
 		try {
 			email = (commandMap.getMap().get("email")).toString(); //이메일 여부
+			tk_no = (commandMap.getMap().get("TK_NO")).toString(); //티켓넘버
 		}catch (Exception ex) {
 		}
 		
 		String urlPath = null;
 		if(reqName.equals("book/pdfEticket")) {
 			String book_no = "&BOOK_NO="+(commandMap.getMap().get("BOOK_NO")).toString(); //예약번호
-			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname + book_no;
+			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname + book_no + "&tk_no=" + tk_no;
 		} else {
-			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname;
+			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname+ "&tk_no=" + tk_no;
 		}
 		
 		String htmlStr = htmlMaker.pageMakeHtml(urlPath);
@@ -68,7 +70,7 @@ public class PdfController {
 		String filePath = request.getSession().getServletContext().getRealPath("/"+fname+"/");
 		
 		name = name + ".pdf";
-		String re = "";
+		String re = "main/main.do";
 		if(email == null || email.equals("")) {
 			
 			try {
@@ -82,7 +84,11 @@ public class PdfController {
 		        response.getOutputStream().close();
 		        re = null;
 			} catch (Exception ex){
-				commonService.insertFile(commandMap.getMap()); 
+				try {
+					commonService.insertFile(commandMap.getMap());
+				} catch (Exception e) {
+					
+				}
 				re = "buildPdf";
 			}
 			

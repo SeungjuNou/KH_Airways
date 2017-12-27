@@ -97,7 +97,7 @@
 							</div>
 							<div class="col-xs-9 text-right">
 								<div class="huge">
-									<h4>dummy</h4>
+									<h4>15</h4>
 								</div>
 								<div>웹 체크인 완료</div>
 							</div>

@@ -194,7 +194,9 @@ public class BookController {
 	@RequestMapping(value = "/book/bookSuccess.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView bookSuccess(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/test/api.do");
+		ModelAndView mv = new ModelAndView();
+		
+		
 
 		Map<String, Object> map2book = new HashMap<String, Object>();
 		String regDate = new SimpleDateFormat("yyMMdd").format(new java.util.Date());
@@ -207,6 +209,12 @@ public class BookController {
 		String email = (String) commandMap.getMap().get("email");
 		String phone = (String) commandMap.getMap().get("phone");
 		String pay = (String) commandMap.getMap().get("pay");
+		
+		if(pay.equals("miles")) {
+			mv.setViewName("/book/bookComplete");
+		} else {
+			mv.setViewName("redirect:/test/api.do");
+		}
 
 		String mem_id = (String) request.getSession().getAttribute("ID");
 
@@ -275,7 +283,7 @@ public class BookController {
 			mile.put("MILE_NO", mileNo);
 			milesService.saveMile(mile);
 		} else { //결제 
-			mile.put("USE_MILE", miles);
+			mile.put("USE_MILE", price); 
 			mile.put("MILE_NO", mileNo);
 			milesService.useMile(mile);
 		}
@@ -373,7 +381,8 @@ public class BookController {
 	@RequestMapping(value = "/book/pdfEticket.do")
 	public ModelAndView pdfEticket(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("pdf/bookPdf");
-
+		
+		log.debug(commandMap.getMap());
 		
 		Map<String, Object> bookMap = bookService.bookDetail(commandMap.getMap());
 		Map<String, Object> ticketMap = ticketService.ticketDetail(commandMap.getMap());
@@ -482,6 +491,9 @@ public class BookController {
 		log.debug("commandMap=> " + commandMap.getMap());
 		return mv;
 	}
+	
+	
+	
 
 	// dateButton 리스트 메소드
 	public List<String> dateButton(Date date) {
