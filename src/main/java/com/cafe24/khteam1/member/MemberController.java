@@ -226,7 +226,7 @@ public class MemberController {
 		memberService.deleteMember(commandMap.getMap());
 		return view;
 	}
-
+	
 	// 마일리지 번호
 	public String mileNo(String type) {
 		double no = Math.random();

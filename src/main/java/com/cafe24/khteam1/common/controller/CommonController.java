@@ -2,6 +2,7 @@ package com.cafe24.khteam1.common.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.common.service.CommonService;
+import com.cafe24.khteam1.sample.service.SampleService;
 
- 
-
- 
 @Controller
 public class CommonController {
     Logger log = Logger.getLogger(this.getClass());
@@ -26,7 +25,7 @@ public class CommonController {
     @Resource(name="commonService")
     private CommonService commonService;
     
-    @RequestMapping(value="/common/downloadFile.do")
+   @RequestMapping(value="/common/downloadFile.do")
     public void downloadFile(CommandMap commandMap, HttpServletResponse response, HttpServletRequest request) throws Exception{
         Map<String,Object> map = commonService.selectFileInfo(commandMap.getMap());
         String storedFileName = (String)map.get("STORED_FILE_NAME");

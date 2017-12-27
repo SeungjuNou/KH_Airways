@@ -17,6 +17,7 @@ public interface SampleService {
 
 	
 	void deleteBoard(Map<String, Object> map) throws Exception;
-	
+
+
 	
 }

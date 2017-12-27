@@ -62,10 +62,12 @@
             
             <div id="inner2">
                 <ul>
-                    <li id="select-inner">
+                    <li>
                         <div>마일리지</div>
                     </li>
-                    <li><a href="<c:url value=''/>">회원 정보</a></li>
+                    <li id="select-inner">
+                   		 <div>회원 정보</div>
+                    </li>
                     <li>나의 예약</li>
                     <li>웹 체크인</li>
                     <li id="empty">&nbsp;</li>
@@ -88,7 +90,8 @@
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a href="#tab-primary-1" data-toggle="tab">회원정보</a></li>
                                         <li><a href="#tab-primary-2" data-toggle="tab">수정하기</a></li>
-                                        <li><a href="#tab-primary-3" data-toggle="tab">탈퇴하기</a></li>
+                                        <li><a href="#tab-primary-3" data-toggle="tab">여권정보변경신청</a></li>
+                                        <li><a href="#tab-primary-4" data-toggle="tab">탈퇴하기</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -207,6 +210,87 @@
 										<div class="col-lg-12">
 											<div class="panel panel-default">
 												<div class="panel-heading">
+													<h4>요청고객정보</h4>
+												</div>
+												<!-- /.panel-heading -->
+												<div class="panel-body">
+													<div class="table-responsive">
+														<div class="col-lg-12">
+															<table class="table">
+																	<tr>
+																		<td>성명</td>
+																		<td>${map.E_FIRST}/${map.E_LAST}</td>
+																	</tr>
+																	<tr>
+																		<td>회원 아이디</td>
+																		<td>${map.ID}</td>
+																	</tr>
+																
+																	<tr>
+																		<td>마일리지번호</td>
+																		<td>${map.MILE_NO}</td>
+																	</tr>
+																	<tr>
+																		<td>이메일주소</td>
+																		<td>${map.EMAIL}</td>
+																	</tr>
+																	<tr>
+																		<td>전화번호</td>
+																		<td>${map.PHONE}</td>
+																	</tr>
+															</table>
+														</div>
+													</div>
+													<!-- /.table-responsive -->
+												</div>
+												<!-- /.panel-body -->
+											</div>
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4>변경신청</h4>
+												</div>
+												<!-- /.panel-heading -->
+												<div class="panel-body">
+													<div class="table-responsive">
+														<div class="col-lg-12">
+															<table class="table">
+															<form role="form" action="/khteam1/admin/ppModifyApplyBoard.do" method="post" enctype="multipart/form-data" >
+																	
+																	<tr>
+																		<td>이름</td>
+																		<td><input type="text" name="TITLE" value="${map.TITLE}"/><input type="hidden" name="IDX" value="${map.IDX}"/></td>
+																	</tr>
+																	<tr>
+																		<td>변경할 내용<br>
+																		<td><input type="text" name="CONTENTS" value="${map.CONTENTS}"/></td>
+																	</tr>
+																	<tr>
+																		<td>파일첨부</td>
+																		<td><input type="file" name="file" value="파일선택"/></td>
+																	</tr>
+																
+															</table>
+														</div>
+													</div>
+													<!-- /.table-responsive -->
+												</div>
+												<!-- /.panel-body -->
+											</div>
+											<!-- /.panel -->
+										</div>
+												<p align="right">
+														<input type="submit" value="신청하기" class="btn btn-primary"></input>
+															</form>	
+														</div>
+											<!-- /.panel -->
+										</div>
+										<!-- /.col-lg-6 -->
+									
+									</div>
+									<div class="tab-pane fade" id="tab-primary-4">
+										<div class="col-lg-12">
+											<div class="panel panel-default">
+												<div class="panel-heading">
 													<h4>회원탈퇴하기</h4>
 												</div>
 												<!-- /.panel-heading -->
@@ -234,6 +318,7 @@
 										<!-- /.col-lg-6 -->
 									
 									</div>
+									
 								</div>
 							</div>
 						</div>
