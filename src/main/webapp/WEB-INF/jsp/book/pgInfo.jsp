@@ -44,14 +44,13 @@
 
 		<div id="top-2">
 			<div id="logo">
-				<img src="../_assets/icon.png" alt="" />
+			<a href="../main.do"><img src="../_assets/icon.png" alt="" /></a>
 			</div>
 			<ul>
 				<div id="menu">
 					<li id="empty2"></li>
-					<li>항공권 예매</li>
-					<li>웹 체크인</li>
-					<li>Seungju nou</li>
+					<a href="../main.do"><li>항공권 예매</li></a>
+					<li>${sessionScope.MEM_NAME}</li>
 				</div>
 			</ul>
 		</div>
@@ -60,13 +59,6 @@
 			<div id="body-inner">
 				<div id="inner2">
 					<ul>
-						<li id="select-inner">
-							<div>마이 페이지</div>
-						</li>
-						<li>마일리지</li>
-						<li>나의 예약</li>
-						<li>웹 체크인</li>
-						<li id="empty">&nbsp;</li>
 					</ul>
 				</div>
 

@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,6 +21,7 @@ public class MailSend {
 	
 	public void send(Map<String, Object> map) {
 		MimeMessage message = mailSender.createMimeMessage();
+		String file = (String) map.get("file");
 		try {
 			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 			//메일 기본 설정
@@ -28,9 +30,9 @@ public class MailSend {
 			messageHelper.setTo((String) map.get("to"));//받는 메일주소
 			messageHelper.setFrom(MAILFORM);//보내는 메일주소
 			//첨부파일
-			if(map.get("FILE_NAME") != null) {
-				DataSource dataSource = new FileDataSource("C:\\Users\\csh\\Desktop\\book2\\"+(String)map.get("FILE_NAME"));
-				messageHelper.addAttachment((String)map.get("FILE_NAME"), dataSource);
+			if(map.get("file") != null) {
+				DataSource dataSource = new FileDataSource(file);
+				messageHelper.addAttachment((String)map.get("file"), dataSource);
 			}
 			
 			mailSender.send(message);
