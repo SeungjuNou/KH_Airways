@@ -34,4 +34,9 @@ public class AdminServiceImpl implements AdminService {
 			return adminDAO.selectMonth(map);
 		}
 
+		@Override
+		public List<Map<String, Object>> selectMoney(Map<String, Object> map) throws Exception {
+			return adminDAO.selectMoney(map);
+		}
+
 }

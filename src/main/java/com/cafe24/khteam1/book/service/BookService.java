@@ -15,7 +15,7 @@ public interface BookService {
 	List<Map<String, Object>> bookList() throws Exception;
 
 	//개인 예약 리스트  memberWbBookList
-	Map<String, Object> memberBookList(Map<String, Object> map) throws Exception;
+	List<Map<String, Object>> memberBookList(Map<String, Object> map) throws Exception;
 	
 	//웹체크인 안한거 보기
 	List<Map<String, Object>> memberWbBookList(Map<String, Object> map) throws Exception;

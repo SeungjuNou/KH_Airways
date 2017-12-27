@@ -183,7 +183,7 @@
 													<div class="table-responsive">
 														<div class="col-lg-12">
 															<table class="table">
-															<form role="form" action="/khteam1/admin/ppModifyApplyBoard.do" method="post" enctype="multipart/form-data" >
+															<form role="form" action="/khteam1/mypage/ppModifyApplyBoard.do" method="post" enctype="multipart/form-data" >
 																	
 																	<tr>
 																		<td>이름</td>
@@ -239,7 +239,7 @@
 												<p align="right">
 													<a href="<c:url value='/myPage/viewMember.do'/>" 
 														button type="button" class="btn btn-primary">리스트로 돌아가기</a> 												
-													<a href="<c:url value='/myPage/deleteMember.do'/>" 
+													<a href="<c:url value='/myPage/deleteMember.do?ID=${sessionScope.ID}'/>" 
 														button type="button" class="btn btn-primary">회원탈퇴하기</a> 
 											</div>
 											<!-- /.panel -->

@@ -39,15 +39,15 @@
 		]]>
 	</insert>
 	
-	<!-- Book_SQL.XML	
-	<select id="viewBook" parameterType="hashmap" resultType="hashmap">
+	
+	<select id="viewCheckin" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT * 
 			FROM
-				BOOK
+				WEBCHECK
 			WHERE
 				BOOK_NO = #{BOOK_NO}	
 		]]>
-	</select> -->
+	</select> 
 
 </mapper>

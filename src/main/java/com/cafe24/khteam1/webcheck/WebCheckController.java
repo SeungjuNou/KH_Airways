@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cafe24.khteam1.book.service.BookService;
 import com.cafe24.khteam1.common.common.CommandMap;
 import com.cafe24.khteam1.flight.service.FlightService;
+import com.cafe24.khteam1.route.service.RouteService;
 import com.cafe24.khteam1.ticket.service.TicketService;
 import com.cafe24.khteam1.webcheck.service.WebcheckService;
 
@@ -39,6 +40,9 @@ public class WebCheckController {
 	
 	@Resource(name = "flightService")
 	private FlightService flightService;
+	
+	@Resource(name = "routeService")
+	private RouteService routeService;
 
 	@Resource(name = "ticketService")
 	private TicketService ticketService;
@@ -76,10 +80,17 @@ public class WebCheckController {
 		
 		Map<String, Object> book = bookService.bookDetail(commandMap.getMap());
 		List<Map<String, Object>> ticket = ticketService.TKlistByBKno(commandMap.getMap());
+		
+		for(int i =0; i <ticket.size(); i++) {
+			Map<String, Object> tk = ticket.get(i);
+			map.put("TK_NO", tk.get("TK_NO"));
+			
+		}
+		
 		map.putAll(bookService.bookDetail(commandMap.getMap()));
 
 		mv.addObject("book", book);
-		mv.addObject("ticket", ticket);
+		mv.addObject("ticket", ticket); 
 		mv.addObject("map", map);
 		
 		return mv;
@@ -100,10 +111,12 @@ public class WebCheckController {
 			throws Exception { 
 		ModelAndView mv = new ModelAndView("/webCheck/webCheckStep3");
 		
+		log.debug(map);
+		log.debug("step3333333" + map);
 		map.putAll(commandMap.getMap());
 		
 		Map<String, Object> flight = flightService.flightDetail(map);
-		String seat = (String) flight.get("BOOK_SET");
+		String seat = (String) flight.get("BOOK_SEAT");
 		String seat2 = (String) commandMap.getMap().get("seat");
 		String strResult = seat + seat2;
 		map.put("result", strResult);
@@ -131,12 +144,45 @@ public class WebCheckController {
 		
 		map.put("WB_CHECK", "Y");
 		bookService.updateWbCheck(map);
-		
+
 		mv.addObject("result", resultList);
 		mv.addObject("map", map);
 		return mv;
 	} 
 	
+	
+	
+	@RequestMapping(value = "/webcheck/bpPdf.do")
+	public ModelAndView bpPdf(@ModelAttribute("webcheckInfo") Map<String, Object> map,CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("pdf/bpPdf");
+		
+		log.debug(commandMap.getMap());
+		map.put("BOOK_NO", commandMap.getMap().get("name"));
+		map.put("name", commandMap.getMap().get("tk_no"));
+		
+		Map<String, Object> bookMap = bookService.bookDetail(map);
+		Map<String, Object> ticketMap = ticketService.ticketDetail(map);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		
+		map2.put("DEP_CODE", bookMap.get("DEP_CODE"));
+		Map<String, Object> flightMap = flightService.flightDetail(map2);
+		Map<String, Object> depMap = routeService.selectRouteDetail(flightMap);
+		 
+		map2.put("DEP_CODE", bookMap.get("ARR_CODE"));
+		Map<String, Object> flightMap2 = flightService.flightDetail(map2);
+		Map<String, Object> arrMap = routeService.selectRouteDetail(flightMap2);
+		
+		Map<String, Object> checkin = webcheckService.viewCheckin(bookMap);
+		
+		mv.addObject("checkin", checkin);
+		mv.addObject("dep", flightMap);
+		mv.addObject("arr", flightMap2);
+		mv.addObject("depMap", depMap);
+		mv.addObject("arrMap", arrMap);
+		mv.addObject("ticketMap", ticketMap);
+		mv.addObject("bookMap",bookMap); 
+		return mv; 
+	}
 	
 	
 	
@@ -148,7 +194,7 @@ public class WebCheckController {
 		
 		Map<String, Object> flight = flightService.flightDetail(map);
 		
-		String str = (String) flight.get("BOOK_SET");
+		String str = (String) flight.get("BOOK_SEAT");
 	
 		String arr[] = str.split(",");
 		List<String> list = new ArrayList<String>();
@@ -167,6 +213,8 @@ public class WebCheckController {
 		int random = (int) (Math.random() * 10000);
 		return sysDate + random;
 	}
+	
+	
 	
 
 }

@@ -52,7 +52,7 @@ public class AdminController {
         return new GoogleChartDTO();
     }
 	
-	@RequestMapping(value="/admin/selectToday.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/admin1/selectToday.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView selectTodayList(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/admin/adminToday");
         
@@ -61,24 +61,23 @@ public class AdminController {
         String today = dateFormat.format(date);
         
         Map<String,Object> map = new HashMap<String,Object>();
-        map.put("DAY", "____15");
+        map.put("DAY", today);
         
         	mv.addObject("salesMap", adminService.selectToday(map));
-       
+        
         return mv; 
     }
 	
-	@RequestMapping(value="/admin/selectMonth.do", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/admin1/selectMonth.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView selectMonthList(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("admin/adminMonth");
         
         Date date = new Date(); 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("____dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("__MM__");
         String today = dateFormat.format(date);
         
         Map<String,Object> map = new HashMap<String,Object>();
-        map.put("DAY", "____15");
-        
+        map.put("DAY", today);
         	mv.addObject("salesMap", adminService.selectToday(map));
        
         return mv; 
@@ -87,7 +86,7 @@ public class AdminController {
 	
 	//탑승객 통계현황 
 	@ResponseBody
-	@RequestMapping(value="/admin/maleFemale.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin1/maleFemale.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
     public String maleFemale(@ModelAttribute("chartMaker") GoogleChartDTO chartMaker, CommandMap commandMap) throws Exception{
 		chartMaker.addColumn("SEX", "string");
 		chartMaker.addColumn("percent", "number");
@@ -110,7 +109,7 @@ public class AdminController {
 	
 	//탑승객 통계현황 
 	@ResponseBody
-	@RequestMapping(value="/admin/salesPie.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin1/salesPie.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
     public String seatPie(@ModelAttribute("chartMaker2") GoogleChartDTO chartMaker2, CommandMap commandMap) throws Exception{
 		chartMaker2.addColumn("seat", "string");
 		chartMaker2.addColumn("percent", "number");
@@ -134,19 +133,33 @@ public class AdminController {
 	
 	//탑승객 통계현황 
 	@ResponseBody
-	@RequestMapping(value="/admin/salesChart.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
+	@RequestMapping(value="/admin1/salesChart.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
     public String salesChart(@ModelAttribute("chartMaker3") GoogleChartDTO chartMaker3, CommandMap commandMap) throws Exception{
-		chartMaker3.addColumn("day", "string");
-		chartMaker3.addColumn("Sales", "number");
 		
-		chartMaker3.createRows(3); 
+		Date date = new Date(); 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("__MM__");
+        String today = dateFormat.format(date);
         
-		chartMaker3.addCell(0, "2017/12/15", "2017/12/15");
-		chartMaker3.addCell(0, 662000);
-		chartMaker3.addCell(1, "2017/12/18", "2017/12/18");
-		chartMaker3.addCell(1, 320000);
-		chartMaker3.addCell(2, "2017/12/19", "2017/12/19");
-		chartMaker3.addCell(2, 720000);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("DAY", today);
+        
+        List<Map<String, Object>> list = adminService.selectMoney(map);
+		
+        chartMaker3.addColumn("day", "string");
+		chartMaker3.addColumn("Sales", "number");
+        
+		chartMaker3.createRows(list.size());
+		
+        for(int i = 0; i < list.size(); i++) {
+        		Map<String,Object> map2 = new HashMap<String,Object>();
+        		map2 = list.get(i);
+        		
+        		String day = (String) map2.get("DAY");
+        		String total = map2.get("total").toString();
+        		
+	        	chartMaker3.addCell(i, day, day);
+	    		chartMaker3.addCell(i, total); 
+        } 
         
         Gson gson = new Gson();
         String json = gson.toJson(chartMaker3.getResult());

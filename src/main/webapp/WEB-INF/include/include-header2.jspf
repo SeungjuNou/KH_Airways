@@ -62,7 +62,7 @@
                 <ul>
                     <li class="select-inner"><a href="viewMember.do">회원 정보</a></li>
                     <li class="select-inner"><a href="milesList.do">상세 마일리지</a></li>
-                    <li class="select-inner"><a href="#">예약 현황</a></li>
+                    <li class="select-inner"><a href="mybookList.do">예약 현황</a></li>
                     <li class="select-inner"><a href="../webcheck/openCheckin.do">웹 체크인</a></li>
                     <li id="empty">&nbsp;</li>
                 </ul>

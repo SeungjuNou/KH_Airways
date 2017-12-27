@@ -75,7 +75,7 @@ Logger log = Logger.getLogger(this.getClass());
 	}
 	
 	//관리자 FlightList 검색
-	@RequestMapping(value="flightAdminSearch.do")
+	@RequestMapping(value="/admin/flightAdminSearch.do")
 	public ModelAndView flightSearchList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<Map<String, Object>> flightList = new ArrayList<Map<String,Object>>(); 	

@@ -33,6 +33,12 @@ public class WebcheckServiceImpl implements WebcheckService{
 		webcheckDAO.insertWebcheck(map);
 	}
 
+
+	@Override
+	public Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception {
+		return webcheckDAO.viewCheckin(map);
+	}
+
 	
 	/*BookServiceImpl
 	public Map<String, Object> viewBook(Map<String, Object> map) throws Exception {

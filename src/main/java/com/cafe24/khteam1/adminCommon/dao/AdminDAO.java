@@ -25,6 +25,11 @@ public class AdminDAO extends AbstractDAO{
     public List<Map<String, Object>> selectMonth(Map<String, Object> map) {
         return selectList("adminSales.selectMonth", map);
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Map<String, Object>> selectMoney(Map<String, Object> map) {
+        return selectList("adminSales.selectMoney", map);
+    }
 }
 
  
