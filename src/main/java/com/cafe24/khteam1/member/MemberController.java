@@ -133,27 +133,34 @@ public class MemberController {
 	
 	// 로그인체크
 	@SuppressWarnings("unchecked")
+	@ResponseBody
 	@RequestMapping(value = "/login/loginCheck.do", method = RequestMethod.POST)
-	public ModelAndView loginCheck(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView view = new ModelAndView("redirect:/main.do");
+	public boolean loginCheck(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		//ModelAndView view = new ModelAndView("redirect:/main.do");
+		boolean loginResult = false;
 
 		Map<String, Object> result = memberService.loginCheck(commandMap.getMap());
 		Map<String, Object> map = (Map<String, Object>) result.get("map");
 
-		String password = (String) map.get("PASSWORD");
-		String MILE_NO =  String.valueOf(map.get("MILE_NO"));
-		String MEM_NO = String.valueOf(map.get("NO"));
-		
-		if (password.equals(commandMap.get("PASSWORD"))) {
-			request.getSession().setAttribute("ID", commandMap.get("ID"));
-			request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
-			request.getSession().setAttribute("MILE_NO", MILE_NO);
-			request.getSession().setAttribute("MEM_NO", MEM_NO);
-		} else {
+		try {	
+			String password = (String) map.get("PASSWORD");
+			String MILE_NO =  String.valueOf(map.get("MILE_NO"));
+			String MEM_NO = String.valueOf(map.get("NO"));
 			
-		}
+			if (password.equals(commandMap.get("PASSWORD"))) {
+				request.getSession().setAttribute("ID", commandMap.get("ID"));
+				request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
+				request.getSession().setAttribute("MILE_NO", MILE_NO);
+				request.getSession().setAttribute("MEM_NO", MEM_NO);
+				
+				loginResult = true;
+			} else {
+				
+			}
+			
+		} catch(NullPointerException e) {}
 
-		return view;
+		return loginResult;
 	} 
 	
 	

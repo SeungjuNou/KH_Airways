@@ -177,7 +177,7 @@
 
 <div id="member_form">
 	<div id="login_form">
-		<form  action="/khteam1/login/loginCheck.do" autocomplete="on" method="post"> 
+		<form  action="/khteam1/login/loginCheck.do" id="loging" autocomplete="on" method="post"> 
 			<p> 
 				<input id="ID" name="ID" required="required" type="text" placeholder="ID"/>
 			</p>
@@ -373,7 +373,8 @@ $(document).bind('ready ajaxComplete', function(){
         });
         
         //ID찾기
-        $(".findId").click(function(){
+        $(".findId").click(function(event){
+        	event.preventDefault();
         	var url = "findId.do";
         	var name = "ID찾기";
         	var width=500, height=300;
@@ -385,7 +386,27 @@ $(document).bind('ready ajaxComplete', function(){
         	specs += ",top=" + top;
         	window.open(url,name,specs);
         });
+       
     }); 
+    
+//로그인
+$("#loging").bind("submit", function(event){
+	event.preventDefault();
+	var url = $(this).attr("action");
+	var loginData = $(this).serialize();
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: loginData,
+		success: function(data) {
+			if(data == false) {
+				alert("ID 또는 PASSWORD가 다릅니다.")
+			} else {
+				location.href="main.do";
+			}
+		}		
+	});
+});
 </script>
 
 </body>
