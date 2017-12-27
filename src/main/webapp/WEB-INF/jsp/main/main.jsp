@@ -70,7 +70,7 @@
 						<c:if test="${!empty sessionScope.ID}">
 						<p data-button="4"><b>${sessionScope.MEM_NAME}</b></p>
 						<ul>
-							<li><a href="/login/logOut.do">로그아웃</a></li>
+							<li><a href="/khteam1/login/logOut.do">로그아웃</a></li>
 							<li><a href="/khteam1/myPage/viewMember.do">마이페이지</a></li>
 						</ul>
 						</c:if>

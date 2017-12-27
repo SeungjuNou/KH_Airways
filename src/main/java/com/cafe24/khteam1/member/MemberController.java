@@ -72,7 +72,7 @@ public class MemberController {
 	//id찾기 인증번호 보내기
 	@ResponseBody
 	@RequestMapping(value="/findId.do", method=RequestMethod.POST)
-	public boolean findId(CommandMap commandMap, HttpSession session) throws Exception {
+	public boolean findId(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception {
 		//ID찾기
 		Map<String, Object> info = memberService.findId(commandMap.getMap());
 		

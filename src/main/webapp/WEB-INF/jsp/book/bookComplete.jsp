@@ -35,6 +35,7 @@
 </head>
 <body>
 
+	
 	<!--  top_header -->
 	<div id="wrapper">
 
@@ -42,14 +43,13 @@
 
 		<div id="top-2">
 			<div id="logo">
-				<img src="<c:url value='../_assets/icon.png'/>" alt="" />
+			<a href="../main.do"><img src="../_assets/icon.png" alt="" /></a>
 			</div>
 			<ul>
 				<div id="menu">
 					<li id="empty2"></li>
-					<li>항공권 예매</li>
-					<li>웹 체크인</li>
-					<li>Seungju nou</li>
+					<a href="../main.do"><li>항공권 예매</li></a>
+					<li>${sessionScope.MEM_NAME}</li>
 				</div>
 			</ul>
 		</div>
@@ -111,7 +111,10 @@
 															<a href="
 															<c:url value='/pdfMake.do?reqName=book/pdfEticket&BOOK_NO=${list.BOOK_NO}&name=${list.TK_NO}&fname=file_ET' />" 
 										 					type="button" class="btn btn-primary">출력</a>
-														</td> 
+										 					<a href="
+															<c:url value='/pdfMake.do?reqName=book/pdfEticket&BOOK_NO=${list.BOOK_NO}&name=${list.TK_NO}&fname=file_ET&email=email' />" 
+										 					type="button" class="btn btn-primary">이메일 발송</a>
+														</td>
 													</tr>
 												</c:forEach>
 											</tbody>

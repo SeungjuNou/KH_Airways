@@ -346,6 +346,7 @@ public class BookController {
 		//완료페이지 화면 띄우는용
 		List<Map<String, Object>> successList = ticketService.TKlistByBKno(map);
 		mv.addObject("successList", successList);
+		mv.addObject("map", map);
 		
 		
 		Map<String, Object> map2 = new HashMap<String, Object>();
@@ -362,13 +363,25 @@ public class BookController {
 	@RequestMapping(value = "/book/pdfEticket.do")
 	public ModelAndView pdfEticket(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("pdf/bookPdf");
-		log.debug(commandMap.getMap() + "    command");
+
 		
 		Map<String, Object> bookMap = bookService.bookDetail(commandMap.getMap());
 		Map<String, Object> ticketMap = ticketService.ticketDetail(commandMap.getMap());
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		
+		map2.put("DEP_CODE", bookMap.get("DEP_CODE"));
+		Map<String, Object> flightMap = flightService.flightDetail(map2);
+		Map<String, Object> depMap = routeService.selectRouteDetail(flightMap);
+		
+		map2.put("DEP_CODE", bookMap.get("ARR_CODE"));
+		flightMap = flightService.flightDetail(map2);
+		Map<String, Object> arrMap = routeService.selectRouteDetail(flightMap);
 		
 		log.debug(bookMap);
-		log.debug(ticketMap);
+		log.debug(ticketMap); 
+		
+		mv.addObject("depMap", depMap);
+		mv.addObject("arrMap", arrMap);
 		mv.addObject("ticketMap", ticketMap);
 		mv.addObject("bookMap",bookMap); 
 		return mv; 
