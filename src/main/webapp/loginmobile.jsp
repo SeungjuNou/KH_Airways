@@ -82,7 +82,7 @@
             <li><a href="/khteam1/myPage/viewMemberMobile.do"><i class="fa fa-user fa-fw"></i> 회원정보보기</a>
             </li>
             <li class="divider"></li>
-            <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+            <li><a href="/khteam1/login/logOut.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
             </li>
           </ul>
         </li>
@@ -94,13 +94,14 @@
       <div class="sidebar-nav navbar-collapse">
 
         <ul class="nav" id="side-menu">
-
+		<c:if test="${not empty sessionScope.ID}">		
           <li>
-            <a href="#"> 나의 예약정보보기 <span class="fa arrow"></span></a>
+            <a href="/khteam1/myPage/mybookList.do"> 나의 예약정보보기 <span class="fa arrow"></span></a>
           </li>
-          <li>
+        </c:if>  
+          <!-- <li>
             <a href="#"> 나의 체크인 내역보기 <span class="fa arrow"></span></a>
-          </li>
+          </li> -->
         </ul>
 
       </div>
@@ -118,32 +119,38 @@
 
 				<!-- /.panel-heading -->
 				<div class="col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-body" >
-						
-							<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
 
-									<div id="login_form"  >
-										<form action="/khteam1/login/loginCheck.do" autocomplete="on"
-											method="post">
-											<p>
-												<input id="ID" name="ID" required="required" type="text"
-													placeholder="ID" />
-											</p>
-											<p>
-												<input id="PASSWORD" name="PASSWORD" required="required"
-													type="password" placeholder="Password" />
-											</p>
-											<p class="keeplogin">
-												<input id="login" type="submit" value="로그인" />
-												<button id="login" class="findId">아이디 찾기</button>
-											</p>
-										</form>
-									</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+
+							<div class="panel-heading">
+								<form role="form" action="/khteam1/login/loginCheck.do" id="loging" method="post">
+										
+										<div class="form-group has-success col-lg-12" >
+											<label class="control-label" for="inputSuccess" />
+											<input type="text" class="form-control" id="ID" name="ID" required="required" placeholder="ID">
+										</div>
+										<div class="form-group has-success col-lg-12">
+											<label class="control-label" for="inputSuccess"/>
+											<input type="password" class="form-control" id="PASSWORD" name="PASSWORD" required="required" placeholder="PASSWORD">
+										</div>
+										
+										<p align="center">
+											<input type="submit" value="로그인" class="btn btn-primary"></input>
+										</p>
+								</div>	
+								</form>
 							</div>
 						</div>
+						<p> ※ 회원가입 및 ID/비밀번호 찾기는 웹 사이트에서만 가능합니다 </p>
 					</div>
-					<p>회원가입은 웹 사이트에서만 가능합니다 </p>
+				</div>
+			</div>
+				
+				
 				</div>
 			</div>
 		</div>
@@ -160,6 +167,27 @@
 
 			<!-- Custom Theme JavaScript -->
 			<script src="_scripts/startmin.js"></script>
+			
+			
+			<script>
+			$("#loging").bind("submit", function(event){
+				event.preventDefault();
+				var url = $(this).attr("action");
+				var loginData = $(this).serialize();
+				$.ajax({
+					url: url,
+					type: "POST",
+					data: loginData,
+					success: function(data) {
+						if(data == false) {
+							alert("ID 또는 PASSWORD가 다릅니다.")
+						} else {
+							location.href="main.do";
+						}
+					}		
+				});
+			});
+			</script>
 </body>
 </html>
 

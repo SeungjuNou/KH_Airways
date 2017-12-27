@@ -78,7 +78,7 @@
                       <li><a href="/khteam1/myPage/viewMember.do"><i class="fa fa-user fa-fw"></i> 회원정보보기</a>
                       </li>
                       <li class="divider"></li>
-                      <li><a href=""><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                      <li><a href="/khteam1/login/logOut.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                       </li>
                   </ul>
           </li>
@@ -88,16 +88,17 @@
         <!-- Sidebar -->
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
-
+				<c:if test="${not empty sessionScope.ID}">
                 <ul class="nav" id="side-menu">
 
                     <li>
-                        <a href="/khteam1/book/memberBookList.do"> 나의 예약정보보기 <span class="fa arrow"></span></a>
+                        <a href="/khteam1/myPage/mybookList.do"> 나의 예약정보보기 <span class="fa arrow"></span></a>
                     </li>
-                    <li>
+                   <!--  <li>
                         <a href="#"> 나의 체크인 내역보기 <span class="fa arrow"></span></a>
-                    </li>
+                    </li> -->
                 </ul>
+                </c:if>
 
             </div>
         </div>
