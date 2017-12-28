@@ -100,16 +100,32 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value="/admin1/maleFemale.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
     public String maleFemale(@ModelAttribute("chartMaker") GoogleChartDTO chartMaker, CommandMap commandMap) throws Exception{
+		
+		Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("____dd");
+        String today = dateFormat.format(date);
+        
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        
+        map1.put("DAY", today);
+        
+        Map<String, Object> map2 = adminService.selectMen(map1);
+        Map<String, Object> map3 = adminService.selectWomen(map1);
+        
+        int man = Integer.parseInt(map2.get("MEN").toString());
+        int woman = Integer.parseInt(map3.get("WOMEN").toString());
+        
+        
 		chartMaker.addColumn("SEX", "string");
 		chartMaker.addColumn("percent", "number");
 		
         chartMaker.createRows(2); 
         
         chartMaker.addCell(0, null, "남성");
-        chartMaker.addCell(0, 40, null);
+        chartMaker.addCell(0, man, null);
         
         chartMaker.addCell(1, null, "여성");
-        chartMaker.addCell(1, 60, null);
+        chartMaker.addCell(1, woman, null);
         
         
         Gson gson = new Gson();
