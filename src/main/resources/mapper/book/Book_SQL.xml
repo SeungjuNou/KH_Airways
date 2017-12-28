@@ -64,6 +64,16 @@
 		]]>
 	</select>
 	
+<!-- 	<select id="memberBookDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_ID = #{MEM_ID} AND WB_CHECK = 'Y'
+			ORDER BY DAY DESC
+		]]>
+	</select> -->
+	
 	<select id="memberNoWbBookList" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT *  

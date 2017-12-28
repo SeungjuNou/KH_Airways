@@ -15,6 +15,11 @@ public class WebcheckDAO extends AbstractDAO{
 		return (List<Map<String, Object>>) selectList("webcheck.checkinList", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> viewMemberCheckin(Map<String, Object> map)throws Exception {
+		return (List<Map<String, Object>>) selectList("webcheck.viewMemberCheckin", map);
+	}
+	
 	
 	
 	

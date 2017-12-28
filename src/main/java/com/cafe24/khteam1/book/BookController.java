@@ -321,8 +321,8 @@ public class BookController {
 		paramMap.put("partner_user_id", "1234");
 		paramMap.put("item_name", "Khair - 항공권");
 		paramMap.put("quantity", "1");
-		paramMap.put("total_amount", "100000");
-		paramMap.put("vat_amount", "10000");
+		paramMap.put("total_amount", "10000");
+		paramMap.put("vat_amount", "1000");
 		paramMap.put("tax_free_amount", "0");
 		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/complete.do");
 		paramMap.put("fail_url", "http://localhost:9090/khteam1/main.do");

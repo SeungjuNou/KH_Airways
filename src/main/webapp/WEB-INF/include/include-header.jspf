@@ -71,23 +71,23 @@
 						<ul class="nav nav-second-level">
 							<li><a href="#">노선 관리<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
-									<li><a href="openRouteWrite.do">노선등록</a></li>
-									<li><a href="openRouteList.do">활성화 노선</a></li>
-									<li><a href="openRouteDeactList.do">비 활성화 노선</a></li>
+									<li><a href="../admin1/openRouteWrite.do">노선등록</a></li>
+									<li><a href="../admin1/openRouteList.do">활성화 노선</a></li>
+									<li><a href="../admin1/openRouteDeactList.do">비 활성화 노선</a></li>
 								</ul></li>
 
 							<li><a href="#"><i class="fa fa-sitemap fa-fw"></i> 항공편
 									관리<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
-									<li><a href="flightRegFrom.do">항공편 등록</a></li>
-									<li><a href="flightAdminList.do">항공편 현황</a></li>
+									<li><a href="../admin1/flightRegFrom.do">항공편 등록</a></li>
+									<li><a href="../admin1/flightAdminList.do">항공편 현황</a></li>
 								</ul></li>
 
 							<li><a href="#">운항정보 <span class="fa arrow"></span>
 							</a>
 								<ul class="nav nav-second-level">
-									<li><a href="selectToday.do">일간 리포트</a></li>
-									<li><a href="selectMonth.do">월간 리포트</a></li>
+									<li><a href="../admin1/selectToday.do">일간 리포트</a></li>
+									<li><a href="../admin1/selectMonth.do">월간 리포트</a></li>
 								</ul></li>
 						</ul></li>
 
@@ -95,12 +95,12 @@
 							<span class="fa arrow"></span></a>
 
 						<ul class="nav nav-second-level">
-							<li><a href="memberList.do">회원목록</a></li>
-							<li><a href="bookList.do">예약관리</a></li>
+							<li><a href="../admin2/memberList.do">회원목록</a></li>
+							<li><a href="../admin2/bookList.do">예약관리</a></li>
 							<li><a href="#">여권 정보 변경<span class="fa arrow"></span></a>
 								<ul class="nav nav-second-level">
-									<li><a href="unapprovedList.do">미 승인된 내역</a></li>
-									<li><a href="approvedList.do">승인된 내역</a></li>
+									<li><a href="../admin2/unapprovedList.do">미 승인된 내역</a></li>
+									<li><a href="../admin2/approvedList.do">승인된 내역</a></li>
 								</ul>
 							</li>
 						</ul></li>
@@ -109,7 +109,7 @@
 							<span class="fa arrow"></span></a>
 
 						<ul class="nav nav-second-level">
-							<li><a href="memberGradeList.do">접근권한 관리</a></li>
+							<li><a href="../admin2/memberGradeList.do">접근권한 관리</a></li>
 							<li><a href="#">메인페이지 관리(미완)</a></li>
 
 						</ul></li>

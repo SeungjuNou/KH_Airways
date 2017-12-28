@@ -183,7 +183,7 @@
 													<div class="table-responsive">
 														<div class="col-lg-12">
 															<table class="table">
-															<form role="form" action="/khteam1/mypage/ppModifyApplyBoard.do" method="post" enctype="multipart/form-data" >
+															<form role="form" action="/khteam1/myPage/ppModifyApplyBoard.do" method="post" enctype="multipart/form-data" >
 																	
 																	<tr>
 																		<td>이름</td>

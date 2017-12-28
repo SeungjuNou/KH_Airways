@@ -32,7 +32,7 @@ public class PpController {
 	private MemberService memberService;
 
 	// 여권정보신청내역
-	@RequestMapping(value = "/admin/unapprovedList.do")
+	@RequestMapping(value = "/admin2/unapprovedList.do")
 	public ModelAndView adminUnapprovedList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("pp/adminUnapprovedList");
 		String approved = (String) commandMap.get("DEL_GB");
@@ -45,7 +45,7 @@ public class PpController {
 	}
 
 	// 여권정보신청내역
-	@RequestMapping(value = "/admin/approvedList.do")
+	@RequestMapping(value = "/admin2/approvedList.do")
 	public ModelAndView adminApprovedList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("pp/adminApprovedList");
 		List<Map<String, Object>> list = ppService.adminApprovedList(commandMap.getMap());
@@ -54,7 +54,7 @@ public class PpController {
 	}
 
 	// 여권정보승인하기
-	@RequestMapping(value = "/admin/ppModify.do")
+	@RequestMapping(value = "/admin2/ppModify.do")
 	public ModelAndView ppModify(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("redirect:/admin/unapprovedList.do");
 		ppService.ppModify(commandMap.getMap(), request);
@@ -62,7 +62,7 @@ public class PpController {
 	}
 
 	// 여권정보신청 파일보기
-	@RequestMapping(value = "/admin/ppModifyApplyView.do")
+	@RequestMapping(value = "/admin2/ppModifyApplyView.do")
 	public ModelAndView ppModifyApplyView(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("pp/adminPpModifyApplyView");
 
@@ -76,7 +76,7 @@ public class PpController {
 	}
 
 	// 여권정보변경 신청하기
-	@RequestMapping(value = "/mypage/ppModifyApplyBoard.do")
+	@RequestMapping(value = "/myPage/ppModifyApplyBoard.do")
 	public ModelAndView ppModifyApplyBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("redirect:/myPage/viewMember.do");
 		Map<String, Object> map = new HashMap<String, Object>();

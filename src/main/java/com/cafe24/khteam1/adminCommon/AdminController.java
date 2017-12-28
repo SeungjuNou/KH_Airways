@@ -52,6 +52,18 @@ public class AdminController {
         return new GoogleChartDTO();
     }
 	
+	
+	
+	//관리자 메인
+	@ResponseBody
+	@RequestMapping(value="/admin/admin.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
+    public ModelAndView admin(@ModelAttribute("chartMaker") GoogleChartDTO chartMaker, CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/admin/adminMain");
+		
+        return mv;
+    }
+		
+	
 	@RequestMapping(value="/admin1/selectToday.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView selectTodayList(CommandMap commandMap) throws Exception{
         ModelAndView mv = new ModelAndView("/admin/adminToday");

@@ -23,7 +23,9 @@
 			    PP_NO,
 			    PP_EXP,
 			    PP_BIRTH,
-			    SEAT
+			    SEAT,
+			    MEM_ID,
+			    BO_DAY
 			)
 			VALUES
 			(
@@ -34,7 +36,10 @@
 			    #{PP_NO},
 			    #{PP_EXP},
 			    #{PP_BIRTH},
-			    #{SEAT}
+			    #{SEAT},
+			    #{MEM_ID},
+			    #{BO_DAY}
+			    
 			)
 		]]>
 	</insert>
@@ -46,7 +51,17 @@
 			FROM
 				WEBCHECK
 			WHERE
-				BOOK_NO = #{BOOK_NO}	
+				BP_NO = #{BP_NO}	
+		]]>
+	</select> 
+	
+	<select id="viewMemberCheckin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				WEBCHECK
+			WHERE
+				MEM_ID = #{MEM_ID} AND BO_DAY > #{BO_DAY}
 		]]>
 	</select> 
 

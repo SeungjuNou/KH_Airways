@@ -2,6 +2,8 @@ package com.cafe24.khteam1.webcheck;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -26,6 +29,11 @@ import com.cafe24.khteam1.flight.service.FlightService;
 import com.cafe24.khteam1.route.service.RouteService;
 import com.cafe24.khteam1.ticket.service.TicketService;
 import com.cafe24.khteam1.webcheck.service.WebcheckService;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 
 @Controller
 @SessionAttributes("webcheckInfo")
@@ -107,7 +115,7 @@ public class WebCheckController {
 	
 	
 	@RequestMapping(value = "/webcheck/webCheckStep3.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView webCheckStep3(@ModelAttribute("webcheckInfo") Map<String, Object> map, CommandMap commandMap)
+	public ModelAndView webCheckStep3(@ModelAttribute("webcheckInfo") Map<String, Object> map, CommandMap commandMap, HttpServletRequest request)
 			throws Exception { 
 		ModelAndView mv = new ModelAndView("/webCheck/webCheckStep3");
 		
@@ -121,6 +129,19 @@ public class WebCheckController {
 		String strResult = seat + seat2;
 		map.put("result", strResult);
 		flightService.seatUpdate(map, null);
+		
+		String date = flight.get("DEP_DATE").toString();
+		
+		
+		date.replaceAll("2017", "17");
+		date.replaceAll("2018", "18");
+		date.replaceAll("-", "");
+		
+		log.debug(date);
+		
+		
+		Map<String, Object> dateMap = new HashMap<String, Object>();
+		dateMap.put("BO_DAY", date);
 		
 		int round =  Integer.parseInt((String) map.get("COUNT"));
 		
@@ -138,8 +159,11 @@ public class WebCheckController {
 			result.put("PP_EXP", (String)map.get("PP_EXP"+i));
 			result.put("PP_BIRTH", (String)map.get("PP_BIRTH"+i));
 			result.put("SEAT", map2[i]);
+			result.put("MEM_ID", request.getSession().getAttribute("ID"));
+			result.put("BO_DAY", (String)dateMap.get("BO_DAY"));
 			webcheckService.insertWebcheck(result);
 			resultList.add(result);
+			makeQr(request, (String) result.get("BP_NO"));
 		}
 		
 		map.put("WB_CHECK", "Y");
@@ -157,10 +181,10 @@ public class WebCheckController {
 		ModelAndView mv = new ModelAndView("pdf/bpPdf");
 		
 		log.debug(commandMap.getMap());
-		map.put("BOOK_NO", commandMap.getMap().get("name"));
+		map.put("BP_NO", commandMap.getMap().get("name"));
 		map.put("name", commandMap.getMap().get("tk_no"));
 		
-		Map<String, Object> bookMap = bookService.bookDetail(map);
+		Map<String, Object> bookMap = bookService.bookDetail(commandMap.getMap());
 		Map<String, Object> ticketMap = ticketService.ticketDetail(map);
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		
@@ -172,7 +196,8 @@ public class WebCheckController {
 		Map<String, Object> flightMap2 = flightService.flightDetail(map2);
 		Map<String, Object> arrMap = routeService.selectRouteDetail(flightMap2);
 		
-		Map<String, Object> checkin = webcheckService.viewCheckin(bookMap);
+		log.debug(map);
+		Map<String, Object> checkin = webcheckService.viewCheckin(map); 
 		
 		mv.addObject("checkin", checkin);
 		mv.addObject("dep", flightMap);
@@ -180,7 +205,7 @@ public class WebCheckController {
 		mv.addObject("depMap", depMap);
 		mv.addObject("arrMap", arrMap);
 		mv.addObject("ticketMap", ticketMap);
-		mv.addObject("bookMap",bookMap); 
+		mv.addObject("bookMap",bookMap);
 		return mv; 
 	}
 	
@@ -205,6 +230,38 @@ public class WebCheckController {
 		}
 		
 		return list;
+	}
+	
+	
+	public static void makeQr(HttpServletRequest request, String name) {
+		try {
+            File file = null;
+            
+            String path = request.getSession().getServletContext().getRealPath("/file_QR/");
+            String fileName = path + name + ".png";
+            file = new File(path);
+            if(!file.exists()) {
+                file.mkdirs();
+            }
+            // 코드인식시 링크걸 URL주소
+            String codeurl = new String(name.getBytes("UTF-8"), "ISO-8859-1");
+            // 큐알코드 바코드 생상값
+            int qrcodeColor =   0xffffffff;
+            // 큐알코드 배경색상값
+            int backgroundColor = 0xff1a2575;
+             
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            // 3,4번째 parameter값 : width/height값 지정
+            BitMatrix bitMatrix = qrCodeWriter.encode(codeurl, BarcodeFormat.QR_CODE,200, 200);
+            //
+            MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(qrcodeColor,backgroundColor);
+            BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix,matrixToImageConfig);
+            // ImageIO를 사용한 바코드 파일쓰기
+            ImageIO.write(bufferedImage, "png", new File(fileName));
+             
+        } catch (Exception e) {
+            e.printStackTrace();
+        }  
 	}
 	
 	

@@ -137,10 +137,10 @@
 																
 																<td><a
 																	href=" 
-															<c:url value='/pdfMake.do?reqName=webcheck/bpPdf&BOOK_NO=${map.BOOK_NO}&name=${row.BOOK_NO}&fname=file_BP&TK_NO=${row.TICKET_NO}' />"
+															<c:url value='/pdfMake.do?reqName=webcheck/bpPdf&BOOK_NO=${map.BOOK_NO}&name=${row.BP_NO}&fname=file_BP&TK_NO=${row.TICKET_NO}' />"
 																	type="button" class="btn btn-primary">출력</a> <a
 																	href="
-															<c:url value='/pdfMake.do?reqName=webcheck/bpPdf&BOOK_NO=${map.BOOK_NO}&name=${row.BOOK_NO}&fname=file_BP&email=email&TK_NO=${row.TICKET_NO}' />"
+															<c:url value='/pdfMake.do?reqName=webcheck/bpPdf&BOOK_NO=${map.BOOK_NO}&name=${row.BP_NO}&fname=file_BP&email=email&TK_NO=${row.TICKET_NO}' />"
 																	type="button" class="btn btn-primary">이메일 발송</a></td>
 															</tr>
 														</c:forEach>

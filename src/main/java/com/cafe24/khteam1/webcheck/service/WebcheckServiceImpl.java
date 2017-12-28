@@ -26,6 +26,16 @@ public class WebcheckServiceImpl implements WebcheckService{
 		// TODO Auto-generated method stub
 		return webcheckDAO.checkinList(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> memberCheckList(Map<String, Object> map) throws Exception {
+		return null;
+	}
+	
+	@Override
+	public List<Map<String, Object>> viewMemberCheckin(Map<String, Object> map) throws Exception {
+		return webcheckDAO.viewMemberCheckin(map);
+	}
 
 
 	@Override
@@ -38,6 +48,8 @@ public class WebcheckServiceImpl implements WebcheckService{
 	public Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception {
 		return webcheckDAO.viewCheckin(map);
 	}
+	
+	
 
 	
 	/*BookServiceImpl

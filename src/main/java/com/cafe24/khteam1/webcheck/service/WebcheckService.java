@@ -10,6 +10,10 @@ import com.cafe24.khteam1.common.common.CommandMap;
 public interface WebcheckService {
 
 		List<Map<String, Object>> checkinList(Map<String, Object> map) throws Exception;
+		
+		List<Map<String, Object>> memberCheckList(Map<String, Object> map) throws Exception;
+		
+		List<Map<String, Object>> viewMemberCheckin(Map<String, Object> map) throws Exception;
 
 		//체크?��?��?�� 리스?�
 		/*List<Map<String, Object>> checkinList(Map<String, Object> map) throws Exception;*/
@@ -21,7 +25,6 @@ public interface WebcheckService {
 		void insertWebcheck(Map<String, Object> map) throws Exception;
 
 		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;
-		
 		
 		/*//체크?�� ?��?��보기 ?��걸로 (pdf)?��?��?��?�� �??��?��?��?��. 
 		Map<String, Object> viewCheckin(Map<String, Object> map) throws Exception;

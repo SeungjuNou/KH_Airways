@@ -44,15 +44,25 @@ public class PdfController {
 		String reqName = (commandMap.getMap().get("reqName")).toString(); //요청이름
 		String email = null;
 		String tk_no = null;
+		String book_no= null; //예약번호
+		
+		try {
+			tk_no = (commandMap.getMap().get("TK_NO")).toString(); //티켓넘버
+		} catch (Exception exs) {}
+		try {
+			book_no = (commandMap.getMap().get("BOOK_NO")).toString(); //예약번호
+		}catch (Exception ex5) {}
 		try {
 			email = (commandMap.getMap().get("email")).toString(); //이메일 여부
-			tk_no = (commandMap.getMap().get("TK_NO")).toString(); //티켓넘버
 		}catch (Exception ex) {
 		}
 		
 		String urlPath = null;
 		if(reqName.equals("book/pdfEticket")) {
-			String book_no = "&BOOK_NO="+(commandMap.getMap().get("BOOK_NO")).toString(); //예약번호
+			book_no = "&BOOK_NO="+(commandMap.getMap().get("BOOK_NO")).toString(); //예약번호
+			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname + book_no + "&tk_no=" + tk_no;
+		} else if (reqName.equals("webcheck/bpPdf")) {
+			book_no = "&BOOK_NO="+(commandMap.getMap().get("BOOK_NO")).toString(); //예약번호
 			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname + book_no + "&tk_no=" + tk_no;
 		} else {
 			urlPath = "http://localhost:9090/khteam1/"+reqName+".do?"+ "name="+ name +"&fname="+ fname+ "&tk_no=" + tk_no;

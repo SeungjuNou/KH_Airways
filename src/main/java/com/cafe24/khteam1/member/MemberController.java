@@ -270,7 +270,7 @@ public class MemberController {
 	}
 	
 	//회원등급 변경 목록
-	@RequestMapping(value = "/admin2/memberGradeList.do")
+	@RequestMapping(value = "/admin3/memberGradeList.do")
 	public ModelAndView memberGradeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("member/adminMemberGradeList");
 		String grade = (String) commandMap.get("GRADE");
