@@ -57,10 +57,10 @@
 						</div>
 						<div class="panel-footer">
 							<p align="right">
-								<a href="<c:url value='/admin/openRouteList.do'/>" 
+								<a href="<c:url value='/admin1/openRouteList.do'/>" 
 								button type="button" class="btn btn-primary">목록으로</a> 
 								
-								<a href="<c:url value='/admin/openRouteUpdate.do?ITI_NO=${map.ITI_NO}'/>"
+								<a href="<c:url value='/admin1/openRouteUpdate.do?ITI_NO=${map.ITI_NO}'/>"
 								button type="button" class="btn btn-primary">노선정보변경하기</a>
 							</p>
 						</div>

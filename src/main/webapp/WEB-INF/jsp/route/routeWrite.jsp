@@ -22,7 +22,7 @@
 
 								<h3>노선정보등록하기</h3>
 								<div class="panel-heading">
-								<form role="form" action="/khteam1/admin/insertRoute.do" method="post">
+								<form role="form" action="/khteam1/admin1/insertRoute.do" method="post">
 										<div class="form-group has-success">
 											<label class="control-label" for="inputSuccess">DEPARTURE</label>
 											<input type="text" class="form-control" id="DEP" name="DEP">
@@ -54,7 +54,7 @@
 										
 										<p align="right">
 										<input type="submit" value="등록하기" class="btn btn-primary"></input>
-										<a href="<c:url value='/admin/openRouteList.do'/>" 
+										<a href="<c:url value='/admin1/openRouteList.do'/>" 
 										button type="button" class="btn btn-primary">목록으로</a>
 										</p>
 								</div>	

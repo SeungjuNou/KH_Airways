@@ -50,7 +50,7 @@
 											<c:forEach items="${list }" var="row">
 												<tr>
 													<td><a
-														href="<c:url value='/admin/TKlistByBKno.do?BOOK_NO=${row.BOOK_NO}'/>">${row.BOOK_NO}</a>
+														href="<c:url value='/admin2/TKlistByBKno.do?BOOK_NO=${row.BOOK_NO}'/>">${row.BOOK_NO}</a>
 														<input type='hidden' id='BOOK_NO' value='${row.BOOK_NO}' /></td>
 													<td>${row.COUNT}</td>
 													<td>${row.PAY}</td> 
@@ -61,10 +61,10 @@
 													<td>${row.DAY}</td>
 													<td>${row.MEM_NO}</td>
 													<td><a
-														href=<c:url value='/admin/openBookUpdate.do?BOOK_NO=${row.BOOK_NO}'/>>예약번호수정</a>
+														href=<c:url value='/admin2/openBookUpdate.do?BOOK_NO=${row.BOOK_NO}'/>>예약번호수정</a>
 														<input type='hidden' id='BOOK_NO' value='${row.BOOK_NO}' /></td>
 													<td><a
-														href=<c:url value='/admin/bookDelete.do?BOOK_NO=${row.BOOK_NO}'/>>예약번호삭제</a>
+														href=<c:url value='/admin2/bookDelete.do?BOOK_NO=${row.BOOK_NO}'/>>예약번호삭제</a>
 														<input type='hidden' id='BOOK_NO' value='${row.BOOK_NO}' /></td>	
 												</tr>
 											</c:forEach>

@@ -410,7 +410,7 @@ public class BookController {
 	// ----------------------------------------------------------------------
 
 	// 예약현황 목록 호출하는 메서드
-	@RequestMapping(value = "/admin/bookList.do")
+	@RequestMapping(value = "/admin2/bookList.do")
 	public ModelAndView bookList(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/book/adminBookList");
 		List<Map<String, Object>> list = bookService.bookList();
@@ -422,7 +422,7 @@ public class BookController {
 	}
 
 	// 예약번호 클릭하면 번호에 따른 티켓번호 출력해주는 메서드
-	@RequestMapping(value = "/admin/TKlistByBKno.do")
+	@RequestMapping(value = "/admin2/TKlistByBKno.do")
 	public ModelAndView TKlistByBKno(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/ticket/TKlistByBKno");
 		List<Map<String, Object>> list = ticketService.TKlistByBKno(commandMap.getMap());
@@ -434,7 +434,7 @@ public class BookController {
 	}
 
 	// 예약번호 수동으로 등록하기 화면
-	@RequestMapping(value = "/admin/openBookWrite.do")
+	@RequestMapping(value = "/admin2/openBookWrite.do")
 	public ModelAndView openBookWrite(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/book/adminBookWrite");
 
@@ -443,9 +443,9 @@ public class BookController {
 	}
 
 	// 예약번호 수동으로 등록하기
-	@RequestMapping(value = "/admin/bookWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin2/bookWrite.do", method = RequestMethod.POST)
 	public ModelAndView bookWrite(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		ModelAndView mv = new ModelAndView("redirect:/admin2/bookList.do");
 
 		log.debug("commandMap=> " + commandMap.getMap());
 
@@ -457,7 +457,7 @@ public class BookController {
 	}
 
 	// 예약번호 수정하기 화면
-	@RequestMapping(value = "/admin/openBookUpdate.do")
+	@RequestMapping(value = "/admin2/openBookUpdate.do")
 	public ModelAndView openBookUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/book/adminBookUpdate");
 		Map<String, Object> map = bookService.bookDetail(commandMap.getMap());
@@ -469,10 +469,10 @@ public class BookController {
 	}
 
 	// 예약번호 수정사항 입력
-	@RequestMapping(value = "/admin/bookUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin2/bookUpdate.do", method = RequestMethod.POST)
 	public ModelAndView bookUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		System.out.println(commandMap.getMap());
-		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		ModelAndView mv = new ModelAndView("redirect:/admin2/bookList.do");
 		bookService.bookUpdate(commandMap.getMap(), request);
 		mv.addObject("BOOK_NO", commandMap.get("BOOK_NO"));
 
@@ -481,9 +481,9 @@ public class BookController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/admin/bookDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin2/bookDelete.do", method = RequestMethod.POST)
 	public ModelAndView bookDelete(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/admin/bookList.do");
+		ModelAndView mv = new ModelAndView("redirect:/admin2/bookList.do");
 		bookService.bookDelete(commandMap.getMap(), request);
 		mv.addObject("BOOK_NO", commandMap.get("BOOK_NO"));
 

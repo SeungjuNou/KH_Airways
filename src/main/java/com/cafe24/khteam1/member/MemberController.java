@@ -253,7 +253,7 @@ public class MemberController {
 	//////////////////////////////////////////////////////
 
 	// 관리자 회원목록
-	@RequestMapping(value = "/admin/memberList.do")
+	@RequestMapping(value = "/admin2/memberList.do")
 	public ModelAndView memberList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("member/adminMemberList");	
 		String keyword = (String) commandMap.get("keyword");
@@ -270,7 +270,7 @@ public class MemberController {
 	}
 	
 	//회원등급 변경 목록
-	@RequestMapping(value = "/admin/memberGradeList.do")
+	@RequestMapping(value = "/admin2/memberGradeList.do")
 	public ModelAndView memberGradeList(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("member/adminMemberGradeList");
 		String grade = (String) commandMap.get("GRADE");
@@ -290,7 +290,7 @@ public class MemberController {
 	}
 	
 	// 관리자 회원수정폼
-	@RequestMapping(value = "/admin/updateMemberForm.do")
+	@RequestMapping(value = "/admin2/updateMemberForm.do")
 	public ModelAndView adminUpdateMemberForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView view = new ModelAndView("member/adminUpdateMemberForm");
 		Map<String, Object> map = memberService.viewMember(commandMap.getMap());
@@ -299,7 +299,7 @@ public class MemberController {
 	}
 	
 	// 관리자 회원수정폼
-		@RequestMapping(value = "/admin/memberGradeForm.do")
+		@RequestMapping(value = "/admin2/memberGradeForm.do")
 		public ModelAndView adminMemberGradeForm(CommandMap commandMap, HttpServletRequest request) throws Exception {
 			ModelAndView view = new ModelAndView("member/adminMemberGradeForm");
 			Map<String, Object> map = memberService.viewMember(commandMap.getMap());
@@ -308,25 +308,25 @@ public class MemberController {
 		}
 
 	// 관리자 회원수정
-	@RequestMapping(value = "/admin/updateMember.do")
+	@RequestMapping(value = "/admin2/updateMember.do")
 	public ModelAndView adminUpdateMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView view = new ModelAndView("redirect:/admin/memberList.do");
+		ModelAndView view = new ModelAndView("redirect:/admin2/memberList.do");
 		memberService.updateMember(commandMap.getMap(), request);
 		return view;
 	}
 	
 	// 관리자 회원등급수정
-		@RequestMapping(value = "/admin/updateGrade.do")
+		@RequestMapping(value = "/admin2/updateGrade.do")
 		public ModelAndView adminUpdateGrade(CommandMap commandMap, HttpServletRequest request) throws Exception {
-			ModelAndView view = new ModelAndView("redirect:/admin/memberGradeList.do");
+			ModelAndView view = new ModelAndView("redirect:/admin2/memberGradeList.do");
 			memberService.updateMember(commandMap.getMap(), request);
 			return view;
 		}
 	
 	// 관리자 회원삭제
-	@RequestMapping(value = "/admin/deleteMember.do")
+	@RequestMapping(value = "/admin2/deleteMember.do")
 	public ModelAndView adminDeleteMember(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView view = new ModelAndView("redirect:/admin/memberList.do");
+		ModelAndView view = new ModelAndView("redirect:/admin2/memberList.do");
 		memberService.deleteMember(commandMap.getMap());
 		return view;
 	}

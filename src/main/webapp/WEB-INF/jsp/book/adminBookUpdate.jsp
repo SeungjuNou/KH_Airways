@@ -22,7 +22,7 @@
 							<div class="panel-heading">
 								<h3>예약번호 수정하기</h3>
 								<div class="panel-heading">
-								<form role="form" action="/khteam1/admin/bookUpdate.do" method="post">
+								<form role="form" action="/khteam1/admin2/bookUpdate.do" method="post">
 									<div class="form-group has-success">
 										<label class="control-label" for="inputSuccess">예약번호</label>
 										${map.BOOK_NO}
@@ -71,9 +71,9 @@
 									<p align="right">
 										<input type="submit" value="수정하기" class="btn btn-primary"></input>
 
-										<a href="<c:url value='/admin/bookList.do'/>" 
+										<a href="<c:url value='/admin2/bookList.do'/>" 
 										button type="button" class="btn btn-primary">목록으로</a> 
-										<a href="<c:url value='/admin/bookDelete.do?BOOK_NO=${map.BOOK_NO}'/>"
+										<a href="<c:url value='/admin2/bookDelete.do?BOOK_NO=${map.BOOK_NO}'/>"
 										button type="button" class="btn btn-primary">예약번호삭제</a> 
 										<input type='hidden' id='BOOK_NO' value='${map.BOOK_NO}'>
 									</p>

@@ -30,7 +30,7 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="table-responsive">
-								<form action="/khteam1/admin/updateMember.do" method="post">
+								<form action="/khteam1/admin2/updateMember.do" method="post">
 									<table class="table table-striped table-bordered table-hover">
 										<tr>
 											<td>회원번호 : ${map.NO} <input type="hidden" name="NO" value="${map.NO}"/></td>

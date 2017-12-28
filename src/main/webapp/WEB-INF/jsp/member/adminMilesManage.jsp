@@ -59,7 +59,7 @@
 												
                                         </tbody>
                                     </table>
-                                   <form action="/khteam1/admin/milesList.do" method="post">
+                                   <form action="/khteam1/admin2/milesList.do" method="post">
                            					<input type="text" name="MILE_NO" />
                            					<input type="submit" value="검색" />
                            			</form>

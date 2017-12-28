@@ -31,11 +31,11 @@
 								
 								<div class="row">
 									<div class="col-lg-12" align="right">
-										<a href="/khteam1/admin/memberGradeList.do">일반회원</a>
-										<a href="/khteam1/admin/memberGradeList.do?GRADE=1">1번회원</a>
-										<a href="/khteam1/admin/memberGradeList.do?GRADE=2">2번회원</a>
-										<a href="/khteam1/admin/memberGradeList.do?GRADE=3">3번회원</a>
-										<a href="/khteam1/admin/memberGradeList.do?GRADE=4">4번회원</a>
+										<a href="/khteam1/admin2/memberGradeList.do">일반회원</a>
+										<a href="/khteam1/admin2/memberGradeList.do?GRADE=1">1번회원</a>
+										<a href="/khteam1/admin2/memberGradeList.do?GRADE=2">2번회원</a>
+										<a href="/khteam1/admin2/memberGradeList.do?GRADE=3">3번회원</a>
+										<a href="/khteam1/admin2/memberGradeList.do?GRADE=4">4번회원</a>
 									</div>
 								</div>
 
@@ -94,7 +94,7 @@
 							<!-- /.panel -->
 						</div>
 						<div class="col-lg-3">
-							<form action="/khteam1/admin/memberList.do" method="post">
+							<form action="/khteam1/admin2/memberList.do" method="post">
 								<div class="input-group custom-search-form">
 									<input type="text" name="keyword" class="form-control"
 										placeholder="회원이름을 입력하세요"> <span

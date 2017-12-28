@@ -22,12 +22,12 @@
 							<div class="panel-heading">
 								<h3>운항노선</h3>
 								<p align="right">
-									<a href="<c:url value='/admin/openRouteWrite.do'/>" 
+									<a href="<c:url value='/admin1/openRouteWrite.do'/>" 
 										button type="button" class="btn btn-primary">노선등록하기</a> 
-									<a href="<c:url value='/admin/openRouteDeactList.do'/>" 
+									<a href="<c:url value='/admin1/openRouteDeactList.do'/>" 
 										button type="button" class="btn btn-primary">비활성화된노선확인하기</a> 
 									<!-- 클릭하면 현재 노선등록현황을 출력하는 컨트롤러 호출 => /route/RoutePdfController -->
-									<a href="<c:url value='/pdfMake.do?reqName=admin/pdfRouteList&name=route&fname=file_ST' />" 
+									<a href="<c:url value='/pdfMake.do?reqName=admin1/pdfRouteList&name=route&fname=file_ST' />" 
 										button type="button" class="btn btn-primary">출력하기</a>
 								</p>
 
@@ -54,7 +54,7 @@
 											<c:forEach items="${list }" var="row">
 												<tr>
 													<td><a
-														href="<c:url value='/admin/openRouteDetail.do?ITI_NO=${row.ITI_NO}'/>">${row.ITI_NO}</a>
+														href="<c:url value='/admin1/openRouteDetail.do?ITI_NO=${row.ITI_NO}'/>">${row.ITI_NO}</a>
 														<input type='hidden' id='ITI_NO' value='${row.ITI_NO}' /></td>
 													<td>${row.DEP}</td>
 													<td>${row.ARR}</td>
@@ -64,7 +64,7 @@
 													<td>${row.SEAT_COUNT}</td>
 													<td>${row.PRICE}</td>
 													<td><a
-														href=<c:url value='/admin/openRouteUpdate.do?ITI_NO=${row.ITI_NO}'/>>수정</a>
+														href=<c:url value='/admin1/openRouteUpdate.do?ITI_NO=${row.ITI_NO}'/>>수정</a>
 														<input type='hidden' id='ITI_NO' value='${row.ITI_NO}' /></td>
 												</tr>
 											</c:forEach>

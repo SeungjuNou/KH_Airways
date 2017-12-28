@@ -112,7 +112,7 @@
 
 								<h3>노선정보 수정하기</h3>
 								<div class="panel-heading">
-								<form role="form" action="/khteam1/admin/updateRoute.do" method="post">
+								<form role="form" action="/khteam1/admin1/updateRoute.do" method="post">
 									<div class="form-group has-success">
 										<label class="control-label" for="inputSuccess">노선번호</label>
 										${map.ITI_NO}
@@ -149,9 +149,9 @@
 									<p align="right">
 										<input type="submit" value="수정하기" class="btn btn-primary"></input>
 
-										<a href="<c:url value='/admin/openRouteList.do'/>" 
+										<a href="<c:url value='/admin1/openRouteList.do'/>" 
 										button type="button" class="btn btn-primary">목록으로</a> 
-										<a href="<c:url value='/admin/deleteRoute.do?ITI_NO=${map.ITI_NO}'/>"
+										<a href="<c:url value='/admin1/deleteRoute.do?ITI_NO=${map.ITI_NO}'/>"
 										button type="button" class="btn btn-primary">노선삭제</a> 
 										<input type='hidden' id='ITI_NO' value='${map.ITI_NO}'>
 									</p>

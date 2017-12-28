@@ -31,8 +31,8 @@
 								
 								<div class="row">
 									<div class="col-lg-12" align="right">
-										<a href="/khteam1/admin/approvedList.do">승인</a>
-										<a href="/khteam1/admin/unapprovedList.do">미승인</a>
+										<a href="/khteam1/admin2/approvedList.do">승인</a>
+										<a href="/khteam1/admin2/unapprovedList.do">미승인</a>
 									</div>
 								</div>
 

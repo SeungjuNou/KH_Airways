@@ -83,7 +83,7 @@
                   </ul>
           </li>
         </c:if>
-        </ul>
+        </ul> 
 
         <!-- Sidebar -->
         <div class="navbar-default sidebar" role="navigation">
@@ -110,8 +110,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-
-                    <img src="_assets/mobile_main.JPG" style="max-width: 100%; height:auto;" alt="">
+						
                 </div>
             </div>
 
