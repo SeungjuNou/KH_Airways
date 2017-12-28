@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -93,6 +94,24 @@ public class AdminController {
         	mv.addObject("salesMap", adminService.selectToday(map));
        
         return mv; 
+    }
+	
+	@RequestMapping(value="/index.do", method = {RequestMethod.POST})
+    public ModelAndView indexDo(CommandMap commandMap, HttpServletRequest request) throws Exception{
+        ModelAndView mv = new ModelAndView();
+        
+        String pw = commandMap.getMap().get("pw").toString();
+        
+        	if(pw.equals("Khteampj12!")) {
+        		request.getSession().setAttribute("auth", "pass");
+        		mv.setViewName("redirect:/main.do");
+        		return mv;
+        	} else {
+        		mv.setViewName("redirect:/index.do");
+        		return mv;
+        	}
+        
+         
     }
 	
 	

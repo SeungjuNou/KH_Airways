@@ -13,6 +13,8 @@
 
 </head>
 <body>
-	<jsp:forward page="${nextUrl}" />
+	<form action="index.do" method="post">
+		<input type="password" name="pw">
+	</form>
 </body>
 </html>
