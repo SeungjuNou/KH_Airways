@@ -39,4 +39,15 @@ public class AdminServiceImpl implements AdminService {
 			return adminDAO.selectMoney(map);
 		}
 
+		@SuppressWarnings("unchecked")
+		@Override
+		public Map<String, Object> selectMen(Map<String, Object> map) throws Exception {
+			return (Map<String, Object>) adminDAO.selectMen(map);
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public Map<String, Object> selectWomen(Map<String, Object> map) throws Exception {
+			return (Map<String, Object>) adminDAO.selectWomen(map);
+		}
 }

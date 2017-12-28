@@ -212,8 +212,8 @@
 				<input type="text" id="E_LAST" name="E_LAST" placeholder="영문 이름 - FIRST NAME" required="required"/>
 			</div>
 			<input type="text" id="BIRTH" name="BIRTH" placeholder="생년월일 - BIRTH" required="required"/>
-			<input type="text" id="EMAIL" name="EMAIL" placeholder="연락처 - PHONE"  required="required"/>
-			<input type="text" id="PHONE" name="PHONE" placeholder="이메일 - EMAIL"  required="required"/>
+			<input type="text" id="PHONE" name="PHONE" placeholder="연락처 - PHONE"  required="required"/>
+			<input type="text" id="EMAIL" name="EMAIL" placeholder="이메일 - EMAIL"  required="required"/>
 			<div id="join_line2">
 				<input type="reset" value="다시작성"/>
 				<input id="joinSubmit" type="submit" value="회원가입" />

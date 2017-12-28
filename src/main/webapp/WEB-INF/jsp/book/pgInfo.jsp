@@ -102,8 +102,8 @@
 																	성별<text class="text-danger">*</text>
 																</label> 
 																<select name="sex${status.count}" class="form-control">
-																	<option value="M" selected="selected">남성</option>
-																	<option value="F">여성</option>
+																	<option value="1" selected="selected">남성</option>
+																	<option value="2">여성</option>
 																</select>
 															</div>
 															
@@ -112,9 +112,9 @@
 																	나이구분<text class="text-danger">*</text>
 																</label> 
 																<select name="age${status.count}" class="form-control">
-																	<option value="A" selected="selected">성인</option>
-																	<option value="C">유아</option>
-																	<option value="C">소아</option>
+																	<option value="1" selected="selected">성인</option>
+																	<option value="2">유아</option>
+																	<option value="3">소아</option>
 																</select>
 															</div>
 

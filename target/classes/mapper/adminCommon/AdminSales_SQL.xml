@@ -17,4 +17,17 @@
 		]]>
 	</select> 
 	
+	
+	<select id="selectMen" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT count(*) AS MEN FROM TICKET WHERE  GENDER = '1' AND DAY LIKE #{DAY};
+		]]>
+	</select>
+	
+	<select id="selectWomen" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT count(*) AS WOMEN FROM TICKET WHERE  GENDER = '2' AND DAY LIKE #{DAY};
+		]]>
+	</select>
+	
 </mapper> 

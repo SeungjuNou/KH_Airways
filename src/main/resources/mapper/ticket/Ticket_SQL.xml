@@ -14,7 +14,9 @@
 				CH_BAG,
 				MEAL,
 				ADULT,
-				GENDER)
+				GENDER,
+				DAY
+				)
 			VALUES
 			(
 				#{TK_NO},
@@ -25,7 +27,8 @@
 				#{CH_BAG},
 				#{MEAL},
 				#{ADULT},
-				#{GENDER}
+				#{GENDER},
+				#{DAY}
 			)
 		]]>
 	</insert>

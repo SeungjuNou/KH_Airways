@@ -42,7 +42,8 @@
 					<li id="empty2"></li>
 					<li>항공권 예매</li>
 					<li>웹 체크인</li>
-					<li>${sessionScope.MEM_NAME}</li>
+					<a href="viewMember.do"><li>${sessionScope.MEM_NAME}</li></a>
+					<a href="../login/logout.do"><li>로그아웃</li></a>
 				</div>
 			</ul>
 		</div>

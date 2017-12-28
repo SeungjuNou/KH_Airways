@@ -262,7 +262,7 @@ public class BookController {
 			map2ticket.put("MEAL", meal);
 			map2ticket.put("ADULT", age);
 			map2ticket.put("GENDER", sex);
-
+			map2ticket.put("DAY", regDate);
 			mv.addObject("map", map2ticket);
 
 			ticketService.insertTicket(map2ticket);

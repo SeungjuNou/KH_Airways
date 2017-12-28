@@ -30,6 +30,16 @@ public class AdminDAO extends AbstractDAO{
     public List<Map<String, Object>> selectMoney(Map<String, Object> map) {
         return selectList("adminSales.selectMoney", map);
     }
+    
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> selectMen(Map<String, Object> map) {
+        return (Map<String, Object>) selectOne("adminSales.selectMen", map);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> selectWomen(Map<String, Object> map) {
+        return (Map<String, Object>) selectOne("adminSales.selectWomen", map);
+    }
 }
 
  
