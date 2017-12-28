@@ -50,4 +50,16 @@ public class AdminServiceImpl implements AdminService {
 		public Map<String, Object> selectWomen(Map<String, Object> map) throws Exception {
 			return (Map<String, Object>) adminDAO.selectWomen(map);
 		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public Map<String, Object> seatCount(Map<String, Object> map) throws Exception {
+			return (Map<String, Object>) adminDAO.seatCount(map);
+		}
+		
+		@SuppressWarnings("unchecked")
+		@Override
+		public Map<String, Object> seatCountCheck(Map<String, Object> map) throws Exception {
+			return (Map<String, Object>) adminDAO.seatCountCheck(map);
+		}
 }

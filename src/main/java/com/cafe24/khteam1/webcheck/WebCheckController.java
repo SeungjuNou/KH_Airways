@@ -130,6 +130,8 @@ public class WebCheckController {
 		map.put("result", strResult);
 		flightService.seatUpdate(map, null);
 		
+		flightService.seatMin(map);
+		
 		String date = flight.get("DEP_DATE").toString();
 		
 		

@@ -115,6 +115,13 @@ public class AdminController {
         int man = Integer.parseInt(map2.get("MEN").toString());
         int woman = Integer.parseInt(map3.get("WOMEN").toString());
         
+        if (man == 0) {
+        		man=1;
+        }
+        
+        if (woman == 0) {
+        		woman=1;
+        }
         
 		chartMaker.addColumn("SEX", "string");
 		chartMaker.addColumn("percent", "number");
@@ -133,22 +140,79 @@ public class AdminController {
         return json;
     }
 	
+	//탑승객 통계현황 
+		@ResponseBody
+		@RequestMapping(value="/admin1/monthMaleFemale.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
+	    public String monthMaleFemale(@ModelAttribute("chartMaker") GoogleChartDTO chartMaker, CommandMap commandMap) throws Exception{
+			
+			Date date = new Date();
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("__MM__");
+	        String today = dateFormat.format(date);
+	        
+	        Map<String, Object> map1 = new HashMap<String, Object>();
+	        
+	        map1.put("DAY", today);
+	        
+	        Map<String, Object> map2 = adminService.selectMen(map1);
+	        Map<String, Object> map3 = adminService.selectWomen(map1);
+	        
+	        int man = Integer.parseInt(map2.get("MEN").toString());
+	        int woman = Integer.parseInt(map3.get("WOMEN").toString());
+	        
+	        if (man == 0) {
+	        		man=1;
+	        }
+	        
+	        if (woman == 0) {
+	        		woman=1;
+	        }
+	        
+			chartMaker.addColumn("SEX", "string");
+			chartMaker.addColumn("percent", "number");
+			
+	        chartMaker.createRows(2); 
+	        
+	        chartMaker.addCell(0, null, "남성");
+	        chartMaker.addCell(0, man, null);
+	        
+	        chartMaker.addCell(1, null, "여성");
+	        chartMaker.addCell(1, woman, null);
+	        
+	        
+	        Gson gson = new Gson();
+	        String json = gson.toJson(chartMaker.getResult());
+	        return json;
+	    }
+	
 	
 	
 	//탑승객 통계현황 
 	@ResponseBody
 	@RequestMapping(value="/admin1/salesPie.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
     public String seatPie(@ModelAttribute("chartMaker2") GoogleChartDTO chartMaker2, CommandMap commandMap) throws Exception{
+		
+		
+		Map<String, Object> map = adminService.seatCount(commandMap.getMap());
+		
+		Map<String, Object> map2 = adminService.seatCountCheck(commandMap.getMap());
+		
+		int lastSeat = Integer.parseInt(map.get("seat").toString());
+		int seatCheck = Integer.parseInt(map2.get("count").toString());
+		
+		seatCheck = seatCheck * 150;
+		int result =  seatCheck - lastSeat;
+		
+		
 		chartMaker2.addColumn("seat", "string");
 		chartMaker2.addColumn("percent", "number");
 		
-        chartMaker2.createRows(2); 
+        chartMaker2.createRows(2);
         
         chartMaker2.addCell(0, null, "남는 좌석");
-        chartMaker2.addCell(0, 27, null);
+        chartMaker2.addCell(0, result, null);
         
         chartMaker2.addCell(1, null, "예약된 좌석");
-        chartMaker2.addCell(1, 73, null);
+        chartMaker2.addCell(1, seatCheck, null);
         
         
         Gson gson = new Gson();

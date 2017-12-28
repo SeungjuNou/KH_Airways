@@ -222,7 +222,7 @@
 			"when" : "week"
 		};
 		var jsonData = $.ajax({
-			url : "maleFemale.do",
+			url : "monthMaleFemale.do",
 			data : when,
 			dataType : "string",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",

@@ -30,4 +30,16 @@
 		]]>
 	</select>
 	
+	<select id="seatCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT SUM(SEAT_COUNT) AS "seat" FROM TEST_FLIGHT
+		]]>
+	</select>
+	
+	<select id="seatCountCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) AS "count" FROM TEST_FLIGHT
+		]]>
+	</select>
+	
 </mapper> 

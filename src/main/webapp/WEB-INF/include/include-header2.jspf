@@ -43,7 +43,7 @@
 					<li>항공권 예매</li>
 					<li>웹 체크인</li>
 					<a href="viewMember.do"><li>${sessionScope.MEM_NAME}</li></a>
-					<a href="../login/logout.do"><li>로그아웃</li></a>
+					<a href="../login/logOut.do"><li>로그아웃</li></a>
 				</div>
 			</ul>
 		</div>
@@ -52,9 +52,11 @@
 			<div id="body-inner">
 				<div id="inner1">
 					<ul>
+						<a href="viewMember.do">
 						<li>
 							<h2>마이 페이지</h2>
 						</li>
+						</a>
 						<a href="viewMember.do"><li>${sessionScope.MEM_NAME}</li></a>
 					</ul>    
 				</div>

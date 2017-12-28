@@ -16,6 +16,10 @@ public interface AdminService {
 	Map<String, Object> selectMen(Map<String, Object> map) throws Exception;
 	
 	Map<String, Object> selectWomen(Map<String, Object> map) throws Exception;
+	
+	Map<String, Object> seatCount(Map<String, Object> map) throws Exception;
+	
+	Map<String, Object> seatCountCheck(Map<String, Object> map) throws Exception;
 }
 
 

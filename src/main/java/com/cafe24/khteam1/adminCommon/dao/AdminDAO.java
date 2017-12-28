@@ -40,6 +40,16 @@ public class AdminDAO extends AbstractDAO{
     public Map<String, Object> selectWomen(Map<String, Object> map) {
         return (Map<String, Object>) selectOne("adminSales.selectWomen", map);
     }
+    
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> seatCount(Map<String, Object> map) {
+        return (Map<String, Object>) selectOne("adminSales.seatCount", map);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> seatCountCheck(Map<String, Object> map) {
+        return (Map<String, Object>) selectOne("adminSales.seatCountCheck", map);
+    }
 }
 
  
