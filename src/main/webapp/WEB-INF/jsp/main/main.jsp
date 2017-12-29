@@ -20,6 +20,9 @@
 			{dateFormat: "yy-mm-dd"}
 		);
 	} );
+	
+	
+	
 </script>
  
 
@@ -407,6 +410,10 @@ $("#loging").bind("submit", function(event){
 		}		
 	});
 });
+
+
+
+
 </script>
 
 </body>

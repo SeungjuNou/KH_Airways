@@ -31,7 +31,7 @@
 					</div>
 					<a href="#">
 						<div class="panel-footer">
-							<span class="pull-left">매출 확인</span> <span class="pull-right"><i
+							<span class="pull-left"></span> <span class="pull-right"><i
 								class="fa fa-arrow-circle-right"></i></span>
 							<div class="clearfix"></div>
 						</div>
@@ -55,7 +55,7 @@
 					</div>
 					<a href="#">
 						<div class="panel-footer">
-							<span class="pull-left">예약현황 확인</span> <span class="pull-right"><i
+							<span class="pull-left"></span> <span class="pull-right"><i
 								class="fa fa-arrow-circle-right"></i></span>
 
 							<div class="clearfix"></div>
@@ -80,7 +80,7 @@
 					</div>
 					<a href="#">
 						<div class="panel-footer">
-							<span class="pull-left">탑승자 확인</span> <span class="pull-right"><i
+							<span class="pull-left"></span> <span class="pull-right"><i
 								class="fa fa-arrow-circle-right"></i></span>
 
 							<div class="clearfix"></div>
@@ -105,7 +105,7 @@
 					</div>
 					<a href="#">
 						<div class="panel-footer">
-							<span class="pull-left">웹 체크인 현황 확인</span> <span
+							<span class="pull-left"></span> <span
 								class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
 							<div class="clearfix"></div>

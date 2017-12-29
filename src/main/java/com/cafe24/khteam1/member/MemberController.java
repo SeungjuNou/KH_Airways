@@ -148,14 +148,17 @@ public class MemberController {
 
 		try {	
 			String password = (String) map.get("PASSWORD");
+			String lev =  String.valueOf(map.get("GRADE"));
 			String MILE_NO =  String.valueOf(map.get("MILE_NO"));
 			String MEM_NO = String.valueOf(map.get("NO"));
+			
 			
 			if (password.equals(commandMap.get("PASSWORD"))) {
 				request.getSession().setAttribute("ID", commandMap.get("ID"));
 				request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
 				request.getSession().setAttribute("MILE_NO", MILE_NO);
 				request.getSession().setAttribute("MEM_NO", MEM_NO);
+				request.getSession().setAttribute("LEV", commandMap.get("lev"));
 				
 				loginResult = true;
 			} else {
