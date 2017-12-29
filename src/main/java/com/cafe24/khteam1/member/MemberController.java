@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,6 +44,9 @@ public class MemberController {
 
 	@Resource(name = "dateTrans")
 	private DateTrans dateTrans;
+	
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	// 회원 가입 & 마일리지 생성
 	@RequestMapping(value = "/join/insertMember.do", method = RequestMethod.POST)
@@ -58,7 +63,14 @@ public class MemberController {
 		log.debug(map);
 		commandMap.getMap().put("MILE_NO", mileNo);
 		commandMap.getMap().put("GRADE", 0);
+		
+		String pw = commandMap.getMap().get("PASSWORD").toString();
+		String encryptPassword = passwordEncoder.encode(pw);
 
+		log.debug(encryptPassword);
+		
+		commandMap.getMap().put("PASSWORD", encryptPassword);
+		
 		memberService.insertMember(commandMap.getMap(), request);
 		milesService.insertMiles(map, request);
 
@@ -152,14 +164,14 @@ public class MemberController {
 			String MILE_NO =  String.valueOf(map.get("MILE_NO"));
 			String MEM_NO = String.valueOf(map.get("NO"));
 			
+			log.debug(passwordEncoder.matches(commandMap.get("PASSWORD").toString(), password));
 			
-			if (password.equals(commandMap.get("PASSWORD"))) {
+			if (passwordEncoder.matches(commandMap.get("PASSWORD").toString() , password)) {
 				request.getSession().setAttribute("ID", commandMap.get("ID"));
 				request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
 				request.getSession().setAttribute("MILE_NO", MILE_NO);
 				request.getSession().setAttribute("MEM_NO", MEM_NO);
 				request.getSession().setAttribute("LEV", commandMap.get("lev"));
-				
 				loginResult = true;
 			} else {
 				
