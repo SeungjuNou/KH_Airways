@@ -1,0 +1,179 @@
+body ,html {
+	width: 100%;
+	height: 100%;
+	margin:0;
+}
+
+* {
+	list-style: none;
+}
+
+#wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+#top-1 {
+	width: 100%;
+	height: 4%;
+	background: rgba(32, 51, 81, 0.9);
+	text-align: right;
+	color: white;
+}
+
+#top-1 ul {
+	width: 50%;
+	height: 90%;
+	margin: 0;
+	padding-left: 50%;
+	float: left;
+}
+
+#top-1 ul li {
+	margin-top: 10px;
+	margin-left: 5px;
+	font-size: 0.8em;
+	font-weight: bold;
+	display: inline-block;
+	float: left;
+
+}
+
+
+
+
+#top-2 {
+	width: 100%;
+	height: 8%;
+	border-bottom: 0.08em solid rgba(84, 85, 86, 0.4);
+	float: left;
+}
+
+#logo {
+	width: 50%;
+	height: 100%;
+	float: left;
+	text-align: left;
+	display: inline-block;
+}
+
+#logo img {
+	height: 90%;
+	width: auto;
+	margin-left: 10%;
+	margin-top: 5px;
+}
+
+#top-2 ul {
+	height: 100%;
+	width: 40%;
+	margin: 0;
+	float: left;
+	text-align:right;
+	vertical-align: middle;
+}
+
+#menu {
+	height: 100%;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+#menu li {
+	display: inline-block;
+	height: 100%;
+	margin-right: 16px;
+	padding-bottom: 5px;
+	font-weight: bold;
+}
+
+
+
+#empty2 {
+	vertical-align: middle;
+}
+
+
+
+#body {
+	width: 100%;
+	height: 88%;
+	float: left;
+}
+
+#body-inner {
+	width: 90%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+
+
+#inner1 {
+	width: 100%;
+	height: 11%;
+}
+
+#inner1 ul {
+	height: 100%;
+	width: 90%;
+}
+
+#inner1 ul li {
+	display: inline-block;
+	margin-left: 10%;
+}
+
+#inner2 {
+	width: 100%;
+	height: 8%;
+	margin-bottom: 10px;
+}
+
+#inner2 ul {
+	height: 100%;
+	width: 100%;
+	background: rgba(32, 51, 81, 0.9);
+	color: white;
+	text-align:left;
+	vertical-align: middle;
+}
+
+#inner2 ul li {
+	text-align: center;
+	display: inline-block;
+	width: 15%;
+	height: 100%;
+}
+
+#select-inner {
+	color: black;
+	font-weight: bold;
+}
+
+#select-inner div {
+	color: black;
+	font-weight: bold;
+	background-color: white;
+	padding: 5%;
+}
+
+#empty {
+	vertical-align: middle;
+}
+
+#inner3 {
+	width: 100%;
+	height: 90%;
+	overflow: auto;
+}
+
+.left_fix {
+    padding-left: 0;
+}
+
+.total_next {
+	position: fixed;
+    right: 4%;
+}

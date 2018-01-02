@@ -1,0 +1,117 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.mainTable {
+	width: 100%;
+	height: 90%;
+	margin: auto 0; 
+	
+}
+
+.mainTable tr td {
+	height: 40px;
+}
+
+.named {
+	background-color: #9aa5af;
+	font-weight: bold;
+	color:white;
+}
+
+.named2 {
+	text-align:left;
+}
+
+
+#text2 {
+	height: 500px;
+}
+
+#plane {
+	text-align:left;
+}
+
+.line {
+	height: 3px;
+}
+
+.bold {
+	font-size: 1.3em;
+	font-weight: bold;
+}
+.title {
+	font-size: 1.6em;
+	font-weight: bold;
+	background-color: #173463;
+	color: white;
+	height: 60px;
+}
+
+#barcode {
+	font-size: 40px; 
+}
+
+#barcode2 {
+	height: 50px;
+	text-align:right;
+}
+
+
+
+
+
+
+
+#barcode6 {
+	font-size: 15px; 
+}
+
+#barcode26 {
+	height: 15px;
+	text-align:right;
+	background-color: white;
+}
+
+
+
+.mainTable2 {
+	width: 600px;
+	height: 200px;
+	background-color: white;
+}
+
+.mainTable2 tr td {
+	height: 10px;
+}
+
+
+.named21 {
+	text-align:left;
+	font-size: 1.3em;
+	padding-left: 10px;
+	background-color: white;
+}
+
+.named31 {
+	text-align:left;
+	font-weight: bold;
+	font-size: 2.0em;
+	padding-left: 10px;
+	background-color: white;
+}
+
+.line5 {
+	height: 1px;
+}
+
+.title5 {
+	font-size: 1.6em;
+	font-weight: bold;
+	background-color: #173463;
+	color: white;
+	height: 60px;
+	padding-left: 10px;
+}

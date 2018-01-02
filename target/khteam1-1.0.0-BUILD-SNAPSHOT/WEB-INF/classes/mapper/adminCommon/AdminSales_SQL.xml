@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminSales">
+	
+
+	<select id="selectToday" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT SUM(PRICE) AS "sales", COUNT(*) AS "salesCount", SUM(COUNT) AS "people" 
+			FROM BOOK WHERE DAY LIKE #{DAY}
+		]]>
+	</select>
+	
+	
+	<select id="selectMoney" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM(SELECT DAY , SUM(PRICE) AS "total" FROM BOOK GROUP BY ROLLUP(DAY)) WHERE DAY LIKE #{DAY}
+		]]>
+	</select> 
+	
+	
+	<select id="selectMen" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT count(*) AS MEN FROM TICKET WHERE  GENDER = '1' AND DAY LIKE #{DAY}
+		]]>
+	</select>
+	
+	<select id="selectWomen" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT count(*) AS WOMEN FROM TICKET WHERE  GENDER = '2' AND DAY LIKE #{DAY}
+		]]>
+	</select>
+	
+	<select id="seatCount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT SUM(SEAT_COUNT) AS "seat" FROM TEST_FLIGHT
+		]]>
+	</select>
+	
+	<select id="seatCountCheck" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COUNT(*) AS "count" FROM TEST_FLIGHT
+		]]>
+	</select>
+	
+</mapper> 

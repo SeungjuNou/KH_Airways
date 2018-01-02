@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="flight">
+	
+
+	<select id="flightList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM TEST_FLIGHT WHERE DEP_DATE = #{DEP_DATE} AND ITI_NO = #{ITI_NO} AND SEAT_COUNT > 1
+		]]>
+	</select>
+	
+	<!-- flight 등록 -->
+	<insert id="insertFlight" parameterType="hashmap">
+		<![CDATA[
+		INSERT INTO TEST_FLIGHT
+			SELECT #{ITI_NO}, TEST_CODE_SEQ.nextval, (SELECT SEAT_COUNT FROM TEST_ROUTE WHERE ITI_NO=#{ITI_NO}), ',', #{DEP_DATE1}
+		FROM DUAL
+		WHERE NOT EXISTS (SELECT * FROM TEST_FLIGHT WHERE ITI_NO=#{ITI_NO} AND DEP_DATE=#{DEP_DATE1})
+		]]>
+	</insert>
+	
+	<!-- flight 전체 불러오기 -->
+	<select id="flightAllList" resultType="hashmap">
+		SELECT * FROM 
+		TEST_FLIGHT 
+		ORDER BY DEP_DATE, ITI_NO
+	</select>
+	
+	<select id="flightDetail" resultType="hashmap" parameterType="hashmap">
+		select * from TEST_FLIGHT where CODE = #{DEP_CODE}
+	</select>
+	
+	<select id="seatUpdate" resultType="hashmap" parameterType="hashmap">
+	<![CDATA[
+		UPDATE TEST_FLIGHT
+			SET
+				BOOK_SEAT = #{result}
+			WHERE
+				CODE = #{DEP_CODE}
+		]]>	
+	</select>
+	
+	
+	<select id="seatMin">
+	<![CDATA[
+		UPDATE TEST_FLIGHT
+			SET
+				SEAT_COUNT = SEAT_COUNT - 1
+			WHERE
+				CODE = #{DEP_CODE}
+		]]>	
+	</select>
+	
+	<!-- flight 검색 -->
+	<select id="flightSearchList" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM
+			TEST_FLIGHT
+			
+		<choose>
+			<when test="ITI_NO != null and ITI_NO != ''">
+				WHERE ITI_NO = #{ITI_NO}
+			</when>
+			<when test="CODE != null">
+				WHERE CODE = #{CODE}
+			</when>
+			<otherwise>
+				WHERE DEP_DATE = #{DEP_DATE1}
+			</otherwise>
+		</choose>
+
+		<if test='DEP_DATE1 != ""'>
+			AND DEP_DATE = #{DEP_DATE1}
+		</if>
+	</select>
+	
+</mapper>

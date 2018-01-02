@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	
+	<!-- 로그인 -->
+	<select id="loginCheck" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT * FROM F_MEMBER
+        WHERE ID = #{ID}
+		]]>
+	</select>
+	
+	<!-- 관리자 전체 회원목록 -->
+	<select id="memberList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM F_MEMBER WHERE GRADE = '0'
+			ORDER BY NO DESC
+		]]>
+	</select>
+	
+	<select id="memberGradeList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM F_MEMBER WHERE GRADE = #{GRADE}
+			ORDER BY NO DESC
+		]]>
+	</select>
+	
+	<!-- 아이디 중복체크 -->
+	<select id="checkId" parameterType="hashmap" resultType="String">
+	<![CDATA[
+		SELECT COUNT(*) FROM F_MEMBER
+        WHERE ID = #{ID}
+		]]>
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="insertMember" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO F_MEMBER
+			(
+				NO,
+			    ID,
+			    PASSWORD,
+			    NAME,
+			    E_FIRST,
+			    E_LAST,
+			    BIRTH,
+			    EMAIL,
+			    PHONE,
+			    MILE_NO,
+			    GRADE
+			)
+			VALUES
+			(
+				SEQ_MEM_NO.NEXTVAL,
+			    #{ID}, 
+			    #{PASSWORD},
+			    #{NAME}, 
+			    #{E_FIRST}, 
+			    #{E_LAST},
+			    #{BIRTH},
+			    #{EMAIL},
+			    #{PHONE},
+			    #{MILE_NO},
+			    #{GRADE}
+			)
+		]]>
+	</insert>
+
+	<!-- 회원 정보 -->
+	<select id="viewMember" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM F_MEMBER
+			WHERE ID = #{ID}
+		]]>
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="hashmap">
+		<![CDATA[
+			UPDATE F_MEMBER SET PASSWORD = #{PASSWORD}, EMAIL = #{EMAIL}, PHONE = #{PHONE}, GRADE = #{GRADE}
+			WHERE NO = #{NO}
+		]]>
+	</update>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="hashmap">
+		<![CDATA[
+			DELETE FROM F_MEMBER
+			WHERE ID = #{ID}
+		]]>
+	</delete>
+	
+	<select id="findMemberList" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+	 SELECT * FROM F_MEMBER WHERE NAME LIKE '%'||#{keyword}||'%'
+	 ]]>
+	</select>
+	
+	<select id="findId" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT ID
+		FROM
+			F_MEMBER
+		WHERE
+			NAME = #{NAME} AND EMAIL = #{EMAIL}
+	]]>
+	</select>
+
+</mapper>

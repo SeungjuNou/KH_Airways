@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pp">
+	
+	<!-- 미승인 리스트 -->
+	<select id="adminUnapprovedList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM PP_MODI
+			WHERE DEL_GB = 'N' ORDER BY IDX DESC
+		]]>
+	</select>
+	
+	<!-- 승인 리스트 -->
+	<select id="adminApprovedList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM PP_MODI
+			WHERE DEL_GB = 'Y' ORDER BY IDX DESC
+		]]>
+	</select>
+	
+	<!-- 여권정보 승인하기 -->
+	<update id="ppModify" parameterType="hashmap">
+		<![CDATA[
+			UPDATE PP_MODI SET DEL_GB = 'Y'
+			WHERE IDX = #{IDX}
+		]]>
+	</update>
+	
+	<!-- 글작성 -->
+	<insert id="ppModifyApplyBoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+    <selectKey keyProperty="IDX" resultType="string" order="BEFORE">
+        SELECT PP_MODI_NO_SEQ.NEXTVAL FROM DUAL
+    </selectKey>
+		<![CDATA[
+			INSERT INTO PP_MODI 
+			(
+				IDX,
+				PARENT_IDX,
+				TITLE,
+				CONTENTS,
+				HIT_CNT,
+				DEL_GB,
+				CREA_DTM,
+				CREA_ID
+				)
+			 VALUES 
+			 (
+			 	#{IDX},
+			 	'123123',
+				#{TITLE},
+				#{CONTENTS},
+				'0',
+				'N',
+				SYSDATE,
+				'1'
+			 	)
+			 	]]>	
+	</insert>
+	
+	<!-- 파일업로드 -->
+	<insert id="ppModifyApply" parameterType="hashmap">
+		
+		<![CDATA[
+			INSERT INTO PP_FILE 
+			(
+				IDX,
+				BOARD_IDX,
+				ORIGINAL_FILE_NAME,
+				STORED_FILE_NAME,
+				FILE_SIZE,
+				CREA_ID
+				)
+			 VALUES 
+			 (
+			 	PP_FILE_NO_SEQ.NEXTVAL,
+			 	#{BOARD_IDX},
+			 	#{ORIGINAL_FILE_NAME},
+			 	#{STORED_FILE_NAME},
+			 	#{FILE_SIZE},
+			 	'Admin'
+			 	)
+			 	]]>	
+	</insert>
+	
+	<select id="ppModifyApplyView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM PP_FILE
+			WHERE BOARD_IDX = #{BOARD_IDX}
+		]]>
+	</select>
+	
+	
+	</mapper>

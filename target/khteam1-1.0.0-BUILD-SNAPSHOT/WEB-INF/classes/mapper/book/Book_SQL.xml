@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+
+	<insert id="insertBook" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO BOOK
+			(
+				BOOK_NO, 
+				COUNT, 
+				DEP_CODE, 
+				ARR_CODE, 
+				PAY, 
+				PRICE, 
+				NAME, 
+				EMAIL, 
+				PHONE, 
+				DAY, 
+				MEM_ID,
+				WB_CHECK
+				)
+			VALUES
+			(
+				#{BOOK_NO},
+				#{COUNT},
+				#{DEP_CODE},
+				#{ARR_CODE},
+				#{PAY},
+				#{PRICE},
+				#{NAME},
+				#{EMAIL},
+				#{PHONE},
+				#{DAY},
+				#{MEM_ID},
+				'N'
+			)
+		]]>
+	</insert>
+	
+	<select id="bookList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * FROM BOOK
+			ORDER BY DAY DESC
+		]]>
+	</select>
+	
+	<select id="memberBookList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_ID = #{MEM_ID}  
+			ORDER BY DAY DESC
+		]]>
+	</select>
+	
+	<select id="memberWbBookList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_ID = #{MEM_ID} AND WB_CHECK = 'N'
+			ORDER BY DAY DESC
+		]]>
+	</select>
+	
+<!-- 	<select id="memberBookDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_ID = #{MEM_ID} AND WB_CHECK = 'Y'
+			ORDER BY DAY DESC
+		]]>
+	</select> -->
+	
+	<select id="memberNoWbBookList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    BOOK
+			WHERE MEM_ID = #{MEM_ID} AND WB_CHECK = 'Y'
+			ORDER BY DAY DESC
+		]]>
+	</select>
+	
+	<select id="bookDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				BOOK
+			WHERE
+				BOOK_NO = #{BOOK_NO}	
+		]]>
+	</select>
+	
+	<update id="updateBook" parameterType="hashmap">
+		<![CDATA[
+			UPDATE BOOK 
+			SET
+				COUNT = #{COUNT},
+				DEP_CODE = #{DEP_CODE},
+				ARR_CODE = #{ARR_CODE},
+				PAY = #{PAY},
+				PRICE = #{PRICE},
+				NAME = #{NAME},
+				EMAIL = #{EMAIL},
+				PHONE = #{PHONE},
+				DAY = #{DAY},
+				MEM_ID = #{MEM_ID}
+			WHERE
+				BOOK_NO = #{BOOK_NO}
+		]]>
+	</update>
+	
+	<update id="updateWbCheck" parameterType="hashmap">
+		<![CDATA[
+			UPDATE BOOK 
+			SET
+				WB_CHECK = #{WB_CHECK}
+			WHERE
+				BOOK_NO = #{BOOK_NO}
+		]]>
+	</update>
+	
+	<update id="deleteBook" parameterType="hashmap">
+		<![CDATA[
+			DELETE 
+				FROM BOOK
+			WHERE
+				BOOK_NO = #{BOOK_NO}
+		]]>
+	</update>
+	
+	
+</mapper>

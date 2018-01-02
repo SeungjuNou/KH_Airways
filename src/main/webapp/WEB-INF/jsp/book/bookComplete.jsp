@@ -114,6 +114,9 @@
 										 					<a href="
 															<c:url value='/pdfMake.do?reqName=book/pdfEticket&BOOK_NO=${list.BOOK_NO}&name=${list.TK_NO}&fname=file_ET&email=email' />" 
 										 					type="button" class="btn btn-primary">이메일 발송</a>
+										 					<a href="
+															<c:url value='../myPage/viewMember.do' />" 
+										 					type="button" class="btn btn-primary">마이페이지</a>
 														</td>
 													</tr>
 												</c:forEach>

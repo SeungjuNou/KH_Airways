@@ -15,8 +15,11 @@ public class AdminInterceptor1 extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String lev = "6";
+		
+		
 		try {
 			lev = request.getSession().getAttribute("LEV").toString();
+			log.debug(lev);
 		} catch (Exception ex) {}
 		if(lev.equals("1") || lev.equals("3") ) {
 			member = true;

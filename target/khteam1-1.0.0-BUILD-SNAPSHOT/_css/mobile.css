@@ -1,0 +1,9 @@
+.bgcolor {
+	background:no-repeat;
+    background-image: url(/Users/seungjunou/Desktop/2.png);
+    background-size: 100% 120%;
+}
+
+body {
+	background-color: black;
+} 

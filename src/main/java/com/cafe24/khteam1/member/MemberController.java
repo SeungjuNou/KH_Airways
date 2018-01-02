@@ -171,7 +171,7 @@ public class MemberController {
 				request.getSession().setAttribute("MEM_NAME", (String) map.get("NAME"));
 				request.getSession().setAttribute("MILE_NO", MILE_NO);
 				request.getSession().setAttribute("MEM_NO", MEM_NO);
-				request.getSession().setAttribute("LEV", commandMap.get("lev"));
+				request.getSession().setAttribute("LEV", lev);
 				loginResult = true;
 			} else {
 				

@@ -126,7 +126,7 @@ public class BookController {
 
 	// 승객의 수만큼 탑승자 정보를 입력 받는 메서드.
 	@RequestMapping(value = "/book/pgInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView psInfo(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap)
+	public ModelAndView psInfo(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
 		ModelAndView mv = new ModelAndView("/book/pgInfo");
 
@@ -178,7 +178,7 @@ public class BookController {
 		
 		
 		Map<String, Object> mile = new HashMap<String, Object>();
-		String mileNo = "17991";
+		String mileNo = request.getSession().getAttribute("MILE_NO").toString();
 		mile.put("MILE_NO", mileNo);
 		
 		mv.addObject("miles", milesService.nowMile(mile));
@@ -351,7 +351,7 @@ public class BookController {
 	public ModelAndView complete(@ModelAttribute("flightInfo") Map<String, Object> map, CommandMap commandMap,
 			HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/book/bookComplete");
-		
+		log.debug(request.getSession().getAttribute("tid").toString());
 		Map<String, String> paramMap = new HashMap<String, String>();
 		paramMap.put("cid", "TC0ONETIME");
 		paramMap.put("tid", request.getSession().getAttribute("tid").toString());

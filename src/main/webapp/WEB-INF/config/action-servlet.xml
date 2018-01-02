@@ -31,16 +31,17 @@
 		<bean
 			class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor" />
 		<mvc:interceptor>
-			<mvc:mapping path="/book/**" />
 			<mvc:mapping path="/myPage/**" />
-			<mvc:mapping path="/admin1/**" />
-			<mvc:mapping path="/admin2/**" />
-			<mvc:mapping path="/admin3/**" />
-			<mvc:mapping path="/webcheck/**" />
 			<bean class="com.cafe24.khteam1.common.interceptor.BookInterceptor" />
 		</mvc:interceptor>
 		
 		<mvc:interceptor>
+			<mvc:mapping path="/main.do" />
+			<mvc:mapping path="/myPage/**" />
+			<bean class="com.cafe24.khteam1.common.interceptor.AInterceptor" />
+		</mvc:interceptor>
+		
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/admin1/**" />
 			<bean class="com.cafe24.khteam1.common.interceptor.AdminInterceptor1" />
 		</mvc:interceptor>
@@ -53,7 +54,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/admin3/**" />
 			<bean class="com.cafe24.khteam1.common.interceptor.AdminInterceptor3" />
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 
 	</mvc:interceptors>
 

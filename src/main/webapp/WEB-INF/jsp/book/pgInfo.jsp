@@ -288,32 +288,29 @@ $(document).ready(function(){
 	var miles = parseInt("<c:out value="${miles.MILES}" />");
 	var price = parseInt("<c:out value="${map.PRICE}" />");
 	
-	
-	
+
 	if(miles < price) {
 		$("#mileButton").attr('disabled',true);
 		$("<li>"+ "잔여 마일리지가 부족합니다." +"</li>").appendTo("#alert2");
 		$("<li>"+ "현재 마일리지 : " + miles +"</li>").appendTo("#alert2");
 	}
 	
+
+
+	var result = numberWithCommas(price);
+	$("<h4>" + result + "</h4>").appendTo(".comma");
+
+	function numberWithCommas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+	
 });
 </script>
 
 
 <script>
-	$(document).ready(
-
-	function() {
-
-		var price = parseInt("<c:out value="${map.PRICE}" />");
-
-		var result = numberWithCommas(price);
-		$("<h4>" + result + "</h4>").appendTo(".comma");
-
-		function numberWithCommas(x) {
-			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		}
-	});
+	
 	
 </script>
 

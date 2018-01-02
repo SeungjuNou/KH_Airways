@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="webcheck">
+
+	<select id="checkinList" resultType="hashmap">
+		<![CDATA[
+			SELECT *  
+			FROM
+			    WEBCHECK
+			ORDER BY BP_NO DESC
+		]]>
+	</select>
+
+	<insert id="insertWebcheck" parameterType="hashmap" >
+		<![CDATA[
+			
+			INSERT INTO WEBCHECK
+			(
+				BP_NO,
+			    BOOK_NO, 
+			    TICKET_NO, 
+			    EN_NAME,
+			    PP_NO,
+			    PP_EXP,
+			    PP_BIRTH,
+			    SEAT,
+			    MEM_ID,
+			    BO_DAY
+			)
+			VALUES
+			(
+				#{BP_NO}, 
+			    #{BOOK_NO}, 
+			    #{TICKET_NO}, 
+			    #{EN_NAME},
+			    #{PP_NO},
+			    #{PP_EXP},
+			    #{PP_BIRTH},
+			    #{SEAT},
+			    #{MEM_ID},
+			    #{BO_DAY}
+			    
+			)
+		]]>
+	</insert>
+	
+	
+	<select id="viewCheckin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				WEBCHECK
+			WHERE
+				BP_NO = #{BP_NO}	
+		]]>
+	</select> 
+	
+	<select id="viewMemberCheckin" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM
+				WEBCHECK
+			WHERE
+				MEM_ID = #{MEM_ID} AND BO_DAY > #{BO_DAY}
+		]]>
+	</select> 
+
+</mapper>
