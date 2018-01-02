@@ -403,8 +403,9 @@ $("#loging").bind("submit", function(event){
 		data: loginData,
 		success: function(data) {
 			if(data == false) {
-				alert("ID 또는 PASSWORD가 다릅니다.")
+				alert("ID 또는 PASSWORD가 다릅니다.");
 			} else {
+				alert("로그인 되었습니다.");
 				location.href="main.do";
 			}
 		}		
