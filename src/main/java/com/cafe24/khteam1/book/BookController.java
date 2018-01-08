@@ -324,9 +324,9 @@ public class BookController {
 		paramMap.put("total_amount", "10000");
 		paramMap.put("vat_amount", "1000");
 		paramMap.put("tax_free_amount", "0");
-		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/complete.do");
-		paramMap.put("fail_url", "http://localhost:9090/khteam1/main.do");
-		paramMap.put("cancel_url", "http://localhost:9090/khteam1/main.do");
+		paramMap.put("approval_url", "http://localhost:9090/khteam1/book/complete.do"); //성공시 이동 
+		paramMap.put("fail_url", "http://localhost:9090/khteam1/main.do"); //실패시 이동  
+		paramMap.put("cancel_url", "http://localhost:9090/khteam1/main.do"); //취소시 이동  
 
 		String str = apiHelper.readyPay(paramMap);
 

@@ -242,7 +242,7 @@ public class AdminController {
     
 	
 	
-	//탑승객 통계현황 
+	//매출 막대그래프 
 	@ResponseBody
 	@RequestMapping(value="/admin1/salesChart.do", produces = "application/text; charset=utf8", method = {RequestMethod.GET, RequestMethod.POST}) 
     public String salesChart(@ModelAttribute("chartMaker3") GoogleChartDTO chartMaker3, CommandMap commandMap) throws Exception{

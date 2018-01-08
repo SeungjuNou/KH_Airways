@@ -875,159 +875,52 @@
 		var peopleCount = ${map.COUNT};
 		var num;
 
-		$(document)
-				.ready(
-						function() {
-							reset();
+		$(document).ready(function() {
+				reset();
 
-							function reset() {
-
-								$
-										.ajax({
-											type : "post",
-											data : "",
-											url : "seatCheck.do",
-											success : function(data) {
-												//ajax호출해서 좌석만 확인하면 됨. 
-
-												$.each(data, function(index,
-														item) {
-													arr.push(item);
-												});
-
-												$
-														.each(
-																arr,
-																function(index,
-																		item) {
-																	var seatNo = item;
-																	var id = "#"
-																			+ seatNo;
-																	$(id)
-																			.attr(
-																					'disabled',
-																					true);
-																	$(id)
-																			.css(
-																					'background',
-																					'url(/khteam1/_assets/noneable.jpg) no-repeat');
-																	$(id)
-																			.css(
-																					'background-size',
-																					'100%');
-																	$(id)
-																			.css(
-																					'border',
-																					'none');
-																});
-											}
-
-										});
-
-							}
-							;
-
-							$('.reserve').click(function() {
-								people--;
-
-								$(this).addClass('.abc');
+			function reset() {
+				$.ajax({
+					type : "post",
+						data : "",
+						url : "seatCheck.do",
+						success : function(data) {
+							$.each(data, function(index,item) {
+									arr.push(item);
 							});
 
-							$('#next')
-									.click(
-											function() {
-
-												var countNo = $('.reserve').length;
-
-												arr2 = [];
-
-												$.each($('.reserve'), function(
-														index) {
-													var seatNo = $(this).val();
-													arr2[index] = seatNo;
-												})
-
-												var str = arr2.join(",");
-												str = str + ",";
-												$(
-														"<input type='hidden' id='seat' name=seat value='"+str+"' />")
-														.appendTo('#dndhkd2');
-												$("<p>" + str + "</p>").appendTo('#dndhkd2');
-
-											});
-
-							$('.seatButton').click(function() {
-								$(this).toggleClass('reserve');
-								var str = ($(this).val());
-
-								var id = "#" + $(this).val();
-								var id2 = ".li" + num;
-
-								$(this).removeClass('.abc');
-
-								reset();
-
+							$.each( arr,function(index,item) {
+								var seatNo = item;
+								var id = "#" + seatNo;
+								$(id).attr('disabled',true);
+								$(id).css('background', 'url(/khteam1/_assets/noneable.jpg) no-repeat');
+								$(id).css('background-size', '100%');
+								$(id).css('border','none');
 							});
+						}
+				});
 
-							$('.abc').click(function() {
+			};
 
-								var countNo = $('.reserve').length;
-
-								if (countNo >= peopleCount) {
-									$('.abc').attr('disabled', true);
-									$(this).addClass('abc');
-								} else {
-									$('.abc').attr('disabled', false);
-								}
-
-								reset();
-							});
-
-							$(document).bind('ready ajaxComplete', function() {
-								$('.seatReset').click(function() {
-									$('#dndhkd2').empty();
-									$('.seatButton').attr('disabled', false);
-									$('.reserve').removeClass('reserve');
-									$('.pg').attr('disabled', false);
-									people = 1;
-									reset();
-
-									$('.seatButton>b').empty();
-								});
-
-							});
-
-						});
-
-		/* $(document).bind('ready ajaxComplete', function(){
-			
 			$('.reserve').click(function() {
 				people--;
-				alert(people);
 				$(this).addClass('.abc');
 			});
-			
 
-			$('#next').click( function() {
-				
+			$('#next').click(function() {
 				var countNo = $('.reserve').length;
-
 				arr2 = [];
 				
 				$.each($('.reserve'), function(index) {
 					var seatNo = $(this).val();
 					arr2[index] = seatNo;
 				})
-
+	
 				var str = arr2.join(",");
-
-				$("<input type='hidden' id='seat' name=seat value='"+str+"' />")
-						.appendTo('#dndhkd2');
+				str = str + ",";
+				$("<input type='hidden' id='seat' name=seat value='"+str+"' />").appendTo('#dndhkd2');
 				$("<p>" + str + "</p>").appendTo('#dndhkd2');
 
 			});
-			
-			
 
 			$('.seatButton').click(function() {
 				$(this).toggleClass('reserve');
@@ -1036,18 +929,16 @@
 				var id = "#" + $(this).val();
 				var id2 = ".li" + num;
 
-				
 				$(this).removeClass('.abc');
-			
-				reset(); 
-				
+
+				reset();
+
 			});
-			
+
 			$('.abc').click(function() {
-				alert("sadf");
+
 				var countNo = $('.reserve').length;
-				alert(countNo);
-				
+
 				if (countNo >= peopleCount) {
 					$('.abc').attr('disabled', true);
 					$(this).addClass('abc');
@@ -1057,35 +948,24 @@
 
 				reset();
 			});
-			
-			
-		}); */
 
-		/*
-		 $('.seatReset').click(function(){
-		 $('#dndhkd2').empty();
-		 $('.seatButton').attr('disabled',false);
-		 $('.reserve').removeClass('reserve');
-		 $('.pg').attr('disabled',false);
-		 people = 1;
-		 reset();
+			$(document).bind('ready ajaxComplete', function() {
+				$('.seatReset').click(function() {
+					$('#dndhkd2').empty();
+					$('.seatButton').attr('disabled', false);
+					$('.reserve').removeClass('reserve');
+					$('.pg').attr('disabled', false);
+					people = 1;
+					reset();
 
-		 $('.seatButton>b').empty();
-		 });
+					$('.seatButton>b').empty();
+				});
+
+			});
+
+		});
+
 		
-
-
-		 $('.pg').click(function(){
-		 num = $(this).val();
-		 var numid = "#"+num;
-		 $('.reserve').attr('disabled',true);
-		 $('.seatButton').attr('disabled',false);
-		
-		 reset();
-		 });
-
-
-		 */
 	</script>
 
 

@@ -119,8 +119,6 @@ public class WebCheckController {
 			throws Exception { 
 		ModelAndView mv = new ModelAndView("/webCheck/webCheckStep3");
 		
-		log.debug(map);
-		log.debug("step3333333" + map);
 		map.putAll(commandMap.getMap());
 		
 		Map<String, Object> flight = flightService.flightDetail(map);
@@ -128,9 +126,10 @@ public class WebCheckController {
 		String seat2 = (String) commandMap.getMap().get("seat");
 		String strResult = seat + seat2;
 		map.put("result", strResult);
-		flightService.seatUpdate(map, null);
 		
-		flightService.seatMin(map);
+		flightService.seatUpdate(map, null); //예약좌석 업데이트 
+		
+		flightService.seatMin(map); //남은좌석 차감 
 		
 		String date = flight.get("DEP_DATE").toString();
 		
@@ -214,7 +213,7 @@ public class WebCheckController {
 	
 	
 	
-	@ResponseBody
+	@ResponseBody //예약된 좌석 ajax로 확인하는 컨트롤러
 	@RequestMapping(value = "/webcheck/seatCheck.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<String> seatCheck(@ModelAttribute("webcheckInfo") Map<String, Object> map, CommandMap commandMap)
 			throws Exception {
