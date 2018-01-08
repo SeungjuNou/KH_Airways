@@ -81,6 +81,7 @@ public class PdfController {
 		
 		name = name + ".pdf";
 		String re = "main/main.do";
+		
 		if(email == null || email.equals("")) {
 			
 			try {

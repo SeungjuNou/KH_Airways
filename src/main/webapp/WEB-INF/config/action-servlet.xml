@@ -35,11 +35,11 @@
 			<bean class="com.cafe24.khteam1.common.interceptor.BookInterceptor" />
 		</mvc:interceptor>
 		
-		<mvc:interceptor>
+		<!-- <mvc:interceptor>
 			<mvc:mapping path="/main.do" />
 			<mvc:mapping path="/myPage/**" />
 			<bean class="com.cafe24.khteam1.common.interceptor.AInterceptor" />
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 		
 		<!-- <mvc:interceptor>
 			<mvc:mapping path="/admin1/**" />
